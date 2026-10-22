@@ -43,7 +43,7 @@
   a { color: inherit; }
   button { font-family: inherit; cursor: pointer; }
 
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
 
   /* ---------- Header ---------- */
   header.site {
@@ -55,7 +55,7 @@
   }
   .nav-row {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 0;
+    padding: 16px 28px;
   }
   .brand {
     font-family: var(--serif); font-weight: 600; font-size: 22px;
@@ -73,6 +73,16 @@
   nav.links { display: flex; align-items: center; gap: 24px; }
   nav.links button.navlink { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px !important; }
   .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-icons { display: flex; align-items: center; gap: 10px; }
+  .icon-wrap { position: relative; }
+  .icon-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--text-on-paper); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .icon-btn:hover, .icon-btn.active { border-color: var(--ink); color: var(--ink); }
+  .search-pop { position: absolute; right: 0; top: calc(100% + 10px); width: min(92vw, 420px); background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 28px rgba(33,24,75,0.16); padding: 10px; z-index: 55; }
+  .search-field { position: relative; }
+  .search-field > svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-on-paper-dim); pointer-events: none; }
+  .search-field input { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; padding: 10px 12px 10px 38px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-dim); }
+  .search-field input:focus { outline: 2px solid var(--ink); background: #fff; }
+  .search-pop .search-results { position: static; min-width: 0; border: none; box-shadow: none; margin-top: 8px; border-radius: 0; }
   .search-wrap { position: relative; flex: 0 1 300px; min-width: 0; }
   .search-wrap > svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-on-paper-dim); pointer-events: none; }
   .search-wrap input { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; padding: 10px 12px 10px 38px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-dim); }
@@ -93,6 +103,63 @@
   .user-menu button { display: block; width: 100%; text-align: left; background: none; border: none; font: inherit; font-size: 14px; padding: 12px 16px; cursor: pointer; color: var(--text-on-paper); }
   .user-menu button:hover { background: var(--paper-dim); }
   .um-head { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .sp-stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+  .sp-stats div { padding: 12px 8px; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-on-paper-dim); }
+  .sp-stats div + div { border-left: 1px solid var(--line); }
+  .sp-stats b { display: block; font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: 0; color: var(--ink); margin-bottom: 2px; }
+  .pf-bar { background: linear-gradient(120deg, var(--ink), var(--ink-soft)); color: var(--text-on-ink-dim); font-size: 14px; padding: 14px 0; }
+  .pf-bar button { background: none; border: none; color: var(--text-on-ink-dim); font: inherit; cursor: pointer; padding: 0; }
+  .pf-bar button:hover { color: #fff; text-decoration: underline; }
+  .pf-bar b { color: #fff; font-weight: 500; }
+  .pf-head { display: flex; align-items: center; gap: 28px; padding: 40px 0 32px; flex-wrap: wrap; }
+  .pf-head .pc-avatar { width: 112px; height: 112px; font-size: 38px; }
+  .pf-name { font-family: var(--serif); font-weight: 500; font-size: 42px; line-height: 1.1; color: var(--ink); margin: 0 0 6px; }
+  .pf-title { font-size: 19px; color: var(--text-on-paper-dim); }
+  .pf-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; margin-bottom: 36px; }
+  .pf-lab { font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-on-paper-dim); margin-bottom: 6px; }
+  .pf-val { font-size: 16px; color: var(--text-on-paper); }
+  .pf-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start; padding-bottom: 80px; }
+  .pf-sec { margin-bottom: 34px; }
+  .pf-sec h2 { font-family: ui-monospace, Menlo, monospace; font-weight: 400; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-bright); margin: 0 0 12px; display: flex; align-items: center; gap: 12px; }
+  .pf-sec h2::before { content: ""; width: 34px; border-top: 1px solid var(--brass-bright); }
+  .pf-sec p { font-size: 17px; line-height: 1.6; margin: 0; white-space: pre-line; }
+  .pf-empty { color: var(--text-on-paper-dim); font-style: italic; }
+  .pf-aside { position: sticky; top: 90px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-m); padding: 22px; }
+  .pf-aside p { font-size: 15px; color: var(--text-on-paper-dim); margin: 0 0 16px; }
+  .pf-aside .btn { width: 100%; margin-bottom: 10px; }
+  @media (max-width: 860px) { .pf-layout { grid-template-columns: 1fr; gap: 12px; } .pf-info { grid-template-columns: 1fr; } .pf-aside { position: static; } .pf-name { font-size: 32px; } }
+  .um-btn { display: flex !important; align-items: center; gap: 12px; }
+  .um-btn svg { color: var(--text-on-paper-dim); flex: none; }
+  .um-btn:hover svg { color: var(--ink); }
+  .um-sub { font-size: 12px; color: var(--text-on-paper-dim); margin-top: 2px; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .um-sep { border-top: 1px solid var(--line); }
+  .st-hero { background: linear-gradient(120deg, var(--ink), var(--ink-soft)); color: var(--text-on-ink); padding: 48px 0 40px; }
+  .st-hero .rc-eyebrow { color: var(--brass); }
+  .st-hero h1 { font-family: var(--serif); font-weight: 500; font-size: 38px; margin: 8px 0 8px; }
+  .st-hero p { margin: 0; color: var(--text-on-ink-dim); max-width: 60ch; }
+  .st-body { padding: 32px 0 80px; display: grid; gap: 18px; }
+  .st-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-m); padding: 22px; }
+  .st-card h2 { font-family: var(--serif); font-weight: 500; font-size: 20px; margin: 0 0 4px; color: var(--ink); }
+  .st-card .sub { font-size: 13px; color: var(--text-on-paper-dim); margin: 0 0 14px; }
+  .st-id { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .st-id .pc-avatar { width: 64px; height: 64px; font-size: 22px; }
+  .st-id .st-who { flex: 1; min-width: 180px; }
+  .st-name { font-family: var(--serif); font-size: 22px; color: var(--ink); }
+  .st-bar { height: 8px; border-radius: 999px; background: var(--paper-dim); overflow: hidden; margin: 10px 0 14px; }
+  .st-bar > span { display: block; height: 100%; background: var(--brass); border-radius: 999px; transition: width .3s; }
+  .st-pct { float: right; font-weight: 600; color: var(--ink); }
+  .st-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+  .st-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; padding: 4px 0; }
+  .st-list li .ck { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line); flex: none; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; }
+  .st-list li.done { color: var(--text-on-paper-dim); }
+  .st-list li.done .ck { background: var(--brass-bright); border-color: var(--brass-bright); }
+  .st-list li:not(.done) { cursor: pointer; }
+  .st-list li:not(.done):hover { color: var(--ink); text-decoration: underline; }
+  .st-langs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .st-langs button { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 14px; cursor: pointer; }
+  .st-langs button.active { border-color: var(--ink); font-weight: 600; color: var(--ink); }
+  .st-soon { font-size: 13px; color: var(--text-on-paper-dim); margin: 0; }
+  @media (max-width: 640px) { .st-list { grid-template-columns: 1fr; } }
   .um-name { font-weight: 600; color: var(--ink); }
   nav.links button.navlink {
     background: none; border: none; color: var(--text-on-paper-dim);
@@ -111,6 +178,9 @@
   .lang-menu { position: relative; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--line); border-radius: 999px; color: var(--text-on-paper-dim); font: inherit; font-size: 13px; font-weight: 600; padding: 6px 11px; cursor: pointer; }
   .lang-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .flag { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.14); flex: none; display: inline-block; vertical-align: -2px; }
+  .lang-opt { display: inline-flex; align-items: center; gap: 10px; }
+  .lang-toggle .flag { margin-right: 6px; }
   .lang-list { position: absolute; right: 0; top: calc(100% + 8px); min-width: 140px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 28px rgba(33,24,75,.14); padding: 6px; z-index: 60; }
   .lang-list button { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; text-align: left; font: inherit; font-size: 14px; color: var(--text-on-paper); padding: 8px 10px; border-radius: 6px; cursor: pointer; }
   .lang-list button:hover { background: var(--paper-dim); }
@@ -175,7 +245,7 @@
 
   .public-actions { display: none; gap: 10px; align-items: center; }
   body.public .public-actions { display: flex; }
-  body.public .search-wrap, body.public nav.links, body.public .who-wrap { display: none; }
+  body.public .nav-icons, body.public nav.links, body.public .who-wrap { display: none; }
   body.public .nav-right { margin-left: auto; }
   .examples { padding: 8px 0 56px; background: var(--paper-dim); }
   .ex-label { font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-on-paper-dim); padding: 36px 0 16px; }
@@ -216,8 +286,20 @@
   .su-field { margin-bottom: 14px; }
   .su-field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
   .su-field .hint { font-weight: 400; color: var(--text-on-paper-dim); }
-  .su-field input[type=text], .su-field input[type=email] { width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-s); }
+  .su-field input[type=text], .su-field input[type=email], .su-field input[type=password] { width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 11px 13px; border: 1px solid var(--line); border-radius: var(--radius-s); }
   .su-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .su-pw { position: relative; }
+  .su-pw input { padding-right: 46px !important; }
+  .su-eye { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; padding: 8px; color: var(--text-on-paper-dim); cursor: pointer; line-height: 0; }
+  .su-eye:hover { color: var(--ink); }
+  .su-or { display: flex; align-items: center; gap: 12px; margin: 22px 0 16px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-on-paper-dim); }
+  .su-or::before, .su-or::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+  .btn-social { width: 100%; gap: 12px; background: #fff; color: var(--text-on-paper); border-color: var(--line); margin-bottom: 10px; }
+  .btn-social:hover { border-color: var(--ink); }
+  .btn-social svg { width: 20px; height: 20px; }
+  .su-opt { margin: 4px 0 14px; font-size: 13px; }
+  .su-opt summary { cursor: pointer; color: var(--ink); font-weight: 600; padding: 6px 0; }
+  .su-legal-link { color: var(--ink); text-decoration: underline; }
   .su-steps { display: flex; gap: 8px; margin-bottom: 22px; font-size: 12px; color: var(--text-on-paper-dim); }
   .su-steps span { flex: 1; padding-top: 8px; border-top: 3px solid var(--line); }
   .su-steps span.on { border-top-color: var(--ink); color: var(--ink); font-weight: 600; }
@@ -296,7 +378,29 @@
     background: #fff;
   }
   .composer-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 12px; }
-  .feed-grid { display: grid; grid-template-columns: 250px minmax(0, 640px); gap: 24px; justify-content: center; align-items: start; }
+  .feed-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+  .right-col { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 90px; }
+  .rc-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-m); padding: 18px; }
+  .rc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .rc-eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-bright); }
+  .rc-all { background: none; border: none; font: inherit; font-size: 13px; color: var(--ink); cursor: pointer; padding: 0; white-space: nowrap; }
+  .rc-all:hover { text-decoration: underline; }
+  .rc-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .rc-row:first-of-type { border-top: none; }
+  .rc-row .pc-avatar { width: 40px; height: 40px; font-size: 14px; }
+  .rc-info { flex: 1; min-width: 0; }
+  .rc-name { background: none; border: none; padding: 0; font: inherit; font-weight: 600; font-size: 14px; color: var(--text-on-paper); cursor: pointer; text-align: left; }
+  .rc-name:hover { text-decoration: underline; }
+  .rc-sub { font-size: 12px; color: var(--text-on-paper-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rc-btn { margin-top: 8px; padding: 6px 12px; font-size: 12px; }
+  .rc-empty { font-size: 13px; color: var(--text-on-paper-dim); margin: 0; }
+  .rc-mentor { background: var(--ink); color: var(--text-on-ink); border-color: var(--ink); }
+  .rc-mentor .rc-eyebrow { color: var(--brass); }
+  .rc-mentor h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 4px 0 8px; }
+  .rc-mentor p { font-size: 14px; color: var(--text-on-ink-dim); margin: 0 0 14px; }
+  .rc-mentor .btn { background: var(--brass); color: var(--ink); }
+  .rc-mentor .btn:hover { background: #D4B16C; }
+  @media (max-width: 1160px) { .feed-grid { grid-template-columns: 220px minmax(0, 1fr) 250px; gap: 18px; } }
   .side-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-m); overflow: hidden; position: sticky; top: 90px; }
   .sp-cover { height: 64px; background: linear-gradient(120deg, var(--ink), var(--ink-soft)); }
   .sp-avatar { border-radius: 50%; background-color: var(--ink); background-size: cover; background-position: center; background-repeat: no-repeat; color: var(--text-on-ink); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 600; flex: none; position: relative; }
@@ -436,15 +540,16 @@
 
   @media (max-width: 860px) {
     .feed-grid { grid-template-columns: 1fr; }
-    .side-card { position: static; }
+    .side-card, .right-col { position: static; }
     .hero-grid { grid-template-columns: 1fr; }
     .network-art { display: none; }
     .hero h1 { font-size: 40px; }
     .value-grid { grid-template-columns: 1fr; }
-    .nav-row { flex-wrap: wrap; row-gap: 8px; padding: 12px 0 0; }
+    .nav-row { flex-wrap: wrap; row-gap: 8px; padding: 12px 18px 0; }
     .brand { order: 1; } .nav-right { order: 2; margin-left: auto; }
-    .search-wrap { order: 3; flex: 1 1 100%; }
     .who span { display: none; }
+    .nav-right { gap: 8px; } .nav-icons { gap: 6px; } .icon-btn { width: 36px; height: 36px; } .lang-btn #langCur { display: none; } .logo-full { height: 26px; margin-right: 0; }
+    .search-pop { position: fixed; left: 12px; right: 12px; top: 58px; width: auto; }
     nav.links {
       order: 4; width: 100%; gap: 22px; justify-content: space-around; overflow-x: auto; padding: 0 0 2px;
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
@@ -457,24 +562,20 @@
 <body class="public">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <symbol id="nane-logo" viewBox="112 54 1156 296"><g transform="translate(-398,-153)"><defs><linearGradient id="nn-connection" gradientUnits="userSpaceOnUse" x1="230" y1="330" x2="470" y2="540"><stop stop-color="#21184B"/><stop offset="1" stop-color="#C6A15B"/></linearGradient></defs><g transform="translate(496,189) scale(.435,.422)"><path fill="#C6A15B" fill-rule="evenodd" d="M226 111 Q226 54 281 54 H304 Q324 54 336 68 L657 421 V531 Q646 529 628 507 L306 155 L302 157 V375 L298 375 L228 299 Z"/><path fill="#21184B" fill-rule="evenodd" d="M740 168 Q743 168 743 174 V588 Q743 604 730 604 H721 Q703 600 683 571 Q664 551 664 534 V228 Q664 210 682 198 L717 176 Q733 168 740 168 Z"/><path fill="url(#nn-connection)" fill-rule="evenodd" d="M44 198 Q44 178 66 178 H86 Q101 178 118 199 L505 616 V395 H509 L580 475 V676 Q580 722 515 722 Q490 722 471 706 L125 322 L122 324 V596 Q122 615 99 628 L50 658 L44 659 Z"/></g><path fill="#21184B" fill-rule="evenodd" d="M930 298 H949 L1030 385 V298 H1049 V417 H1030 L949 330 V417 H930 Z M1190 298 H1211 L1270 417 H1249 L1234 386 H1165 L1150 417 H1129 Z M1174 368 H1225 L1200 320 Z M1355 298 H1374 L1455 385 V298 H1474 V417 H1455 L1374 330 V417 H1355 Z M1570 298 H1661 V316 H1590 V348 H1645 V366 H1590 V399 H1661 V417 H1570 Z"/></g></symbol>
+  <symbol id="flag-fr" viewBox="0 0 20 14"><rect width="7" height="14" fill="#0055A4"/><rect x="7" width="6" height="14" fill="#fff"/><rect x="13" width="7" height="14" fill="#EF4135"/></symbol>
+  <symbol id="flag-de" viewBox="0 0 20 14"><rect width="20" height="5" fill="#000"/><rect y="5" width="20" height="4" fill="#DD0000"/><rect y="9" width="20" height="5" fill="#FFCE00"/></symbol>
+  <symbol id="flag-en" viewBox="0 0 20 14"><rect width="20" height="14" fill="#012169"/><path d="M0 0L20 14M20 0L0 14" stroke="#fff" stroke-width="2.6"/><path d="M0 0L20 14M20 0L0 14" stroke="#C8102E" stroke-width="1"/><path d="M10 0V14M0 7H20" stroke="#fff" stroke-width="4.4"/><path d="M10 0V14M0 7H20" stroke="#C8102E" stroke-width="2.4"/></symbol>
 </defs></svg>
 
 
 <header class="site">
   <div class="wrap nav-row">
     <div class="brand"><svg class="logo-full" viewBox="0 0 1156 296" role="img" aria-label="NANE"><use href="#nane-logo"/></svg></div>
-    <div class="search-wrap" id="searchWrap">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-      <input type="search" id="globalSearch" autocomplete="off" class="i18n-ph"
-        data-fr="Rechercher un nom, un métier, une compétence" data-de="Name, Beruf oder Fähigkeit suchen" data-en="Search a name, job or skill">
-      <div class="search-results" id="searchResults" hidden></div>
-    </div>
     <nav class="links">
       <button class="navlink" data-view-target="feed"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span class="i18n" data-fr="Accueil" data-de="Start" data-en="Home"></span></button>
       <button class="navlink" data-view-target="network" style="position:relative"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M10.7 8.2L6.3 14.8M13.3 8.2l4.4 6.6M7.5 17h9"/></svg><span class="dot" id="netDot" style="display:none"></span><span class="i18n" data-fr="Réseau" data-de="Netzwerk" data-en="Network"></span></button>
       <button class="navlink" data-view-target="directory"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17.5 14.2c2.4.3 4 2 4 4.8"/></svg><span class="i18n" data-fr="Annuaire" data-de="Verzeichnis" data-en="Directory"></span></button>
       <button class="navlink" data-view-target="messages"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></span></button>
-      <button class="navlink" data-view-target="notifications" style="position:relative"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/></svg><span class="dot" id="notifDot" style="display:none"></span><span class="i18n" data-fr="Notifications" data-de="Meldungen" data-en="Notifications"></span></button>
     </nav>
     <div class="nav-right">
       <div class="public-actions">
@@ -483,23 +584,45 @@
       </div>
       <div class="lang-menu" id="langMenu">
         <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / Sprache / Language">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9s-1.4 6.4-4.2 9c-2.8-2.6-4.2-5.6-4.2-9S9.200 5.600 12 3z"/></svg>
+          <svg class="flag" id="langFlag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>
           <span id="langCur">FR</span>
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-list" id="langList" role="listbox" hidden>
-          <button type="button" role="option" data-lang="fr" class="active">Français</button>
-          <button type="button" role="option" data-lang="de">Deutsch</button>
-          <button type="button" role="option" data-lang="en">English</button>
+          <button type="button" role="option" data-lang="fr" class="active"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>Français</span></button>
+          <button type="button" role="option" data-lang="de"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>Deutsch</span></button>
+          <button type="button" role="option" data-lang="en"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>English</span></button>
         </div>
+      </div>
+      <div class="nav-icons">
+        <div class="icon-wrap" id="searchWrap">
+          <button type="button" class="icon-btn" id="searchBtn" aria-haspopup="true" aria-expanded="false" aria-label="Rechercher / Suchen / Search">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          </button>
+          <div class="search-pop" id="searchPop" hidden>
+            <div class="search-field">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+              <input type="search" id="globalSearch" autocomplete="off" class="i18n-ph"
+                data-fr="Rechercher un nom, un métier, une compétence" data-de="Name, Beruf oder Fähigkeit suchen" data-en="Search a name, job or skill">
+            </div>
+            <div class="search-results" id="searchResults" hidden></div>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" id="bellBtn" data-view-target="notifications" aria-label="Notifications" style="position:relative">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/></svg>
+          <span class="dot" id="notifDot" style="display:none"></span>
+        </button>
       </div>
       <div class="who-wrap">
         <button class="who" id="whoBox" aria-haspopup="menu" aria-expanded="false"></button>
         <div class="user-menu" id="userMenu" hidden>
-          <div class="um-head"><div class="um-name" id="menuName"></div></div>
-          <button data-view-target="form" class="i18n" data-fr="Mon profil et ma photo" data-de="Mein Profil und Foto" data-en="My profile and photo"></button>
-          <button id="menuLogout" class="i18n" data-fr="Se déconnecter" data-de="Abmelden" data-en="Log out"></button>
-          <button id="menuCharter" class="i18n" data-fr="Charte et confidentialité" data-de="Charta und Datenschutz" data-en="Charter and privacy"></button>
+          <div class="um-head"><div class="um-name" id="menuName"></div><div class="um-sub" id="menuSub"></div></div>
+          <button class="um-btn" data-view-target="profile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c0-3.9 3.4-6.5 7.5-6.5s7.5 2.6 7.5 6.5"/></svg><span class="i18n" data-fr="Mon profil" data-de="Mein Profil" data-en="My profile"></span></button>
+          <button class="um-btn" data-view-target="feed"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span class="i18n" data-fr="Mon fil" data-de="Mein Feed" data-en="My feed"></span></button>
+          <button class="um-btn" data-view-target="settings"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span class="i18n" data-fr="Paramètres" data-de="Einstellungen" data-en="Settings"></span></button>
+          <div class="um-sep"></div>
+          <button class="um-btn" id="menuCharter"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.500-3.200 8-8 9-4.800-1-8-4.500-8-9V6z"/></svg><span class="i18n" data-fr="Charte et confidentialité" data-de="Charta und Datenschutz" data-en="Charter and privacy"></span></button>
+          <button class="um-btn" id="menuLogout"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg><span class="i18n" data-fr="Se déconnecter" data-de="Abmelden" data-en="Log out"></span></button>
         </div>
       </div>
     </div>
@@ -660,6 +783,21 @@
     </section>
   </section>
 
+  <!-- SETTINGS -->
+  <section data-view="settings">
+    <section class="st-hero"><div class="wrap wrap-narrow">
+      <span class="rc-eyebrow i18n" data-fr="Mon compte" data-de="Mein Konto" data-en="My account"></span>
+      <h1 class="i18n" data-fr="Paramètres du compte" data-de="Kontoeinstellungen" data-en="Account settings"></h1>
+      <p class="i18n" data-fr="Gérez votre profil public, votre langue et vos données." data-de="Verwalten Sie Ihr öffentliches Profil, Ihre Sprache und Ihre Daten." data-en="Manage your public profile, your language and your data."></p>
+    </div></section>
+    <div class="wrap wrap-narrow st-body" id="settingsArea"></div>
+  </section>
+
+  <!-- PROFILE (page) -->
+  <section data-view="profile">
+    <div id="profileArea"></div>
+  </section>
+
   <!-- FEED -->
   <section data-view="feed">
     <section class="feed-section">
@@ -682,6 +820,7 @@
           </div>
           <div id="feedBody"></div>
         </div>
+        <aside class="right-col" id="rightCol"></aside>
       </div>
     </section>
   </section>
@@ -803,9 +942,9 @@
   <div class="wrap foot-bottom">
     <span>NANE © 2026</span>
     <div class="lang-toggle foot-lang">
-      <button data-lang="en">EN</button>
-      <button data-lang="de">DE</button>
-      <button data-lang="fr" class="active">FR</button>
+      <button data-lang="en"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>EN</button>
+      <button data-lang="de"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>DE</button>
+      <button data-lang="fr" class="active"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>FR</button>
     </div>
   </div>
 </footer>
@@ -975,6 +1114,7 @@
         x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
       });
       document.getElementById("langCur").textContent = currentLang.toUpperCase();
+      document.getElementById("langFlag").firstElementChild.setAttribute("href", "#flag-" + currentLang);
       closeLangList();
       applyLang();
       refreshDynamicLabels();
@@ -1001,13 +1141,20 @@
       else html += '<button class="sr-item sr-all" id="srAll">' + escapeHtml({ fr: "Voir tous les résultats dans l'annuaire", de: "Alle Treffer im Verzeichnis", en: "See all results in the directory" }[currentLang]) + '</button>';
       box.innerHTML = html; box.hidden = false;
       box.querySelectorAll(".sr-item[data-i]").forEach(function (b) {
-        b.addEventListener("click", function () { box.hidden = true; openModal(hits[+b.getAttribute("data-i")]); });
+        b.addEventListener("click", function () { closeSearch(); openModal(hits[+b.getAttribute("data-i")]); });
       });
       var all = document.getElementById("srAll");
       if (all) all.addEventListener("click", function () {
-        document.getElementById("fSearch").value = inp.value; box.hidden = true; showView("directory"); renderDirectory();
+        document.getElementById("fSearch").value = inp.value; closeSearch(); showView("directory"); renderDirectory();
       });
     }
+    var sBtn = document.getElementById("searchBtn"), sPop = document.getElementById("searchPop");
+    function closeSearch() { sPop.hidden = true; box.hidden = true; sBtn.setAttribute("aria-expanded", "false"); }
+    sBtn.addEventListener("click", function (e) {
+      e.stopPropagation(); sPop.hidden = !sPop.hidden; sBtn.setAttribute("aria-expanded", String(!sPop.hidden));
+      if (!sPop.hidden) inp.focus(); else box.hidden = true;
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSearch(); });
     inp.addEventListener("input", run);
     inp.addEventListener("focus", run);
     var who = document.getElementById("whoBox"), menu = document.getElementById("userMenu");
@@ -1023,7 +1170,7 @@
       a.addEventListener("click", function (e) { e.preventDefault(); });
     });
     document.addEventListener("click", function (e) {
-      if (!e.target.closest("#searchWrap")) box.hidden = true;
+      if (!e.target.closest("#searchWrap")) closeSearch();
       if (!e.target.closest(".who-wrap")) menu.hidden = true;
     });
   })();
@@ -1045,18 +1192,26 @@
   function renderSignup() {
     var el = document.getElementById("signupArea"); if (!el) return;
     var steps = [T("Compte", "Konto", "Account"), T("E-mail", "E-Mail", "Email"), T("Profil vérifié", "Verifiziertes Profil", "Verified profile")];
-    var h = '<div class="mock-banner">' + escapeHtml(T("Maquette : rien n'est envoyé ni enregistré. Elle sert à montrer le parcours d'inscription.", "Mockup: nichts wird gesendet oder gespeichert. Sie zeigt den Anmeldeablauf.", "Mockup: nothing is sent or saved. It shows the sign-up flow.")) + '</div>' +
+    var h = '<div class="mock-banner">' + escapeHtml(T("Maquette : rien n'est envoyé ni enregistré, y compris le mot de passe. N'utilise pas un vrai mot de passe.", "Mockup: nichts wird gesendet oder gespeichert, auch das Passwort nicht. Verwende kein echtes Passwort.", "Mockup: nothing is sent or saved, including the password. Do not use a real password.")) + '</div>' +
       '<div class="su-steps">' + steps.map(function (x, i) { return '<span class="' + (signupStep === i + 1 ? "on" : "") + '">' + (i + 1) + '. ' + escapeHtml(x) + '</span>'; }).join("") + '</div>';
     if (signupStep === 1) {
-      h += '<h2>' + escapeHtml(T("Rejoins le réseau", "Werde Teil des Netzwerks", "Join the network")) + '</h2>' +
-        '<p class="sub">' + escapeHtml(T("Pas de mot de passe : tu reçois un lien de connexion par e-mail.", "Kein Passwort: Du erhältst einen Login-Link per E-Mail.", "No password: you get a sign-in link by email.")) + '</p>' +
-        '<div class="su-row"><div class="su-field"><label>' + escapeHtml(T("Prénom", "Vorname", "First name")) + '</label><input type="text" id="suFirst" value="' + escapeHtml(signupData.first) + '"></div>' +
-        '<div class="su-field"><label>' + escapeHtml(T("Nom", "Nachname", "Last name")) + '</label><input type="text" id="suLast" value="' + escapeHtml(signupData.last) + '"></div></div>' +
-        '<div class="su-field"><label>' + escapeHtml(T("E-mail", "E-Mail", "Email")) + ' <span class="hint">' + escapeHtml(T("(une adresse professionnelle est un plus)", "(eine berufliche Adresse ist ein Plus)", "(a work address is a plus)")) + '</span></label><input type="email" id="suEmail" value="' + escapeHtml(signupData.email) + '"></div>' +
-        '<div class="su-field"><label>' + escapeHtml(T("Lien LinkedIn ou site professionnel", "LinkedIn- oder Berufswebsite-Link", "LinkedIn or professional website link")) + ' <span class="hint">' + escapeHtml(T("(facultatif, pour le badge vérifié)", "(optional, für das Verifizierungs-Badge)", "(optional, for the verified badge)")) + '</span></label><input type="text" id="suLink" placeholder="https://" value="' + escapeHtml(signupData.link) + '"></div>' +
-        '<div class="su-field"><label>' + escapeHtml(T("Code d'invitation", "Einladungscode", "Invitation code")) + ' <span class="hint">' + escapeHtml(T("(facultatif, donné par un membre)", "(optional, von einem Mitglied)", "(optional, from a member)")) + '</span></label><input type="text" id="suCode" value="' + escapeHtml(signupData.code) + '"></div>' +
-        '<label class="su-check"><input type="checkbox" id="suOk"> <span>' + escapeHtml(T("J'accepte la charte de la communauté et la politique de confidentialité.", "Ich akzeptiere die Community-Charta und die Datenschutzerklärung.", "I accept the community charter and privacy policy.")) + '</span></label>' +
-        '<button class="btn btn-primary" id="suNext">' + escapeHtml(T("Créer mon compte", "Konto erstellen", "Create my account")) + '</button> <span class="save-msg" id="suMsg" style="color:var(--wine)"></span>' +
+      h += '<h2>' + escapeHtml(T("Inscription", "Registrierung", "Sign up")) + '</h2>' +
+        '<p class="sub">' + escapeHtml(T("Crée ton compte en moins de cinq minutes.", "Erstelle dein Konto in weniger als fünf Minuten.", "Create your account in under five minutes.")) + '</p>' +
+        '<div class="su-row"><div class="su-field"><label>' + escapeHtml(T("Prénom", "Vorname", "First name")) + '</label><input type="text" id="suFirst" autocomplete="given-name" value="' + escapeHtml(signupData.first) + '"></div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Nom", "Nachname", "Last name")) + '</label><input type="text" id="suLast" autocomplete="family-name" value="' + escapeHtml(signupData.last) + '"></div></div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("E-mail", "E-Mail", "Email")) + '</label><input type="email" id="suEmail" autocomplete="email" placeholder="' + escapeHtml(T("vous@exemple.com", "du@beispiel.com", "you@example.com")) + '" value="' + escapeHtml(signupData.email) + '"></div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Mot de passe", "Passwort", "Password")) + ' <span class="hint">' + escapeHtml(T("8 caractères minimum", "mindestens 8 Zeichen", "8 characters minimum")) + '</span></label>' +
+        '<div class="su-pw"><input type="password" id="suPw" autocomplete="new-password" placeholder="' + escapeHtml(T("Choisis un mot de passe robuste", "Wähle ein sicheres Passwort", "Choose a strong password")) + '">' +
+        '<button type="button" class="su-eye" id="suEye" aria-label="' + escapeHtml(T("Afficher le mot de passe", "Passwort anzeigen", "Show password")) + '"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.500-7 10-7 10 7 10 7-3.500 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>' +
+        '<details class="su-opt"><summary>' + escapeHtml(T("Options (facultatif) : badge vérifié, invitation", "Optionen (freiwillig): Verifizierungs-Badge, Einladung", "Options (optional): verified badge, invitation")) + '</summary>' +
+        '<div class="su-field" style="margin-top:10px"><label>' + escapeHtml(T("Lien LinkedIn ou site professionnel", "LinkedIn- oder Berufswebsite-Link", "LinkedIn or professional website link")) + ' <span class="hint">' + escapeHtml(T("(pour le badge vérifié)", "(für das Verifizierungs-Badge)", "(for the verified badge)")) + '</span></label><input type="text" id="suLink" placeholder="https://" value="' + escapeHtml(signupData.link) + '"></div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Code d'invitation", "Einladungscode", "Invitation code")) + ' <span class="hint">' + escapeHtml(T("(donné par un membre)", "(von einem Mitglied)", "(from a member)")) + '</span></label><input type="text" id="suCode" value="' + escapeHtml(signupData.code) + '"></div></details>' +
+        '<label class="su-check"><input type="checkbox" id="suOk"> <span>' + escapeHtml(T("J'accepte les ", "Ich akzeptiere die ", "I accept the ")) + '<a href="#" class="su-legal-link" data-legal="legalCharter">' + escapeHtml(T("CGU", "Nutzungsbedingungen", "terms of use")) + '</a>' + escapeHtml(T(" et la ", " und die ", " and the ")) + '<a href="#" class="su-legal-link" data-legal="legalData">' + escapeHtml(T("politique de confidentialité", "Datenschutzerklärung", "privacy policy")) + '</a>.</span></label>' +
+        '<button class="btn btn-primary" id="suNext" style="width:100%">' + escapeHtml(T("S'inscrire", "Registrieren", "Sign up")) + '</button> <div class="save-msg" id="suMsg" style="color:var(--wine);margin-top:8px"></div>' +
+        '<div class="su-or">' + escapeHtml(T("ou", "oder", "or")) + '</div>' +
+        '<button type="button" class="btn btn-social" data-social="Google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.3-.2-1.9H12v3.6h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.2z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.100v2.600A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.400 13.900a6 6 0 0 1 0-3.800V7.500H3.100a10 10 0 0 0 0 9z"/><path fill="#EA4335" d="M12 6c1.500 0 2.800.5 3.800 1.500l2.900-2.900A10 10 0 0 0 3.100 7.500l3.300 2.600C7.200 7.800 9.400 6 12 6z"/></svg>' + escapeHtml(T("Continuer avec Google", "Weiter mit Google", "Continue with Google")) + '</button>' +
+        '<button type="button" class="btn btn-social" data-social="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.100 9.800H4.500V19h2.600V9.800zM5.800 5.500a1.500 1.500 0 1 0 0 3 1.500 1.500 0 0 0 0-3zM19.500 13.800c0-2.500-1.300-4.200-3.500-4.200-1.100 0-2 .6-2.400 1.300V9.800H11V19h2.600v-5c0-1.200.6-2 1.600-2s1.700.7 1.700 2v5h2.600v-5.200z"/></svg>' + escapeHtml(T("Continuer avec LinkedIn", "Weiter mit LinkedIn", "Continue with LinkedIn")) + '</button>' +
+        '<p style="text-align:center;margin:18px 0 0;font-size:14px">' + escapeHtml(T("Déjà inscrit ? ", "Schon registriert? ", "Already a member? ")) + '<a href="#" id="suLogin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Se connecter", "Anmelden", "Log in")) + '</a></p>' +
         '<div class="su-legend"><b style="font-size:13px">' + escapeHtml(T("Les badges de confiance", "Vertrauens-Badges", "Trust badges")) + '</b>' +
         '<div>' + badgeHtml("mail") + escapeHtml(T("Tu as confirmé ton adresse e-mail.", "Du hast deine E-Mail-Adresse bestätigt.", "You confirmed your email address.")) + '</div>' +
         '<div>' + badgeHtml("pro") + escapeHtml(T("Ton lien LinkedIn ou site pro a été vérifié.", "Dein LinkedIn- oder Berufslink wurde geprüft.", "Your LinkedIn or professional link was checked.")) + '</div>' +
@@ -1082,13 +1237,27 @@
       if (signupStep === 1) {
         signupData = { first: document.getElementById("suFirst").value.trim(), last: document.getElementById("suLast").value.trim(),
           email: document.getElementById("suEmail").value.trim(), link: document.getElementById("suLink").value.trim(), code: document.getElementById("suCode").value.trim() };
-        if (!signupData.first || signupData.email.indexOf("@") < 1 || !document.getElementById("suOk").checked) {
-          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide et acceptation de la charte requis.", "Vorname, gültige E-Mail und Zustimmung zur Charta erforderlich.", "First name, valid email and charter acceptance required.");
+        var pw = document.getElementById("suPw").value; // lu pour contrôle uniquement : jamais stocké
+        if (!signupData.first || signupData.email.indexOf("@") < 1 || pw.length < 8 || !document.getElementById("suOk").checked) {
+          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide, mot de passe (8 caractères min.) et acceptation des CGU requis.", "Vorname, gültige E-Mail, Passwort (mind. 8 Zeichen) und Zustimmung zu den Nutzungsbedingungen erforderlich.", "First name, valid email, password (8 characters min.) and acceptance of the terms required.");
           return;
         }
       }
       signupStep++; renderSignup();
     });
+    var eye = document.getElementById("suEye");
+    if (eye) eye.addEventListener("click", function () { var f = document.getElementById("suPw"); f.type = f.type === "password" ? "text" : "password"; });
+    el.querySelectorAll("[data-social]").forEach(function (bt) {
+      bt.addEventListener("click", function () {
+        var m = document.getElementById("suMsg");
+        if (m) m.textContent = T("Aperçu : la connexion avec " + bt.getAttribute("data-social") + " sera disponible dans la vraie version.", "Vorschau: Die Anmeldung mit " + bt.getAttribute("data-social") + " gibt es in der echten Version.", "Preview: sign-in with " + bt.getAttribute("data-social") + " will be available in the real version.");
+      });
+    });
+    el.querySelectorAll("[data-legal]").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); openLegal(a.getAttribute("data-legal")); });
+    });
+    var lg = document.getElementById("suLogin");
+    if (lg) lg.addEventListener("click", function (e) { e.preventDefault(); showView("login"); });
     var rs = document.getElementById("suRestart");
     if (rs) rs.addEventListener("click", function () { signupStep = 1; signupData = { first: "", last: "", email: "", link: "", code: "" }; renderSignup(); });
     var go = document.getElementById("suGo");
@@ -1275,10 +1444,12 @@
     if (name === "network") renderNetwork();
     if (name === "notifications") renderNotifs();
     if (name === "signup") renderSignup();
+    if (name === "settings") renderSettings();
+    if (name === "profile") renderProfilePage();
     document.querySelectorAll("section[data-view]").forEach(function (s) {
       s.classList.toggle("active", s.getAttribute("data-view") === name);
     });
-    document.querySelectorAll("nav.links .navlink").forEach(function (b) {
+    document.querySelectorAll("nav.links .navlink, .icon-btn[data-view-target]").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-view-target") === name);
     });
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
@@ -1608,6 +1779,132 @@
       img.src = url;
     });
   }
+  function profileChecklist() {
+    var p = lastProfileData || {};
+    return [
+      { ok: !!p.name || !!meName, label: T("Nom complet", "Vollständiger Name", "Full name") },
+      { ok: !!safeImg(p.photo), label: T("Photo de profil", "Profilfoto", "Profile photo") },
+      { ok: !!(p.title || "").trim(), label: T("Fonction actuelle", "Aktuelle Position", "Current role") },
+      { ok: !!((p.city || "").trim() && p.country), label: T("Localisation", "Standort", "Location") },
+      { ok: !!p.sector, label: T("Secteur", "Branche", "Sector") },
+      { ok: (p.languages || []).length > 0, label: T("Langues", "Sprachen", "Languages") },
+      { ok: (p.skills || []).length >= 3, label: T("Au moins 3 compétences", "Mindestens 3 Fähigkeiten", "At least 3 skills") },
+      { ok: (p.bio || "").trim().length >= 80, label: T("À propos (quelques phrases)", "Über mich (einige Sätze)", "About (a few sentences)") },
+      { ok: !!(p.lookingFor || "").trim(), label: T("Je recherche", "Ich suche", "Looking for") },
+      { ok: !!(p.offering || "").trim(), label: T("Je propose", "Ich biete", "Offering") },
+      { ok: !!((p.projects || "").trim() || (p.portfolio || "").trim()), label: T("Projets ou portfolio", "Projekte oder Portfolio", "Projects or portfolio") }
+    ];
+  }
+  function renderProfilePage() {
+    var el = document.getElementById("profileArea"); if (!el) return;
+    var p = lastProfileData, name = (p && p.name) || meName || "";
+    var crumb = '<div class="pf-bar"><div class="wrap"><button type="button" id="pfHome">' + escapeHtml(T("Accueil", "Start", "Home")) + '</button> &nbsp;/&nbsp; <b>' + escapeHtml(T("Mon profil", "Mein Profil", "My profile")) + '</b></div></div>';
+    if (!p) {
+      el.innerHTML = crumb + '<div class="wrap wrap-narrow" style="padding-top:48px;padding-bottom:80px"><div class="gate-msg">' + escapeHtml(T("Ton profil n'est pas encore créé. Complète-le pour apparaître dans l'annuaire.", "Dein Profil ist noch nicht erstellt. Vervollständige es, um im Verzeichnis zu erscheinen.", "Your profile isn't created yet. Complete it to appear in the directory.")) + '</div><p><button class="btn btn-primary" id="pfEdit">' + escapeHtml(T("Créer mon profil", "Profil erstellen", "Create my profile")) + '</button></p></div>';
+      document.getElementById("pfHome").addEventListener("click", function () { showView("feed"); });
+      document.getElementById("pfEdit").addEventListener("click", function () { showView("form"); });
+      return;
+    }
+    function sec(title, body, show) {
+      if (!body && !show) return "";
+      return '<div class="pf-sec"><h2>' + escapeHtml(title) + '</h2>' + (body || '<p class="pf-empty">' + escapeHtml(T("Pas encore renseigné.", "Noch nicht ausgefüllt.", "Not filled in yet.")) + '</p>') + '</div>';
+    }
+    var tx = function (v) { return v && v.trim() ? '<p>' + escapeHtml(v) + '</p>' : ""; };
+    var items = profileChecklist(), pct = Math.round(items.filter(function (x) { return x.ok; }).length * 100 / items.length);
+    var loc = [p.city, p.country ? countryLabel(p.country) : ""].filter(Boolean).join(", ");
+    var langs = (p.languages || []).map(function (l) { return '<span class="tag">' + escapeHtml(String(l).toUpperCase()) + '</span>'; }).join(" ");
+    var skills = (p.skills || []).length ? '<div class="pc-tags">' + p.skills.map(function (k) { return '<span class="tag">' + escapeHtml(k) + '</span>'; }).join("") + '</div>' : "";
+    var port = /^https?:\/\//i.test(p.portfolio || "") ? '<p><a href="' + escapeHtml(p.portfolio) + '" target="_blank" rel="noopener noreferrer" style="color:var(--ink)">' + escapeHtml(p.portfolio) + ' ↗</a></p>' : "";
+    var proj = (p.projects || "").trim() ? '<p>' + escapeHtml(p.projects) + '</p>' : "";
+    var contact = (p.contact || "").trim() ? '<p>' + escapeHtml(p.contact) + '</p>' : "";
+    el.innerHTML = crumb + '<div class="wrap">' +
+      '<div class="pf-head">' + avatarHtml("pc-avatar", name, p.photo) + '<div><h1 class="pf-name">' + escapeHtml(name) + '</h1><div class="pf-title">' + escapeHtml(p.title || "") + '</div>' + badgesHtml(p) + '</div></div>' +
+      '<div class="pf-info"><div><div class="pf-lab">' + escapeHtml(T("Basé·e à", "Standort", "Based in")) + '</div><div class="pf-val">' + escapeHtml(loc || "–") + '</div></div>' +
+      '<div><div class="pf-lab">' + escapeHtml(T("Secteur", "Branche", "Sector")) + '</div><div class="pf-val">' + escapeHtml(p.sector ? sectorLabel(p.sector) : "–") + '</div></div>' +
+      '<div><div class="pf-lab">' + escapeHtml(T("Langues", "Sprachen", "Languages")) + '</div><div class="pf-val">' + (langs || "–") + '</div></div></div>' +
+      '<div class="pf-layout"><div>' +
+      sec(T("À propos", "Über mich", "About"), tx(p.bio), true) +
+      sec(T("Je recherche", "Ich suche", "Looking for"), tx(p.lookingFor), true) +
+      sec(T("Je propose", "Ich biete", "Offering"), tx(p.offering), true) +
+      sec(T("Compétences", "Fähigkeiten", "Skills"), skills, true) +
+      sec(T("Projets", "Projekte", "Projects"), proj, true) +
+      sec(T("Portfolio", "Portfolio", "Portfolio"), port, true) +
+      sec(T("Contact", "Kontakt", "Contact"), contact, false) +
+      '</div><aside class="pf-aside"><div class="pf-lab">' + escapeHtml(T("Votre profil public", "Dein öffentliches Profil", "Your public profile")) + '</div>' +
+      '<p>' + escapeHtml(T("Tu regardes ton propre profil. Modifie les sections, ajoute tes projets, tes compétences, ton portfolio.", "Du siehst dein eigenes Profil. Bearbeite die Abschnitte, ergänze Projekte, Fähigkeiten und Portfolio.", "You are viewing your own profile. Edit the sections, add your projects, skills and portfolio.")) + '</p>' +
+      '<p style="font-size:13px">' + escapeHtml(T("Profil complété à ", "Profil zu ", "Profile ")) + '<b>' + pct + ' %</b>' + escapeHtml(T("", " vollständig", " complete")) + '</p>' +
+      '<button class="btn btn-primary" id="pfEdit">' + escapeHtml(T("Modifier mon profil", "Profil bearbeiten", "Edit my profile")) + '</button>' +
+      '<button class="btn btn-ghost" id="pfSettings">' + escapeHtml(T("Paramètres du compte", "Kontoeinstellungen", "Account settings")) + '</button></aside></div></div>';
+    document.getElementById("pfHome").addEventListener("click", function () { showView("feed"); });
+    document.getElementById("pfEdit").addEventListener("click", function () { showView("form"); });
+    document.getElementById("pfSettings").addEventListener("click", function () { showView("settings"); });
+  }
+  function renderSettings() {
+    var el = document.getElementById("settingsArea"); if (!el) return;
+    var p = lastProfileData, name = (p && p.name) || meName || "";
+    var items = profileChecklist(), done = items.filter(function (x) { return x.ok; }).length, pct = Math.round(done * 100 / items.length);
+    var h = '<div class="st-card"><div class="st-id">' + avatarHtml("pc-avatar", name, p && p.photo) +
+      '<div class="st-who"><div class="st-name">' + escapeHtml(name) + '</div><div class="rc-sub" style="white-space:normal">' + escapeHtml(p && p.title ? p.title : T("Profil à compléter", "Profil noch unvollständig", "Profile to complete")) + '</div></div>' +
+      '<button class="btn btn-primary btn-small" id="stEdit">' + escapeHtml(p ? T("Modifier mon profil", "Profil bearbeiten", "Edit my profile") : T("Créer mon profil", "Profil erstellen", "Create my profile")) + '</button>' +
+      (p ? '<button class="btn btn-ghost btn-small" id="stView">' + escapeHtml(T("Voir mon profil public", "Öffentliches Profil ansehen", "View my public profile")) + '</button>' : '') + '</div></div>' +
+      '<div class="st-card"><h2>' + escapeHtml(T("Complétude du profil", "Profilvollständigkeit", "Profile completeness")) + '<span class="st-pct">' + pct + ' %</span></h2>' +
+      '<p class="sub">' + escapeHtml(T("Un profil complet est plus facile à trouver dans l'annuaire. Clique sur un point à compléter.", "Ein vollständiges Profil wird im Verzeichnis leichter gefunden. Klicke auf einen offenen Punkt.", "A complete profile is easier to find in the directory. Click an open item.")) + '</p>' +
+      '<div class="st-bar"><span style="width:' + pct + '%"></span></div><ul class="st-list">' +
+      items.map(function (x) { return '<li class="' + (x.ok ? "done" : "todo") + '"><span class="ck">' + (x.ok ? "✓" : "") + '</span>' + escapeHtml(x.label) + '</li>'; }).join("") + '</ul></div>' +
+      '<div class="st-card"><h2>' + escapeHtml(T("Préférences", "Einstellungen", "Preferences")) + '</h2><p class="sub">' + escapeHtml(T("Langue de l'interface", "Sprache der Oberfläche", "Interface language")) + '</p><div class="st-langs">' +
+      ["fr", "de", "en"].map(function (l) {
+        var nm = { fr: "Français", de: "Deutsch", en: "English" }[l];
+        return '<button type="button" data-l="' + l + '" class="' + (currentLang === l ? "active" : "") + '"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-' + l + '"/></svg>' + nm + '</button>';
+      }).join("") + '</div></div>' +
+      '<div class="st-card"><h2>' + escapeHtml(T("Données et confidentialité", "Daten und Datenschutz", "Data and privacy")) + '</h2>' +
+      '<p class="sub">' + escapeHtml(T("Tu peux lire notre charte et notre politique de confidentialité, ou supprimer ton profil et tes contenus.", "Du kannst unsere Charta und Datenschutzerklärung lesen oder dein Profil und deine Inhalte löschen.", "You can read our charter and privacy policy, or delete your profile and content.")) + '</p>' +
+      '<button class="btn btn-ghost btn-small" id="stPrivacy">' + escapeHtml(T("Charte et confidentialité", "Charta und Datenschutz", "Charter and privacy")) + '</button> ' +
+      (p ? '<button class="btn btn-danger btn-small" id="stDelete">' + escapeHtml(T("Supprimer mon profil…", "Mein Profil löschen…", "Delete my profile…")) + '</button>' : '') + '</div>' +
+      '<div class="st-card"><h2>' + escapeHtml(T("Bientôt", "Demnächst", "Coming soon")) + '</h2>' +
+      '<p class="st-soon">' + escapeHtml(T("Mot de passe et sécurité, notifications par e-mail, abonnement : prévus dans la version application.", "Passwort und Sicherheit, E-Mail-Benachrichtigungen, Abo: für die App-Version geplant.", "Password and security, email notifications, subscription: planned for the app version.")) + '</p></div>';
+    el.innerHTML = h;
+    document.getElementById("stEdit").addEventListener("click", function () { showView("form"); });
+    var sv = document.getElementById("stView"); if (sv) sv.addEventListener("click", function () { showView("profile"); });
+    el.querySelectorAll(".st-list li.todo").forEach(function (li) { li.addEventListener("click", function () { showView("form"); }); });
+    el.querySelectorAll(".st-langs button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var t0 = document.querySelector('.lang-list button[data-lang="' + b.getAttribute("data-l") + '"]'); if (t0) t0.click(); renderSettings();
+      });
+    });
+    document.getElementById("stPrivacy").addEventListener("click", function () { openLegal("legalData"); });
+    var sd = document.getElementById("stDelete");
+    if (sd) sd.addEventListener("click", function () {
+      showView("form");
+      setTimeout(function () { var d = document.getElementById("delProfile"); if (d) d.scrollIntoView({ behavior: "smooth", block: "center" }); }, 80);
+    });
+  }
+  function renderRightCol() {
+    var el = document.getElementById("rightCol"); if (!el) return;
+    var list = selfId ? suggestions().slice(0, 4) : [];
+    var disc = '<div class="rc-card"><div class="rc-head"><span class="rc-eyebrow">' + escapeHtml(T("À découvrir", "Entdecken", "Discover")) + '</span>' +
+      '<button class="rc-all" id="rcAll">' + escapeHtml(T("Voir tout", "Alle ansehen", "See all")) + ' →</button></div>';
+    if (!list.length) disc += '<p class="rc-empty">' + escapeHtml(T("Des suggestions de membres apparaîtront ici dès que le réseau grandira.", "Hier erscheinen Mitgliedervorschläge, sobald das Netzwerk wächst.", "Member suggestions will appear here as the network grows.")) + '</p>';
+    list.forEach(function (m) {
+      disc += '<div class="rc-row">' + avatarHtml("pc-avatar", m.name, m.photo) +
+        '<div class="rc-info"><button class="rc-name" data-act="view" data-id="' + m.__id + '">' + escapeHtml(m.name) + '</button>' +
+        '<div class="rc-sub">' + escapeHtml([m.title, m.city].filter(Boolean).join(" · ")) + '</div>' +
+        '<button class="btn btn-ghost btn-small rc-btn" data-act="invite" data-id="' + m.__id + '">' + escapeHtml(T("Se connecter", "Vernetzen", "Connect")) + '</button></div></div>';
+    });
+    disc += '</div>';
+    var mentor = '<div class="rc-card rc-mentor"><span class="rc-eyebrow">' + escapeHtml(T("Mentorat", "Mentoring", "Mentoring")) + '</span>' +
+      '<h3>' + escapeHtml(T("Devenir mentor", "Mentor:in werden", "Become a mentor")) + '</h3>' +
+      '<p>' + escapeHtml(T("Partagez votre expertise et aidez d'autres talents à progresser.", "Teilen Sie Ihre Expertise und helfen Sie anderen Talenten weiterzukommen.", "Share your expertise and help other talents grow.")) + '</p>' +
+      '<button class="btn btn-small" id="rcMentor">' + escapeHtml(T("Proposer du mentorat", "Mentoring anbieten", "Offer mentoring")) + ' →</button></div>';
+    el.innerHTML = disc + mentor;
+    document.getElementById("rcAll").addEventListener("click", function () { showView("directory"); });
+    document.getElementById("rcMentor").addEventListener("click", function () { showView("form"); });
+    el.querySelectorAll("[data-act=view]").forEach(function (b) {
+      b.addEventListener("click", function () { var m = profileById(b.getAttribute("data-id")); if (m) openModal(m); });
+    });
+    el.querySelectorAll("[data-act=invite]").forEach(function (b) {
+      b.addEventListener("click", function () { b.disabled = true; connAct(b.getAttribute("data-id"), "invite").then(renderRightCol, function () { b.disabled = false; }); });
+    });
+  }
   function renderSideProfile() {
     var el = document.getElementById("sideProfile"); if (!el) return;
     var p = lastProfileData, name = (p && p.name) || meName || "";
@@ -1617,8 +1914,13 @@
       '<div class="sp-body"><div class="sp-name">' + escapeHtml(name) + '</div>' +
       (p && p.title ? '<div class="sp-title">' + escapeHtml(p.title) + '</div>' : '') +
       (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' : '') +
-      '<button class="btn btn-ghost btn-small" id="spBtn">' + escapeHtml(p ? T("Voir mon profil", "Mein Profil", "View my profile") : T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button></div>';
-    document.getElementById("spBtn").addEventListener("click", function () { showView("form"); });
+      '<button class="btn btn-ghost btn-small" id="spBtn">' + escapeHtml(p ? T("Voir mon profil", "Mein Profil", "View my profile") : T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button></div>' +
+      '<div class="sp-stats"><div><b>' + myConns.filter(function (c) { return c.status === "accepted"; }).length + '</b>' + escapeHtml(T("Connexions", "Kontakte", "Connections")) + '</div>' +
+      '<div><b>' + allPosts.filter(function (x) { return x.authorId === selfId; }).length + '</b>' + escapeHtml(T("Publications", "Beiträge", "Posts")) + '</div></div>';
+    document.getElementById("spBtn").addEventListener("click", function () { showView(p ? "profile" : "form"); });
+    var ms = document.getElementById("menuSub"); if (ms) ms.textContent = (p && p.title) || "";
+    var mn = document.getElementById("menuName"); if (mn && p && p.name) mn.textContent = p.name;
+    renderRightCol();
   }
   function postHtml(p, i) {
     var likes = allLikes.filter(function (l) { return l.postId === p.__id; });
@@ -2120,6 +2422,7 @@
       dbNs.collection("connections").where("participantIds", "array-contains", selfId).onSnapshot(function (snap) {
         myConns = snap.docs.map(function (d) { return d.data(); }).filter(Boolean);
         renderNetwork();
+        renderSideProfile();
       }, function () {});
     }
 

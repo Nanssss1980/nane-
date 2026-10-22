@@ -19,10 +19,11 @@ Langues : français, allemand, anglais.
 ## Ce que montre le prototype
 
 - Page d'accueil publique, inscription et connexion (maquettes)
-- Profil avec photo, annuaire avec recherche et filtres
+- Profil avec photo, projets et portfolio, annuaire avec recherche et filtres
 - Réseau (demandes de connexion), notifications, messagerie
 - Fil d'actualité : posts avec photo, likes, commentaires, repartages
-- Signalement, suppression de profil, charte et règles de la communauté
+- Signalement, suppression complète du profil, charte et règles de la communauté
+- Menu de langue (FR, DE, EN) dans l'en-tête
 
 ## Important : les données ne sont pas dans ce dépôt
 
@@ -31,6 +32,13 @@ par la base de données de Claude. Si `index.html` est ouvert ailleurs (double c
 la page s'affiche mais reste vide : pas d'annuaire, pas de connexion, pas d'enregistrement.
 
 Pour tester avec de vraies données, utiliser le lien de l'artefact Claude partagé avec le rôle « Contributeur ».
+
+## Limites connues de cette version de test
+
+- Les messages et les notifications ne sont pas privés au niveau des données. Un avertissement est affiché dans la messagerie. À régler avec un vrai backend.
+- L'inscription, la confirmation par e-mail et les badges de vérification sont des maquettes.
+- Les images (photos de profil et de posts) sont acceptées uniquement si ce sont de vraies images encodées (`data:image/...;base64`). Tout le reste est ignoré avant l'affichage.
+- La messagerie charge les 300 derniers messages de chaque conversation.
 
 ## Publier une modification sur le site en ligne
 
@@ -43,16 +51,23 @@ sur le lien existant, en redéclarant les règles de la base de données :
 - portée utilisateur : « profile »
 
 Ne pas supprimer les appels à `window.claude` : ils connectent le site à sa base de données.
+Une seule personne publie à la fois, pour éviter qu'une version écrase l'autre.
+
+## À faire ensuite
+
+- Pages légales : conditions d'utilisation, confidentialité, mentions légales (à valider par un juriste)
+- FAQ et formulaire de support
+- Catégorie « Opportunités » (mission, emploi, recherche de partenaire) après les premiers retours des testeurs
 
 ## Pour la vraie version (à construire)
 
 - Base de données et connexion réelles (e-mail ou Google)
+- Messages et notifications réellement privés
 - Confirmation d'e-mail et vérification par lien LinkedIn ou site professionnel
 - Stockage des photos et vidéos
 - Notifications par e-mail ou push
 - Outils de modération
-- Pages légales : conditions d'utilisation, confidentialité, mentions légales (à valider par un juriste)
-- FAQ et formulaire de support
+- Chatbot d'aide (clé d'API et serveur nécessaires)
 
 ## Nom, logo et domaine
 

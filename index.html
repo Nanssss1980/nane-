@@ -63,6 +63,8 @@
     display: flex; align-items: center; gap: 8px;
   }
   .brand .mark { color: var(--brass-bright); }
+  .toast-err { display:none; position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:200; max-width:min(92vw,520px); background:#6E2430; color:#fff; padding:12px 18px; border-radius:10px; font-size:14px; box-shadow:0 6px 24px rgba(0,0,0,.25); }
+  .notice-box { background: rgba(198,161,91,0.18); border: 1px solid var(--brass); border-radius: 10px; padding: 10px 14px; font-size: 13px; margin: 0 0 16px; }
   .logo-full { height: 30px; margin-right: 10px; width: auto; aspect-ratio: 1156 / 296; flex: none; display: block; }
   .logo-full.logo-foot { height: 32px; }
   .brand { color: #0F0F12; }
@@ -106,6 +108,14 @@
     font-size: 13px; padding: 6px 13px;
   }
   .lang-toggle button.active { background: var(--ink); color: var(--text-on-ink); font-weight: 600; }
+  .lang-menu { position: relative; }
+  .lang-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--line); border-radius: 999px; color: var(--text-on-paper-dim); font: inherit; font-size: 13px; font-weight: 600; padding: 6px 11px; cursor: pointer; }
+  .lang-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .lang-list { position: absolute; right: 0; top: calc(100% + 8px); min-width: 140px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 28px rgba(33,24,75,.14); padding: 6px; z-index: 60; }
+  .lang-list button { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; text-align: left; font: inherit; font-size: 14px; color: var(--text-on-paper); padding: 8px 10px; border-radius: 6px; cursor: pointer; }
+  .lang-list button:hover { background: var(--paper-dim); }
+  .lang-list button.active { font-weight: 600; color: var(--ink); }
+  .lang-list button.active::after { content: "\2713"; color: var(--brass-bright); }
   .who {
     display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-on-paper-dim);
   }
@@ -343,7 +353,7 @@
   .thread-messages { flex: 1 1 auto; padding: 18px 20px; overflow-y: auto; max-height: 420px; display: flex; flex-direction: column; gap: 10px; }
   .msg-bubble { max-width: 70%; padding: 9px 13px; border-radius: 12px; font-size: 14px; line-height: 1.4; }
   .msg-bubble.mine { align-self: flex-end; background: var(--ink); color: var(--text-on-ink); }
-  .msg-bubble.theirs { align-self: flex-start; background: var(--paper-dim); color: var(--text-on-paper); }
+  .msg-bubble.theirs { align-self: flex-start; background: #fff; border: 1px solid var(--line); color: var(--text-on-paper); }
   .thread-input-row { display: flex; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--line); }
   .thread-input-row input {
     flex: 1 1 auto; border: 1px solid var(--line); border-radius: var(--radius-s); padding: 10px 13px;
@@ -471,10 +481,17 @@
         <button class="btn btn-ghost btn-small i18n" data-view-target="login" data-fr="Se connecter" data-de="Anmelden" data-en="Log in"></button>
         <button class="btn btn-primary btn-small i18n" data-view-target="signup" data-fr="S'inscrire gratuitement" data-de="Kostenlos registrieren" data-en="Join for free"></button>
       </div>
-      <div class="lang-toggle">
-        <button data-lang="en">EN</button>
-        <button data-lang="de">DE</button>
-        <button data-lang="fr" class="active">FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / Sprache / Language">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9s-1.4 6.4-4.2 9c-2.8-2.6-4.2-5.6-4.2-9S9.200 5.600 12 3z"/></svg>
+          <span id="langCur">FR</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-list" id="langList" role="listbox" hidden>
+          <button type="button" role="option" data-lang="fr" class="active">Français</button>
+          <button type="button" role="option" data-lang="de">Deutsch</button>
+          <button type="button" role="option" data-lang="en">English</button>
+        </div>
       </div>
       <div class="who-wrap">
         <button class="who" id="whoBox" aria-haspopup="menu" aria-expanded="false"></button>
@@ -621,9 +638,9 @@
 
         <h3 id="legalData" class="i18n" data-fr="Vos données" data-de="Ihre Daten" data-en="Your data"></h3>
         <ul class="i18n-html"
-          data-fr="<li>Nous demandons uniquement des informations professionnelles. Aucun champ sur l'origine ethnique ou la couleur de peau.</li><li>Les informations de votre profil sont visibles par les membres du réseau.</li><li>Vous pouvez modifier votre profil ou le supprimer à tout moment depuis « Mon profil ». La suppression efface votre profil et vos publications.</li><li>Applicable : RGPD (UE) et nLPD (Suisse)."
-          data-de="<li>Wir erfragen nur berufliche Angaben. Kein Feld zu ethnischer Herkunft oder Hautfarbe.</li><li>Die Angaben in Ihrem Profil sind für Mitglieder des Netzwerks sichtbar.</li><li>Sie können Ihr Profil jederzeit unter „Mein Profil“ ändern oder löschen. Die Löschung entfernt Ihr Profil und Ihre Beiträge.</li><li>Anwendbar: DSGVO (EU) und revDSG (Schweiz)."
-          data-en="<li>We only ask for professional information. No field about ethnic origin or skin colour.</li><li>Your profile information is visible to members of the network.</li><li>You can edit or delete your profile at any time from “My profile”. Deletion removes your profile and your posts.</li><li>Applicable: GDPR (EU) and nFADP (Switzerland)."></ul>
+          data-fr="<li>Nous demandons uniquement des informations professionnelles. Aucun champ sur l'origine ethnique ou la couleur de peau.</li><li>Les informations de votre profil sont visibles par les membres du réseau.</li><li>Vous pouvez modifier votre profil ou le supprimer à tout moment depuis « Mon profil ». La suppression efface votre profil, vos publications, commentaires, mentions J'aime, connexions et messages.</li><li>Applicable : RGPD (UE) et nLPD (Suisse).</li><li>Version de test : les messages ne sont pas privés. N'y partagez aucune information confidentielle.</li>"
+          data-de="<li>Wir erfragen nur berufliche Angaben. Kein Feld zu ethnischer Herkunft oder Hautfarbe.</li><li>Die Angaben in Ihrem Profil sind für Mitglieder des Netzwerks sichtbar.</li><li>Sie können Ihr Profil jederzeit unter „Mein Profil“ ändern oder löschen. Die Löschung entfernt Ihr Profil, Ihre Beiträge, Kommentare, Likes, Verbindungen und Nachrichten.</li><li>Anwendbar: DSGVO (EU) und revDSG (Schweiz).</li><li>Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen.</li>"
+          data-en="<li>We only ask for professional information. No field about ethnic origin or skin colour.</li><li>Your profile information is visible to members of the network.</li><li>You can edit or delete your profile at any time from “My profile”. Deletion removes your profile, posts, comments, likes, connections and messages.</li><li>Applicable: GDPR (EU) and nFADP (Switzerland).</li><li>Test version: messages are not private. Do not share confidential information here.</li>"></ul>
         <p class="draft i18n" data-fr="Version de travail pour le prototype. Le texte définitif (politique de confidentialité, conditions d'utilisation) sera rédigé avec une juriste avant tout lancement public." data-de="Arbeitsfassung für den Prototyp. Der endgültige Text (Datenschutzerklärung, Nutzungsbedingungen) wird vor einem öffentlichen Start mit einer Juristin erstellt." data-en="Working version for the prototype. The final text (privacy policy, terms of use) will be drafted with a lawyer before any public launch."></p>
       </div>
     </section>
@@ -750,6 +767,7 @@
         <div class="dir-head">
           <h2 class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></h2>
         </div>
+        <div class="notice-box i18n" data-fr="Version de test : les messages ne sont pas privés. N'y partagez aucune information confidentielle." data-de="Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen." data-en="Test version: messages are not private. Do not share confidential information here."></div>
         <div class="new-convo">
           <select id="newConvoSelect"></select>
           <button id="newConvoBtn" class="btn btn-primary btn-small i18n"
@@ -940,15 +958,24 @@
     renderNewConvoOptions();
     renderThreadList();
     if (lastProfileData !== undefined && document.getElementById("profileForm")) {
-      buildForm(lastProfileData);
+      buildForm(lastProfileData, readProfileForm());
     }
   }
-  document.querySelectorAll(".lang-toggle button").forEach(function (b) {
+  var langBtn = document.getElementById("langBtn"), langList = document.getElementById("langList");
+  function closeLangList() { langList.hidden = true; langBtn.setAttribute("aria-expanded", "false"); }
+  langBtn.addEventListener("click", function (e) {
+    e.stopPropagation(); langList.hidden = !langList.hidden; langBtn.setAttribute("aria-expanded", String(!langList.hidden));
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest("#langMenu")) closeLangList(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLangList(); });
+  document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (b) {
     b.addEventListener("click", function () {
       currentLang = b.getAttribute("data-lang");
-      document.querySelectorAll(".lang-toggle button").forEach(function (x) {
+      document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (x) {
         x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
       });
+      document.getElementById("langCur").textContent = currentLang.toUpperCase();
+      closeLangList();
       applyLang();
       refreshDynamicLabels();
     });
@@ -1108,9 +1135,10 @@
   function connAct(id, act) {
     if (!dbNs || !selfId || !id) return Promise.resolve();
     var ref = dbNs.collection("connections").doc(pairId(selfId, id));
-    if (act === "invite") { notify(id, "invite"); return ref.set({ participantIds: [selfId, id], requesterId: selfId, status: "pending", createdAt: Date.now() }); }
-    if (act === "accept") { notify(id, "accepted"); return ref.update({ status: "accepted", acceptedAt: Date.now() }); }
-    return ref.delete();
+    var fail = function (e) { toastErr(e); throw e; };
+    if (act === "invite") { notify(id, "invite"); return ref.set({ participantIds: [selfId, id], requesterId: selfId, status: "pending", createdAt: Date.now() }).catch(fail); }
+    if (act === "accept") { notify(id, "accepted"); return ref.update({ status: "accepted", acceptedAt: Date.now() }).catch(fail); }
+    return ref.delete().catch(fail);
   }
   function connLabel(st) {
     return { none: T("Se connecter", "Vernetzen", "Connect"), sent: T("Invitation envoyée", "Einladung gesendet", "Invitation sent"),
@@ -1182,7 +1210,7 @@
     if (!dbNs || !selfId || !toId || toId === selfId) return;
     var d = { toId: toId, fromId: selfId, fromName: myName(), type: type, read: false, createdAt: Date.now() };
     for (var k in (extra || {})) d[k] = extra[k];
-    dbNs.collection("notifications").add(d);
+    dbNs.collection("notifications").add(d).catch(function () {});
   }
   function notifText(n) {
     var who = n.fromName || T("Quelqu'un", "Jemand", "Someone");
@@ -1282,6 +1310,23 @@
   });
 
   // ---------- helpers ----------
+  // Only real base64 images are accepted: anything else is dropped before it reaches the HTML.
+  function safeImg(u) {
+    return (typeof u === "string" && u.length < 400000 && /^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+\/=]+$/.test(u)) ? u : "";
+  }
+  // Visible error message (instead of failing silently).
+  var toastTimer = null;
+  function toastErr(err) {
+    var el = document.getElementById("toastErr");
+    if (!el) { el = document.createElement("div"); el.id = "toastErr"; el.className = "toast-err"; el.setAttribute("role", "alert"); document.body.appendChild(el); }
+    el.textContent = T("Une erreur est survenue : ", "Es ist ein Fehler aufgetreten: ", "Something went wrong: ") + ((err && err.message) || err || "");
+    el.style.display = "block";
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.style.display = "none"; }, 6000);
+  }
+  function normalizeUrl(v) {
+    v = (v || "").trim(); if (!v) return "";
+    return /^https?:\/\//i.test(v) ? v : "https://" + v;
+  }
   function escapeHtml(s) {
     return (s || "").replace(/[&<>"']/g, function (c) {
       return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
@@ -1294,11 +1339,12 @@
   }
 
   function avatarHtml(cls, name, photo) {
+    photo = safeImg(photo);
     if (photo) return '<div class="' + cls + ' has-photo" style="background-image:url(\'' + photo + '\')"></div>';
     return '<div class="' + cls + '">' + escapeHtml(initials(name)) + '</div>';
   }
   function photoOf(id) {
-    for (var i = 0; i < allProfiles.length; i++) if (allProfiles[i].__id === id) return allProfiles[i].photo || "";
+    for (var i = 0; i < allProfiles.length; i++) if (allProfiles[i].__id === id) return safeImg(allProfiles[i].photo);
     return "";
   }
   var pendingPhoto = "";
@@ -1319,7 +1365,7 @@
   function paintPhotoPreview() {
     var el = document.getElementById("photoPreview"); if (!el) return;
     var nm = (document.getElementById("pName") || {}).value || meName;
-    if (pendingPhoto) { el.className = "photo-preview has-photo"; el.style.backgroundImage = "url('" + pendingPhoto + "')"; el.textContent = ""; }
+    if (pendingPhoto) { el.className = "photo-preview has-photo"; el.style.backgroundImage = "url('" + safeImg(pendingPhoto) + "')"; el.textContent = ""; }
     else { el.className = "photo-preview"; el.style.backgroundImage = ""; el.textContent = initials(nm); }
     var b = document.getElementById("photoBtn"); if (b) b.textContent = t(pendingPhoto ? "photoChange" : "photoChoose");
     var r = document.getElementById("photoRm"); if (r) r.style.display = pendingPhoto ? "" : "none";
@@ -1347,7 +1393,7 @@
       if (country && p.country !== country) return false;
       if (lang && (p.languages || []).indexOf(lang) === -1) return false;
       if (q) {
-        var hay = [p.name, p.title, p.sector, p.city, (p.skills || []).join(" "), p.lookingFor, p.offering]
+        var hay = [p.name, p.title, p.sector, p.city, (p.skills || []).join(" "), p.lookingFor, p.offering, p.projects]
           .join(" ").toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
@@ -1417,6 +1463,8 @@
           '</div>' +
           (p.bio ? '<div class="modal-block"><h4>' + escapeHtml(t("about")) + '</h4><p>' + escapeHtml(p.bio) + '</p></div>' : "") +
           (p.skills && p.skills.length ? '<div class="modal-block"><h4>' + escapeHtml(t("skillsLabel")) + '</h4><div class="pc-tags">' + p.skills.map(function (s) { return '<span class="tag">' + escapeHtml(s) + '</span>'; }).join("") + '</div></div>' : "") +
+          (p.projects ? '<div class="modal-block"><h4>' + escapeHtml(T("Projets et portfolio", "Projekte und Portfolio", "Projects and portfolio")) + '</h4><p style="white-space:pre-line">' + escapeHtml(p.projects) + '</p></div>' : "") +
+          (/^https?:\/\//i.test(p.portfolio || "") ? '<div class="modal-block"><a href="' + escapeHtml(p.portfolio) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(T("Voir le portfolio", "Portfolio ansehen", "View portfolio")) + '</a></div>' : "") +
           (p.lookingFor ? '<div class="modal-block"><h4>' + escapeHtml(t("looking")) + '</h4><p>' + escapeHtml(p.lookingFor) + '</p></div>' : "") +
           (p.offering ? '<div class="modal-block"><h4>' + escapeHtml(t("offering")) + '</h4><p>' + escapeHtml(p.offering) + '</p></div>' : "") +
           '<div class="modal-block" style="display:flex; gap:10px; flex-wrap:wrap;">' + contactHtml +
@@ -1485,15 +1533,46 @@
     if (!dbNs || !selfId) return;
     var db0 = document.getElementById("delProfile");
     if (db0 && db0.getAttribute("data-arm") !== "1") { db0.setAttribute("data-arm", "1"); db0.textContent = t("deleteConfirm"); return; }
-    dbNs.collection("posts").where("authorId", "==", selfId).get().then(function (snap) {
-      return Promise.all(snap.docs.map(function (d) { return dbNs.collection("posts").doc(d.id).delete(); }));
-    }).then(function () {
+    var msgEl = document.getElementById("saveMsg");
+    if (msgEl) msgEl.textContent = T("Suppression en cours…", "Löschen läuft…", "Deleting…");
+    // delete every document of a query
+    function delWhere(coll, field, op, val) {
+      return dbNs.collection(coll).where(field, op, val).get().then(function (snap) {
+        return Promise.all(snap.docs.map(function (d) { return dbNs.collection(coll).doc(d.id).delete(); })).then(function () { return snap.docs.map(function (d) { return d.id; }); });
+      });
+    }
+    // my posts, with their likes and comments
+    var postsDone = delWhere("posts", "authorId", "==", selfId).then(function (postIds) {
+      return Promise.all(postIds.map(function (pid) {
+        return Promise.all([delWhere("likes", "postId", "==", pid), delWhere("comments", "postId", "==", pid)]);
+      }));
+    });
+    // my own likes, comments, connections and notifications (sent and received)
+    var others = Promise.all([
+      delWhere("likes", "userId", "==", selfId),
+      delWhere("comments", "authorId", "==", selfId),
+      delWhere("connections", "participantIds", "array-contains", selfId),
+      delWhere("notifications", "fromId", "==", selfId),
+      delWhere("notifications", "toId", "==", selfId)
+    ]);
+    // my messages; a conversation with no message left is removed
+    var convos = dbNs.collection("messages").where("participantIds", "array-contains", selfId).get().then(function (snap) {
+      return Promise.all(snap.docs.map(function (c) {
+        var path = "messages/" + c.id + "/items";
+        return delWhere(path, "senderId", "==", selfId).then(function () {
+          return dbNs.collection(path).limit(1).get();
+        }).then(function (rest) {
+          if (rest.docs.length === 0) return dbNs.collection("messages").doc(c.id).delete();
+        });
+      }));
+    });
+    Promise.all([postsDone, others, convos]).then(function () {
       return dbNs.collection("profiles").doc(selfId).delete();
     }).then(function () {
       pendingPhoto = ""; buildForm(null);
       var m = document.getElementById("saveMsg"); if (m) m.textContent = t("deleted");
     }).catch(function (err) {
-      var m = document.getElementById("saveMsg"); if (m) m.textContent = t("errorPrefix") + err.message;
+      var m = document.getElementById("saveMsg"); if (m) m.textContent = t("errorPrefix") + ((err && err.message) || "");
     });
   }
   function closeModal() { document.getElementById("modalRoot").innerHTML = ""; }
@@ -1552,10 +1631,10 @@
       (p.authorId && p.authorId !== selfId ? '<button class="report-link" data-i="' + i + '">' + escapeHtml(t("reportLink")) + '</button>' : '') +
       (p.authorId && p.authorId === selfId ? '<button class="report-link del-post" data-i="' + i + '">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') + '</div>';
     if (p.content) h += '<div class="post-text">' + escapeHtml(p.content) + '</div>';
-    if (p.image) h += '<img class="post-img" src="' + p.image + '" alt="">';
+    if (safeImg(p.image)) h += '<img class="post-img" src="' + safeImg(p.image) + '" alt="">';
     if (p.repost) h += '<div class="repost-box"><div class="post-meta-name">' + escapeHtml(p.repost.authorName || "") + '</div>' +
       (p.repost.content ? '<div class="post-text">' + escapeHtml(p.repost.content) + '</div>' : '') +
-      (p.repost.image ? '<img class="post-img" src="' + p.repost.image + '" alt="">' : '') + '</div>';
+      (safeImg(p.repost.image) ? '<img class="post-img" src="' + safeImg(p.repost.image) + '" alt="">' : '') + '</div>';
     h += '<div class="post-counts">' + (likes.length ? likes.length + ' ' + escapeHtml(T("J'aime", "Gefällt mir", likes.length > 1 ? "likes" : "like")) : '') +
       (likes.length && comments.length ? ' · ' : '') +
       (comments.length ? comments.length + ' ' + escapeHtml(T("commentaire" + (comments.length > 1 ? "s" : ""), comments.length > 1 ? "Kommentare" : "Kommentar", "comment" + (comments.length > 1 ? "s" : ""))) : '') + '</div>';
@@ -1597,15 +1676,15 @@
       b.addEventListener("click", function () {
         var p = allPosts[+b.getAttribute("data-i")];
         if (b.getAttribute("data-arm") !== "1") { b.setAttribute("data-arm", "1"); b.textContent = T("Confirmer ?", "Bestätigen?", "Confirm?"); return; }
-        dbNs.collection("posts").doc(p.__id).delete();
+        dbNs.collection("posts").doc(p.__id).delete().catch(toastErr);
       });
     });
     body.querySelectorAll(".pa-like").forEach(function (b) {
       b.addEventListener("click", function () {
         if (!dbNs || !selfId) return;
         var p = allPosts[+b.getAttribute("data-i")], ref = dbNs.collection("likes").doc(p.__id + "_" + selfId);
-        if (b.classList.contains("on")) ref.delete();
-        else { ref.set({ postId: p.__id, userId: selfId, createdAt: Date.now() }); notify(p.authorId, "like", { postId: p.__id, snippet: p.content || "" }); }
+        if (b.classList.contains("on")) ref.delete().catch(toastErr);
+        else { ref.set({ postId: p.__id, userId: selfId, createdAt: Date.now() }).then(function () { notify(p.authorId, "like", { postId: p.__id, snippet: p.content || "" }); }).catch(toastErr); }
       });
     });
     body.querySelectorAll(".pa-comment").forEach(function (b) {
@@ -1621,8 +1700,9 @@
         var p = allPosts[+b.getAttribute("data-i")], src = p.repost || p;
         b.disabled = true;
         dbNs.collection("posts").add({ authorId: selfId, authorName: myName(), content: "", createdAt: Date.now(),
-          repost: { authorName: src.authorName || "", content: src.content || "", image: src.image || "" } });
-        notify(p.authorId, "repost", { postId: p.__id, snippet: p.content || "" });
+          repost: { authorName: src.authorName || "", content: src.content || "", image: safeImg(src.image) } })
+          .then(function () { notify(p.authorId, "repost", { postId: p.__id, snippet: p.content || "" }); })
+          .catch(function (e) { b.disabled = false; toastErr(e); });
       });
     });
     body.querySelectorAll(".c-input").forEach(function (inp) {
@@ -1635,14 +1715,15 @@
         var p = allPosts[+b.getAttribute("data-i")], v = (drafts[p.__id] || "").trim();
         if (!v) return;
         drafts[p.__id] = "";
-        dbNs.collection("comments").add({ postId: p.__id, authorId: selfId, authorName: myName(), content: v, createdAt: Date.now() });
-        notify(p.authorId, "comment", { postId: p.__id, snippet: v });
+        dbNs.collection("comments").add({ postId: p.__id, authorId: selfId, authorName: myName(), content: v, createdAt: Date.now() })
+          .then(function () { notify(p.authorId, "comment", { postId: p.__id, snippet: v }); })
+          .catch(function (e) { drafts[p.__id] = v; renderFeed(); toastErr(e); });
       });
     });
   }
   function paintComposerImage() {
     var box = document.getElementById("composerImg"); if (!box) return;
-    box.innerHTML = composerImage ? '<img src="' + composerImage + '" alt=""><button type="button" id="composerImgRm" class="report-link">' + escapeHtml(T("Retirer", "Entfernen", "Remove")) + '</button>' : "";
+    box.innerHTML = safeImg(composerImage) ? '<img src="' + safeImg(composerImage) + '" alt=""><button type="button" id="composerImgRm" class="report-link">' + escapeHtml(T("Retirer", "Entfernen", "Remove")) + '</button>' : "";
     var rm = document.getElementById("composerImgRm");
     if (rm) rm.addEventListener("click", function () { composerImage = ""; paintComposerImage(); });
   }
@@ -1663,8 +1744,9 @@
       if (!content && !composerImage) return;
       var doc = { authorId: selfId, authorName: myName(), content: content, createdAt: Date.now() };
       if (composerImage) doc.image = composerImage;
+      var keepImg = composerImage;
       ta.value = ""; composerImage = ""; paintComposerImage();
-      dbNs.collection("posts").add(doc);
+      dbNs.collection("posts").add(doc).catch(function (e) { ta.value = content; composerImage = keepImg; paintComposerImage(); toastErr(e); });
     });
   }
 
@@ -1716,12 +1798,14 @@
     view.innerHTML =
       '<div class="thread-header">' + escapeHtml(otherName || "") + '</div>' +
       '<div class="thread-messages" id="threadMessages"></div>' +
+      '<div class="save-msg" id="msgErr" style="padding:0 20px"></div>' +
       '<div class="thread-input-row"><input type="text" id="msgInput" placeholder="' + escapeHtml(t("messagePlaceholder")) + '">' +
       '<button class="btn btn-primary btn-small" id="msgSendBtn">' + escapeHtml(t("sendBtn")) + '</button></div>';
-    currentThreadUnsub = dbNs.collection("messages/" + convoId + "/items").orderBy("createdAt", "asc").limit(300).onSnapshot(function (snap) {
+    currentThreadUnsub = dbNs.collection("messages/" + convoId + "/items").orderBy("createdAt", "desc").limit(300).onSnapshot(function (snap) {
       var box = document.getElementById("threadMessages");
       if (!box) return;
-      box.innerHTML = snap.docs.map(function (d) {
+      // newest 300 messages, shown oldest to newest
+      box.innerHTML = snap.docs.slice().reverse().map(function (d) {
         var m = d.data();
         var mine = m.senderId === selfId;
         return '<div class="msg-bubble ' + (mine ? "mine" : "theirs") + '">' + escapeHtml(m.text) + '</div>';
@@ -1730,13 +1814,24 @@
     });
     var sendBtn = document.getElementById("msgSendBtn");
     var input = document.getElementById("msgInput");
+    var sending = false;
     function send() {
       var text = (input.value || "").trim();
-      if (!text) return;
-      input.value = "";
-      dbNs.collection("messages/" + convoId + "/items").add({ senderId: selfId, text: text, createdAt: Date.now() });
-      dbNs.doc("messages/" + convoId).update({ lastMessageAt: Date.now(), lastMessageText: text });
-      notify(otherId, "message", { snippet: text });
+      if (!text || sending) return;
+      sending = true; sendBtn.disabled = true;
+      var errBox = document.getElementById("msgErr"); if (errBox) errBox.textContent = "";
+      var now = Date.now();
+      // The field is only cleared once the message is really saved.
+      Promise.all([
+        dbNs.collection("messages/" + convoId + "/items").add({ senderId: selfId, text: text, createdAt: now }),
+        dbNs.doc("messages/" + convoId).update({ lastMessageAt: now, lastMessageText: text })
+      ]).then(function () {
+        input.value = "";
+        notify(otherId, "message", { snippet: text });
+      }).catch(function (err) {
+        var b = document.getElementById("msgErr");
+        if (b) b.textContent = T("Message non envoyé : ", "Nachricht nicht gesendet: ", "Message not sent: ") + ((err && err.message) || "");
+      }).then(function () { sending = false; sendBtn.disabled = false; });
     }
     sendBtn.addEventListener("click", send);
     input.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); send(); } });
@@ -1776,17 +1871,18 @@
   }
 
   // ---------- form ----------
-  function buildForm(existing) {
+  function buildForm(existing, draft) {
     lastProfileData = existing;
+    var src = draft || existing;
     renderSideProfile();
     var area = document.getElementById("formArea");
     var sectorOptions = SECTORS.map(function (s) {
-      return '<option value="' + s + '"' + (existing && existing.sector === s ? " selected" : "") + '>' + escapeHtml(sectorLabel(s)) + '</option>';
+      return '<option value="' + s + '"' + (src && src.sector === s ? " selected" : "") + '>' + escapeHtml(sectorLabel(s)) + '</option>';
     }).join("");
     var countryOptions = COUNTRIES.map(function (c) {
-      return '<option value="' + c + '"' + (existing && existing.country === c ? " selected" : "") + '>' + escapeHtml(countryLabel(c)) + '</option>';
+      return '<option value="' + c + '"' + (src && src.country === c ? " selected" : "") + '>' + escapeHtml(countryLabel(c)) + '</option>';
     }).join("");
-    var langs = (existing && existing.languages) || [];
+    var langs = (src && src.languages) || [];
     function checked(code) { return langs.indexOf(code) !== -1 ? "checked" : ""; }
 
     area.innerHTML =
@@ -1798,11 +1894,11 @@
           '<span class="hint">' + escapeHtml(t("photoHint")) + '</span>' +
           '<input type="file" id="photoFile" accept="image/*" hidden></div></div></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldName")) + '</label>' +
-          '<input type="text" id="pName" required value="' + escapeHtml(existing ? existing.name : "") + '"></div>' +
+          '<input type="text" id="pName" required value="' + escapeHtml(src ? src.name : "") + '"></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldTitle")) + '</label>' +
-          '<input type="text" id="pTitle" value="' + escapeHtml(existing ? existing.title : "") + '" placeholder="' + escapeHtml(t("fieldTitlePh")) + '"></div>' +
+          '<input type="text" id="pTitle" value="' + escapeHtml(src ? src.title : "") + '" placeholder="' + escapeHtml(t("fieldTitlePh")) + '"></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldCity")) + '</label>' +
-          '<input type="text" id="pCity" value="' + escapeHtml(existing ? existing.city : "") + '"></div>' +
+          '<input type="text" id="pCity" value="' + escapeHtml(src ? src.city : "") + '"></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldCountry")) + '</label>' +
           '<select id="pCountry"><option value="">—</option>' + countryOptions + '</select></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldSector")) + '</label>' +
@@ -1814,18 +1910,23 @@
             '<label><input type="checkbox" value="en" ' + checked("en") + '> English</label>' +
           '</div></div>' +
         '<div class="field full"><label>' + escapeHtml(t("fieldSkills")) + '</label>' +
-          '<input type="text" id="pSkills" value="' + escapeHtml(existing ? (existing.skills || []).join(", ") : "") + '" placeholder="' + escapeHtml(t("fieldSkillsPh")) + '">' +
+          '<input type="text" id="pSkills" value="' + escapeHtml(src ? (src.skills || []).join(", ") : "") + '" placeholder="' + escapeHtml(t("fieldSkillsPh")) + '">' +
         '</div>' +
         '<div class="field full"><label>' + escapeHtml(t("fieldLooking")) + '</label>' +
           '<div class="hint">' + escapeHtml(t("fieldLookingHint")) + '</div>' +
-          '<textarea id="pLooking">' + escapeHtml(existing ? existing.lookingFor : "") + '</textarea></div>' +
+          '<textarea id="pLooking">' + escapeHtml(src ? src.lookingFor : "") + '</textarea></div>' +
         '<div class="field full"><label>' + escapeHtml(t("fieldOffering")) + '</label>' +
           '<div class="hint">' + escapeHtml(t("fieldOfferingHint")) + '</div>' +
-          '<textarea id="pOffering">' + escapeHtml(existing ? existing.offering : "") + '</textarea></div>' +
+          '<textarea id="pOffering">' + escapeHtml(src ? src.offering : "") + '</textarea></div>' +
         '<div class="field full"><label>' + escapeHtml(t("fieldAbout")) + '</label>' +
-          '<textarea id="pBio">' + escapeHtml(existing ? existing.bio : "") + '</textarea></div>' +
+          '<textarea id="pBio">' + escapeHtml(src ? src.bio : "") + '</textarea></div>' +
+        '<div class="field full"><label>' + escapeHtml(T("Projets et portfolio", "Projekte und Portfolio", "Projects and portfolio")) + '</label>' +
+          '<div class="hint">' + escapeHtml(T("Présentez 2 ou 3 réalisations marquantes : contexte, votre rôle, résultat.", "Stellen Sie 2 oder 3 Projekte vor, auf die Sie stolz sind: Kontext, Ihre Rolle, Ergebnis.", "Present 2 or 3 achievements you are proud of: context, your role, result.")) + '</div>' +
+          '<textarea id="pProjects">' + escapeHtml(src ? src.projects : "") + '</textarea></div>' +
+        '<div class="field full"><label>' + escapeHtml(T("Lien portfolio ou site", "Link zu Portfolio oder Website", "Portfolio or website link")) + '</label>' +
+          '<input type="text" id="pPortfolio" value="' + escapeHtml(src ? src.portfolio : "") + '" placeholder="https://"></div>' +
         '<div class="field full"><label>' + escapeHtml(t("fieldContact")) + '</label>' +
-          '<input type="text" id="pContact" value="' + escapeHtml(existing ? existing.contact : "") + '"></div>' +
+          '<input type="text" id="pContact" value="' + escapeHtml(src ? src.contact : "") + '"></div>' +
         (existing ? '<div class="field full danger-zone"><p>' + escapeHtml(t("deleteBody")) + '</p><button type="button" class="btn btn-danger btn-small" id="delProfile">' + escapeHtml(t("deleteTitle")) + '</button></div>' : '') +
         '<div class="form-actions">' +
           '<button type="submit" class="btn btn-primary">' + escapeHtml(t("saveBtn")) + '</button>' +
@@ -1833,9 +1934,9 @@
         '</div>' +
       '</form>';
 
-    pendingPhoto = (existing && existing.photo) || "";
+    pendingPhoto = safeImg(src && src.photo);
     var dp = document.getElementById("delProfile"); if (dp) dp.addEventListener("click", deleteMyProfile);
-    var wi0 = document.querySelector('#whoBox img'); if (wi0 && pendingPhoto) wi0.src = pendingPhoto;
+    var wi0 = document.querySelector('#whoBox img'); if (wi0 && safeImg(pendingPhoto)) wi0.src = safeImg(pendingPhoto);
     paintPhotoPreview();
     document.getElementById("photoBtn").addEventListener("click", function () { document.getElementById("photoFile").click(); });
     document.getElementById("photoRm").addEventListener("click", function () { pendingPhoto = ""; paintPhotoPreview(); });
@@ -1843,15 +1944,31 @@
       var f = e.target.files && e.target.files[0]; if (!f) return;
       resizePhoto(f).then(function (d) { pendingPhoto = d; paintPhotoPreview(); }).catch(function () {});
     });
-    if (existing) {
-      var sel = area.querySelector("#pCountry"); if (sel) sel.value = existing.country || "";
-      var sel2 = area.querySelector("#pSector"); if (sel2) sel2.value = existing.sector || "";
+    if (src) {
+      var sel = area.querySelector("#pCountry"); if (sel) sel.value = src.country || "";
+      var sel2 = area.querySelector("#pSector"); if (sel2) sel2.value = src.sector || "";
     }
 
     document.getElementById("profileForm").addEventListener("submit", function (e) {
       e.preventDefault();
       saveProfile();
     });
+  }
+
+  // Reads what is currently typed in the form (used to keep unsaved input when the language changes).
+  function readProfileForm() {
+    if (!document.getElementById("profileForm")) return null;
+    var langs = Array.prototype.slice.call(document.querySelectorAll('#profileForm input[type="checkbox"]:checked')).map(function (c) { return c.value; });
+    return {
+      name: document.getElementById("pName").value, title: document.getElementById("pTitle").value,
+      city: document.getElementById("pCity").value, country: document.getElementById("pCountry").value,
+      sector: document.getElementById("pSector").value, languages: langs,
+      skills: (document.getElementById("pSkills").value || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean),
+      lookingFor: document.getElementById("pLooking").value, offering: document.getElementById("pOffering").value,
+      bio: document.getElementById("pBio").value, projects: document.getElementById("pProjects").value,
+      portfolio: document.getElementById("pPortfolio").value, contact: document.getElementById("pContact").value,
+      photo: pendingPhoto
+    };
   }
 
   function saveProfile() {
@@ -1869,6 +1986,8 @@
       lookingFor: document.getElementById("pLooking").value.trim(),
       offering: document.getElementById("pOffering").value.trim(),
       bio: document.getElementById("pBio").value.trim(),
+      projects: document.getElementById("pProjects").value.trim(),
+      portfolio: normalizeUrl(document.getElementById("pPortfolio").value),
       contact: document.getElementById("pContact").value.trim(),
       photo: pendingPhoto,
       createdAt: Date.now()
@@ -1881,9 +2000,11 @@
       }
       return ref.set(data);
     }).then(function () {
+      var firstSave = !lastProfileData;
       lastProfileData = data;
       renderSideProfile();
-      var wi = document.querySelector('#whoBox img'); if (wi && data.photo) wi.src = data.photo;
+      if (firstSave) buildForm(data); // shows the "delete my profile" area right away
+      var wi = document.querySelector('#whoBox img'); if (wi && safeImg(data.photo)) wi.src = safeImg(data.photo);
       var msg = document.getElementById("saveMsg");
       if (msg) msg.textContent = t("saved");
     }).catch(function (err) {

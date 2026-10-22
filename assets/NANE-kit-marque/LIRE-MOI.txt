@@ -1,0 +1,20 @@
+NANE - Kit de marque V3 / 22 octobre 2026
+
+Source de référence du monogramme : prototype HTML et capture du 22 octobre 2026 à 10:55:13.
+Méthode : reconstruction géométrique des contours en droites et courbes de Bézier, depuis la référence approuvée.
+Cette version reprend la géométrie du monogramme du prototype HTML et de la capture de référence, avec des contours régularisés.
+Le lettrage est converti en tracés : aucune police n’est nécessaire pour ouvrir les logos.
+Couleurs de marque : violet, or, ivoire. Le N avant conserve le passage du violet au doré de la référence.
+
+SVG : format vectoriel éditable. PDF : export vectoriel compatible Illustrator.
+Pas de fichier AI natif fourni. Ouvrir un SVG ou PDF dans Illustrator puis enregistrer en AI.
+PNG : 4000 px de large ; transparent = violet et or pour fonds clairs.
+Pour une version claire sur fond transparent, ouvrir le SVG violet et supprimer le rectangle de fond.
+JPEG : fonds blanc et violet, qualité élevée. Icônes : PNG et ICO.
+
+La version horizontale est validée. Les compositions verticales et icônes sont proposées
+pour vérification en situation. Le site HTML source n’a pas été modifié.
+
+Palette sRGB : violet #21184B, or #C6A15B, ivoire #F3F0E8, blanc #FFFFFF.
+Les couleurs or et ivoire reprennent le brief ; elles ne sont pas des mesures exactes de la planche.
+Pour impression : demander une conversion CMJN au prestataire selon son profil ICC.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -633,14 +633,14 @@
       </div>
       <div class="lang-menu" id="langMenu">
         <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / Sprache / Language">
-          <svg class="flag" id="langFlag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>
-          <span id="langCur">FR</span>
+          <svg class="flag" id="langFlag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>
+          <span id="langCur">EN</span>
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-list" id="langList" role="listbox" hidden>
-          <button type="button" role="option" data-lang="fr" class="active"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>Français</span></button>
+          <button type="button" role="option" data-lang="fr"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>Français</span></button>
           <button type="button" role="option" data-lang="de"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>Deutsch</span></button>
-          <button type="button" role="option" data-lang="en"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>English</span></button>
+          <button type="button" role="option" data-lang="en" class="active"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>English</span></button>
         </div>
       </div>
       <div class="nav-icons">
@@ -657,10 +657,10 @@
             <div class="search-results" id="searchResults" hidden></div>
           </div>
         </div>
-        <button type="button" class="icon-btn" id="adminBtn" data-view-target="admin" aria-label="Tableau de bord" title="Tableau de bord" hidden>
+        <button type="button" class="icon-btn i18n-label" id="adminBtn" data-view-target="admin" aria-label="Dashboard" title="Dashboard" data-fr="Tableau de bord" data-de="Dashboard" data-en="Dashboard" hidden>
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
         </button>
-        <button type="button" class="icon-btn" id="bellBtn" data-view-target="notifications" aria-label="Notifications" style="position:relative">
+        <button type="button" class="icon-btn i18n-label" id="bellBtn" data-view-target="notifications" aria-label="Notifications" data-fr="Notifications" data-de="Benachrichtigungen" data-en="Notifications" style="position:relative">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/></svg>
           <span class="dot" id="notifDot" style="display:none"></span>
         </button>
@@ -1012,9 +1012,9 @@
   <div class="wrap foot-bottom">
     <span>NANE © 2026</span>
     <div class="lang-toggle foot-lang">
-      <button data-lang="en"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>EN</button>
+      <button data-lang="en" class="active"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>EN</button>
       <button data-lang="de"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>DE</button>
-      <button data-lang="fr" class="active"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>FR</button>
+      <button data-lang="fr"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>FR</button>
     </div>
   </div>
 </footer>
@@ -1026,7 +1026,10 @@
   "use strict";
 
   // ---------- i18n ----------
-  var currentLang = "fr";
+  // English by default; a visitor's choice is remembered on this device.
+  var LANG_KEY = "nane-lang";
+  var currentLang = "en";
+  try { var savedLang = localStorage.getItem(LANG_KEY); if (["fr", "de", "en"].indexOf(savedLang) !== -1) currentLang = savedLang; } catch (e) {}
 
   // Dynamic strings built in JS (not plain data-attributes in the HTML).
   var STR = {
@@ -1148,6 +1151,12 @@
       var t = el.getAttribute("data-" + currentLang);
       if (t !== null) el.placeholder = t;
     });
+    document.querySelectorAll(".i18n-label").forEach(function (el) {
+      var t = el.getAttribute("data-" + currentLang);
+      if (t === null) return;
+      el.setAttribute("aria-label", t);
+      if (el.hasAttribute("title")) el.title = t;
+    });
     document.documentElement.lang = currentLang;
   }
   function refreshDynamicLabels() {
@@ -1184,19 +1193,24 @@
   });
   document.addEventListener("click", function (e) { if (!e.target.closest("#langMenu")) closeLangList(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLangList(); });
+  function syncLangUi() {
+    document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (x) {
+      x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
+    });
+    document.getElementById("langCur").textContent = currentLang.toUpperCase();
+    document.getElementById("langFlag").firstElementChild.setAttribute("href", "#flag-" + currentLang);
+  }
   document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (b) {
     b.addEventListener("click", function () {
       currentLang = b.getAttribute("data-lang");
-      document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (x) {
-        x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
-      });
-      document.getElementById("langCur").textContent = currentLang.toUpperCase();
-      document.getElementById("langFlag").firstElementChild.setAttribute("href", "#flag-" + currentLang);
+      try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) {}
+      syncLangUi();
       closeLangList();
       applyLang();
       refreshDynamicLabels();
     });
   });
+  syncLangUi();
   applyLang();
 
   // ---------- view switching ----------
@@ -1410,7 +1424,7 @@
     return '<div class="net-row">' + avatarHtml("pc-avatar", p.name, p.photo) +
       '<div class="net-info"><button class="net-name" data-act="view" data-id="' + p.__id + '">' + escapeHtml(p.name) + '</button>' +
       '<div class="pc-title">' + escapeHtml(p.title || "") + '</div>' +
-      '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div></div>' +
+      '<div class="pc-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div></div>' +
       '<div class="net-actions">' + actions + '</div></div>';
   }
   function btn(act, id, label, cls) { return '<button class="btn ' + (cls || "btn-ghost") + ' btn-small" data-act="' + act + '" data-id="' + id + '">' + escapeHtml(label) + '</button>'; }
@@ -1672,7 +1686,7 @@
           '<div><div class="pc-name">' + escapeHtml(p.name) + '</div>' +
           '<div class="pc-title">' + escapeHtml(p.title || "") + '</div></div>' +
         '</div>' +
-        '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' +
+        '<div class="pc-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' +
         (p.skills && p.skills.length
           ? '<div class="pc-tags">' + p.skills.slice(0, 4).map(function (s) {
               return '<span class="tag">' + escapeHtml(s) + '</span>';
@@ -1709,7 +1723,7 @@
           '<div class="modal-top">' +
             avatarHtml("modal-avatar", p.name, p.photo) +
             '<div><h3>' + escapeHtml(p.name) + '</h3>' +
-            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' + badgesHtml(p) + '</div>' +
+            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' + badgesHtml(p) + '</div>' +
           '</div>' +
           (p.bio ? '<div class="modal-block"><h4>' + escapeHtml(t("about")) + '</h4><p>' + escapeHtml(p.bio) + '</p>' + langNote(p.bio) + '</div>' : "") +
           ((p.experiences || []).length ? '<div class="modal-block"><h4>' + escapeHtml(T("Expériences", "Berufserfahrung", "Experience")) + '</h4>' + timelineHtml(p.experiences) + '</div>' : "") +
@@ -2327,7 +2341,7 @@
       avatarHtml("sp-avatar", name, p && p.photo) +
       '<div class="sp-body"><div class="sp-name">' + escapeHtml(name) + '</div>' +
       (p && p.title ? '<div class="sp-title">' + escapeHtml(p.title) + '</div>' : '') +
-      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' : '') +
+      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' : '') +
       '<button class="btn btn-ghost btn-small" id="spBtn">' + escapeHtml(p ? T("Voir mon profil", "Mein Profil", "View my profile") : T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button></div>' +
       '<div class="sp-stats"><div><b>' + myConns.filter(function (c) { return c.status === "accepted"; }).length + '</b>' + escapeHtml(T("Connexions", "Kontakte", "Connections")) + '</div>' +
       '<div><b>' + allPosts.filter(function (x) { return x.authorId === selfId; }).length + '</b>' + escapeHtml(T("Publications", "Beiträge", "Posts")) + '</div></div>';
@@ -2807,7 +2821,7 @@
     var profQuery = dbNs.collection("profiles").orderBy("createdAt", "desc").limit(300);
     profQuery.onSnapshot(applyProfiles, function (err) {
       document.getElementById("dirBody").innerHTML =
-        '<div class="empty-state"><h3>Erreur</h3><p>' + escapeHtml(err.message) + '</p></div>';
+        '<div class="empty-state"><h3>' + escapeHtml(T("Erreur", "Fehler", "Error")) + '</h3><p>' + escapeHtml(err.message) + '</p></div>';
     });
     // Fallback: if the live listener is silent, read once now and then every 15 s.
     function pullProfiles() {

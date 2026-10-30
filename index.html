@@ -1787,18 +1787,24 @@
     if (db0 && db0.getAttribute("data-arm") !== "1") { db0.setAttribute("data-arm", "1"); db0.textContent = t("deleteConfirm"); return; }
     var msgEl = document.getElementById("saveMsg");
     if (msgEl) msgEl.textContent = T("Suppression en cours…", "Löschen läuft…", "Deleting…");
-    // delete every document of a query
+    // delete every document of a query. Cleanup is best effort: a refused delete (for example
+    // someone else's like) is counted instead of stopping everything, so the profile still goes.
+    var failed = 0;
     function delWhere(coll, field, op, val) {
       return dbNs.collection(coll).where(field, op, val).get().then(function (snap) {
-        return Promise.all(snap.docs.map(function (d) { return dbNs.collection(coll).doc(d.id).delete(); })).then(function () { return snap.docs.map(function (d) { return d.id; }); });
-      });
+        return Promise.all(snap.docs.map(function (d) {
+          return dbNs.collection(coll).doc(d.id).delete().catch(function () { failed++; });
+        })).then(function () { return snap.docs.map(function (d) { return d.id; }); });
+      }).catch(function () { failed++; return []; });
     }
-    // my posts, with their likes and comments
-    var postsDone = delWhere("posts", "authorId", "==", selfId).then(function (postIds) {
-      return Promise.all(postIds.map(function (pid) {
-        return Promise.all([delWhere("likes", "postId", "==", pid), delWhere("comments", "postId", "==", pid)]);
+    // my posts: their likes and comments first, then the post itself
+    var postsDone = dbNs.collection("posts").where("authorId", "==", selfId).get().then(function (snap) {
+      return Promise.all(snap.docs.map(function (d) {
+        return Promise.all([delWhere("likes", "postId", "==", d.id), delWhere("comments", "postId", "==", d.id)]).then(function () {
+          return dbNs.collection("posts").doc(d.id).delete().catch(function () { failed++; });
+        });
       }));
-    });
+    }).catch(function () { failed++; });
     // my own likes, comments, connections and notifications (sent and received)
     var others = Promise.all([
       delWhere("likes", "userId", "==", selfId),
@@ -1815,14 +1821,16 @@
           return dbNs.collection(path).limit(1).get();
         }).then(function (rest) {
           if (rest.docs.length === 0) return dbNs.collection("messages").doc(c.id).delete();
-        });
+        }).catch(function () { failed++; });
       }));
-    });
+    }).catch(function () { failed++; });
     Promise.all([postsDone, others, convos]).then(function () {
       return dbNs.collection("profiles").doc(selfId).delete();
     }).then(function () {
       pendingPhoto = ""; buildForm(null);
-      var m = document.getElementById("saveMsg"); if (m) m.textContent = t("deleted");
+      var m = document.getElementById("saveMsg");
+      if (m) m.textContent = t("deleted") + (failed ? " " + T("Certains contenus n'ont pas pu être supprimés (" + failed + ").",
+        "Einige Inhalte konnten nicht gelöscht werden (" + failed + ").", "Some content could not be deleted (" + failed + ").") : "");
     }).catch(function (err) {
       var m = document.getElementById("saveMsg"); if (m) m.textContent = t("errorPrefix") + ((err && err.message) || "");
     });
@@ -2569,7 +2577,7 @@
       }
     }).then(function () {
       loadThread(convoId, otherId, otherName);
-    });
+    }).catch(toastErr);
   }
 
   var threadViewInit = document.getElementById("threadView");
@@ -2753,22 +2761,17 @@
       return;
     }
 
-    window.__stage = "début";
-    window.__stage = "connexion user";
     userNs = await window.claude.use("user");
-    window.__stage = "connexion db";
     dbNs = await window.claude.use("db");
-    window.__stage = "db ok, lecture du profil";
 
     var whoBox = document.getElementById("whoBox");
     if (userNs) {
       var me = await userNs.me();
       meName = me.name || "";
       whoBox.innerHTML =
-        '<img src="' + me.avatarUrl + '" alt="">' +
+        '<img src="' + escapeHtml(me.avatarUrl || "") + '" alt="">' +
         '<span>' + escapeHtml(t("greeting")) + escapeHtml(me.name || t("greetingFallback")) + '</span>';
       selfId = await userNs.id();
-      window.__stage = "id ok";
       updateAdminMenu();
       try {
         if (typeof userNs.can === "function" && (await userNs.can("data.write")) === false) {
@@ -2788,14 +2791,10 @@
       return;
     }
 
-    function dbg() {} // diagnostic retiré
     function applyProfiles(snap) {
-      var raw = snap.docs.length;
-      window.__got = true;
       allProfiles = snap.docs.map(function (d) {
         var data = d.data(); if (data) { data = Object.assign({}, data); data.__id = d.id; } return data;
       }).filter(function (d) { return d && d.name; });
-      dbg("Diagnostic : " + raw + " document(s) reçu(s), " + allProfiles.length + " valide(s), moi = " + (selfId || "inconnu"));
       renderDirectory();
       renderNewConvoOptions();
       renderFeed();
@@ -2803,18 +2802,21 @@
       renderNotifs();
       refreshAdmin();
     }
-    window.__stage = "abonnement profils envoyé";
     var profQuery = dbNs.collection("profiles").orderBy("createdAt", "desc").limit(300);
-    profQuery.onSnapshot(applyProfiles, function (err) {
+    var liveOk = false;
+    profQuery.onSnapshot(function (snap) { liveOk = true; applyProfiles(snap); }, function (err) {
       document.getElementById("dirBody").innerHTML =
         '<div class="empty-state"><h3>Erreur</h3><p>' + escapeHtml(err.message) + '</p></div>';
     });
-    // Fallback: if the live listener is silent, read once now and then every 15 s.
+    // Fallback: if the live listener is silent, read once now and then every 15 s,
+    // until the live listener answers.
+    var pullTimer = null;
     function pullProfiles() {
-      try { profQuery.get().then(applyProfiles).catch(function (e) { dbg("Diagnostic : erreur de lecture : " + (e && e.message || e)); }); } catch (e) { dbg("Diagnostic : exception : " + e.message); }
+      if (liveOk) { clearInterval(pullTimer); return; }
+      try { profQuery.get().then(function (snap) { if (!liveOk) applyProfiles(snap); }).catch(function () {}); } catch (e) {}
     }
     pullProfiles();
-    setInterval(pullProfiles, 15000);
+    pullTimer = setInterval(pullProfiles, 15000);
 
     if (selfId) {
       var ownRef = dbNs.collection("profiles").doc(selfId);
@@ -2832,11 +2834,12 @@
       allPosts = snap.docs.map(function (d) { var x = d.data(); if (x) { x = Object.assign({}, x); x.__id = d.id; } return x; }).filter(Boolean);
       renderFeed(); refreshAdmin();
     });
-    dbNs.collection("likes").limit(2000).onSnapshot(function (snap) {
+    // Newest first, so the limits drop old likes and comments, not the ones on recent posts.
+    dbNs.collection("likes").orderBy("createdAt", "desc").limit(2000).onSnapshot(function (snap) {
       allLikes = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});
-    dbNs.collection("comments").orderBy("createdAt", "asc").limit(1000).onSnapshot(function (snap) {
-      allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
+    dbNs.collection("comments").orderBy("createdAt", "desc").limit(1000).onSnapshot(function (snap) {
+      allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean).reverse(); renderFeed(); refreshAdmin();
     }, function () {});
 
     if (selfId) {

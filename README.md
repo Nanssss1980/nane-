@@ -50,12 +50,16 @@ sur le lien existant, en redéclarant les règles de la base de données :
 - `reports` : lecture « interact », écriture « interact »
 - portée utilisateur : « profile »
 
+Nouvelle collection `consents` (acceptation des conditions d'utilisation, un document par membre) :
+chaque membre doit pouvoir écrire et relire son propre document `consents/{self}`. Les règles exactes restent à définir
+lors de la republication.
+
 Ne pas supprimer les appels à `window.claude` : ils connectent le site à sa base de données.
 Une seule personne publie à la fois, pour éviter qu'une version écrase l'autre.
 
 ## À faire ensuite
 
-- Pages légales : conditions d'utilisation, confidentialité, mentions légales (à valider par un juriste)
+- Pages légales : les conditions d'utilisation existent en version de travail (FR, DE, EN). À faire relire par une juriste et à compléter : éditeur, droit applicable. Restent à rédiger : confidentialité complète, mentions légales
 - FAQ et formulaire de support
 - Catégorie « Opportunités » (mission, emploi, recherche de partenaire) après les premiers retours des testeurs
 

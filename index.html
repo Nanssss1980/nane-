@@ -329,6 +329,12 @@
   .signup { padding: 48px 0 96px; }
   .signup-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-m); padding: 28px; }
   .signup-card h2 { font-family: var(--serif); font-weight: 500; font-size: 28px; margin: 0 0 6px; color: var(--ink); }
+  .su-verify textarea { min-height: 0; height: 72px; resize: vertical; }
+  .su-chips label { font-weight: 500; }
+  .su-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .su-chips label { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 14px; cursor: pointer; }
+  .su-verify { margin: 4px 0 14px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-m); background: rgba(198,161,91,.08); }
+  .su-verify textarea, .su-verify select, .su-verify input[type=number] { width: 100%; box-sizing: border-box; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
   .signup-card .sub { font-size: 14px; color: var(--text-on-paper-dim); margin: 0 0 20px; }
   .mock-banner { background: rgba(198,161,91,0.18); border: 1px solid var(--brass); border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 18px; }
   .su-field { margin-bottom: 14px; }
@@ -1400,7 +1406,23 @@
   function badgesHtml(p) {
     return p && p.badges && p.badges.length ? '<div class="badges">' + p.badges.map(badgeHtml).join("") + '</div>' : "";
   }
-  var signupStep = 1, signupData = { first: "", last: "", email: "", link: "", code: "" };
+  var SU_EMPTY = { first: "", last: "", email: "", link: "", code: "", role: "", why: "", how: "", loc: "", years: "", skills: "", job: "", start: "", roles: "", langs: "", offer: "", seek: "" };
+  var signupStep = 1, signupData = JSON.parse(JSON.stringify(SU_EMPTY));
+  // petit générateur de liste déroulante pour le bloc de vérification : options = [[valeur, fr, de, en], ...]
+  function suSelect(id, current, opts) {
+    return '<select id="' + id + '"><option value="">' + escapeHtml(T("Choisir", "Auswählen", "Select")) + '</option>' + opts.map(function (o) {
+      return '<option value="' + o[0] + '"' + (current === o[0] ? " selected" : "") + '>' + escapeHtml(T(o[1], o[2], o[3])) + '</option>'; }).join("") + '</select>';
+  }
+  // groupe de cases à cocher (profil : plusieurs réponses possibles) ; current = valeurs séparées par des virgules
+  function suChecks(name, current, opts) {
+    var cur = (current || "").split(",");
+    return '<div class="su-chips" role="group">' + opts.map(function (o) {
+      return '<label><input type="checkbox" name="' + name + '" value="' + o[0] + '"' + (cur.indexOf(o[0]) >= 0 ? " checked" : "") + '> <span>' + escapeHtml(T(o[1], o[2], o[3])) + '</span></label>'; }).join("") + '</div>';
+  }
+  function suChecked(name) { return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }).join(","); }
+  function suField(id, lf, ld, le, inner, req) {
+    return '<div class="su-field"><label for="' + id + '">' + escapeHtml(T(lf, ld, le)) + (req ? ' <span class="hint">*</span>' : "") + '</label>' + inner + '</div>';
+  }
   function renderSignup() {
     var el = document.getElementById("signupArea"); if (!el) return;
     var steps = [T("Compte", "Konto", "Account"), T("E-mail", "E-Mail", "Email"), T("Profil vérifié", "Verifiziertes Profil", "Verified profile")];
@@ -1415,6 +1437,22 @@
         '<div class="su-field"><label>' + escapeHtml(T("Mot de passe", "Passwort", "Password")) + ' <span class="hint">' + escapeHtml(T("8 caractères minimum", "mindestens 8 Zeichen", "8 characters minimum")) + '</span></label>' +
         '<div class="su-pw"><input type="password" id="suPw" autocomplete="new-password" placeholder="' + escapeHtml(T("Choisis un mot de passe robuste", "Wähle ein sicheres Passwort", "Choose a strong password")) + '">' +
         '<button type="button" class="su-eye" id="suEye" aria-label="' + escapeHtml(T("Afficher le mot de passe", "Passwort anzeigen", "Show password")) + '"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.500-7 10-7 10 7 10 7-3.500 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>' +
+        '<div class="su-verify"><b style="font-size:14px">' + escapeHtml(T("Pour valider ton profil", "Zur Prüfung deines Profils", "To validate your profile")) + '</b>' +
+        '<p class="sub" style="margin:4px 0 10px">' + escapeHtml(T("NANE est un espace sûr pour les talents afrodescendants. Ces réponses aident l'équipe à valider chaque demande. Les champs avec * sont obligatoires.", "NANE ist ein sicherer Raum für afrodeszendente Talente. Diese Angaben helfen dem Team, jede Anfrage zu prüfen. Felder mit * sind Pflicht.", "NANE is a safe space for Afrodescendant talents. These answers help the team validate each request. Fields marked * are required.")) + '</p>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Tu es", "Du bist", "You are")) + ' <span class="hint">*</span> <span class="hint">' + escapeHtml(T("(plusieurs choix possibles)", "(Mehrfachauswahl möglich)", "(you can pick several)")) + '</span></label>' +
+        suChecks("suRoles", signupData.roles, [["consulting", "Consulting", "Beratung", "Consulting"], ["entrepreneur", "Entrepreneur·e", "Unternehmer·in", "Entrepreneur"], ["mentor", "Mentor·e", "Mentor·in", "Mentor"], ["speaker", "Conférencier·ère", "Referent·in", "Speaker"], ["employee", "Employé·e", "Angestellte·r", "Employee"]]) + '</div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Langues professionnelles", "Berufssprachen", "Professional languages")) + ' <span class="hint">*</span></label>' +
+        suChecks("suLangs", signupData.langs, [["fr", "Français", "Französisch", "French"], ["de", "Allemand", "Deutsch", "German"], ["en", "Anglais", "Englisch", "English"], ["other", "Autre", "Andere", "Other"]]) + '</div>' +
+        suField("suOffer", "Ce que tu proposes", "Was du anbietest", "What you offer", '<textarea id="suOffer" rows="2" placeholder="' + escapeHtml(T("ex. conseil en marketing, mentorat, interventions en conférence", "z. B. Marketingberatung, Mentoring, Vorträge", "e.g. marketing advice, mentoring, speaking")) + '">' + escapeHtml(signupData.offer) + '</textarea>', 0) +
+        suField("suSeek", "Ce que tu recherches", "Was du suchst", "What you are looking for", '<textarea id="suSeek" rows="2" placeholder="' + escapeHtml(T("ex. clients, partenaires, mentor, emploi", "z. B. Kunden, Partner, Mentor, Stelle", "e.g. clients, partners, a mentor, a job")) + '">' + escapeHtml(signupData.seek) + '</textarea>', 0) +
+        suField("suRole", "Ton poste ou ton statut", "Deine Position oder dein Status", "Your role or status", '<input type="text" id="suRole" placeholder="' + escapeHtml(T("ex. Cheffe de projet, étudiant·e, ingénieur·e", "z. B. Projektleiterin, Student·in, Ingenieur·in", "e.g. Project manager, student, engineer")) + '" value="' + escapeHtml(signupData.role) + '">', 1) +
+        suField("suLoc", "Ville et pays", "Stadt und Land", "City and country", '<input type="text" id="suLoc" autocomplete="address-level2" placeholder="' + escapeHtml(T("ex. Berlin, Allemagne", "z. B. Berlin, Deutschland", "e.g. Berlin, Germany")) + '" value="' + escapeHtml(signupData.loc) + '">', 1) +
+        suField("suWhy", "Pourquoi veux-tu rejoindre NANE ?", "Warum möchtest du NANE beitreten?", "Why would you like to join NANE?", '<textarea id="suWhy" rows="3" placeholder="' + escapeHtml(T("Tes objectifs et ce que tu espères y trouver", "Deine Ziele und was du dir erhoffst", "Your goals and what you hope to achieve")) + '">' + escapeHtml(signupData.why) + '</textarea>', 1) +
+        suField("suHow", "Comment as-tu connu NANE ?", "Wie hast du von NANE erfahren?", "How did you hear about us?", suSelect("suHow", signupData.how, [["member", "Par un membre", "Über ein Mitglied", "Through a member"], ["linkedin", "LinkedIn", "LinkedIn", "LinkedIn"], ["social", "Autres réseaux sociaux", "Andere soziale Netzwerke", "Other social media"], ["event", "Événement ou association", "Veranstaltung oder Verein", "Event or association"], ["press", "Presse ou article", "Presse oder Artikel", "Press or article"], ["other", "Autre", "Sonstiges", "Other"]]), 1) +
+        '<div class="su-row">' + suField("suYears", "Années d'expérience", "Jahre Berufserfahrung", "Years of experience", '<input type="number" id="suYears" min="0" max="60" inputmode="numeric" value="' + escapeHtml(signupData.years) + '">', 0) +
+        suField("suJob", "Cherches-tu un emploi ?", "Suchst du eine Stelle?", "Are you looking for a job?", suSelect("suJob", signupData.job, [["active", "Oui, activement", "Ja, aktiv", "Yes, actively"], ["open", "Ouvert·e aux opportunités", "Offen für Angebote", "Open to opportunities"], ["no", "Non", "Nein", "No"]]), 0) + '</div>' +
+        suField("suSkills", "Compétences", "Kompetenzen", "Skills", '<input type="text" id="suSkills" placeholder="' + escapeHtml(T("Sépare par des virgules : marketing, SQL, gestion de projet", "Mit Kommas trennen: Marketing, SQL, Projektmanagement", "Separate with commas: marketing, SQL, project management")) + '" value="' + escapeHtml(signupData.skills) + '">', 0) +
+        suField("suStart", "Quand peux-tu commencer ?", "Wann kannst du anfangen?", "When can you start?", suSelect("suStart", signupData.start, [["now", "Tout de suite", "Sofort", "Immediately"], ["1m", "Sous 1 mois", "Innerhalb eines Monats", "Within 1 month"], ["3m", "Sous 3 mois", "Innerhalb von 3 Monaten", "Within 3 months"], ["later", "Plus tard", "Später", "Later"]]), 0) + '</div>' +
         '<details class="su-opt"><summary>' + escapeHtml(T("Options (facultatif) : badge vérifié, invitation", "Optionen (freiwillig): Verifizierungs-Badge, Einladung", "Options (optional): verified badge, invitation")) + '</summary>' +
         '<div class="su-field" style="margin-top:10px"><label>' + escapeHtml(T("Lien LinkedIn ou site professionnel", "LinkedIn- oder Berufswebsite-Link", "LinkedIn or professional website link")) + ' <span class="hint">' + escapeHtml(T("(pour le badge vérifié)", "(für das Verifizierungs-Badge)", "(for the verified badge)")) + '</span></label><input type="text" id="suLink" placeholder="https://" value="' + escapeHtml(signupData.link) + '"></div>' +
         '<div class="su-field"><label>' + escapeHtml(T("Code d'invitation", "Einladungscode", "Invitation code")) + ' <span class="hint">' + escapeHtml(T("(donné par un membre)", "(von einem Mitglied)", "(from a member)")) + '</span></label><input type="text" id="suCode" value="' + escapeHtml(signupData.code) + '"></div></details>' +
@@ -1439,7 +1477,7 @@
         '<p class="sub">' + escapeHtml(T("Voici les badges que ta fiche afficherait :", "Diese Badges würde dein Profil anzeigen:", "Here are the badges your profile would show:")) + '</p>' +
         '<div class="su-sample">' + avatarHtml("pc-avatar", signupData.first + " " + signupData.last, "") +
         '<div><div class="pc-name">' + escapeHtml((signupData.first + " " + signupData.last).trim() || "…") + '</div><div style="margin-top:6px" class="badges">' + b.map(badgeHtml).join("") + '</div></div></div>' +
-        '<p class="sub">' + escapeHtml(T("Le badge « professionnel vérifié » serait accordé après contrôle de ton lien par l'équipe.", "Das Badge „Berufsprofil verifiziert“ würde nach Prüfung deines Links durch das Team vergeben.", "The “professional profile verified” badge would be granted after the team checks your link.")) + '</p>' +
+        '<p class="sub">' + escapeHtml(T("Ta demande serait validée par l'équipe à partir de tes réponses. Le badge « professionnel vérifié » serait accordé après contrôle de ton lien.", "Dein Antrag würde vom Team anhand deiner Angaben geprüft. Das Badge „Berufsprofil verifiziert“ würde nach Prüfung deines Links vergeben.", "Your request would be validated by the team based on your answers. The “professional profile verified” badge would be granted after your link is checked.")) + '</p>' +
         '<button class="btn btn-ghost" id="suRestart">' + escapeHtml(T("Recommencer la démo", "Demo neu starten", "Restart demo")) + '</button> ' +
         '<button class="btn btn-primary" id="suGo">' + escapeHtml(T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button>';
     }
@@ -1448,10 +1486,13 @@
     if (nx) nx.addEventListener("click", function () {
       if (signupStep === 1) {
         signupData = { first: document.getElementById("suFirst").value.trim(), last: document.getElementById("suLast").value.trim(),
-          email: document.getElementById("suEmail").value.trim(), link: document.getElementById("suLink").value.trim(), code: document.getElementById("suCode").value.trim() };
+          email: document.getElementById("suEmail").value.trim(), link: document.getElementById("suLink").value.trim(), code: document.getElementById("suCode").value.trim(),
+          role: document.getElementById("suRole").value.trim(), loc: document.getElementById("suLoc").value.trim(), why: document.getElementById("suWhy").value.trim(), how: document.getElementById("suHow").value,
+          roles: suChecked("suRoles"), langs: suChecked("suLangs"), offer: document.getElementById("suOffer").value.trim(), seek: document.getElementById("suSeek").value.trim(),
+          years: document.getElementById("suYears").value.trim(), skills: document.getElementById("suSkills").value.trim(), job: document.getElementById("suJob").value, start: document.getElementById("suStart").value };
         var pw = document.getElementById("suPw").value; // lu pour contrôle uniquement : jamais stocké
-        if (!signupData.first || signupData.email.indexOf("@") < 1 || pw.length < 8 || !document.getElementById("suOk").checked) {
-          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide, mot de passe (8 caractères min.) et acceptation des CGU requis.", "Vorname, gültige E-Mail, Passwort (mind. 8 Zeichen) und Zustimmung zu den Nutzungsbedingungen erforderlich.", "First name, valid email, password (8 characters min.) and acceptance of the terms required.");
+        if (!signupData.first || signupData.email.indexOf("@") < 1 || pw.length < 8 || !signupData.roles || !signupData.langs || !signupData.role || !signupData.loc || !signupData.why || !signupData.how || !document.getElementById("suOk").checked) {
+          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide, mot de passe (8 caractères min.), profil (Tu es), langues, poste, ville, motivation, source et acceptation des CGU requis.", "Vorname, gültige E-Mail, Passwort (mind. 8 Zeichen), Profil (Du bist), Sprachen, Position, Stadt, Motivation, Quelle und Zustimmung zu den Nutzungsbedingungen erforderlich.", "First name, valid email, password (8 characters min.), profile (You are), languages, role, city, motivation, source and acceptance of the terms required.");
           return;
         }
       }
@@ -1471,7 +1512,7 @@
     var lg = document.getElementById("suLogin");
     if (lg) lg.addEventListener("click", function (e) { e.preventDefault(); showView("login"); });
     var rs = document.getElementById("suRestart");
-    if (rs) rs.addEventListener("click", function () { signupStep = 1; signupData = { first: "", last: "", email: "", link: "", code: "" }; renderSignup(); });
+    if (rs) rs.addEventListener("click", function () { signupStep = 1; signupData = JSON.parse(JSON.stringify(SU_EMPTY)); renderSignup(); });
     var go = document.getElementById("suGo");
     if (go) go.addEventListener("click", function () { startProfile(true); });
   }

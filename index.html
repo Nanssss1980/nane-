@@ -233,7 +233,7 @@
   /* Video d'accueil : bande pleine largeur au-dessus du bandeau, sans texte dessus */
   .video-wide { position: relative; background: #21184B; line-height: 0; overflow: hidden; }
   .video-wide[hidden] { display: none; }
-  .video-wide video { display: block; width: 100%; height: min(78vh, 56.25vw); object-fit: cover; object-position: 50% 48%; transform-origin: 50% 48%; transform: scale(var(--vz, 1)); background: #21184B; }
+  .video-wide video { display: block; width: 100%; height: min(45vw, 88vh); object-fit: cover; object-position: 50% 49%; transform-origin: 50% 49%; transform: scale(var(--vz, 1)); background: #21184B; }
   .video-tint { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(33,24,75,.10) 0%, rgba(33,24,75,.10) 70%, rgba(33,24,75,.45) 100%); }
   .video-ctrls { position: absolute; z-index: 2; left: 24px; bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap; line-height: normal; }
   @media (max-width: 767px) { .video-wide video { height: min(78vh, 177.78vw); } .video-ctrls { left: 14px; bottom: 14px; } }
@@ -1697,7 +1697,7 @@
       var bw = vid.clientWidth, bh = vid.clientHeight;
       var frameH = Math.max(bh, bw * 9 / 16);          // hauteur de l'image apres recadrage "cover"
       var visible = bh / frameH;                       // part de la hauteur de l'image visible
-      var z = Math.max(1, Math.min(1.2, visible / 0.74));   // la sphere + marge occupe ~74 % de la hauteur
+      var z = 1;   // v65 : plus de zoom, la constellation (66 % de la hauteur de l'image) reste entiere avec marge
       vid.style.setProperty("--vz", z.toFixed(3));
     }
     window.addEventListener("resize", fitZoom);

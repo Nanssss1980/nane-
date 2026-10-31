@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NANE — The professional network for Black talent in Europe</title>
-<link rel="icon" href="assets/NANE-kit-marque/Icones/favicon.ico">
+<title>NANE — Le réseau professionnel des talents noirs francophones et germanophones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #21184B;
@@ -21,8 +23,8 @@
     --text-on-paper-dim: #6A6380;
     --radius-s: 4px;
     --radius-m: 10px;
-    --serif: Georgia, 'Times New Roman', serif;
-    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --serif: 'Fraunces', serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -66,8 +68,8 @@
   .logo-full { height: 30px; margin-right: 10px; width: auto; aspect-ratio: 1156 / 296; flex: none; display: block; }
   .logo-full.logo-foot { height: 32px; }
   .brand { color: #0F0F12; }
-  .wordmark { font-family: var(--sans); font-weight: 500; letter-spacing: 0.38em; font-size: 0.8em; color: #0F0F12; }
-  .lockup-tag { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-on-paper-dim); margin-top: 10px; }
+  .wordmark { font-family: 'Montserrat', var(--sans); font-weight: 500; letter-spacing: 0.38em; font-size: 0.8em; color: #0F0F12; }
+  .lockup-tag { font-family: 'Montserrat', var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-on-paper-dim); margin-top: 10px; }
   nav.links { display: flex; align-items: center; gap: 24px; }
   nav.links button.navlink { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px !important; }
   .nav-right { display: flex; align-items: center; gap: 14px; }
@@ -249,6 +251,9 @@
   .value-card { border-top: 2px solid var(--brass); padding-top: 18px; }
 
   .legal { padding: 56px 0 72px; background: var(--paper-dim); border-top: 1px solid var(--line); }
+  .legal h2, .legal h3 { scroll-margin-top: 96px; }
+  .legal h2 ~ h2 { margin-top: 44px; }
+  .legal .legal-intro { font-size: 15px; color: var(--text-on-paper-dim); margin: 0 0 14px; }
   .legal h2 { font-family: var(--serif); font-weight: 500; font-size: 26px; margin: 0 0 14px; color: var(--ink); }
   .legal h3 { font-size: 16px; margin: 26px 0 8px; color: var(--ink); }
   .legal ul { margin: 0; padding-left: 20px; font-size: 15px; color: var(--text-on-paper-dim); }
@@ -631,14 +636,14 @@
       </div>
       <div class="lang-menu" id="langMenu">
         <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / Sprache / Language">
-          <svg class="flag" id="langFlag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>
-          <span id="langCur">EN</span>
+          <svg class="flag" id="langFlag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>
+          <span id="langCur">FR</span>
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-list" id="langList" role="listbox" hidden>
-          <button type="button" role="option" data-lang="fr"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>Français</span></button>
+          <button type="button" role="option" data-lang="fr" class="active"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>Français</span></button>
           <button type="button" role="option" data-lang="de"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>Deutsch</span></button>
-          <button type="button" role="option" data-lang="en" class="active"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>English</span></button>
+          <button type="button" role="option" data-lang="en"><span class="lang-opt"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>English</span></button>
         </div>
       </div>
       <div class="nav-icons">
@@ -655,10 +660,10 @@
             <div class="search-results" id="searchResults" hidden></div>
           </div>
         </div>
-        <button type="button" class="icon-btn i18n-label" id="adminBtn" data-view-target="admin" aria-label="Dashboard" title="Dashboard" data-fr="Tableau de bord" data-de="Dashboard" data-en="Dashboard" hidden>
+        <button type="button" class="icon-btn" id="adminBtn" data-view-target="admin" aria-label="Tableau de bord" title="Tableau de bord" hidden>
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
         </button>
-        <button type="button" class="icon-btn i18n-label" id="bellBtn" data-view-target="notifications" aria-label="Notifications" data-fr="Notifications" data-de="Benachrichtigungen" data-en="Notifications" style="position:relative">
+        <button type="button" class="icon-btn" id="bellBtn" data-view-target="notifications" aria-label="Notifications" style="position:relative">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/></svg>
           <span class="dot" id="notifDot" style="display:none"></span>
         </button>
@@ -798,31 +803,31 @@
   <section data-view="legal">
     <section class="legal">
       <div class="wrap wrap-narrow">
-        <h2 id="legalTerms" class="i18n" data-fr="Conditions d'utilisation" data-de="Nutzungsbedingungen" data-en="Terms of use"></h2>
-        <p class="i18n" data-fr="Version du 31 octobre 2026. En publiant, en commentant, en vous connectant à d'autres membres ou en envoyant des messages, vous acceptez ces conditions." data-de="Fassung vom 31. Oktober 2026. Wenn Sie veröffentlichen, kommentieren, sich mit anderen Mitgliedern vernetzen oder Nachrichten senden, akzeptieren Sie diese Bedingungen." data-en="Version of 31 October 2026. By posting, commenting, connecting with other members or sending messages, you accept these terms."></p>
+        <h2 id="legalTerms" class="i18n" data-fr="Conditions d&#x27;utilisation" data-de="Nutzungsbedingungen" data-en="Terms of use"></h2>
+        <p class="legal-intro i18n" data-fr="Version du 31 octobre 2026. En publiant, en commentant, en vous connectant à d&#x27;autres membres ou en envoyant des messages, vous acceptez ces conditions." data-de="Fassung vom 31. Oktober 2026. Wenn Sie veröffentlichen, kommentieren, sich mit anderen Mitgliedern vernetzen oder Nachrichten senden, akzeptieren Sie diese Bedingungen." data-en="Version of 31 October 2026. By posting, commenting, connecting with other members or sending messages, you accept these terms."></p>
         <ul class="i18n-html"
-          data-fr="<li><b>Qui peut s'inscrire.</b> NANE est réservé aux personnes majeures (18 ans et plus) qui l'utilisent à des fins professionnelles.</li><li><b>Éditeur.</b> NANE est édité par [nom de l'éditeur, forme juridique, adresse, e-mail de contact : à compléter].</li><li><b>Ce qu'est NANE.</b> NANE est une plateforme qui permet à ses membres de se trouver et de se contacter. NANE n'est ni employeur, ni agence de recrutement, ni intermédiaire, et n'est partie à aucun accord conclu entre membres. Nous ne vérifions ni l'identité, ni les qualifications, ni les déclarations des membres. Les badges ne sont pas une garantie.</li><li><b>Votre responsabilité.</b> Vous êtes seul·e responsable des contenus que vous publiez, ainsi que de vos échanges, rencontres et accords avec d'autres membres, en ligne comme hors ligne. Faites preuve de prudence : rencontrez-vous dans des lieux publics, et n'envoyez jamais d'argent ni d'informations confidentielles à une personne que vous ne connaissez pas.</li><li><b>Règles.</b> Vous vous engagez à respecter la Charte de la communauté. En cas de manquement, nous pouvons retirer des contenus, suspendre ou supprimer un compte.</li><li><b>Signalements.</b> Nous ne contrôlons pas les contenus à l'avance. Nous traitons les signalements et retirons rapidement tout contenu manifestement illicite dès que nous en avons connaissance.</li><li><b>Vos contenus.</b> Vous restez propriétaire de vos contenus. Vous accordez à NANE une licence gratuite et non exclusive pour les afficher sur la plateforme tant qu'ils y sont publiés. Vous garantissez avoir le droit de les publier.</li><li><b>Responsabilité de NANE.</b> Le service est fourni en l'état. NANE n'est pas responsable du comportement des membres, des contenus qu'ils publient, ni des conséquences des connexions, rencontres ou accords entre membres. Dans les limites permises par la loi, la responsabilité de NANE est exclue pour les dommages indirects. Rien dans ces conditions ne limite la responsabilité en cas de faute intentionnelle ou de faute lourde, d'atteinte à la vie, au corps ou à la santé, ou lorsque la loi l'interdit, ni vos droits impératifs de consommateur·rice.</li><li><b>Garantie.</b> Si un tiers réclame quelque chose à NANE à cause d'un contenu que vous avez publié ou d'un manquement fautif de votre part à ces conditions, vous vous engagez à indemniser NANE des frais qui en résultent, dans les limites permises par la loi.</li><li><b>Fin.</b> Vous pouvez supprimer votre profil à tout moment. Nous pouvons suspendre un compte qui enfreint ces conditions.</li><li><b>Modifications.</b> Nous pouvons mettre à jour ces conditions. Nous vous demanderons d'accepter la nouvelle version avant de continuer à publier ou à échanger.</li><li><b>Droit applicable.</b> [Droit applicable et tribunaux compétents : à compléter avec une juriste.] Les protections impératives du pays où vous résidez restent applicables.</li><li><b>Preuve.</b> Nous conservons la date et la version des conditions que vous avez acceptées.</li>"
-          data-de="<li><b>Wer sich anmelden kann.</b> NANE steht nur volljährigen Personen (ab 18 Jahren) offen, die es beruflich nutzen.</li><li><b>Betreiber.</b> NANE wird betrieben von [Name des Betreibers, Rechtsform, Anschrift, Kontakt-E-Mail: zu ergänzen].</li><li><b>Was NANE ist.</b> NANE ist eine Plattform, über die sich Mitglieder finden und kontaktieren können. NANE ist weder Arbeitgeber noch Personalvermittlung noch Vermittler und ist nicht Partei von Vereinbarungen zwischen Mitgliedern. Wir prüfen weder die Identität noch die Qualifikationen oder Angaben der Mitglieder. Badges sind keine Garantie.</li><li><b>Ihre Verantwortung.</b> Sie allein sind verantwortlich für die Inhalte, die Sie veröffentlichen, und für Ihren Austausch, Ihre Treffen und Vereinbarungen mit anderen Mitgliedern, online wie offline. Seien Sie vorsichtig: Treffen Sie sich an öffentlichen Orten und senden Sie Personen, die Sie nicht kennen, niemals Geld oder vertrauliche Informationen.</li><li><b>Regeln.</b> Sie verpflichten sich, die Community-Charta einzuhalten. Bei Verstößen können wir Inhalte entfernen und Konten sperren oder löschen.</li><li><b>Meldungen.</b> Wir prüfen Inhalte nicht im Voraus. Wir bearbeiten Meldungen und entfernen offensichtlich rechtswidrige Inhalte zügig, sobald wir davon Kenntnis erhalten.</li><li><b>Ihre Inhalte.</b> Ihre Inhalte gehören weiterhin Ihnen. Sie räumen NANE eine unentgeltliche, nicht ausschließliche Lizenz ein, sie auf der Plattform anzuzeigen, solange sie dort veröffentlicht sind. Sie versichern, dass Sie berechtigt sind, sie zu veröffentlichen.</li><li><b>Haftung von NANE.</b> Der Dienst wird so bereitgestellt, wie er ist. NANE haftet nicht für das Verhalten von Mitgliedern, für die von ihnen veröffentlichten Inhalte oder für die Folgen von Verbindungen, Treffen oder Vereinbarungen zwischen Mitgliedern. Soweit gesetzlich zulässig, ist die Haftung von NANE für mittelbare Schäden ausgeschlossen. Nichts in diesen Bedingungen beschränkt die Haftung bei Vorsatz oder grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit oder wo das Gesetz es nicht erlaubt, noch Ihre zwingenden Verbraucherrechte.</li><li><b>Freistellung.</b> Macht ein Dritter wegen eines von Ihnen veröffentlichten Inhalts oder eines schuldhaften Verstoßes gegen diese Bedingungen Ansprüche gegen NANE geltend, stellen Sie NANE von den daraus entstehenden Kosten frei, soweit gesetzlich zulässig.</li><li><b>Beendigung.</b> Sie können Ihr Profil jederzeit löschen. Wir können Konten sperren, die gegen diese Bedingungen verstoßen.</li><li><b>Änderungen.</b> Wir können diese Bedingungen aktualisieren. Wir bitten Sie, die neue Fassung zu akzeptieren, bevor Sie weiter veröffentlichen oder Nachrichten austauschen.</li><li><b>Anwendbares Recht.</b> [Anwendbares Recht und Gerichtsstand: mit einer Juristin zu ergänzen.] Die zwingenden Schutzvorschriften Ihres Wohnsitzlandes bleiben anwendbar.</li><li><b>Nachweis.</b> Wir speichern Datum und Fassung der Bedingungen, die Sie akzeptiert haben.</li>"
-          data-en="<li><b>Who can join.</b> NANE is only for adults (18 and over) who use it for professional purposes.</li><li><b>Operator.</b> NANE is operated by [operator name, legal form, address, contact email: to be completed].</li><li><b>What NANE is.</b> NANE is a platform that lets members find and contact each other. NANE is not an employer, recruitment agency or broker, and is not a party to any agreement between members. We do not check members' identity, qualifications or statements. Badges are not a guarantee.</li><li><b>Your responsibility.</b> You alone are responsible for the content you publish and for your exchanges, meetings and agreements with other members, online and offline. Be careful: meet in public places, and never send money or confidential information to someone you do not know.</li><li><b>Rules.</b> You agree to follow the Community charter. If you break it, we may remove content and suspend or delete accounts.</li><li><b>Reports.</b> We do not check content in advance. We handle reports and promptly remove clearly illegal content once we become aware of it.</li><li><b>Your content.</b> Your content remains yours. You give NANE a free, non-exclusive licence to display it on the platform for as long as it is published there. You confirm you have the right to publish it.</li><li><b>NANE's liability.</b> The service is provided as is. NANE is not responsible for members' behaviour, for the content they publish, or for the consequences of connections, meetings or agreements between members. To the extent permitted by law, NANE's liability for indirect damage is excluded. Nothing in these terms limits liability for intent or gross negligence, for injury to life, body or health, or where the law does not allow it, nor your mandatory rights as a consumer.</li><li><b>Indemnity.</b> If a third party makes a claim against NANE because of content you published or a breach of these terms that is your fault, you agree to cover NANE's resulting costs, to the extent permitted by law.</li><li><b>Ending.</b> You can delete your profile at any time. We may suspend accounts that break these terms.</li><li><b>Changes.</b> We may update these terms. We will ask you to accept the new version before you continue posting or messaging.</li><li><b>Applicable law.</b> [Applicable law and competent courts: to be completed with a lawyer.] The mandatory protections of your country of residence still apply.</li><li><b>Proof.</b> We keep the date and version of the terms you accepted.</li>"></ul>
+          data-fr="<li><strong>Qui peut s&#x27;inscrire.</strong> NANE est réservé aux personnes majeures (18 ans et plus) qui l&#x27;utilisent à des fins professionnelles.</li><li><strong>Éditeur.</strong> NANE est édité par [nom de l&#x27;éditeur, forme juridique, adresse, e-mail de contact : à compléter].</li><li><strong>Ce qu&#x27;est NANE.</strong> NANE est une plateforme qui permet à ses membres de se trouver et de se contacter. NANE n&#x27;est ni employeur, ni agence de recrutement, ni intermédiaire, et n&#x27;est partie à aucun accord conclu entre membres. Nous ne vérifions ni l&#x27;identité, ni les qualifications, ni les déclarations des membres. Les badges ne sont pas une garantie.</li><li><strong>Votre responsabilité.</strong> Vous êtes seul·e responsable des contenus que vous publiez, ainsi que de vos échanges, rencontres et accords avec d&#x27;autres membres, en ligne comme hors ligne. Faites preuve de prudence : rencontrez-vous dans des lieux publics, et n&#x27;envoyez jamais d&#x27;argent ni d&#x27;informations confidentielles à une personne que vous ne connaissez pas.</li><li><strong>Règles.</strong> Vous vous engagez à respecter la Charte de la communauté. En cas de manquement, nous pouvons retirer des contenus, suspendre ou supprimer un compte.</li><li><strong>Signalements.</strong> Nous ne contrôlons pas les contenus à l&#x27;avance. Nous traitons les signalements et retirons rapidement tout contenu manifestement illicite dès que nous en avons connaissance.</li><li><strong>Vos contenus.</strong> Vous restez propriétaire de vos contenus. Vous accordez à NANE une licence gratuite et non exclusive pour les afficher sur la plateforme tant qu&#x27;ils y sont publiés. Vous garantissez avoir le droit de les publier.</li><li><strong>Responsabilité de NANE.</strong> Le service est fourni en l&#x27;état. NANE n&#x27;est pas responsable du comportement des membres, des contenus qu&#x27;ils publient, ni des conséquences des connexions, rencontres ou accords entre membres. Dans les limites permises par la loi, la responsabilité de NANE est exclue pour les dommages indirects. Rien dans ces conditions ne limite la responsabilité en cas de faute intentionnelle ou de faute lourde, d&#x27;atteinte à la vie, au corps ou à la santé, ou lorsque la loi l&#x27;interdit, ni vos droits impératifs de consommateur·rice.</li><li><strong>Garantie.</strong> Si un tiers réclame quelque chose à NANE à cause d&#x27;un contenu que vous avez publié ou d&#x27;un manquement fautif de votre part à ces conditions, vous vous engagez à indemniser NANE des frais qui en résultent, dans les limites permises par la loi.</li><li><strong>Fin.</strong> Vous pouvez supprimer votre profil à tout moment. Nous pouvons suspendre un compte qui enfreint ces conditions.</li><li><strong>Modifications.</strong> Nous pouvons mettre à jour ces conditions. Nous vous demanderons d&#x27;accepter la nouvelle version avant de continuer à publier ou à échanger.</li><li><strong>Droit applicable.</strong> [Droit applicable et tribunaux compétents : à compléter avec une juriste.] Les protections impératives du pays où vous résidez restent applicables.</li><li><strong>Preuve.</strong> Nous conservons la date et la version des conditions que vous avez acceptées.</li>"
+          data-de="<li><strong>Wer sich anmelden kann.</strong> NANE steht nur volljährigen Personen (ab 18 Jahren) offen, die es beruflich nutzen.</li><li><strong>Betreiber.</strong> NANE wird betrieben von [Name des Betreibers, Rechtsform, Anschrift, Kontakt-E-Mail: zu ergänzen].</li><li><strong>Was NANE ist.</strong> NANE ist eine Plattform, über die sich Mitglieder finden und kontaktieren können. NANE ist weder Arbeitgeber noch Personalvermittlung noch Vermittler und ist nicht Partei von Vereinbarungen zwischen Mitgliedern. Wir prüfen weder die Identität noch die Qualifikationen oder Angaben der Mitglieder. Badges sind keine Garantie.</li><li><strong>Ihre Verantwortung.</strong> Sie allein sind verantwortlich für die Inhalte, die Sie veröffentlichen, und für Ihren Austausch, Ihre Treffen und Vereinbarungen mit anderen Mitgliedern, online wie offline. Seien Sie vorsichtig: Treffen Sie sich an öffentlichen Orten und senden Sie Personen, die Sie nicht kennen, niemals Geld oder vertrauliche Informationen.</li><li><strong>Regeln.</strong> Sie verpflichten sich, die Community-Charta einzuhalten. Bei Verstößen können wir Inhalte entfernen und Konten sperren oder löschen.</li><li><strong>Meldungen.</strong> Wir prüfen Inhalte nicht im Voraus. Wir bearbeiten Meldungen und entfernen offensichtlich rechtswidrige Inhalte zügig, sobald wir davon Kenntnis erhalten.</li><li><strong>Ihre Inhalte.</strong> Ihre Inhalte gehören weiterhin Ihnen. Sie räumen NANE eine unentgeltliche, nicht ausschließliche Lizenz ein, sie auf der Plattform anzuzeigen, solange sie dort veröffentlicht sind. Sie versichern, dass Sie berechtigt sind, sie zu veröffentlichen.</li><li><strong>Haftung von NANE.</strong> Der Dienst wird so bereitgestellt, wie er ist. NANE haftet nicht für das Verhalten von Mitgliedern, für die von ihnen veröffentlichten Inhalte oder für die Folgen von Verbindungen, Treffen oder Vereinbarungen zwischen Mitgliedern. Soweit gesetzlich zulässig, ist die Haftung von NANE für mittelbare Schäden ausgeschlossen. Nichts in diesen Bedingungen beschränkt die Haftung bei Vorsatz oder grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit oder wo das Gesetz es nicht erlaubt, noch Ihre zwingenden Verbraucherrechte.</li><li><strong>Freistellung.</strong> Macht ein Dritter wegen eines von Ihnen veröffentlichten Inhalts oder eines schuldhaften Verstoßes gegen diese Bedingungen Ansprüche gegen NANE geltend, stellen Sie NANE von den daraus entstehenden Kosten frei, soweit gesetzlich zulässig.</li><li><strong>Beendigung.</strong> Sie können Ihr Profil jederzeit löschen. Wir können Konten sperren, die gegen diese Bedingungen verstoßen.</li><li><strong>Änderungen.</strong> Wir können diese Bedingungen aktualisieren. Wir bitten Sie, die neue Fassung zu akzeptieren, bevor Sie weiter veröffentlichen oder Nachrichten austauschen.</li><li><strong>Anwendbares Recht.</strong> [Anwendbares Recht und Gerichtsstand: mit einer Juristin zu ergänzen.] Die zwingenden Schutzvorschriften Ihres Wohnsitzlandes bleiben anwendbar.</li><li><strong>Nachweis.</strong> Wir speichern Datum und Fassung der Bedingungen, die Sie akzeptiert haben.</li>"
+          data-en="<li><strong>Who can join.</strong> NANE is only for adults (18 and over) who use it for professional purposes.</li><li><strong>Operator.</strong> NANE is operated by [operator name, legal form, address, contact email: to be completed].</li><li><strong>What NANE is.</strong> NANE is a platform that lets members find and contact each other. NANE is not an employer, recruitment agency or broker, and is not a party to any agreement between members. We do not check members&#x27; identity, qualifications or statements. Badges are not a guarantee.</li><li><strong>Your responsibility.</strong> You alone are responsible for the content you publish and for your exchanges, meetings and agreements with other members, online and offline. Be careful: meet in public places, and never send money or confidential information to someone you do not know.</li><li><strong>Rules.</strong> You agree to follow the Community charter. If you break it, we may remove content and suspend or delete accounts.</li><li><strong>Reports.</strong> We do not check content in advance. We handle reports and promptly remove clearly illegal content once we become aware of it.</li><li><strong>Your content.</strong> Your content remains yours. You give NANE a free, non-exclusive licence to display it on the platform for as long as it is published there. You confirm you have the right to publish it.</li><li><strong>NANE&#x27;s liability.</strong> The service is provided as is. NANE is not responsible for members&#x27; behaviour, for the content they publish, or for the consequences of connections, meetings or agreements between members. To the extent permitted by law, NANE&#x27;s liability for indirect damage is excluded. Nothing in these terms limits liability for intent or gross negligence, for injury to life, body or health, or where the law does not allow it, nor your mandatory rights as a consumer.</li><li><strong>Indemnity.</strong> If a third party makes a claim against NANE because of content you published or a breach of these terms that is your fault, you agree to cover NANE&#x27;s resulting costs, to the extent permitted by law.</li><li><strong>Ending.</strong> You can delete your profile at any time. We may suspend accounts that break these terms.</li><li><strong>Changes.</strong> We may update these terms. We will ask you to accept the new version before you continue posting or messaging.</li><li><strong>Applicable law.</strong> [Applicable law and competent courts: to be completed with a lawyer.] The mandatory protections of your country of residence still apply.</li><li><strong>Proof.</strong> We keep the date and version of the terms you accepted.</li>"></ul>
 
-        <h2 id="legalCharter" style="margin-top:40px" class="i18n" data-fr="Charte de la communauté" data-de="Community-Charta" data-en="Community charter"></h2>
+        <h2 id="legalCharter" class="i18n" data-fr="Charte de la communauté" data-de="Community-Charta" data-en="Community charter"></h2>
         <ul class="i18n-html"
-          data-fr="<li>Ce réseau est un espace professionnel : on y parle de parcours, de projets et d'opportunités.</li><li>Respect de chaque personne. Aucun propos raciste, sexiste, homophobe, discriminatoire ou haineux.</li><li>Aucun harcèlement, aucune insistance après un refus, aucune sollicitation à caractère sexuel.</li><li>Un profil = une vraie personne. L'usurpation d'identité est interdite.</li><li>Pas de spam, de publicité abusive ni d'arnaque.</li><li>Les contenus qui enfreignent ces règles peuvent être retirés et les comptes suspendus."
-          data-de="<li>Dieses Netzwerk ist ein beruflicher Raum: Es geht um Werdegänge, Projekte und Chancen.</li><li>Respekt gegenüber jeder Person. Keine rassistischen, sexistischen, homophoben, diskriminierenden oder hasserfüllten Äußerungen.</li><li>Keine Belästigung, kein Nachhaken nach einer Absage, keine sexuellen Anspielungen.</li><li>Ein Profil = eine echte Person. Identitätsmissbrauch ist verboten.</li><li>Kein Spam, keine übermäßige Werbung, kein Betrug.</li><li>Verstoßende Inhalte können entfernt und Konten gesperrt werden."
-          data-en="<li>This network is a professional space: we talk about careers, projects and opportunities.</li><li>Respect for everyone. No racist, sexist, homophobic, discriminatory or hateful remarks.</li><li>No harassment, no pushing after a refusal, no sexual solicitation.</li><li>One profile = one real person. Impersonation is forbidden.</li><li>No spam, abusive advertising or scams.</li><li>Content that breaks these rules may be removed and accounts suspended."></ul>
+          data-fr="<li>Ce réseau est un espace professionnel : on y parle de parcours, de projets et d&#x27;opportunités.</li><li>Respect de chaque personne. Aucun propos raciste, sexiste, homophobe, discriminatoire ou haineux.</li><li>Aucun harcèlement, aucune insistance après un refus, aucune sollicitation à caractère sexuel.</li><li>Un profil = une vraie personne. L&#x27;usurpation d&#x27;identité est interdite.</li><li>Pas de spam, de publicité abusive ni d&#x27;arnaque.</li><li>Les contenus qui enfreignent ces règles peuvent être retirés et les comptes suspendus.</li>"
+          data-de="<li>Dieses Netzwerk ist ein beruflicher Raum: Es geht um Werdegänge, Projekte und Chancen.</li><li>Respekt gegenüber jeder Person. Keine rassistischen, sexistischen, homophoben, diskriminierenden oder hasserfüllten Äußerungen.</li><li>Keine Belästigung, kein Nachhaken nach einer Absage, keine sexuellen Anspielungen.</li><li>Ein Profil = eine echte Person. Identitätsmissbrauch ist verboten.</li><li>Kein Spam, keine übermäßige Werbung, kein Betrug.</li><li>Verstoßende Inhalte können entfernt und Konten gesperrt werden.</li>"
+          data-en="<li>This network is a professional space: we talk about careers, projects and opportunities.</li><li>Respect for everyone. No racist, sexist, homophobic, discriminatory or hateful remarks.</li><li>No harassment, no pushing after a refusal, no sexual solicitation.</li><li>One profile = one real person. Impersonation is forbidden.</li><li>No spam, abusive advertising or scams.</li><li>Content that breaks these rules may be removed and accounts suspended.</li>"></ul>
 
         <h3 id="legalReport" class="i18n" data-fr="Signaler un contenu" data-de="Inhalte melden" data-en="Report content"></h3>
         <ul class="i18n-html"
-          data-fr="<li>Chaque profil et chaque publication a un lien « Signaler ».</li><li>Les signalements sont lus par l'équipe, qui répond en principe sous 7 jours.</li><li>La personne signalée n'est pas informée de qui a fait le signalement."
-          data-de="<li>Jedes Profil und jeder Beitrag hat einen Link „Melden“.</li><li>Meldungen werden vom Team gelesen, das in der Regel innerhalb von 7 Tagen antwortet.</li><li>Die gemeldete Person erfährt nicht, wer die Meldung gemacht hat."
-          data-en="<li>Every profile and post has a “Report” link.</li><li>Reports are read by the team, who normally reply within 7 days.</li><li>The reported person is not told who made the report."></ul>
+          data-fr="<li>Chaque profil et chaque publication a un lien « Signaler ».</li><li>Les signalements sont lus par l&#x27;équipe, qui répond en principe sous 7 jours.</li><li>La personne signalée n&#x27;est pas informée de qui a fait le signalement.</li>"
+          data-de="<li>Jedes Profil und jeder Beitrag hat einen Link „Melden“.</li><li>Meldungen werden vom Team gelesen, das in der Regel innerhalb von 7 Tagen antwortet.</li><li>Die gemeldete Person erfährt nicht, wer die Meldung gemacht hat.</li>"
+          data-en="<li>Every profile and post has a “Report” link.</li><li>Reports are read by the team, who normally reply within 7 days.</li><li>The reported person is not told who made the report.</li>"></ul>
 
         <h3 id="legalData" class="i18n" data-fr="Vos données" data-de="Ihre Daten" data-en="Your data"></h3>
         <ul class="i18n-html"
-          data-fr="<li>Nous demandons uniquement des informations professionnelles. Aucun champ sur l'origine ethnique ou la couleur de peau.</li><li>Les informations de votre profil sont visibles par les membres du réseau.</li><li>Vous pouvez modifier votre profil ou le supprimer à tout moment depuis « Mon profil ». La suppression efface votre profil, vos publications, commentaires, mentions J'aime, connexions et messages.</li><li>Applicable : RGPD (UE) et nLPD (Suisse).</li><li>Les messages ne sont lisibles que par les deux personnes de la conversation, l'équipe n'y a pas accès.</li><li>Les données sont hébergées par Google Firebase (base de données) et GitHub Pages (site). La connexion se fait avec un compte Google.</li>"
-          data-de="<li>Wir erfragen nur berufliche Angaben. Kein Feld zu ethnischer Herkunft oder Hautfarbe.</li><li>Die Angaben in Ihrem Profil sind für Mitglieder des Netzwerks sichtbar.</li><li>Sie können Ihr Profil jederzeit unter „Mein Profil“ ändern oder löschen. Die Löschung entfernt Ihr Profil, Ihre Beiträge, Kommentare, Likes, Verbindungen und Nachrichten.</li><li>Anwendbar: DSGVO (EU) und revDSG (Schweiz).</li><li>Nachrichten können nur die beiden Personen im Gespräch lesen, das Team hat keinen Zugriff.</li><li>Die Daten werden bei Google Firebase (Datenbank) und GitHub Pages (Website) gehostet. Die Anmeldung erfolgt mit einem Google-Konto.</li>"
-          data-en="<li>We only ask for professional information. No field about ethnic origin or skin colour.</li><li>Your profile information is visible to members of the network.</li><li>You can edit or delete your profile at any time from “My profile”. Deletion removes your profile, posts, comments, likes, connections and messages.</li><li>Applicable: GDPR (EU) and nFADP (Switzerland).</li><li>Messages can only be read by the two people in the conversation; the team has no access.</li><li>Data is hosted by Google Firebase (database) and GitHub Pages (website). Sign-in uses a Google account.</li>"></ul>
-        <p class="draft i18n" data-fr="Version de travail pour le prototype. Le texte définitif (politique de confidentialité, conditions d'utilisation) sera rédigé avec une juriste avant tout lancement public." data-de="Arbeitsfassung für den Prototyp. Der endgültige Text (Datenschutzerklärung, Nutzungsbedingungen) wird vor einem öffentlichen Start mit einer Juristin erstellt." data-en="Working version for the prototype. The final text (privacy policy, terms of use) will be drafted with a lawyer before any public launch."></p>
+          data-fr="<li>Nous demandons uniquement des informations professionnelles. Aucun champ sur l&#x27;origine ethnique ou la couleur de peau.</li><li>Les informations de votre profil sont visibles par les membres du réseau.</li><li>Vous pouvez modifier votre profil ou le supprimer à tout moment depuis « Mon profil ». La suppression efface votre profil, vos publications, commentaires, mentions J&#x27;aime, connexions et messages.</li><li>Applicable : RGPD (UE) et nLPD (Suisse).</li><li>Version de test : les messages ne sont pas privés. N&#x27;y partagez aucune information confidentielle.</li>"
+          data-de="<li>Wir erfragen nur berufliche Angaben. Kein Feld zu ethnischer Herkunft oder Hautfarbe.</li><li>Die Angaben in Ihrem Profil sind für Mitglieder des Netzwerks sichtbar.</li><li>Sie können Ihr Profil jederzeit unter „Mein Profil“ ändern oder löschen. Die Löschung entfernt Ihr Profil, Ihre Beiträge, Kommentare, Likes, Verbindungen und Nachrichten.</li><li>Anwendbar: DSGVO (EU) und revDSG (Schweiz).</li><li>Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen.</li>"
+          data-en="<li>We only ask for professional information. No field about ethnic origin or skin colour.</li><li>Your profile information is visible to members of the network.</li><li>You can edit or delete your profile at any time from “My profile”. Deletion removes your profile, posts, comments, likes, connections and messages.</li><li>Applicable: GDPR (EU) and nFADP (Switzerland).</li><li>Test version: messages are not private. Do not share confidential information here.</li>"></ul>
+        <p class="draft i18n" data-fr="Version de travail pour le prototype. Le texte définitif (politique de confidentialité, conditions d&#x27;utilisation) sera rédigé avec une juriste avant tout lancement public." data-de="Arbeitsfassung für den Prototyp. Der endgültige Text (Datenschutzerklärung, Nutzungsbedingungen) wird vor einem öffentlichen Start mit einer Juristin erstellt." data-en="Working version for the prototype. The final text (privacy policy, terms of use) will be drafted with a lawyer before any public launch."></p>
       </div>
     </section>
   </section>
@@ -981,7 +986,7 @@
         <div class="dir-head">
           <h2 class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></h2>
         </div>
-        <div class="notice-box i18n" data-fr="Seules les deux personnes de la conversation peuvent lire ces messages. Restez prudent·e avec les informations sensibles." data-de="Nur die beiden Personen im Gespräch können diese Nachrichten lesen. Seien Sie vorsichtig mit sensiblen Informationen." data-en="Only the two people in a conversation can read these messages. Stay careful with sensitive information."></div>
+        <div class="notice-box i18n" data-fr="Version de test : les messages ne sont pas privés. N'y partagez aucune information confidentielle." data-de="Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen." data-en="Test version: messages are not private. Do not share confidential information here."></div>
         <div class="new-convo">
           <select id="newConvoSelect"></select>
           <button id="newConvoBtn" class="btn btn-primary btn-small i18n"
@@ -1018,29 +1023,21 @@
   <div class="wrap foot-bottom">
     <span>NANE © 2026</span>
     <div class="lang-toggle foot-lang">
-      <button data-lang="en" class="active"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>EN</button>
+      <button data-lang="en"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-en"/></svg>EN</button>
       <button data-lang="de"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-de"/></svg>DE</button>
-      <button data-lang="fr"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>FR</button>
+      <button data-lang="fr" class="active"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-fr"/></svg>FR</button>
     </div>
   </div>
 </footer>
 
 <div id="modalRoot"></div>
 
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
-<script src="backend.js"></script>
 <script>
 (function () {
   "use strict";
 
   // ---------- i18n ----------
-  // English by default; a visitor's choice is remembered on this device.
-  var LANG_KEY = "nane-lang";
-  var currentLang = "en";
-  try { var savedLang = localStorage.getItem(LANG_KEY); if (["fr", "de", "en"].indexOf(savedLang) !== -1) currentLang = savedLang; } catch (e) {}
+  var currentLang = "fr";
 
   // Dynamic strings built in JS (not plain data-attributes in the HTML).
   var STR = {
@@ -1057,10 +1054,10 @@
       fieldOffering: "Je propose", fieldOfferingHint: "Votre expertise, du mentorat, un service…",
       photoLabel: "Photo de profil", photoChoose: "Choisir une photo", photoChange: "Changer la photo", photoRemove: "Retirer", photoHint: "JPG ou PNG. Elle sera recadrée en carré.", fieldAbout: "À propos", fieldContact: "Contact (e-mail ou lien)",
       saveBtn: "Enregistrer mon profil", saved: "Profil enregistré.", errorPrefix: "Erreur : ",
-      offlineTitle: "Site pas encore configuré", offlineBody: "La connexion à la base de données n'est pas encore configurée (firebase-config.js).",
-      connectToCreate: "Connecte-toi pour créer ton profil.",
-      dirUnavailableTitle: "Réservé aux membres", dirUnavailableBody: "Connecte-toi pour voir l'annuaire des membres.",
-      profileUnavailable: "Connecte-toi pour créer ton profil.",
+      offlineTitle: "Aperçu hors ligne", offlineBody: "Ouvre cette page publiée sur claude.ai pour créer et consulter des profils.",
+      connectToCreate: "Connecte-toi sur claude.ai pour créer ton profil.",
+      dirUnavailableTitle: "Annuaire indisponible", dirUnavailableBody: "La connexion aux profils n'a pas pu être établie dans cette vue.",
+      profileUnavailable: "La création de profil n'est pas disponible dans cette vue.",
       greeting: "Bonjour ", greetingFallback: "vous",
       feedEmptyTitle: "Aucune publication pour l'instant", feedEmptyBody: "Sois la première personne à partager quelque chose.",
       sendMessage: "Envoyer un message", reportLink: "Signaler", reportTitle: "Signaler ce contenu", reportReason: "Motif", reportComment: "Précisions (facultatif)", reportSend: "Envoyer le signalement", reportThanks: "Merci. Le signalement a été transmis à l'équipe.", reportReasons: ["Harcèlement", "Usurpation d'identité", "Contenu inapproprié ou discriminatoire", "Spam ou arnaque", "Autre"], deleteTitle: "Supprimer mon profil", deleteBody: "Cette action efface définitivement ton profil et tes publications.", deleteConfirm: "Supprimer définitivement ton profil et tes publications ?", deleted: "Profil supprimé.", 
@@ -1082,10 +1079,10 @@
       fieldOffering: "Ich biete", fieldOfferingHint: "Ihre Expertise, Mentoring, eine Leistung…",
       photoLabel: "Profilbild", photoChoose: "Foto auswählen", photoChange: "Foto ändern", photoRemove: "Entfernen", photoHint: "JPG oder PNG. Wird quadratisch zugeschnitten.", fieldAbout: "Über mich", fieldContact: "Kontakt (E-Mail oder Link)",
       saveBtn: "Profil speichern", saved: "Profil gespeichert.", errorPrefix: "Fehler: ",
-      offlineTitle: "Seite noch nicht eingerichtet", offlineBody: "Die Datenbankverbindung ist noch nicht eingerichtet (firebase-config.js).",
-      connectToCreate: "Melde dich an, um dein Profil zu erstellen.",
-      dirUnavailableTitle: "Nur für Mitglieder", dirUnavailableBody: "Melde dich an, um das Mitgliederverzeichnis zu sehen.",
-      profileUnavailable: "Melde dich an, um dein Profil zu erstellen.",
+      offlineTitle: "Offline-Vorschau", offlineBody: "Öffne diese veröffentlichte Seite auf claude.ai, um Profile zu erstellen und einzusehen.",
+      connectToCreate: "Melde dich auf claude.ai an, um dein Profil zu erstellen.",
+      dirUnavailableTitle: "Verzeichnis nicht verfügbar", dirUnavailableBody: "Die Verbindung zu den Profilen konnte in dieser Ansicht nicht hergestellt werden.",
+      profileUnavailable: "Die Profilerstellung ist in dieser Ansicht nicht verfügbar.",
       greeting: "Hallo ", greetingFallback: "",
       feedEmptyTitle: "Noch keine Beiträge", feedEmptyBody: "Sei die erste Person, die etwas teilt.",
       sendMessage: "Nachricht senden", reportLink: "Melden", reportTitle: "Inhalt melden", reportReason: "Grund", reportComment: "Details (optional)", reportSend: "Meldung senden", reportThanks: "Danke. Die Meldung wurde an das Team weitergeleitet.", reportReasons: ["Belästigung", "Identitätsmissbrauch", "Unangemessener oder diskriminierender Inhalt", "Spam oder Betrug", "Sonstiges"], deleteTitle: "Mein Profil löschen", deleteBody: "Dadurch werden dein Profil und deine Beiträge endgültig gelöscht.", deleteConfirm: "Profil und Beiträge endgültig löschen?", deleted: "Profil gelöscht.", 
@@ -1107,10 +1104,10 @@
       fieldOffering: "Offering", fieldOfferingHint: "Your expertise, mentorship, a service…",
       photoLabel: "Profile photo", photoChoose: "Choose a photo", photoChange: "Change photo", photoRemove: "Remove", photoHint: "JPG or PNG. It will be cropped to a square.", fieldAbout: "About", fieldContact: "Contact (email or link)",
       saveBtn: "Save my profile", saved: "Profile saved.", errorPrefix: "Error: ",
-      offlineTitle: "Site not set up yet", offlineBody: "The database connection is not configured yet (firebase-config.js).",
-      connectToCreate: "Sign in to create your profile.",
-      dirUnavailableTitle: "Members only", dirUnavailableBody: "Sign in to see the member directory.",
-      profileUnavailable: "Sign in to create your profile.",
+      offlineTitle: "Offline preview", offlineBody: "Open this published page on claude.ai to create and browse profiles.",
+      connectToCreate: "Sign in on claude.ai to create your profile.",
+      dirUnavailableTitle: "Directory unavailable", dirUnavailableBody: "The connection to profiles could not be established in this view.",
+      profileUnavailable: "Profile creation isn't available in this view.",
       greeting: "Hi ", greetingFallback: "there",
       feedEmptyTitle: "No posts yet", feedEmptyBody: "Be the first person to share something.",
       sendMessage: "Send a message", reportLink: "Report", reportTitle: "Report this content", reportReason: "Reason", reportComment: "Details (optional)", reportSend: "Send report", reportThanks: "Thank you. The report has been sent to the team.", reportReasons: ["Harassment", "Impersonation", "Inappropriate or discriminatory content", "Spam or scam", "Other"], deleteTitle: "Delete my profile", deleteBody: "This permanently erases your profile and your posts.", deleteConfirm: "Permanently delete your profile and posts?", deleted: "Profile deleted.", 
@@ -1162,12 +1159,6 @@
       var t = el.getAttribute("data-" + currentLang);
       if (t !== null) el.placeholder = t;
     });
-    document.querySelectorAll(".i18n-label").forEach(function (el) {
-      var t = el.getAttribute("data-" + currentLang);
-      if (t === null) return;
-      el.setAttribute("aria-label", t);
-      if (el.hasAttribute("title")) el.title = t;
-    });
     document.documentElement.lang = currentLang;
   }
   function refreshDynamicLabels() {
@@ -1204,24 +1195,19 @@
   });
   document.addEventListener("click", function (e) { if (!e.target.closest("#langMenu")) closeLangList(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLangList(); });
-  function syncLangUi() {
-    document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (x) {
-      x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
-    });
-    document.getElementById("langCur").textContent = currentLang.toUpperCase();
-    document.getElementById("langFlag").firstElementChild.setAttribute("href", "#flag-" + currentLang);
-  }
   document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (b) {
     b.addEventListener("click", function () {
       currentLang = b.getAttribute("data-lang");
-      try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) {}
-      syncLangUi();
+      document.querySelectorAll(".lang-toggle button, .lang-list button").forEach(function (x) {
+        x.classList.toggle("active", x.getAttribute("data-lang") === currentLang);
+      });
+      document.getElementById("langCur").textContent = currentLang.toUpperCase();
+      document.getElementById("langFlag").firstElementChild.setAttribute("href", "#flag-" + currentLang);
       closeLangList();
       applyLang();
       refreshDynamicLabels();
     });
   });
-  syncLangUi();
   applyLang();
 
   // ---------- view switching ----------
@@ -1372,54 +1358,19 @@
   function goPublic() { document.body.classList.add("public"); showView("about"); }
   function renderLogin() {
     var el = document.getElementById("loginArea"); if (!el) return;
-    var auth = window.naneAuth || {};
-    var h = '<h2>' + escapeHtml(T("Bienvenue dans ta communauté professionnelle", "Willkommen in deiner beruflichen Community", "Welcome to your professional community")) + '</h2>';
-    if (selfId) {
-      var img = document.querySelector("#whoBox img");
-      h += '<button class="btn btn-primary" id="loginGo" style="width:100%;gap:12px">' + (img && img.getAttribute("src") ? '<img src="' + escapeHtml(img.getAttribute("src")) + '" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">' : '') +
-        escapeHtml(T("Continuer en tant que ", "Weiter als ", "Continue as ") + (meName || T("membre", "Mitglied", "member"))) + '</button>';
-    } else if (!auth.configured) {
-      h += '<p class="sub">' + escapeHtml(t("offlineBody")) + '</p>';
-    } else {
-      if (auth.notInvited) {
-        h += '<div class="mock-banner">' + escapeHtml(T("NANE est sur invitation pour le moment. L'adresse " + auth.notInvited + " n'est pas encore invitée.",
-          "NANE ist derzeit nur auf Einladung. Die Adresse " + auth.notInvited + " ist noch nicht eingeladen.",
-          "NANE is invite-only for now. The address " + auth.notInvited + " has not been invited yet.")) + '</div>';
-      }
-      h += '<p class="sub">' + escapeHtml(T("NANE est sur invitation pour le moment. Connecte-toi avec le compte Google de l'adresse invitée.",
-          "NANE ist derzeit nur auf Einladung. Melde dich mit dem Google-Konto der eingeladenen Adresse an.",
-          "NANE is invite-only for now. Sign in with the Google account of the invited address.")) + '</p>' +
-        '<button class="btn btn-primary" id="loginGoogle" style="width:100%">' + escapeHtml(T("Continuer avec Google", "Weiter mit Google", "Continue with Google")) + '</button>' +
-        (auth.notInvited ? '<p style="text-align:center;margin:16px 0 0;font-size:14px"><a href="#" id="loginOther" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Utiliser un autre compte", "Anderes Konto verwenden", "Use another account")) + '</a></p>' : '') +
-        '<p class="save-msg" id="loginMsg"></p>';
-    }
-    h += '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("Avant de publier ou d'écrire à d'autres membres, tu devras accepter les ", "Bevor du veröffentlichst oder anderen Mitgliedern schreibst, musst du die ", "Before you post or write to other members, you will be asked to accept the ")) +
-      '<a href="#" class="su-legal-link" data-legal="legalTerms">' + escapeHtml(T("conditions d'utilisation", "Nutzungsbedingungen", "terms of use")) + '</a>' + escapeHtml(T(".", " akzeptieren.", ".")) + '</p>';
-    el.innerHTML = h;
-    el.querySelectorAll("[data-legal]").forEach(function (a) {
-      a.addEventListener("click", function (e) { e.preventDefault(); openLegal(a.getAttribute("data-legal")); });
-    });
-    var go = document.getElementById("loginGo");
-    if (go) go.addEventListener("click", function () { lastProfileData ? enterApp("feed") : startProfile(true); });
-    var gb = document.getElementById("loginGoogle");
-    if (gb) gb.addEventListener("click", function () {
-      gb.disabled = true;
-      var signIn = auth.notInvited ? auth.signOut().then(auth.signIn) : auth.signIn();
-      signIn.then(function () {
-        try { sessionStorage.setItem("nane-enter", "1"); } catch (e) {}
-        location.reload();
-      }).catch(function (err) {
-        gb.disabled = false;
-        var m = document.getElementById("loginMsg"); if (m) m.textContent = t("errorPrefix") + ((err && err.message) || "");
-      });
-    });
-    var other = document.getElementById("loginOther");
-    if (other) other.addEventListener("click", function (e) { e.preventDefault(); auth.signOut().then(function () { location.reload(); }); });
+    var img = document.querySelector("#whoBox img"), nm = meName || "";
+    el.innerHTML =
+      '<div class="mock-banner">' + escapeHtml(T("Maquette : ici, la connexion utilise ton compte Claude. Dans la vraie version : e-mail, ou Google.", "Mockup: hier läuft die Anmeldung über dein Claude-Konto. In der echten Version: E-Mail oder Google.", "Mockup: here sign-in uses your Claude account. In the real version: email, or Google.")) + '</div>' +
+      '<h2>' + escapeHtml(T("Bienvenue dans ta communauté professionnelle", "Willkommen in deiner beruflichen Community", "Welcome to your professional community")) + '</h2>' +
+      '<p class="sub"></p>' +
+      '<button class="btn btn-primary" id="loginGo" style="width:100%;gap:12px">' + (img ? '<img src="' + img.src + '" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">' : '') +
+      escapeHtml(T("Continuer en tant que ", "Weiter als ", "Continue as ") + (nm || T("membre", "Mitglied", "member"))) + '</button>' +
+      '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("En continuant, tu acceptes la charte de la communauté et la politique de confidentialité.", "Mit dem Fortfahren akzeptierst du die Community-Charta und die Datenschutzerklärung.", "By continuing, you accept the community charter and privacy policy.")) + '</p>' +
+      '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire gratuitement", "Kostenlos registrieren", "Join for free")) + '</a></p>';
+    document.getElementById("loginGo").addEventListener("click", function () { enterApp("feed"); });
+    document.getElementById("loginJoin").addEventListener("click", function (e) { e.preventDefault(); showView("signup"); });
   }
-  document.getElementById("menuLogout").addEventListener("click", function () {
-    var auth = window.naneAuth || {};
-    if (auth.signOut) auth.signOut().then(function () { location.reload(); }); else goPublic();
-  });
+  document.getElementById("menuLogout").addEventListener("click", goPublic);
 
   // ---------- network (connections) ----------
   var myConns = [];
@@ -1440,7 +1391,6 @@
   }
   function connAct(id, act) {
     if (!dbNs || !selfId || !id) return Promise.resolve();
-    if ((act === "invite" || act === "accept") && !termsOk()) return Promise.reject(new Error("terms"));
     var ref = dbNs.collection("connections").doc(pairId(selfId, id));
     var fail = function (e) { toastErr(e); throw e; };
     if (act === "invite") { notify(id, "invite"); return ref.set({ participantIds: [selfId, id], requesterId: selfId, status: "pending", createdAt: Date.now() }).catch(fail); }
@@ -1471,7 +1421,7 @@
     return '<div class="net-row">' + avatarHtml("pc-avatar", p.name, p.photo) +
       '<div class="net-info"><button class="net-name" data-act="view" data-id="' + p.__id + '">' + escapeHtml(p.name) + '</button>' +
       '<div class="pc-title">' + escapeHtml(p.title || "") + '</div>' +
-      '<div class="pc-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div></div>' +
+      '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div></div>' +
       '<div class="net-actions">' + actions + '</div></div>';
   }
   function btn(act, id, label, cls) { return '<button class="btn ' + (cls || "btn-ghost") + ' btn-small" data-act="' + act + '" data-id="' + id + '">' + escapeHtml(label) + '</button>'; }
@@ -1506,7 +1456,7 @@
         var act = b.getAttribute("data-act"), id = b.getAttribute("data-id"), p = profileById(id);
         if (act === "view") { if (p) openModal(p); }
         else if (act === "msg") { showView("messages"); openThreadWith(id, p ? p.name : ""); }
-        else { b.disabled = true; connAct(id, act).catch(function () { b.disabled = false; }); }
+        else { b.disabled = true; connAct(id, act); }
       });
     });
   }
@@ -1579,10 +1529,10 @@
   }
   function showView(name) {
     if (name === "admin") { if (isAdmin()) { loadAdminExtra(); renderAdmin(); } else name = "feed"; }
+    if (name === "login") renderLogin();
     if (name === "network") renderNetwork();
     if (name === "notifications") renderNotifs();
-    if (name === "signup") name = "login"; // sign-up happens through Google sign-in
-    if (name === "login") renderLogin();
+    if (name === "signup") renderSignup();
     if (name === "settings") renderSettings();
     if (name === "profile") renderProfilePage();
     if (name === "onboarding") { obInit(); renderOnboarding(); }
@@ -1733,7 +1683,7 @@
           '<div><div class="pc-name">' + escapeHtml(p.name) + '</div>' +
           '<div class="pc-title">' + escapeHtml(p.title || "") + '</div></div>' +
         '</div>' +
-        '<div class="pc-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' +
+        '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' +
         (p.skills && p.skills.length
           ? '<div class="pc-tags">' + p.skills.slice(0, 4).map(function (s) {
               return '<span class="tag">' + escapeHtml(s) + '</span>';
@@ -1770,7 +1720,7 @@
           '<div class="modal-top">' +
             avatarHtml("modal-avatar", p.name, p.photo) +
             '<div><h3>' + escapeHtml(p.name) + '</h3>' +
-            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' + badgesHtml(p) + '</div>' +
+            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' + badgesHtml(p) + '</div>' +
           '</div>' +
           (p.bio ? '<div class="modal-block"><h4>' + escapeHtml(t("about")) + '</h4><p>' + escapeHtml(p.bio) + '</p>' + langNote(p.bio) + '</div>' : "") +
           ((p.experiences || []).length ? '<div class="modal-block"><h4>' + escapeHtml(T("Expériences", "Berufserfahrung", "Experience")) + '</h4>' + timelineHtml(p.experiences) + '</div>' : "") +
@@ -1803,7 +1753,7 @@
       cnBtn.disabled = true;
       connAct(p.__id, st === "received" ? "accept" : "invite").then(function () {
         cnBtn.textContent = connLabel(st === "received" ? "connected" : "sent");
-      }, function () { cnBtn.disabled = false; });
+      });
     });
     var msgBtn = document.getElementById("modalMsgBtn");
     if (msgBtn) {
@@ -1848,24 +1798,18 @@
     if (db0 && db0.getAttribute("data-arm") !== "1") { db0.setAttribute("data-arm", "1"); db0.textContent = t("deleteConfirm"); return; }
     var msgEl = document.getElementById("saveMsg");
     if (msgEl) msgEl.textContent = T("Suppression en cours…", "Löschen läuft…", "Deleting…");
-    // delete every document of a query. Cleanup is best effort: a refused delete (for example
-    // someone else's like) is counted instead of stopping everything, so the profile still goes.
-    var failed = 0;
+    // delete every document of a query
     function delWhere(coll, field, op, val) {
       return dbNs.collection(coll).where(field, op, val).get().then(function (snap) {
-        return Promise.all(snap.docs.map(function (d) {
-          return dbNs.collection(coll).doc(d.id).delete().catch(function () { failed++; });
-        })).then(function () { return snap.docs.map(function (d) { return d.id; }); });
-      }).catch(function () { failed++; return []; });
+        return Promise.all(snap.docs.map(function (d) { return dbNs.collection(coll).doc(d.id).delete(); })).then(function () { return snap.docs.map(function (d) { return d.id; }); });
+      });
     }
-    // my posts: their likes and comments first, then the post itself
-    var postsDone = dbNs.collection("posts").where("authorId", "==", selfId).get().then(function (snap) {
-      return Promise.all(snap.docs.map(function (d) {
-        return Promise.all([delWhere("likes", "postId", "==", d.id), delWhere("comments", "postId", "==", d.id)]).then(function () {
-          return dbNs.collection("posts").doc(d.id).delete().catch(function () { failed++; });
-        });
+    // my posts, with their likes and comments
+    var postsDone = delWhere("posts", "authorId", "==", selfId).then(function (postIds) {
+      return Promise.all(postIds.map(function (pid) {
+        return Promise.all([delWhere("likes", "postId", "==", pid), delWhere("comments", "postId", "==", pid)]);
       }));
-    }).catch(function () { failed++; });
+    });
     // my own likes, comments, connections and notifications (sent and received)
     var others = Promise.all([
       delWhere("likes", "userId", "==", selfId),
@@ -1882,64 +1826,19 @@
           return dbNs.collection(path).limit(1).get();
         }).then(function (rest) {
           if (rest.docs.length === 0) return dbNs.collection("messages").doc(c.id).delete();
-        }).catch(function () { failed++; });
+        });
       }));
-    }).catch(function () { failed++; });
+    });
     Promise.all([postsDone, others, convos]).then(function () {
       return dbNs.collection("profiles").doc(selfId).delete();
     }).then(function () {
       pendingPhoto = ""; buildForm(null);
-      var m = document.getElementById("saveMsg");
-      if (m) m.textContent = t("deleted") + (failed ? " " + T("Certains contenus n'ont pas pu être supprimés (" + failed + ").",
-        "Einige Inhalte konnten nicht gelöscht werden (" + failed + ").", "Some content could not be deleted (" + failed + ").") : "");
+      var m = document.getElementById("saveMsg"); if (m) m.textContent = t("deleted");
     }).catch(function (err) {
       var m = document.getElementById("saveMsg"); if (m) m.textContent = t("errorPrefix") + ((err && err.message) || "");
     });
   }
   function closeModal() { document.getElementById("modalRoot").innerHTML = ""; }
-
-  // ---------- terms of use ----------
-  // Bump TERMS_VERSION when the terms change: everyone is asked to accept again.
-  var TERMS_VERSION = "2026-10-31";
-  var termsAccepted = null; // version this member accepted, read from consents/{selfId}
-  function termsOk() {
-    if (termsAccepted === TERMS_VERSION) return true;
-    openTermsModal();
-    return false;
-  }
-  function openTermsModal() {
-    var root = document.getElementById("modalRoot");
-    root.innerHTML =
-      '<div class="modal-backdrop" id="modalBackdrop"><div class="modal report-form">' +
-        '<button class="modal-close" id="modalClose">&times;</button>' +
-        '<h3>' + escapeHtml(T("Conditions d'utilisation", "Nutzungsbedingungen", "Terms of use")) + '</h3>' +
-        '<p class="modal-sub">' + escapeHtml(T("Avant de publier, de vous connecter ou d'écrire à d'autres membres, merci d'accepter nos conditions. NANE met les membres en relation, mais chacun·e reste responsable de ses contenus, échanges et rencontres.",
-          "Bevor Sie veröffentlichen, sich vernetzen oder anderen Mitgliedern schreiben, akzeptieren Sie bitte unsere Bedingungen. NANE bringt Mitglieder zusammen, aber jede Person bleibt für ihre Inhalte, ihren Austausch und ihre Treffen verantwortlich.",
-          "Before you post, connect or write to other members, please accept our terms. NANE brings members together, but each person remains responsible for their own content, exchanges and meetings.")) + '</p>' +
-        '<label class="su-check"><input type="checkbox" id="tmOk"> <span>' + escapeHtml(T("J'ai 18 ans ou plus, et j'ai lu et j'accepte les ", "Ich bin mindestens 18 Jahre alt und habe die ", "I am 18 or older, and I have read and accept the ")) +
-          '<a href="#" class="su-legal-link" data-legal="legalTerms">' + escapeHtml(T("conditions d'utilisation", "Nutzungsbedingungen", "terms of use")) + '</a>' +
-          escapeHtml(T(" et la ", " und die ", " and the ")) +
-          '<a href="#" class="su-legal-link" data-legal="legalCharter">' + escapeHtml(T("charte de la communauté", "Community-Charta", "community charter")) + '</a>' +
-          escapeHtml(T(".", " gelesen und akzeptiere sie.", ".")) + '</span></label>' +
-        '<div class="modal-block"><button class="btn btn-primary btn-small" id="tmAccept">' + escapeHtml(T("Accepter", "Akzeptieren", "Accept")) + '</button> <span class="save-msg" id="tmMsg"></span></div>' +
-      '</div></div>';
-    document.getElementById("modalClose").addEventListener("click", closeModal);
-    document.getElementById("modalBackdrop").addEventListener("click", function (e) { if (e.target.id === "modalBackdrop") closeModal(); });
-    root.querySelectorAll("[data-legal]").forEach(function (a) {
-      a.addEventListener("click", function (e) { e.preventDefault(); closeModal(); openLegal(a.getAttribute("data-legal")); });
-    });
-    document.getElementById("tmAccept").addEventListener("click", function () {
-      var msg = document.getElementById("tmMsg");
-      if (!document.getElementById("tmOk").checked) { msg.textContent = T("Cochez la case pour continuer.", "Bitte das Kästchen ankreuzen.", "Tick the box to continue."); return; }
-      if (!dbNs || !selfId) { msg.textContent = t("connectToCreate"); return; }
-      var b = this; b.disabled = true;
-      dbNs.collection("consents").doc(selfId).set({ userId: selfId, termsVersion: TERMS_VERSION, acceptedAt: Date.now(), lang: currentLang }).then(function () {
-        termsAccepted = TERMS_VERSION;
-        msg.textContent = T("Merci ! Vous pouvez continuer.", "Danke! Sie können fortfahren.", "Thank you! You can continue.");
-        setTimeout(closeModal, 900);
-      }).catch(function (err) { b.disabled = false; msg.textContent = t("errorPrefix") + ((err && err.message) || ""); });
-    });
-  }
 
   ["fSearch", "fSector", "fCountry", "fLang"].forEach(function (id) {
     document.getElementById(id).addEventListener("input", renderDirectory);
@@ -2287,7 +2186,6 @@
     obCapture();
     var d = ob.data;
     if (!dbNs || !selfId) { ob.msg = T("Connecte-toi avec ton compte pour enregistrer ton profil (aperçu uniquement ici).", "Melde dich mit deinem Konto an, um dein Profil zu speichern (hier nur Vorschau).", "Sign in with your account to save your profile (preview only here)."); renderOnboarding(); return; }
-    if (!termsOk()) return;
     var existing = lastProfileData || {};
     var data = Object.assign({ lookingFor: "", offering: "", projects: "", portfolio: "", contact: "" }, existing, {
       name: d.name, title: d.title, city: d.city, country: d.country, sector: d.sector, languages: d.languages, interests: d.interests,
@@ -2306,7 +2204,7 @@
   }
 
   // ---------- tableau de bord fondatrice ----------
-  var ADMIN_IDS = []; // filled at startup from admins/{uid}; the server rules check it again
+  var ADMIN_IDS = ["u_lggzNdXnyYwDLHZLwz7ATg"]; // Nancy (fondatrice). Prototype : vraie protection côté serveur à prévoir.
   var adminExtra = { conns: null, convos: null, reports: null };
   function isAdmin() { return !!selfId && ADMIN_IDS.indexOf(selfId) !== -1; }
   function updateAdminMenu() {
@@ -2440,7 +2338,7 @@
       avatarHtml("sp-avatar", name, p && p.photo) +
       '<div class="sp-body"><div class="sp-name">' + escapeHtml(name) + '</div>' +
       (p && p.title ? '<div class="sp-title">' + escapeHtml(p.title) + '</div>' : '') +
-      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, countryLabel(p.country)].filter(Boolean).join(", ")) + '</div>' : '') +
+      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' : '') +
       '<button class="btn btn-ghost btn-small" id="spBtn">' + escapeHtml(p ? T("Voir mon profil", "Mein Profil", "View my profile") : T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button></div>' +
       '<div class="sp-stats"><div><b>' + myConns.filter(function (c) { return c.status === "accepted"; }).length + '</b>' + escapeHtml(T("Connexions", "Kontakte", "Connections")) + '</div>' +
       '<div><b>' + allPosts.filter(function (x) { return x.authorId === selfId; }).length + '</b>' + escapeHtml(T("Publications", "Beiträge", "Posts")) + '</div></div>';
@@ -2510,7 +2408,7 @@
     });
     body.querySelectorAll(".pa-like").forEach(function (b) {
       b.addEventListener("click", function () {
-        if (!dbNs || !selfId || !termsOk()) return;
+        if (!dbNs || !selfId) return;
         var p = allPosts[+b.getAttribute("data-i")], ref = dbNs.collection("likes").doc(p.__id + "_" + selfId);
         if (b.classList.contains("on")) ref.delete().catch(toastErr);
         else { ref.set({ postId: p.__id, userId: selfId, createdAt: Date.now() }).then(function () { notify(p.authorId, "like", { postId: p.__id, snippet: p.content || "" }); }).catch(toastErr); }
@@ -2525,7 +2423,7 @@
     });
     body.querySelectorAll(".pa-share").forEach(function (b) {
       b.addEventListener("click", function () {
-        if (!dbNs || !selfId || !termsOk()) return;
+        if (!dbNs || !selfId) return;
         var p = allPosts[+b.getAttribute("data-i")], src = p.repost || p;
         b.disabled = true;
         dbNs.collection("posts").add({ authorId: selfId, authorName: myName(), content: "", createdAt: Date.now(),
@@ -2540,7 +2438,7 @@
     });
     body.querySelectorAll(".c-send").forEach(function (b) {
       b.addEventListener("click", function () {
-        if (!dbNs || !selfId || !termsOk()) return;
+        if (!dbNs || !selfId) return;
         var p = allPosts[+b.getAttribute("data-i")], v = (drafts[p.__id] || "").trim();
         if (!v) return;
         drafts[p.__id] = "";
@@ -2567,7 +2465,7 @@
   var postSubmitBtn = document.getElementById("postSubmit");
   if (postSubmitBtn) {
     postSubmitBtn.addEventListener("click", function () {
-      if (!dbNs || !selfId || !termsOk()) return;
+      if (!dbNs || !selfId) return;
       var ta = document.getElementById("postInput");
       var content = (ta.value || "").trim();
       if (!content && !composerImage) return;
@@ -2646,7 +2544,7 @@
     var sending = false;
     function send() {
       var text = (input.value || "").trim();
-      if (!text || sending || !termsOk()) return;
+      if (!text || sending) return;
       sending = true; sendBtn.disabled = true;
       var errBox = document.getElementById("msgErr"); if (errBox) errBox.textContent = "";
       var now = Date.now();
@@ -2667,7 +2565,7 @@
   }
 
   function openThreadWith(otherId, otherName) {
-    if (!dbNs || !selfId || !otherId || otherId === selfId || !termsOk()) return;
+    if (!dbNs || !selfId || !otherId || otherId === selfId) return;
     var convoId = convoIdFor(selfId, otherId);
     var convoRef = dbNs.doc("messages/" + convoId);
     convoRef.get().then(function (snap) {
@@ -2682,7 +2580,7 @@
       }
     }).then(function () {
       loadThread(convoId, otherId, otherName);
-    }).catch(toastErr);
+    });
   }
 
   var threadViewInit = document.getElementById("threadView");
@@ -2811,7 +2709,7 @@
   }
 
   function saveProfile() {
-    if (!dbNs || !selfId || !termsOk()) return;
+    if (!dbNs || !selfId) return;
     var langs = Array.prototype.slice.call(document.querySelectorAll('#profileForm .checks input[type="checkbox"]:checked')).map(function (c) { return c.value; });
     var skills = (document.getElementById("pSkills").value || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
     var data = {
@@ -2839,7 +2737,6 @@
       if (snap.exists) {
         var existing = snap.data();
         data.createdAt = existing.createdAt || Date.now();
-        if (existing.badges) data.badges = existing.badges;
       }
       return ref.set(data);
     }).then(function () {
@@ -2867,18 +2764,22 @@
       return;
     }
 
+    window.__stage = "début";
+    window.__stage = "connexion user";
     userNs = await window.claude.use("user");
+    window.__stage = "connexion db";
     dbNs = await window.claude.use("db");
+    window.__stage = "db ok, lecture du profil";
 
     var whoBox = document.getElementById("whoBox");
     if (userNs) {
       var me = await userNs.me();
       meName = me.name || "";
       whoBox.innerHTML =
-        '<img src="' + escapeHtml(me.avatarUrl || "") + '" alt="">' +
+        '<img src="' + me.avatarUrl + '" alt="">' +
         '<span>' + escapeHtml(t("greeting")) + escapeHtml(me.name || t("greetingFallback")) + '</span>';
       selfId = await userNs.id();
-      if (userNs.isAdmin) ADMIN_IDS.push(selfId);
+      window.__stage = "id ok";
       updateAdminMenu();
       try {
         if (typeof userNs.can === "function" && (await userNs.can("data.write")) === false) {
@@ -2890,13 +2791,6 @@
       document.getElementById("menuName").textContent = me.name || "";
     }
 
-    if (!dbNs && window.naneAuth && window.naneAuth.notInvited) {
-      var nb = document.getElementById("roleBanner");
-      nb.textContent = T("NANE est sur invitation pour le moment : l'adresse " + window.naneAuth.notInvited + " n'est pas encore invitée.",
-        "NANE ist derzeit nur auf Einladung: Die Adresse " + window.naneAuth.notInvited + " ist noch nicht eingeladen.",
-        "NANE is invite-only for now: the address " + window.naneAuth.notInvited + " has not been invited yet.");
-      nb.hidden = false;
-    }
     if (!dbNs) {
       document.getElementById("dirBody").innerHTML =
         '<div class="empty-state"><h3>' + escapeHtml(t("dirUnavailableTitle")) + '</h3><p>' + escapeHtml(t("dirUnavailableBody")) + '</p></div>';
@@ -2905,10 +2799,14 @@
       return;
     }
 
+    function dbg() {} // diagnostic retiré
     function applyProfiles(snap) {
+      var raw = snap.docs.length;
+      window.__got = true;
       allProfiles = snap.docs.map(function (d) {
         var data = d.data(); if (data) { data = Object.assign({}, data); data.__id = d.id; } return data;
       }).filter(function (d) { return d && d.name; });
+      dbg("Diagnostic : " + raw + " document(s) reçu(s), " + allProfiles.length + " valide(s), moi = " + (selfId || "inconnu"));
       renderDirectory();
       renderNewConvoOptions();
       renderFeed();
@@ -2916,32 +2814,23 @@
       renderNotifs();
       refreshAdmin();
     }
+    window.__stage = "abonnement profils envoyé";
     var profQuery = dbNs.collection("profiles").orderBy("createdAt", "desc").limit(300);
-    var liveOk = false;
-    profQuery.onSnapshot(function (snap) { liveOk = true; applyProfiles(snap); }, function (err) {
+    profQuery.onSnapshot(applyProfiles, function (err) {
       document.getElementById("dirBody").innerHTML =
-        '<div class="empty-state"><h3>' + escapeHtml(T("Erreur", "Fehler", "Error")) + '</h3><p>' + escapeHtml(err.message) + '</p></div>';
+        '<div class="empty-state"><h3>Erreur</h3><p>' + escapeHtml(err.message) + '</p></div>';
     });
-    // Fallback: if the live listener is silent, read once now and then every 15 s,
-    // until the live listener answers.
-    var pullTimer = null;
+    // Fallback: if the live listener is silent, read once now and then every 15 s.
     function pullProfiles() {
-      if (liveOk) { clearInterval(pullTimer); return; }
-      try { profQuery.get().then(function (snap) { if (!liveOk) applyProfiles(snap); }).catch(function () {}); } catch (e) {}
+      try { profQuery.get().then(applyProfiles).catch(function (e) { dbg("Diagnostic : erreur de lecture : " + (e && e.message || e)); }); } catch (e) { dbg("Diagnostic : exception : " + e.message); }
     }
     pullProfiles();
-    pullTimer = setInterval(pullProfiles, 15000);
+    setInterval(pullProfiles, 15000);
 
     if (selfId) {
-      dbNs.collection("consents").doc(selfId).get().then(function (snap) {
-        termsAccepted = snap.exists ? (snap.data() || {}).termsVersion || null : null;
-      }).catch(function () {});
       var ownRef = dbNs.collection("profiles").doc(selfId);
-      var justSignedIn = false;
-      try { justSignedIn = sessionStorage.getItem("nane-enter") === "1"; sessionStorage.removeItem("nane-enter"); } catch (e) {}
       ownRef.get().then(function (snap) {
         buildForm(snap.exists ? snap.data() : null);
-        if (justSignedIn) { if (snap.exists) enterApp("feed"); else startProfile(true); }
       }).catch(function () {
         buildForm(null);
       });
@@ -2954,12 +2843,11 @@
       allPosts = snap.docs.map(function (d) { var x = d.data(); if (x) { x = Object.assign({}, x); x.__id = d.id; } return x; }).filter(Boolean);
       renderFeed(); refreshAdmin();
     });
-    // Newest first, so the limits drop old likes and comments, not the ones on recent posts.
-    dbNs.collection("likes").orderBy("createdAt", "desc").limit(2000).onSnapshot(function (snap) {
+    dbNs.collection("likes").limit(2000).onSnapshot(function (snap) {
       allLikes = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});
-    dbNs.collection("comments").orderBy("createdAt", "desc").limit(1000).onSnapshot(function (snap) {
-      allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean).reverse(); renderFeed(); refreshAdmin();
+    dbNs.collection("comments").orderBy("createdAt", "asc").limit(1000).onSnapshot(function (snap) {
+      allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});
 
     if (selfId) {

@@ -1,0 +1,125 @@
+rules_version = '2';
+// NANE: who can read and write what. Enforced by Firebase on the server.
+//
+// Access is invite-only: a member is a signed-in person with a verified email that has a
+// document in invites/{email, lowercase}. To open NANE to everyone later, change isMember()
+// to: return signedIn();
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function uid() { return request.auth.uid; }
+    function isMember() {
+      return signedIn() && exists(/databases/$(database)/documents/invites/$(request.auth.token.email.lower()));
+    }
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(uid()));
+    }
+    function incoming() { return request.resource.data; }
+    function changedOnly(keys) { return incoming().diff(resource.data).affectedKeys().hasOnly(keys); }
+    function shortText(v, max) { return v is string && v.size() <= max; }
+    function okImage(v) { return v == null || (v is string && v.size() < 400000); }
+
+    // Invite list and admin list: managed by hand in the Firebase console.
+    match /invites/{email} {
+      allow read: if signedIn() && request.auth.token.email.lower() == email;
+      allow write: if isAdmin();
+    }
+    match /admins/{userId} {
+      allow read: if signedIn() && userId == uid();
+      allow write: if false;
+    }
+
+    // Profiles: every member can read; each person writes only their own.
+    // Trust badges can only be granted by an admin, so members cannot give themselves one.
+    match /profiles/{userId} {
+      function validProfile() {
+        return shortText(incoming().name, 120) && okImage(incoming().get('photo', null));
+      }
+      allow read: if isMember();
+      allow create: if isMember() && userId == uid() && validProfile() && !('badges' in incoming());
+      allow update: if isMember() && validProfile()
+        && ((userId == uid() && incoming().get('badges', null) == resource.data.get('badges', null))
+            || (isAdmin() && changedOnly(['badges'])));
+      allow delete: if isMember() && (userId == uid() || isAdmin());
+    }
+
+    // Posts: anyone can read; only the author creates or deletes. No editing.
+    match /posts/{postId} {
+      allow read: if isMember();
+      allow create: if isMember() && incoming().authorId == uid()
+        && shortText(incoming().get('content', ''), 5000) && okImage(incoming().get('image', null))
+        && (!('repost' in incoming()) || okImage(incoming().repost.get('image', null)));
+      allow delete: if isMember() && (resource.data.authorId == uid() || isAdmin());
+    }
+
+    // Likes: id is {postId}_{userId}. Removable by the liker, the post's author or an admin.
+    match /likes/{likeId} {
+      allow read: if isMember();
+      allow create: if isMember() && incoming().userId == uid()
+        && likeId == incoming().postId + '_' + uid();
+      allow delete: if isMember() && (resource.data.userId == uid() || isAdmin()
+        || get(/databases/$(database)/documents/posts/$(resource.data.postId)).data.authorId == uid());
+    }
+
+    // Comments: removable by the commenter, the post's author or an admin.
+    match /comments/{commentId} {
+      allow read: if isMember();
+      allow create: if isMember() && incoming().authorId == uid() && shortText(incoming().content, 500);
+      allow delete: if isMember() && (resource.data.authorId == uid() || isAdmin()
+        || get(/databases/$(database)/documents/posts/$(resource.data.postId)).data.authorId == uid());
+    }
+
+    // Connections: only the two people involved can see them. Only the invited person can accept.
+    match /connections/{pairId} {
+      allow read: if isMember() && (uid() in resource.data.participantIds || isAdmin());
+      allow create: if isMember() && incoming().requesterId == uid()
+        && uid() in incoming().participantIds && incoming().participantIds.size() == 2
+        && incoming().status == 'pending';
+      allow update: if isMember() && uid() in resource.data.participantIds
+        && uid() != resource.data.requesterId
+        && changedOnly(['status', 'acceptedAt']) && incoming().status == 'accepted';
+      allow delete: if isMember() && uid() in resource.data.participantIds;
+    }
+
+    // Notifications: only the recipient reads them; the sender can delete their own.
+    match /notifications/{notifId} {
+      allow read: if isMember() && (resource.data.toId == uid() || resource.data.fromId == uid());
+      allow create: if isMember() && incoming().fromId == uid();
+      allow update: if isMember() && resource.data.toId == uid() && changedOnly(['read']);
+      allow delete: if isMember() && (resource.data.toId == uid() || resource.data.fromId == uid());
+    }
+
+    // Messages: private to the two participants. Admins cannot read them.
+    match /messages/{convoId} {
+      allow read: if isMember() && (resource == null || uid() in resource.data.participantIds);
+      allow create: if isMember() && uid() in incoming().participantIds
+        && incoming().participantIds.size() == 2;
+      allow update: if isMember() && uid() in resource.data.participantIds
+        && changedOnly(['lastMessageAt', 'lastMessageText']);
+      allow delete: if isMember() && uid() in resource.data.participantIds;
+
+      match /items/{itemId} {
+        function inConvo() {
+          return uid() in get(/databases/$(database)/documents/messages/$(convoId)).data.participantIds;
+        }
+        allow read: if isMember() && inConvo();
+        allow create: if isMember() && inConvo() && incoming().senderId == uid()
+          && shortText(incoming().text, 5000);
+        allow delete: if isMember() && inConvo() && resource.data.senderId == uid();
+      }
+    }
+
+    // Reports: any member can report; only admins read and handle them.
+    match /reports/{reportId} {
+      allow create: if isMember() && incoming().reporterId == uid();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Acceptance of the terms of use: one document per member, kept as proof.
+    match /consents/{userId} {
+      allow read: if isMember() && userId == uid();
+      allow create, update: if isMember() && userId == uid() && incoming().userId == uid();
+    }
+  }
+}

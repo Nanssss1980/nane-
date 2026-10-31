@@ -1,76 +1,76 @@
 # NANE
 
-Le réseau professionnel des talents noirs, en France, Allemagne, Suisse, Belgique et Luxembourg.
-Langues : français, allemand, anglais.
+The professional network for Black talent in France, Germany, Switzerland, Belgium and Luxembourg.
+Languages: English (default), French, German.
 
-## Ce que contient ce dépôt
+This is the stand-alone version of the NANE prototype (originally a Claude artifact). It runs on
+GitHub Pages, with Google Firebase for sign-in and the database.
 
-- `index.html` : le prototype complet (une seule page : HTML, CSS et JavaScript).
-- `assets/NANE-kit-marque/` : le kit de marque V3 (logos SVG, PNG, PDF, JPEG, icônes, mini-charte).
+## Files
 
-## Identité visuelle
+- `index.html`: the whole app (HTML, CSS and JavaScript on one page).
+- `backend.js`: connects the app to Firebase. It provides the same `window.claude` API the
+  prototype used, so the app code stays the same.
+- `firebase-config.js`: the Firebase project settings (to fill in, see below).
+- `firestore.rules`: who can read and write what. Enforced by Firebase on the server.
+- `firestore.indexes.json`, `firebase.json`: database index and deploy settings.
+- `assets/NANE-kit-marque/`: brand kit (logos, icons, mini style guide).
 
-- Violet profond `#21184B`
-- Doré `#C6A15B`
-- Ivoire `#F3F0E8`
-- Blanc `#FFFFFF`
-- Logo : version horizontale V3, intégrée dans `index.html` en SVG (le lettrage est en tracés, aucune police nécessaire).
+## Access: invite-only
 
-## Ce que montre le prototype
+Until the legal notice is ready and a lawyer has reviewed the terms, NANE is invite-only:
+only people whose email is in the `invites` collection can see or do anything.
+To open it to everyone later, change `isMember()` in `firestore.rules` to `return signedIn();`.
 
-- Page d'accueil publique, inscription et connexion (maquettes)
-- Profil avec photo, projets et portfolio, annuaire avec recherche et filtres
-- Réseau (demandes de connexion), notifications, messagerie
-- Fil d'actualité : posts avec photo, likes, commentaires, repartages
-- Signalement, suppression complète du profil, charte et règles de la communauté
-- Menu de langue (FR, DE, EN) dans l'en-tête
+## Setting up Firebase (once)
 
-## Important : les données ne sont pas dans ce dépôt
+1. Go to https://console.firebase.google.com and create a project (for example `nane`).
+   Google Analytics is not needed: leave it off.
+2. **Database**: Build > Firestore Database > Create database.
+   Location: `europe-west3 (Frankfurt)`, so data stays in the EU. Start in **production mode**.
+3. **Sign-in**: Build > Authentication > Get started > Google > Enable. Choose a support email.
+4. **Allowed sites**: Authentication > Settings > Authorized domains > Add domain:
+   `nelladelva.github.io`
+5. **Web app settings**: Project settings (gear icon) > General > Your apps > Web (`</>`).
+   Register the app (no Firebase Hosting needed), then copy the `firebaseConfig` object
+   into `firebase-config.js`:
+   ```js
+   window.NANE_FIREBASE_CONFIG = { apiKey: "…", authDomain: "…", projectId: "…", … };
+   ```
+   These values are public by design. The protection comes from `firestore.rules`.
+6. **Rules and index**: Firestore Database > Rules: paste the content of `firestore.rules`, then Publish.
+   Firestore Database > Indexes > Composite > Add index: collection `messages`,
+   field `participantIds` = Arrays, field `lastMessageAt` = Descending, scope Collection.
+   (Or with the command line: `npx firebase-tools login`, then
+   `npx firebase-tools deploy --only firestore --project <project-id>`.)
 
-Le prototype vit dans Claude (artefact). Les profils, posts et messages sont enregistrés
-par la base de données de Claude. Si `index.html` est ouvert ailleurs (double clic, GitHub Pages),
-la page s'affiche mais reste vide : pas d'annuaire, pas de connexion, pas d'enregistrement.
+## Inviting people
 
-Pour tester avec de vraies données, utiliser le lien de l'artefact Claude partagé avec le rôle « Contributeur ».
+Firestore Database > Data > Start collection `invites` (first time), then for each person
+add a document whose **Document ID is their email in lowercase** (for example `ada@example.com`),
+with one field `invited` = `true`. They sign in with the Google account of that email.
 
-## Limites connues de cette version de test
+## Admins (founders' dashboard)
 
-- Les messages et les notifications ne sont pas privés au niveau des données. Un avertissement est affiché dans la messagerie. À régler avec un vrai backend.
-- L'inscription, la confirmation par e-mail et les badges de vérification sont des maquettes.
-- Les images (photos de profil et de posts) sont acceptées uniquement si ce sont de vraies images encodées (`data:image/...;base64`). Tout le reste est ignoré avant l'affichage.
-- La messagerie charge les 300 derniers messages de chaque conversation.
+After an admin has signed in once, find their **User UID** in Authentication > Users.
+Add a document with that UID as Document ID in the `admins` collection (field `admin` = `true`).
+Admins see the dashboard, can read reports, remove content and grant badges.
+Admins cannot read private messages.
 
-## Publier une modification sur le site en ligne
+## Publishing changes
 
-Modifier `index.html` ici ne change pas le site en ligne. Il faut le republier dans Claude
-sur le lien existant, en redéclarant les règles de la base de données :
+The site is served by GitHub Pages from the `main` branch: pushing to `main` updates it
+within a minute or two. Changes to `firestore.rules` must also be published in the Firebase console.
 
-- `profiles` : lecture « view », écriture « owner »
-- `profiles/{self}` : écriture « interact »
-- `reports` : lecture « interact », écriture « interact »
-- portée utilisateur : « profile »
+## Before opening to the public
 
-Ne pas supprimer les appels à `window.claude` : ils connectent le site à sa base de données.
-Une seule personne publie à la fois, pour éviter qu'une version écrase l'autre.
+- Legal notice (Impressum): name, postal address and email of whoever runs NANE.
+- Lawyer review of the terms of use and completion of the two placeholders
+  (operator, applicable law), plus a full privacy policy that names Google Firebase and GitHub.
+- A legal structure (association or company) and liability insurance for the founders.
 
-## À faire ensuite
+## Known limits
 
-- Pages légales : conditions d'utilisation, confidentialité, mentions légales (à valider par un juriste)
-- FAQ et formulaire de support
-- Catégorie « Opportunités » (mission, emploi, recherche de partenaire) après les premiers retours des testeurs
-
-## Pour la vraie version (à construire)
-
-- Base de données et connexion réelles (e-mail ou Google)
-- Messages et notifications réellement privés
-- Confirmation d'e-mail et vérification par lien LinkedIn ou site professionnel
-- Stockage des photos et vidéos
-- Notifications par e-mail ou push
-- Outils de modération
-- Chatbot d'aide (clé d'API et serveur nécessaires)
-
-## Nom, logo et domaine
-
-- Nom : NANE (prononcé « nan-e »)
-- Domaine envisagé : nanenetwork.com
-- À vérifier : marque (TMview, IGE/IPI) et noms de comptes sur les réseaux sociaux
+- Photos are stored inside the database documents (up to about 400 KB each).
+- The directory loads the 300 newest profiles, the feed the 100 newest posts.
+- No email notifications yet.

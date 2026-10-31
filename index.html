@@ -230,6 +230,19 @@
 
   /* ---------- Hero ---------- */
   section.hero { padding: 88px 0 72px; position: relative; overflow: hidden; }
+  /* Video d'accueil : bande pleine largeur au-dessus du bandeau, sans texte dessus */
+  .video-wide { position: relative; background: #21184B; line-height: 0; overflow: hidden; }
+  .video-wide[hidden] { display: none; }
+  .video-wide video { display: block; width: 100%; height: min(78vh, 56.25vw); object-fit: cover; object-position: 50% 48%; transform-origin: 50% 48%; transform: scale(var(--vz, 1)); background: #21184B; }
+  .video-tint { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(33,24,75,.10) 0%, rgba(33,24,75,.10) 70%, rgba(33,24,75,.45) 100%); }
+  .video-ctrls { position: absolute; z-index: 2; left: 24px; bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap; line-height: normal; }
+  @media (max-width: 767px) { .video-wide video { height: min(78vh, 177.78vw); } .video-ctrls { left: 14px; bottom: 14px; } }
+  .teaser-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(15,10,40,.95); display: flex; align-items: center; justify-content: center; padding: 56px 16px 16px; }
+  .teaser-overlay[hidden] { display: none; }
+  .teaser-overlay video { width: auto; height: 100%; max-width: 100%; object-fit: contain; background: #000; border-radius: 8px; }
+  .teaser-close { position: absolute; top: 14px; right: 16px; font: inherit; font-size: 14px; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  .vid-btn { font: inherit; font-size: 13px; color: #fff; background: rgba(33,24,75,.78); border: 1px solid rgba(255,255,255,.55); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+  .vid-btn:hover { background: rgba(33,24,75,.96); border-color: #fff; }
   .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
   .hero h1 {
     font-family: var(--serif); font-weight: 500; font-size: 56px; line-height: 1.07;
@@ -700,6 +713,17 @@
 
   <!-- ABOUT / HERO -->
   <section data-view="about" class="active">
+    <section class="video-wide" id="videoWide" hidden>
+      <video id="wideVideo" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      <div class="video-tint" aria-hidden="true"></div>
+      <div class="video-ctrls">
+        <button type="button" class="vid-btn i18n" id="wPause"
+          data-fr="Mettre la vidéo en pause" data-de="Video pausieren" data-en="Pause video"></button>
+        <button type="button" class="vid-btn i18n" id="wTeaser"
+          data-fr="Découvrir NANE" data-de="NANE entdecken" data-en="Discover NANE"></button>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -1127,6 +1151,10 @@
 </footer>
 
 <div id="modalRoot"></div>
+<div class="teaser-overlay" id="teaserOverlay" hidden role="dialog" aria-modal="true" aria-label="NANE">
+  <button type="button" class="teaser-close i18n" id="teaserClose" data-fr="Fermer" data-de="Schließen" data-en="Close"></button>
+  <video id="teaserVideo" controls playsinline preload="none"></video>
+</div>
 
 <script>
 (function () {
@@ -1617,6 +1645,91 @@
       });
     });
   }
+
+  // ---- Video d'accueil -------------------------------------------------
+  // Chemins relatifs a index.html. Les boucles sont muettes ; le teaser complet s'ouvre au clic, avec le son.
+  var NANE_VIDEO = {
+    loopDesktop: "assets/video/nane-loop-desktop.mp4",       // boucle horizontale 1920 x 1080
+    loopMobile: "assets/video/nane-loop-mobile.mp4",         // boucle verticale 1080 x 1920
+    posterDesktop: "assets/video/nane-loop-poster.jpg",
+    posterMobile: "assets/video/nane-loop-poster-mobile.jpg",
+    teaser: "assets/video/nane-teaser-fr.mp4"                // teaser complet (lecteur avec commandes)
+  };
+  (function () {
+    var sec = document.getElementById("videoWide");
+    var vid = document.getElementById("wideVideo");
+    var bPause = document.getElementById("wPause");
+    var bTeaser = document.getElementById("wTeaser");
+    var ov = document.getElementById("teaserOverlay");
+    var tv = document.getElementById("teaserVideo");
+    var tClose = document.getElementById("teaserClose");
+    if (!sec || !vid || !(NANE_VIDEO.loopDesktop || NANE_VIDEO.loopMobile)) return;
+    var mq = window.matchMedia("(max-width: 767px)");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var userPaused = reduce;      // l'utilisateur (ou le reglage systeme) a demande l'arret
+    var current = "";
+    // Met a jour le texte d'un bouton dans les 3 langues (applyLang relit ces attributs)
+    function label(btn, fr, de, en) {
+      btn.setAttribute("data-fr", fr); btn.setAttribute("data-de", de); btn.setAttribute("data-en", en);
+      btn.textContent = T(fr, de, en);
+    }
+    function pauseLabel(paused) {
+      if (paused) label(bPause, "Lire la vidéo", "Video abspielen", "Play video");
+      else label(bPause, "Mettre la vidéo en pause", "Video pausieren", "Pause video");
+    }
+    // Choisit la boucle selon la taille d'ecran, et la rechoisit si l'ecran change (rotation, redimensionnement)
+    function pick() {
+      var mobile = mq.matches;
+      var src = mobile ? (NANE_VIDEO.loopMobile || NANE_VIDEO.loopDesktop) : (NANE_VIDEO.loopDesktop || NANE_VIDEO.loopMobile);
+      var poster = mobile ? (NANE_VIDEO.posterMobile || NANE_VIDEO.posterDesktop) : (NANE_VIDEO.posterDesktop || NANE_VIDEO.posterMobile);
+      if (src === current) return;
+      current = src;
+      if (poster) vid.poster = poster;
+      vid.src = src;
+      if (!userPaused) {
+        var pr = vid.play();
+        if (pr && pr.catch) pr.catch(function () { userPaused = true; pauseLabel(true); });
+      }
+    }
+    // Zoom de la constellation (+20 % sur ordinateur), limite pour ne jamais couper les portraits
+    function fitZoom() {
+      if (mq.matches || !vid.clientWidth) { vid.style.setProperty("--vz", "1"); return; }
+      var bw = vid.clientWidth, bh = vid.clientHeight;
+      var frameH = Math.max(bh, bw * 9 / 16);          // hauteur de l'image apres recadrage "cover"
+      var visible = bh / frameH;                       // part de la hauteur de l'image visible
+      var z = Math.max(1, Math.min(1.2, visible / 0.74));   // la sphere + marge occupe ~74 % de la hauteur
+      vid.style.setProperty("--vz", z.toFixed(3));
+    }
+    window.addEventListener("resize", fitZoom);
+    pick();
+    sec.hidden = false;
+    fitZoom();
+    pauseLabel(userPaused);
+    if (mq.addEventListener) mq.addEventListener("change", pick); else if (mq.addListener) mq.addListener(pick);
+    bPause.addEventListener("click", function () {
+      if (vid.paused) { userPaused = false; vid.play(); pauseLabel(false); }
+      else { userPaused = true; vid.pause(); pauseLabel(true); }
+    });
+    // Teaser complet : lecteur avec commandes, son active au clic, video entiere (contain)
+    if (!NANE_VIDEO.teaser) { bTeaser.hidden = true; return; }
+    var wasPlaying = false;
+    function openTeaser() {
+      wasPlaying = !vid.paused; vid.pause();
+      if (!tv.getAttribute("src")) tv.src = NANE_VIDEO.teaser;
+      ov.hidden = false;
+      tv.currentTime = 0; tv.muted = false;
+      var pr = tv.play(); if (pr && pr.catch) pr.catch(function () {});
+      tClose.focus();
+    }
+    function closeTeaser() {
+      tv.pause(); ov.hidden = true;
+      if (wasPlaying && !userPaused) vid.play().catch(function () {});
+      bTeaser.focus();
+    }
+    bTeaser.addEventListener("click", openTeaser);
+    tClose.addEventListener("click", closeTeaser);
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape" && !ov.hidden) closeTeaser(); });
+  })();
 
   // Formulaire de contact : version de test, aucun message n'est envoye
   (function () {

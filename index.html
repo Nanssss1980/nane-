@@ -1812,6 +1812,7 @@
   // Navigation avec historique : chaque changement de page ajoute une entrée, le bouton Précédent revient à la page vue avant
   function showView(name, fromHistory) {
     var shown = renderView(name);
+    if (shown === "feed") { try { renderRightCol(); } catch (e) { } }
     if (!fromHistory && shown !== curView) {
       try { history.pushState({ nane: shown }, "", "#" + shown); } catch (e) { }
     }

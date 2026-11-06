@@ -1790,7 +1790,8 @@
     var el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  function showView(name) {
+  var curView = "";
+  function renderView(name) {
     if (name === "admin") { if (isAdmin()) { loadAdminExtra(); renderAdmin(); } else name = "feed"; }
     if (name === "login") renderLogin();
     if (name === "network") renderNetwork();
@@ -1806,9 +1807,27 @@
       b.classList.toggle("active", b.getAttribute("data-view-target") === name);
     });
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    return name;
   }
+  // Navigation avec historique : chaque changement de page ajoute une entrée, le bouton Précédent revient à la page vue avant
+  function showView(name, fromHistory) {
+    var shown = renderView(name);
+    if (!fromHistory && shown !== curView) {
+      try { history.pushState({ nane: shown }, "", "#" + shown); } catch (e) { }
+    }
+    curView = shown;
+  }
+  window.addEventListener("popstate", function (ev) {
+    var v = (ev.state && ev.state.nane) || (location.hash || "").slice(1) || START_VIEW;
+    if (!document.querySelector('section[data-view="' + v + '"]')) v = START_VIEW;
+    showView(v, true);
+  });
+  var START_VIEW = (function () { var a = document.querySelector("section[data-view].active"); return a ? a.getAttribute("data-view") : "about"; })();
+  curView = START_VIEW;
+  try { history.replaceState({ nane: START_VIEW }, "", location.pathname + location.search + (START_VIEW === "about" ? "" : "#" + START_VIEW)); } catch (e) { }
   document.querySelectorAll("[data-view-target]").forEach(function (el) {
-    el.addEventListener("click", function () {
+    el.addEventListener("click", function (ev) {
+      if (el.tagName === "A") ev.preventDefault();
       showView(el.getAttribute("data-view-target"));
     });
   });

@@ -2615,6 +2615,20 @@
   function renderSideProfile() {
     updateAdminMenu();
     var el = document.getElementById("sideProfile"); if (!el) return;
+    if (OFFLINE) {
+      var wb = document.getElementById("whoBox");
+      if (wb) wb.innerHTML = avatarHtml("pc-avatar", "V", null) + '<span>' + escapeHtml(T("Bonjour, visiteur", "Hallo, Besucher:in", "Hi, visitor")) + '</span>';
+      var mn0 = document.getElementById("menuName"); if (mn0) mn0.textContent = T("Visiteur·se", "Besucher:in", "Visitor");
+      var ms0 = document.getElementById("menuSub"); if (ms0) ms0.textContent = T("Version de démonstration", "Demoversion", "Demo version");
+      el.innerHTML =
+        '<div class="sp-cover"></div>' +
+        avatarHtml("sp-avatar", "NANE", null) +
+        '<div class="sp-body"><div class="sp-name">' + escapeHtml(T("Bienvenue sur NANE", "Willkommen bei NANE", "Welcome to NANE")) + '</div>' +
+        '<div class="sp-title">' + escapeHtml(T("Version de démonstration : les profils et publications affichés ici sont des exemples.", "Demoversion: Profile und Beiträge hier sind Beispiele.", "Demo version: the profiles and posts shown here are examples.")) + '</div>' +
+        '<button class="btn btn-ghost btn-small" data-view-target="signup">' + escapeHtml(T("Rejoindre le réseau", "Dem Netzwerk beitreten", "Join the network")) + '</button></div>';
+      renderRightCol();
+      return;
+    }
     var p = lastProfileData, name = (p && p.name) || meName || "";
     el.innerHTML =
       '<div class="sp-cover"></div>' +
@@ -2669,6 +2683,23 @@
     renderSideProfile();
     var body = document.getElementById("feedBody");
     if (!body) return;
+    if (OFFLINE) {
+      var demo = [
+        [T("Exemple de publication", "Beispielbeitrag", "Example post"),
+         T("Je cherche un·e designer UX pour un projet à Berlin. Recommandations bienvenues !", "Ich suche eine:n UX-Designer:in für ein Projekt in Berlin. Empfehlungen willkommen!", "Looking for a UX designer for a project in Berlin. Recommendations welcome!")],
+        [T("Exemple de publication", "Beispielbeitrag", "Example post"),
+         T("Je propose un café de mentorat pour les jeunes diplômé·e·s en finance à Lausanne.", "Ich biete Mentoring-Gespräche für Berufseinsteiger:innen im Finanzbereich in Lausanne an.", "Offering mentoring chats for early-career finance graduates in Lausanne.")],
+        [T("Exemple de publication", "Beispielbeitrag", "Example post"),
+         T("Notre équipe recrute : un·e ingénieur·e data à Zurich, français et anglais requis.", "Unser Team sucht: Dateningenieur:in in Zürich, Französisch und Englisch erforderlich.", "Our team is hiring a data engineer in Zurich, French and English required.")]
+      ];
+      body.innerHTML = demo.map(function (d) {
+        return '<div class="post-card"><div class="post-top">' + avatarHtml("pc-avatar", "NANE", null) +
+          '<div><div class="post-meta-name">' + escapeHtml(d[0]) + '</div>' +
+          '<div class="post-meta-time">' + escapeHtml(T("Démonstration", "Demo", "Demo")) + '</div></div></div>' +
+          '<div class="post-text">' + escapeHtml(d[1]) + '</div></div>';
+      }).join("");
+      return;
+    }
     if (!allPosts.length) {
       body.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(t("feedEmptyTitle")) + '</h3><p>' + escapeHtml(t("feedEmptyBody")) + '</p></div>';
       return;
@@ -3037,9 +3068,12 @@
   }
 
   // ---------- boot ----------
+  var OFFLINE = false;
   async function init() {
     var hasClaudeNs = typeof window.claude !== "undefined" && typeof window.claude.use === "function";
     if (!hasClaudeNs) {
+      OFFLINE = true;
+      try { renderFeed(); } catch (e) { }
       document.getElementById("dirBody").innerHTML =
         '<div class="empty-state"><h3>' + escapeHtml(t("offlineTitle")) + '</h3><p>' + escapeHtml(t("offlineBody")) + '</p></div>';
       document.getElementById("formArea").innerHTML =

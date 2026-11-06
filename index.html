@@ -638,6 +638,29 @@
     nav.links::-webkit-scrollbar { display: none; }
     nav.links button.navlink { white-space: nowrap; flex: none; }
   }
+  /* Circles */
+  .circ-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 0 0 28px; }
+  .circ-box { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .circ-box h3 { margin: 0 0 8px; font-size: 18px; }
+  .circ-box p { margin: 0; font-size: 15px; color: var(--text-on-paper-dim); }
+  .circ-box.sol { background: var(--ink); border-color: var(--ink); }
+  .circ-box.sol h3 { color: #fff; } .circ-box.sol p { color: var(--text-on-ink-dim); }
+  .circ-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin: 0 0 28px; }
+  .circ-card { border-radius: 16px; padding: 20px; color: #fff; display: flex; flex-direction: column; gap: 10px; min-height: 190px; }
+  .circ-card h3 { margin: 0; font-size: 19px; color: #fff; }
+  .circ-card p { margin: 0; font-size: 14px; color: rgba(255,255,255,.88); flex: 1; }
+  .circ-meta { display: inline-block; align-self: flex-start; background: rgba(255,255,255,.2); border-radius: 999px; padding: 5px 12px; font-size: 13px; }
+  .circ-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .circ-btn { background: #fff; color: var(--ink); border: 0; border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .circ-btn.on { background: rgba(255,255,255,.25); color: #fff; }
+  .circ-btn.link { background: transparent; color: #fff; text-decoration: underline; padding: 8px 4px; font-weight: 400; }
+  .circ-sel { border-radius: 999px; border: 0; padding: 7px 10px; font: inherit; font-size: 13px; background: rgba(255,255,255,.9); color: var(--ink); }
+  .circ-propose { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .circ-propose h3 { margin: 0 0 6px; }
+  .circ-propose input, .circ-propose textarea { width: 100%; box-sizing: border-box; margin: 8px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+  .circ-note { font-size: 13px; color: var(--text-on-paper-dim); margin: 0 0 24px; }
+  .circ-targets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 22px; }
+  @media (max-width: 760px) { .circ-two, .circ-targets { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body class="public">
@@ -656,6 +679,7 @@
       <button class="navlink" data-view-target="feed"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span class="i18n" data-fr="Accueil" data-de="Start" data-en="Home"></span></button>
       <button class="navlink" data-view-target="network" style="position:relative"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M10.7 8.2L6.3 14.8M13.3 8.2l4.4 6.6M7.5 17h9"/></svg><span class="dot" id="netDot" style="display:none"></span><span class="i18n" data-fr="Réseau" data-de="Netzwerk" data-en="Network"></span></button>
       <button class="navlink" data-view-target="directory"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17.5 14.2c2.4.3 4 2 4 4.8"/></svg><span class="i18n" data-fr="Annuaire" data-de="Verzeichnis" data-en="Directory"></span></button>
+      <button class="navlink" data-view-target="circles"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></span></button>
       <button class="navlink" data-view-target="messages"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></span></button>
     </nav>
     <div class="nav-right">
@@ -830,6 +854,28 @@
         </div>
         <div class="hero-ctas" style="margin-top:28px;justify-content:center">
           <button class="btn btn-primary i18n" data-view-target="signup" data-fr="Rejoindre le réseau" data-de="Dem Netzwerk beitreten" data-en="Join the network"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="wrap wrap-narrow">
+        <h2 class="i18n" data-fr="Trop de groupes, trop de bruit." data-de="Zu viele Gruppen, zu viel Lärm." data-en="Too many groups, too much noise."></h2>
+        <p class="i18n" data-fr="Les communautés afrodescendantes vivent sur WhatsApp : des groupes de plusieurs centaines de membres, découpés en sous-groupes. Les notifications arrivent à toute heure, les échanges se perdent, et beaucoup finissent par archiver les groupes pour souffler. Vie privée et vie professionnelle se mélangent sur le même téléphone." data-de="Afrodeszendente Communities leben auf WhatsApp: Gruppen mit mehreren hundert Mitgliedern, aufgeteilt in Untergruppen. Benachrichtigungen kommen zu jeder Uhrzeit, Beiträge gehen unter, und viele archivieren die Gruppen, um Ruhe zu haben. Privatleben und Beruf vermischen sich auf demselben Handy." data-en="Afro-descendant communities live on WhatsApp: groups of several hundred members, split into sub-groups. Notifications arrive at all hours, conversations get lost, and many people end up archiving the groups to get some peace. Private and professional life blur on the same phone."></p>
+      </div>
+    </section>
+
+    <section class="values">
+      <div class="wrap">
+        <h2 class="i18n" style="text-align:center;max-width:none;margin-left:0;margin-right:0" data-fr="Des circles pour échanger à votre rythme." data-de="Circles, um in Ihrem Tempo auszutauschen." data-en="Circles to talk at your own pace."></h2>
+        <p class="i18n" style="text-align:center;margin:0 auto 24px;max-width:60ch" data-fr="Chaque thématique a son circle. Vous rejoignez ceux qui vous intéressent, vous choisissez quand être notifié·e, et vous quittez quand le sujet ne vous concerne plus. Pensé pour :" data-de="Jedes Thema hat seinen Circle. Sie treten denen bei, die Sie interessieren, bestimmen, wann Sie benachrichtigt werden, und verlassen sie, wenn das Thema nicht mehr passt. Gedacht für:" data-en="Every topic has its circle. Join the ones that interest you, choose when you get notified, and leave when the topic no longer fits. Designed for:"></p>
+        <div class="circ-targets">
+          <div class="value-card"><h3 class="i18n" data-fr="Les groupes de discussion existants" data-de="Bestehende Gesprächsgruppen" data-en="Existing discussion groups"></h3><p class="i18n" data-fr="Communautés, clubs et associations découpés en sous-groupes thématiques : chaque sous-groupe devient un circle." data-de="Communities, Clubs und Vereine mit thematischen Untergruppen: Jede Untergruppe wird zu einem Circle." data-en="Communities, clubs and associations split into topic sub-groups: each sub-group becomes a circle."></p></div>
+          <div class="value-card"><h3 class="i18n" data-fr="Enseignant·e·s, mentors et coachs" data-de="Lehrkräfte, Mentor:innen und Coaches" data-en="Teachers, mentors and coaches"></h3><p class="i18n" data-fr="Un circle remplace le groupe WhatsApp de la classe : exercices, conseils et échanges, depuis NANE." data-de="Ein Circle ersetzt die WhatsApp-Gruppe der Klasse: Übungen, Tipps und Austausch, direkt über NANE." data-en="A circle replaces the class WhatsApp group: exercises, advice and discussion, from NANE."></p></div>
+          <div class="value-card"><h3 class="i18n" data-fr="Chaque membre" data-de="Jedes Mitglied" data-en="Every member"></h3><p class="i18n" data-fr="Rejoindre, mettre en silence ou quitter en un clic, et garder une frontière claire avec la vie privée." data-de="Beitreten, stummschalten oder mit einem Klick verlassen und eine klare Grenze zum Privatleben wahren." data-en="Join, mute or leave in one click, and keep a clear line with private life."></p></div>
+        </div>
+        <div class="hero-ctas" style="margin-top:28px;justify-content:center">
+          <button class="btn btn-primary i18n" data-view-target="circles" data-fr="Découvrir les circles" data-de="Circles entdecken" data-en="Discover the circles"></button>
         </div>
       </div>
     </section>
@@ -1027,6 +1073,30 @@
       <div class="wrap wrap-narrow">
         <h2 class="net-title i18n" data-fr="Mon réseau" data-de="Mein Netzwerk" data-en="My network"></h2>
         <div id="netBody"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- CIRCLES -->
+  <section data-view="circles">
+    <section class="signup">
+      <div class="wrap">
+        <h2 class="i18n" style="margin-top:0" data-fr="Circles" data-de="Circles" data-en="Circles"></h2>
+        <p class="i18n" style="max-width:70ch;margin:0 0 24px" data-fr="Des espaces de discussion par thématique. Vous rejoignez ceux qui vous intéressent, vous choisissez quand être notifié·e, et vous partez quand le sujet ne vous concerne plus." data-de="Themenbezogene Gesprächsräume. Sie treten denen bei, die Sie interessieren, bestimmen, wann Sie benachrichtigt werden, und verlassen sie, wenn das Thema nicht mehr passt." data-en="Discussion spaces by topic. Join the ones that matter to you, choose when you get notified, and leave when the topic no longer fits."></p>
+        <div class="circ-two">
+          <div class="circ-box"><h3 class="i18n" data-fr="Le problème" data-de="Das Problem" data-en="The problem"></h3><p class="i18n" data-fr="Les communautés vivent dans de grands groupes WhatsApp, avec des centaines de membres et des sous-groupes. Les notifications arrivent à toute heure, les échanges se noient, et beaucoup finissent par archiver les groupes pour souffler. Vie privée et vie professionnelle se mélangent sur le même téléphone." data-de="Communities leben in großen WhatsApp-Gruppen mit Hunderten Mitgliedern und Untergruppen. Benachrichtigungen kommen zu jeder Uhrzeit, Beiträge gehen unter, und viele archivieren die Gruppen, um Ruhe zu haben. Privatleben und Beruf vermischen sich auf demselben Handy." data-en="Communities live in large WhatsApp groups with hundreds of members and sub-groups. Notifications arrive at all hours, conversations get lost, and many people end up archiving the groups to get some peace. Private and professional life blur on the same phone."></p></div>
+          <div class="circ-box sol"><h3 class="i18n" data-fr="Notre solution" data-de="Unsere Lösung" data-en="Our solution"></h3><p class="i18n" data-fr="Un circle par thématique, dans un espace professionnel séparé. Vous réglez les notifications circle par circle (toutes, résumé quotidien ou silence), vous quittez en un clic, et personne n’a besoin de votre numéro de téléphone." data-de="Ein Circle pro Thema, in einem getrennten beruflichen Raum. Sie stellen Benachrichtigungen pro Circle ein (alle, Tageszusammenfassung oder stumm), verlassen ihn mit einem Klick, und niemand braucht Ihre Telefonnummer." data-en="One circle per topic, in a separate professional space. You set notifications circle by circle (all, daily digest or silent), leave in one click, and nobody needs your phone number."></p></div>
+        </div>
+        <div id="circGrid" class="circ-grid"></div>
+        <p class="circ-note" id="circNote"></p>
+        <div class="circ-propose">
+          <h3 class="i18n" data-fr="Proposer un nouveau circle" data-de="Neuen Circle vorschlagen" data-en="Propose a new circle"></h3>
+          <p class="i18n" data-fr="Envoyez une idée aux administratrices. Elles la valident avant qu’elle n’apparaisse." data-de="Senden Sie eine Idee an die Administratorinnen. Sie prüfen sie, bevor sie erscheint." data-en="Send an idea to the admins. They approve it before it appears."></p>
+          <input type="text" id="circPName" maxlength="60" class="i18n-ph" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
+          <textarea id="circPDesc" rows="2" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ?" data-de="Wofür ist dieser Circle?" data-en="What is this circle for?"></textarea>
+          <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Envoyer" data-de="Senden" data-en="Send"></span></button>
+          <span id="circPMsg" class="sub" style="margin-left:10px"></span>
+        </div>
       </div>
     </section>
   </section>
@@ -1297,6 +1367,7 @@
     });
     renderDirectory();
     renderFeed();
+    try { renderCircles(); } catch (e) { }
     renderSignup();
     obCapture(); renderOnboarding();
     renderSettings();
@@ -1795,6 +1866,7 @@
     if (name === "admin") { if (isAdmin()) { loadAdminExtra(); renderAdmin(); } else name = "feed"; }
     if (name === "login") renderLogin();
     if (name === "network") renderNetwork();
+    if (name === "circles") renderCircles();
     if (name === "notifications") renderNotifs();
     if (name === "signup") renderSignup();
     if (name === "settings") renderSettings();
@@ -3067,6 +3139,87 @@
     });
   }
 
+  // ---------- Circles ----------
+  var CIRCLES = [{"id": "art", "e": "🎨", "c": "#2E6F8E", "o": false, "n": {"fr": "Art Lovers", "de": "Art Lovers", "en": "Art Lovers"}, "d": {"fr": "Galeries, musées, ateliers", "de": "Galerien, Museen, Ateliers", "en": "Galleries, museums, studios"}}, {"id": "bbb", "e": "🌍", "c": "#3B4A7A", "o": true, "n": {"fr": "BBB · Belong Beyond Borders", "de": "BBB · Belong Beyond Borders", "en": "BBB · Belong Beyond Borders"}, "d": {"fr": "Culture, coworking et loisirs partagés", "de": "Kultur, Coworking und gemeinsame Hobbys", "en": "Culture, co-working and shared hobbies"}}, {"id": "berlin", "e": "🐻", "c": "#B88A2E", "o": false, "n": {"fr": "Berlin Events", "de": "Berlin Events", "en": "Berlin Events"}, "d": {"fr": "Festivals, concerts, vie en ville", "de": "Festivals, Konzerte, Stadtleben", "en": "Festivals, concerts, city life"}}, {"id": "books", "e": "📚", "c": "#A8522A", "o": false, "n": {"fr": "Book Lovers", "de": "Book Lovers", "en": "Book Lovers"}, "d": {"fr": "Cercles de lecture et rencontres avec des auteur·e·s", "de": "Lesekreise und Autorengespräche", "en": "Reading circles and author talks"}}, {"id": "cowork", "e": "💻", "c": "#C1582B", "o": false, "n": {"fr": "Co-working & Networking", "de": "Co-working & Networking", "en": "Co-working & Networking"}, "d": {"fr": "Travailler côte à côte, rencontrer des professionnel·le·s", "de": "Nebeneinander arbeiten, Fachleute treffen", "en": "Work side by side, meet professionals"}}, {"id": "karaoke", "e": "🎤", "c": "#8E3B8A", "o": false, "n": {"fr": "Karaoke", "de": "Karaoke", "en": "Karaoke"}, "d": {"fr": "Chanter faux, ensemble", "de": "Gemeinsam schlecht singen", "en": "Sing badly, together"}}, {"id": "sports", "e": "⚽", "c": "#2F5D56", "o": false, "n": {"fr": "Sports Events", "de": "Sports Events", "en": "Sports Events"}, "d": {"fr": "Courir, jouer, regarder", "de": "Laufen, spielen, zuschauen", "en": "Run, play, watch"}}, {"id": "women", "e": "✊", "c": "#B8607A", "o": false, "n": {"fr": "Women Events", "de": "Women Events", "en": "Women Events"}, "d": {"fr": "Rencontres pour les femmes", "de": "Treffen für Frauen", "en": "Gatherings for women"}}, {"id": "career", "e": "💼", "c": "#21184B", "o": true, "n": {"fr": "Carrière & emploi", "de": "Karriere & Jobs", "en": "Career & jobs"}, "d": {"fr": "Offres, conseils, retours d’expérience", "de": "Stellen, Tipps, Erfahrungsberichte", "en": "Openings, advice, shared experience"}}, {"id": "founders", "e": "🚀", "c": "#4A3A8C", "o": true, "n": {"fr": "Entrepreneuriat", "de": "Gründen", "en": "Entrepreneurship"}, "d": {"fr": "Lancer, financer, développer son activité", "de": "Gründen, finanzieren, wachsen", "en": "Start, fund and grow your business"}}, {"id": "mentoring", "e": "🎓", "c": "#2B6B5E", "o": false, "n": {"fr": "Mentorat & cours", "de": "Mentoring & Kurse", "en": "Mentoring & classes"}, "d": {"fr": "Espace pour mentors, enseignant·e·s et leurs élèves", "de": "Raum für Mentor:innen, Lehrkräfte und ihre Lernenden", "en": "Space for mentors, teachers and their students"}}];
+  var circMem = {};     // circleId -> { status: "member"|"pending", notif: "all"|"digest"|"mute" }
+  var circCounts = {};  // circleId -> number of members
+  var circDbReady = false;
+  function circLabel(k) {
+    return ({ all: T("Toutes les notifications", "Alle Benachrichtigungen", "All notifications"),
+      digest: T("Résumé quotidien", "Tageszusammenfassung", "Daily digest"),
+      mute: T("Silencieux", "Stumm", "Silent") })[k];
+  }
+  function renderCircles() {
+    var grid = document.getElementById("circGrid"); if (!grid) return;
+    grid.innerHTML = CIRCLES.map(function (c) {
+      var m = circMem[c.id], n = circCounts[c.id] || 0;
+      var meta = (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
+        ((circDbReady || !OFFLINE) ? " · " + n + " " + T("membre" + (n > 1 ? "s" : ""), n > 1 ? "Mitglieder" : "Mitglied", n > 1 ? "members" : "member") : "");
+      var act;
+      if (m && m.status === "member") {
+        act = '<div class="circ-row"><button class="circ-btn on" data-act="leave" data-id="' + c.id + '">' + escapeHtml(T("Membre ✓", "Mitglied ✓", "Joined ✓")) + '</button>' +
+          '<select class="circ-sel" data-act="notif" data-id="' + c.id + '" aria-label="Notifications">' +
+          ["all", "digest", "mute"].map(function (k) { return '<option value="' + k + '"' + (m.notif === k ? " selected" : "") + '>' + escapeHtml(circLabel(k)) + '</option>'; }).join("") + '</select></div>';
+      } else if (m && m.status === "pending") {
+        act = '<div class="circ-row"><button class="circ-btn on" data-act="leave" data-id="' + c.id + '">' + escapeHtml(T("Demande envoyée", "Anfrage gesendet", "Request sent")) + '</button></div>';
+      } else {
+        act = '<div class="circ-row"><button class="circ-btn" data-act="join" data-id="' + c.id + '">' + escapeHtml(c.o ? T("Rejoindre", "Beitreten", "Join") : T("Demander à rejoindre", "Beitritt anfragen", "Request to join")) + '</button></div>';
+      }
+      return '<div class="circ-card" style="background:' + c.c + '"><h3>' + c.e + ' ' + escapeHtml(c.n[currentLang] || c.n.fr) + '</h3>' +
+        '<p>' + escapeHtml(c.d[currentLang] || c.d.fr) + '</p><span class="circ-meta">' + (c.o ? "🔓" : "🔒") + ' ' + escapeHtml(meta) + '</span>' + act + '</div>';
+    }).join("");
+    var note = document.getElementById("circNote");
+    if (note) note.textContent = T("Prototype : les préférences de notification sont enregistrées, mais les notifications ne sont pas encore envoyées. Les circles sur validation sont acceptés par les fondatrices.", "Prototyp: Benachrichtigungseinstellungen werden gespeichert, Benachrichtigungen werden aber noch nicht versendet. Circles mit Freigabe werden von den Gründerinnen bestätigt.", "Prototype: notification preferences are saved, but notifications are not sent yet. Approval-only circles are accepted by the founders.");
+  }
+  function circSave(id, data) {
+    // Hors ligne (site public) : mémoire seulement. Dans l'application : base de données partagée.
+    if (!dbNs || !selfId) { if (data) circMem[id] = data; else delete circMem[id]; renderCircles(); return; }
+    var ref = dbNs.collection("circle_members").doc(id + "_" + selfId);
+    var p = data ? ref.set({ circleId: id, userId: selfId, status: data.status, notif: data.notif, createdAt: Date.now() }) : ref.delete();
+    p.catch(toastErr);
+    if (data) circMem[id] = data; else delete circMem[id];
+    renderCircles();
+  }
+  (function () {
+    var grid = document.getElementById("circGrid"); if (!grid) return;
+    grid.addEventListener("click", function (ev) {
+      var b = ev.target.closest("button[data-act]"); if (!b) return;
+      var id = b.getAttribute("data-id"), act = b.getAttribute("data-act");
+      var c = CIRCLES.filter(function (x) { return x.id === id; })[0]; if (!c) return;
+      if (act === "join") circSave(id, { status: (c.o || (typeof isAdmin === "function" && isAdmin())) ? "member" : "pending", notif: "digest" });
+      if (act === "leave") circSave(id, null);
+    });
+    grid.addEventListener("change", function (ev) {
+      var s = ev.target.closest("select[data-act=notif]"); if (!s) return;
+      var id = s.getAttribute("data-id"), cur = circMem[id]; if (!cur) return;
+      circSave(id, { status: cur.status, notif: s.value });
+    });
+    document.getElementById("circPBtn").addEventListener("click", function () {
+      var n = document.getElementById("circPName").value.trim(), d = document.getElementById("circPDesc").value.trim();
+      var msg = document.getElementById("circPMsg"); if (!n) return;
+      if (!dbNs || !selfId) { msg.textContent = T("Disponible dans la version complète.", "In der Vollversion verfügbar.", "Available in the full version."); return; }
+      dbNs.collection("circle_proposals").add({ name: n, description: d, authorId: selfId, authorName: myName(), createdAt: Date.now() }).then(function () {
+        msg.textContent = T("Merci ! Votre idée a été envoyée.", "Danke! Ihre Idee wurde gesendet.", "Thanks! Your idea was sent.");
+        document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = "";
+      }).catch(toastErr);
+    });
+    renderCircles();
+  })();
+  function circLoadDb() {
+    function apply(snap) {
+      var counts = {}, mine = {};
+      snap.docs.forEach(function (d) {
+        var x = d.data(); if (!x) return; x = Object.assign({}, x);
+        if (x.status === "member") counts[x.circleId] = (counts[x.circleId] || 0) + 1;
+        if (x.userId === selfId) mine[x.circleId] = { status: x.status, notif: x.notif || "digest" };
+      });
+      circCounts = counts; circMem = mine; circDbReady = true; renderCircles();
+    }
+    var q = dbNs.collection("circle_members").limit(2000);
+    q.onSnapshot(apply, function () {});
+    try { q.get().then(apply).catch(function () {}); } catch (e) {}
+  }
+
   // ---------- boot ----------
   var OFFLINE = false;
   async function init() {
@@ -3163,6 +3316,7 @@
     dbNs.collection("likes").limit(2000).onSnapshot(function (snap) {
       allLikes = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});
+    if (selfId) circLoadDb();
     dbNs.collection("comments").orderBy("createdAt", "asc").limit(1000).onSnapshot(function (snap) {
       allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});

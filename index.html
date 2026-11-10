@@ -662,6 +662,25 @@
   .circ-note { font-size: 13px; color: var(--text-on-paper-dim); margin: 0 0 24px; }
   .circ-targets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 22px; }
   @media (max-width: 760px) { .circ-two, .circ-targets { grid-template-columns: 1fr; } }
+  /* Événements */
+  .ev-layout { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .ev-list { flex: 1 1 380px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .ev-form { flex: 1 1 340px; max-width: 480px; }
+  .ev-tabs { display: inline-flex; gap: 4px; background: #E9E4D6; border-radius: 999px; padding: 4px; margin: 0 0 20px; flex-wrap: wrap; }
+  .ev-tab { border: 0; background: transparent; color: var(--text-on-paper-dim); font: inherit; font-weight: 500; font-size: 14px; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
+  .ev-tab.on { background: #fff; color: var(--ink); font-weight: 600; }
+  .ev-card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .ev-top { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .ev-date { width: 68px; flex: none; border-radius: 12px; background: var(--ivory); text-align: center; padding: 8px 0; }
+  .ev-date b { display: block; font-size: 24px; color: var(--ink); line-height: 1.1; }
+  .ev-date span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #6B5320; font-weight: 600; }
+  .ev-main { flex: 1 1 200px; min-width: 0; }
+  .ev-main h3 { margin: 0 0 4px; font-size: 17px; }
+  .ev-main p { margin: 0; font-size: 14px; color: var(--text-on-paper-dim); }
+  .ev-org, .ev-parts { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
+  .ev-av { display: flex; } .ev-av .pc-avatar { width: 30px; height: 30px; margin-left: -8px; border: 2px solid #fff; font-size: 11px; } .ev-av .pc-avatar:first-child { margin-left: 0; }
+  .ev-foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 13px; }
+  .ev-link { background: none; border: 0; padding: 0; font: inherit; color: var(--text-on-paper-dim); text-decoration: underline; cursor: pointer; }
 </style>
 </head>
 <body class="public">
@@ -681,6 +700,7 @@
       <button class="navlink" data-view-target="network" style="position:relative"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M10.7 8.2L6.3 14.8M13.3 8.2l4.4 6.6M7.5 17h9"/></svg><span class="dot" id="netDot" style="display:none"></span><span class="i18n" data-fr="Réseau" data-de="Netzwerk" data-en="Network"></span></button>
       <button class="navlink" data-view-target="directory"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17.5 14.2c2.4.3 4 2 4 4.8"/></svg><span class="i18n" data-fr="Annuaire" data-de="Verzeichnis" data-en="Directory"></span></button>
       <button class="navlink" data-view-target="circles"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></span></button>
+      <button class="navlink" data-view-target="events"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span class="i18n" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></span></button>
       <button class="navlink" data-view-target="messages"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></span></button>
     </nav>
     <div class="nav-right">
@@ -1096,6 +1116,43 @@
           <select id="circPOpen" aria-label="Accès" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"><option value="open">🔓 Ouvert à tous les membres / Open</option><option value="approval">🔒 Sur validation / By approval</option></select>
           <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button>
           <span id="circPMsg" class="sub" style="margin-left:10px"></span>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- EVENTS -->
+  <section data-view="events">
+    <section class="signup">
+      <div class="wrap">
+        <h2 class="i18n" style="margin-top:0" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></h2>
+        <p class="i18n" style="max-width:70ch;margin:0 0 16px" data-fr="Retrouvez les rencontres de la communauté ou créez la vôtre : afterwork, atelier, conférence, session de mentorat." data-de="Finden Sie Treffen der Community oder erstellen Sie Ihr eigenes: Afterwork, Workshop, Konferenz, Mentoring-Session." data-en="Find community meetups or create your own: afterwork, workshop, talk, mentoring session."></p>
+        <p style="margin:0 0 20px"><button class="btn btn-primary" id="evCreateBtn"><span class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></span></button></p>
+        <div class="ev-tabs" role="tablist" id="evTabs">
+          <button class="ev-tab on" role="tab" data-tab="up"><span class="i18n" data-fr="À venir" data-de="Anstehend" data-en="Upcoming"></span></button>
+          <button class="ev-tab" role="tab" data-tab="mine"><span class="i18n" data-fr="Mes événements" data-de="Meine Veranstaltungen" data-en="My events"></span></button>
+          <button class="ev-tab" role="tab" data-tab="past"><span class="i18n" data-fr="Passés" data-de="Vergangen" data-en="Past"></span></button>
+        </div>
+        <div class="ev-layout">
+          <div class="ev-list" id="evList"></div>
+          <div class="circ-propose ev-form" id="evForm">
+            <h3 class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></h3>
+            <label for="evTitle" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Titre" data-de="Titel" data-en="Title"></span> <span aria-hidden="true">*</span></label>
+            <input id="evTitle" class="i18n-ph" type="text" maxlength="90" required data-fr="ex. Afterwork du réseau à Berlin" data-de="z. B. Afterwork des Netzwerks in Berlin" data-en="e.g. Network afterwork in Berlin"></input>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <div style="flex:1 1 150px"><label for="evDate" style="font-weight:600;font-size:14px">Date <span aria-hidden="true">*</span></label><input type="date" id="evDate" required></div>
+              <div style="flex:1 1 120px"><label for="evTime" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Heure" data-de="Uhrzeit" data-en="Time"></span></label><input type="time" id="evTime"></div>
+            </div>
+            <label for="evPlace" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Lieu ou lien en ligne" data-de="Ort oder Online-Link" data-en="Place or online link"></span> <span aria-hidden="true">*</span></label>
+            <input id="evPlace" class="i18n-ph" type="text" maxlength="140" required data-fr="Ville, adresse ou lien de visioconférence" data-de="Stadt, Adresse oder Videolink" data-en="City, address or video link"></input>
+            <label for="evCircle" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Circle concerné" data-de="Betroffener Circle" data-en="Related circle"></span></label>
+            <select id="evCircle" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"></select>
+            <label for="evDesc" style="font-weight:600;font-size:14px">Description</label>
+            <textarea id="evDesc" class="i18n-ph" rows="3" maxlength="600" data-fr="De quoi s'agit-il, pour qui, que faut-il prévoir ?" data-de="Worum geht es, für wen, was ist mitzubringen?" data-en="What is it, who is it for, what to bring?"></textarea>
+            <p class="circ-note" style="margin:6px 0 12px"><span class="i18n" data-fr="Les champs avec une étoile sont obligatoires. Votre nom et vos badges seront affichés comme organisateur. Événements gratuits uniquement pendant la bêta." data-de="Felder mit Stern sind Pflicht. Ihr Name und Ihre Badges werden als Veranstalter angezeigt. In der Beta nur kostenlose Veranstaltungen." data-en="Fields with a star are required. Your name and badges are shown as organiser. Free events only during the beta."></span></p>
+            <button class="btn btn-primary" id="evSubmit"><span class="i18n" data-fr="Publier l’événement" data-de="Veranstaltung veröffentlichen" data-en="Publish the event"></span></button>
+            <span id="evMsg" class="sub" style="margin-left:10px"></span>
+          </div>
         </div>
       </div>
     </section>
@@ -1867,6 +1924,7 @@
     if (name === "login") renderLogin();
     if (name === "network") renderNetwork();
     if (name === "circles") renderCircles();
+    if (name === "events") renderEvents();
     if (name === "notifications") renderNotifs();
     if (name === "signup") renderSignup();
     if (name === "settings") renderSettings();
@@ -2674,7 +2732,11 @@
       '<h3>' + escapeHtml(T("Devenir mentor", "Mentor:in werden", "Become a mentor")) + '</h3>' +
       '<p>' + escapeHtml(T("Partagez votre expertise et aidez d'autres talents à progresser.", "Teilen Sie Ihre Expertise und helfen Sie anderen Talenten weiterzukommen.", "Share your expertise and help other talents grow.")) + '</p>' +
       '<button class="btn btn-small" id="rcMentor">' + escapeHtml(T("Proposer du mentorat", "Mentoring anbieten", "Offer mentoring")) + ' →</button></div>';
-    el.innerHTML = disc + mentor;
+    var evc = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Événements", "Veranstaltungen", "Events")) + '</span>' +
+      '<p class="rc-empty">' + escapeHtml(T("Organisez une rencontre, un atelier ou un afterwork pour votre communauté.", "Organisieren Sie ein Treffen, einen Workshop oder einen Afterwork für Ihre Community.", "Organise a meetup, workshop or afterwork for your community.")) + '</p>' +
+      '<button class="btn btn-small" id="rcEvents">' + escapeHtml(T("Créer un événement", "Veranstaltung erstellen", "Create an event")) + ' →</button></div>';
+    el.innerHTML = disc + evc + mentor;
+    document.getElementById("rcEvents").addEventListener("click", function () { showView("events"); setTimeout(function () { var f = document.getElementById("evTitle"); if (f) f.focus(); }, 300); });
     document.getElementById("rcAll").addEventListener("click", function () { showView("directory"); });
     document.getElementById("rcMentor").addEventListener("click", function () { showView("form"); });
     el.querySelectorAll("[data-act=view]").forEach(function (b) {
@@ -3248,6 +3310,138 @@
     try { q.get().then(apply).catch(function () {}); } catch (e) {}
   }
 
+  // ---------- Événements ----------
+  var evList = [];        // événements
+  var evParts = [];       // participations : { id, eventId, userId, name, visible }
+  var evTab = "up";
+  var evShowPref = false; // case « Afficher ma participation » : décochée par défaut
+  function evToday() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function evMe() { return selfId || "local"; }
+  function evMyPart(id) { return evParts.filter(function (x) { return x.eventId === id && x.userId === evMe(); })[0]; }
+  function evRefreshCircles() {
+    var sel = document.getElementById("evCircle"); if (!sel) return;
+    var cur = sel.value;
+    sel.innerHTML = '<option value="">' + escapeHtml(T("Tous les membres", "Alle Mitglieder", "All members")) + '</option>' +
+      allCircles().map(function (c) { return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(typeof c.n === "string" ? c.n : (c.n[currentLang] || c.n.fr)) + '</option>'; }).join("");
+    sel.value = cur;
+  }
+  function renderEvents() {
+    var box = document.getElementById("evList"); if (!box) return;
+    evRefreshCircles();
+    var today = evToday(), me = evMe();
+    var shown = evList.filter(function (x) {
+      if (evTab === "up") return x.date >= today;
+      if (evTab === "past") return x.date < today;
+      return x.authorId === me || !!evMyPart(x.id);
+    }).sort(function (a, b) { return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
+    Array.prototype.forEach.call(document.querySelectorAll("#evTabs .ev-tab"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === evTab); });
+    if (!shown.length) {
+      box.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(T("Aucun événement pour le moment", "Noch keine Veranstaltungen", "No events yet")) + '</h3><p>' +
+        escapeHtml(T("Soyez la première personne à en créer un.", "Erstellen Sie die erste Veranstaltung.", "Be the first to create one.")) + '</p></div>';
+      return;
+    }
+    box.innerHTML = shown.map(function (x) {
+      var d = new Date(x.date + "T00:00:00");
+      var mon = isNaN(d) ? "" : d.toLocaleDateString(currentLang, { month: "short" });
+      var day = isNaN(d) ? "" : d.getDate();
+      var parts = evParts.filter(function (q) { return q.eventId === x.id; });
+      var vis = parts.filter(function (q) { return q.visible; });
+      var mine = evMyPart(x.id), isOrg = x.authorId === me;
+      var badges = (x.badges || []).map(badgeHtml).join(" ");
+      var n = parts.length;
+      var avatars = vis.slice(0, 5).map(function (q) { return avatarHtml("pc-avatar", q.name || "?", null); }).join("");
+      var orgList = isOrg && parts.length ? '<div class="ev-foot"><span>' + escapeHtml(T("Participants (visible pour vous seulement) : ", "Teilnehmende (nur für Sie sichtbar): ", "Participants (visible to you only): ") + parts.map(function (q) { return q.name || "?"; }).join(", ")) + '</span></div>' : "";
+      return '<article class="ev-card" data-id="' + escapeHtml(x.id) + '">' +
+        '<div class="ev-top"><div class="ev-date"><span>' + escapeHtml(mon) + '</span><b>' + escapeHtml(String(day)) + '</b></div>' +
+        '<div class="ev-main"><h3>' + escapeHtml(x.title) + '</h3><p>' + escapeHtml([x.time, x.place].filter(Boolean).join(" · ")) + '</p>' +
+        (x.circleName ? '<span class="circ-meta" style="background:var(--ivory);color:var(--ink);margin-top:6px">' + escapeHtml(x.circleName) + '</span>' : '') +
+        (x.description ? '<p style="margin-top:8px;color:inherit">' + escapeHtml(x.description) + '</p>' : '') + '</div>' +
+        '<button class="btn ' + (mine ? "btn-ghost" : "btn-primary") + ' btn-small" data-act="join" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(mine ? T("Je ne participe plus", "Nicht mehr dabei", "Cancel my attendance") : T("Je participe", "Ich nehme teil", "I'm attending")) + '</button></div>' +
+        '<div class="ev-org"><span>' + escapeHtml(T("Organisé par", "Veranstaltet von", "Organised by")) + '</span> <b>' + escapeHtml(x.authorName || "") + '</b> ' + badges + '</div>' +
+        '<div class="ev-parts"><div class="ev-av">' + avatars + '</div><span>' + n + ' ' + escapeHtml(T("participant" + (n > 1 ? "s" : ""), n === 1 ? "Teilnehmer:in" : "Teilnehmende", n === 1 ? "participant" : "participants")) + '</span>' +
+        '<label style="margin-left:auto;display:flex;gap:6px;align-items:center;font-size:13px"><input type="checkbox" data-act="show" data-id="' + escapeHtml(x.id) + '"' + ((mine ? mine.visible : evShowPref) ? " checked" : "") + '> ' + escapeHtml(T("Afficher ma participation", "Meine Teilnahme anzeigen", "Show my attendance")) + '</label></div>' +
+        orgList +
+        '<div class="ev-foot"><button class="ev-link" data-act="report" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Signaler cet événement", "Diese Veranstaltung melden", "Report this event")) + '</button>' +
+        (isOrg ? '<button class="ev-link" data-act="del" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') + '</div></article>';
+    }).join("");
+  }
+  function evSetPart(evId, on, visible) {
+    var me = evMe(), nm = (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member");
+    var key = evId + "_" + me;
+    evParts = evParts.filter(function (q) { return q.id !== key; });
+    if (on) evParts.push({ id: key, eventId: evId, userId: me, name: nm, visible: !!visible });
+    if (dbNs && selfId) {
+      var ref = dbNs.collection("event_participants").doc(key);
+      (on ? ref.set({ eventId: evId, userId: me, name: nm, visible: !!visible, createdAt: Date.now() }) : ref.delete()).catch(toastErr);
+    }
+    renderEvents();
+  }
+  (function () {
+    var list = document.getElementById("evList"); if (!list) return;
+    list.addEventListener("click", function (ev) {
+      var b = ev.target.closest("button[data-act]"); if (!b) return;
+      var id = b.getAttribute("data-id"), act = b.getAttribute("data-act");
+      var x = evList.filter(function (q) { return q.id === id; })[0]; if (!x) return;
+      if (act === "join") {
+        var cb = list.querySelector('input[data-act=show][data-id="' + id + '"]');
+        evSetPart(id, !evMyPart(id), cb ? cb.checked : evShowPref);
+      }
+      if (act === "report") { if (typeof openReport === "function" && dbNs) openReport("event", id, x.title, x.description || ""); else alert(T("Disponible dans la version complète.", "In der Vollversion verfügbar.", "Available in the full version.")); }
+      if (act === "del") {
+        evList = evList.filter(function (q) { return q.id !== id; });
+        if (dbNs && selfId) dbNs.collection("events").doc(id).delete().catch(toastErr);
+        renderEvents();
+      }
+    });
+    list.addEventListener("change", function (ev) {
+      var c = ev.target.closest("input[data-act=show]"); if (!c) return;
+      var id = c.getAttribute("data-id"); evShowPref = c.checked;
+      if (evMyPart(id)) evSetPart(id, true, c.checked);
+    });
+    document.getElementById("evTabs").addEventListener("click", function (ev) {
+      var b = ev.target.closest("button[data-tab]"); if (!b) return;
+      evTab = b.getAttribute("data-tab"); renderEvents();
+    });
+    document.getElementById("evCreateBtn").addEventListener("click", function () {
+      var f = document.getElementById("evForm"); if (f) f.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(function () { var t0 = document.getElementById("evTitle"); if (t0) t0.focus(); }, 400);
+    });
+    document.getElementById("evSubmit").addEventListener("click", function () {
+      var title = document.getElementById("evTitle").value.trim(), date = document.getElementById("evDate").value,
+        place = document.getElementById("evPlace").value.trim(), msg = document.getElementById("evMsg");
+      if (!title || !date || !place) { msg.textContent = T("Titre, date et lieu sont obligatoires.", "Titel, Datum und Ort sind Pflicht.", "Title, date and place are required."); return; }
+      var cs = document.getElementById("evCircle"), cid = cs.value;
+      var cObj = allCircles().filter(function (c) { return c.id === cid; })[0];
+      var doc = {
+        title: title, date: date, time: document.getElementById("evTime").value, place: place,
+        circleId: cid, circleName: cObj ? (typeof cObj.n === "string" ? cObj.n : (cObj.n[currentLang] || cObj.n.fr)) : "",
+        description: document.getElementById("evDesc").value.trim(),
+        authorId: evMe(), authorName: (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member"),
+        badges: ((typeof lastProfileData !== "undefined" && lastProfileData && lastProfileData.badges) || []).slice(0, 4), createdAt: Date.now()
+      };
+      function done() {
+        ["evTitle", "evDate", "evTime", "evPlace", "evDesc"].forEach(function (k) { document.getElementById(k).value = ""; });
+        msg.textContent = T("Événement publié.", "Veranstaltung veröffentlicht.", "Event published.");
+        evTab = "up"; renderEvents();
+      }
+      if (!dbNs || !selfId) { doc.id = "local-" + Date.now(); evList.push(doc); done(); return; }
+      dbNs.collection("events").add(doc).then(function () { done(); }).catch(toastErr);
+    });
+  })();
+  function evLoadDb() {
+    function applyEv(snap) {
+      evList = snap.docs.map(function (d) { var x = d.data(); if (!x) return null; x = Object.assign({}, x); x.id = d.id; return x; }).filter(function (x) { return x && x.title && x.date; });
+      renderEvents();
+    }
+    function applyPt(snap) {
+      evParts = snap.docs.map(function (d) { var x = d.data(); if (!x) return null; x = Object.assign({}, x); x.id = d.id; return x; }).filter(Boolean);
+      renderEvents();
+    }
+    var qe = dbNs.collection("events").limit(300), qp = dbNs.collection("event_participants").limit(3000);
+    qe.onSnapshot(applyEv, function () {}); qp.onSnapshot(applyPt, function () {});
+    try { qe.get().then(applyEv).catch(function () {}); qp.get().then(applyPt).catch(function () {}); } catch (e) { }
+  }
+
   // ---------- boot ----------
   var OFFLINE = false;
   async function init() {
@@ -3345,6 +3539,7 @@
       allLikes = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});
     if (selfId) circLoadDb();
+    if (selfId) evLoadDb();
     dbNs.collection("comments").orderBy("createdAt", "asc").limit(1000).onSnapshot(function (snap) {
       allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});

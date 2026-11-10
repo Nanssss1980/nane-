@@ -1090,10 +1090,11 @@
         <p class="circ-note" id="circNote"></p>
         <div class="circ-propose" id="circPropose">
           <h3 class="i18n" data-fr="Créer votre espace d’échange" data-de="Schaffen Sie Ihren Austauschraum" data-en="Create your own space"></h3>
-          <p class="i18n" data-fr="Envoyez une idée aux administratrices. Elles la valident avant qu’elle n’apparaisse." data-de="Senden Sie eine Idee an die Administratorinnen. Sie prüfen sie, bevor sie erscheint." data-en="Send an idea to the admins. They approve it before it appears."></p>
+          <p class="i18n" data-fr="Donnez-lui un nom et une description. Votre circle apparaît tout de suite et vous en êtes l’animateur·rice." data-de="Geben Sie ihm einen Namen und eine Beschreibung. Ihr Circle erscheint sofort, und Sie leiten ihn." data-en="Give it a name and a description. Your circle appears right away and you run it."></p>
           <input type="text" id="circPName" maxlength="60" class="i18n-ph" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
           <textarea id="circPDesc" rows="2" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ?" data-de="Wofür ist dieser Circle?" data-en="What is this circle for?"></textarea>
-          <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Envoyer" data-de="Senden" data-en="Send"></span></button>
+          <select id="circPOpen" aria-label="Accès" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"><option value="open">🔓 Ouvert à tous les membres / Open</option><option value="approval">🔒 Sur validation / By approval</option></select>
+          <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button>
           <span id="circPMsg" class="sub" style="margin-left:10px"></span>
         </div>
       </div>
@@ -3139,7 +3140,12 @@
   }
 
   // ---------- Circles ----------
-  var CIRCLES = [{"id": "art", "e": "🎨", "c": "#2E6F8E", "o": false, "n": {"fr": "Art Lovers", "de": "Art Lovers", "en": "Art Lovers"}, "d": {"fr": "Galeries, musées, ateliers", "de": "Galerien, Museen, Ateliers", "en": "Galleries, museums, studios"}}, {"id": "bbb", "e": "🌍", "c": "#3B4A7A", "o": true, "n": {"fr": "BBB · Belong Beyond Borders", "de": "BBB · Belong Beyond Borders", "en": "BBB · Belong Beyond Borders"}, "d": {"fr": "Culture, coworking et loisirs partagés", "de": "Kultur, Coworking und gemeinsame Hobbys", "en": "Culture, co-working and shared hobbies"}}, {"id": "berlin", "e": "🐻", "c": "#B88A2E", "o": false, "n": {"fr": "Berlin Events", "de": "Berlin Events", "en": "Berlin Events"}, "d": {"fr": "Festivals, concerts, vie en ville", "de": "Festivals, Konzerte, Stadtleben", "en": "Festivals, concerts, city life"}}, {"id": "books", "e": "📚", "c": "#A8522A", "o": false, "n": {"fr": "Book Lovers", "de": "Book Lovers", "en": "Book Lovers"}, "d": {"fr": "Cercles de lecture et rencontres avec des auteur·e·s", "de": "Lesekreise und Autorengespräche", "en": "Reading circles and author talks"}}, {"id": "cowork", "e": "💻", "c": "#C1582B", "o": false, "n": {"fr": "Co-working & Networking", "de": "Co-working & Networking", "en": "Co-working & Networking"}, "d": {"fr": "Travailler côte à côte, rencontrer des professionnel·le·s", "de": "Nebeneinander arbeiten, Fachleute treffen", "en": "Work side by side, meet professionals"}}, {"id": "karaoke", "e": "🎤", "c": "#8E3B8A", "o": false, "n": {"fr": "Karaoke", "de": "Karaoke", "en": "Karaoke"}, "d": {"fr": "Chanter faux, ensemble", "de": "Gemeinsam schlecht singen", "en": "Sing badly, together"}}, {"id": "sports", "e": "⚽", "c": "#2F5D56", "o": false, "n": {"fr": "Sports Events", "de": "Sports Events", "en": "Sports Events"}, "d": {"fr": "Courir, jouer, regarder", "de": "Laufen, spielen, zuschauen", "en": "Run, play, watch"}}, {"id": "women", "e": "✊", "c": "#B8607A", "o": false, "n": {"fr": "Women Events", "de": "Women Events", "en": "Women Events"}, "d": {"fr": "Rencontres pour les femmes", "de": "Treffen für Frauen", "en": "Gatherings for women"}}, {"id": "career", "e": "💼", "c": "#21184B", "o": true, "n": {"fr": "Carrière & emploi", "de": "Karriere & Jobs", "en": "Career & jobs"}, "d": {"fr": "Offres, conseils, retours d’expérience", "de": "Stellen, Tipps, Erfahrungsberichte", "en": "Openings, advice, shared experience"}}, {"id": "founders", "e": "🚀", "c": "#4A3A8C", "o": true, "n": {"fr": "Entrepreneuriat", "de": "Gründen", "en": "Entrepreneurship"}, "d": {"fr": "Lancer, financer, développer son activité", "de": "Gründen, finanzieren, wachsen", "en": "Start, fund and grow your business"}}, {"id": "mentoring", "e": "🎓", "c": "#2B6B5E", "o": false, "n": {"fr": "Mentorat & cours", "de": "Mentoring & Kurse", "en": "Mentoring & classes"}, "d": {"fr": "Espace pour mentors, enseignant·e·s et leurs élèves", "de": "Raum für Mentor:innen, Lehrkräfte und ihre Lernenden", "en": "Space for mentors, teachers and their students"}}];
+  var CIRCLES = [{"id": "example-mentoring", "ex": true, "e": "🎓", "c": "#2B6B5E", "o": false, "n": {"fr": "Mentorat & cours", "de": "Mentoring & Kurse", "en": "Mentoring & classes"}, "d": {"fr": "Exemple : un·e enseignant·e ou mentor·e réunit ses élèves ici, au lieu d’un groupe WhatsApp.", "de": "Beispiel: Eine Lehrkraft oder ein:e Mentor:in versammelt hier die Lernenden, statt einer WhatsApp-Gruppe.", "en": "Example: a teacher or mentor brings their students together here, instead of a WhatsApp group."}}];  // un seul circle d’exemple : les membres créent les leurs
+  var userCircles = [];  // circles créés par les membres
+  var CIRC_COLORS = ["#2E6F8E","#3B4A7A","#A8522A","#8E3B8A","#2F5D56","#B8607A","#4A3A8C","#21184B"];
+  function allCircles() { return CIRCLES.concat(userCircles); }
+  function cTitle(c) { return (c.e ? c.e + " " : "") + escapeHtml(typeof c.n === "string" ? c.n : (c.n[currentLang] || c.n.fr)); }
+  function cDesc(c) { return typeof c.d === "string" ? c.d : (c.d[currentLang] || c.d.fr); }
   var circMem = {};     // circleId -> { status: "member"|"pending", notif: "all"|"digest"|"mute" }
   var circCounts = {};  // circleId -> number of members
   var circDbReady = false;
@@ -3150,9 +3156,9 @@
   }
   function renderCircles() {
     var grid = document.getElementById("circGrid"); if (!grid) return;
-    grid.innerHTML = CIRCLES.map(function (c) {
+    grid.innerHTML = allCircles().map(function (c) {
       var m = circMem[c.id], n = circCounts[c.id] || 0;
-      var meta = (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
+      var meta = (c.ex ? T("Exemple", "Beispiel", "Example") + " · " : "") + (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
         ((circDbReady || !OFFLINE) ? " · " + n + " " + T("membre" + (n > 1 ? "s" : ""), n > 1 ? "Mitglieder" : "Mitglied", n > 1 ? "members" : "member") : "");
       var act;
       if (m && m.status === "member") {
@@ -3164,11 +3170,11 @@
       } else {
         act = '<div class="circ-row"><button class="circ-btn" data-act="join" data-id="' + c.id + '">' + escapeHtml(c.o ? T("Rejoindre", "Beitreten", "Join") : T("Demander à rejoindre", "Beitritt anfragen", "Request to join")) + '</button></div>';
       }
-      return '<div class="circ-card" style="background:' + c.c + '"><h3>' + c.e + ' ' + escapeHtml(c.n[currentLang] || c.n.fr) + '</h3>' +
-        '<p>' + escapeHtml(c.d[currentLang] || c.d.fr) + '</p><span class="circ-meta">' + (c.o ? "🔓" : "🔒") + ' ' + escapeHtml(meta) + '</span>' + act + '</div>';
+      return '<div class="circ-card" style="background:' + c.c + '"><h3>' + cTitle(c) + '</h3>' +
+        '<p>' + escapeHtml(cDesc(c)) + (c.by ? '<br><small>' + escapeHtml(T("Créé par ", "Erstellt von ", "Created by ") + c.by) + '</small>' : '') + '</p><span class="circ-meta">' + (c.o ? "🔓" : "🔒") + ' ' + escapeHtml(meta) + '</span>' + act + '</div>';
     }).join("");
     var note = document.getElementById("circNote");
-    if (note) note.textContent = T("Prototype : les préférences de notification sont enregistrées, mais les notifications ne sont pas encore envoyées. Les circles sur validation sont acceptés par les fondatrices.", "Prototyp: Benachrichtigungseinstellungen werden gespeichert, Benachrichtigungen werden aber noch nicht versendet. Circles mit Freigabe werden von den Gründerinnen bestätigt.", "Prototype: notification preferences are saved, but notifications are not sent yet. Approval-only circles are accepted by the founders.");
+    if (note) note.textContent = T("Prototype : les préférences de notification sont enregistrées, mais les notifications ne sont pas encore envoyées. Dans un circle sur validation, la personne qui l’a créé accepte les demandes (pas encore actif ici).", "Prototyp: Benachrichtigungseinstellungen werden gespeichert, Benachrichtigungen aber noch nicht versendet. In einem Circle mit Freigabe bestätigt die Person, die ihn erstellt hat, die Anfragen (hier noch nicht aktiv).", "Prototype: notification preferences are saved, but notifications are not sent yet. In an approval-only circle, the person who created it accepts requests (not active here yet).");
   }
   function circSave(id, data) {
     // Hors ligne (site public) : mémoire seulement. Dans l'application : base de données partagée.
@@ -3184,8 +3190,8 @@
     grid.addEventListener("click", function (ev) {
       var b = ev.target.closest("button[data-act]"); if (!b) return;
       var id = b.getAttribute("data-id"), act = b.getAttribute("data-act");
-      var c = CIRCLES.filter(function (x) { return x.id === id; })[0]; if (!c) return;
-      if (act === "join") circSave(id, { status: (c.o || (typeof isAdmin === "function" && isAdmin())) ? "member" : "pending", notif: "digest" });
+      var c = allCircles().filter(function (x) { return x.id === id; })[0]; if (!c) return;
+      if (act === "join") circSave(id, { status: (c.o || (typeof isAdmin === "function" && isAdmin()) || (selfId && c.authorId === selfId)) ? "member" : "pending", notif: "digest" });
       if (act === "leave") circSave(id, null);
     });
     grid.addEventListener("change", function (ev) {
@@ -3195,11 +3201,19 @@
     });
     document.getElementById("circPBtn").addEventListener("click", function () {
       var n = document.getElementById("circPName").value.trim(), d = document.getElementById("circPDesc").value.trim();
-      var msg = document.getElementById("circPMsg"); if (!n) return;
-      if (!dbNs || !selfId) { msg.textContent = T("Disponible dans la version complète.", "In der Vollversion verfügbar.", "Available in the full version."); return; }
-      dbNs.collection("circle_proposals").add({ name: n, description: d, authorId: selfId, authorName: myName(), createdAt: Date.now() }).then(function () {
-        msg.textContent = T("Merci ! Votre idée a été envoyée.", "Danke! Ihre Idee wurde gesendet.", "Thanks! Your idea was sent.");
-        document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = "";
+      var open = document.getElementById("circPOpen").value === "open";
+      var msg = document.getElementById("circPMsg"); if (!n) { msg.textContent = T("Donnez un nom à votre circle.", "Geben Sie Ihrem Circle einen Namen.", "Give your circle a name."); return; }
+      var color = CIRC_COLORS[userCircles.length % CIRC_COLORS.length];
+      function done() { document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = ""; msg.textContent = T("Votre circle est créé.", "Ihr Circle wurde erstellt.", "Your circle is created."); }
+      if (!dbNs || !selfId) {
+        // Hors ligne (site public) : le circle n'existe que dans cette page
+        var id = "local-" + Date.now();
+        userCircles.push({ id: id, c: color, o: open, n: n, d: d, by: T("vous", "Ihnen", "you"), authorId: "" });
+        circMem[id] = { status: "member", notif: "all" }; circCounts[id] = 1; circDbReady = true;
+        renderCircles(); done(); return;
+      }
+      dbNs.collection("circles").add({ name: n, description: d, open: open, color: color, authorId: selfId, authorName: myName(), createdAt: Date.now() }).then(function (ref) {
+        circSave(ref.id, { status: "member", notif: "all" }); done();
       }).catch(toastErr);
     });
     var cb = document.getElementById("circCreateBtn");
@@ -3219,6 +3233,16 @@
       });
       circCounts = counts; circMem = mine; circDbReady = true; renderCircles();
     }
+    function applyCircles(snap) {
+      userCircles = snap.docs.map(function (d) {
+        var x = d.data(); if (!x) return null; x = Object.assign({}, x);
+        return { id: d.id, c: x.color || "#21184B", o: !!x.open, n: x.name || "", d: x.description || "", by: x.authorName || "", authorId: x.authorId || "", createdAt: x.createdAt || 0 };
+      }).filter(function (x) { return x && x.n; }).sort(function (a, b) { return a.createdAt - b.createdAt; });
+      renderCircles();
+    }
+    var qc = dbNs.collection("circles").limit(300);
+    qc.onSnapshot(applyCircles, function () {});
+    try { qc.get().then(applyCircles).catch(function () {}); } catch (e) {}
     var q = dbNs.collection("circle_members").limit(2000);
     q.onSnapshot(apply, function () {});
     try { q.get().then(apply).catch(function () {}); } catch (e) {}

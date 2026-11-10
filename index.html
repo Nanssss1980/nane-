@@ -639,6 +639,7 @@
     nav.links button.navlink { white-space: nowrap; flex: none; }
   }
   /* Circles */
+  .circ-one { max-width: 760px; margin: 0 0 28px; }
   .circ-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 0 0 28px; }
   .circ-box { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
   .circ-box h3 { margin: 0 0 8px; font-size: 18px; }
@@ -1082,15 +1083,13 @@
     <section class="signup">
       <div class="wrap">
         <h2 class="i18n" style="margin-top:0" data-fr="Circles" data-de="Circles" data-en="Circles"></h2>
-        <p class="i18n" style="max-width:70ch;margin:0 0 24px" data-fr="Des espaces de discussion par thématique. Vous rejoignez ceux qui vous intéressent, vous choisissez quand être notifié·e, et vous partez quand le sujet ne vous concerne plus." data-de="Themenbezogene Gesprächsräume. Sie treten denen bei, die Sie interessieren, bestimmen, wann Sie benachrichtigt werden, und verlassen sie, wenn das Thema nicht mehr passt." data-en="Discussion spaces by topic. Join the ones that matter to you, choose when you get notified, and leave when the topic no longer fits."></p>
-        <div class="circ-two">
-          <div class="circ-box"><h3 class="i18n" data-fr="Le problème" data-de="Das Problem" data-en="The problem"></h3><p class="i18n" data-fr="Les communautés vivent dans de grands groupes WhatsApp, avec des centaines de membres et des sous-groupes. Les notifications arrivent à toute heure, les échanges se noient, et beaucoup finissent par archiver les groupes pour souffler. Vie privée et vie professionnelle se mélangent sur le même téléphone." data-de="Communities leben in großen WhatsApp-Gruppen mit Hunderten Mitgliedern und Untergruppen. Benachrichtigungen kommen zu jeder Uhrzeit, Beiträge gehen unter, und viele archivieren die Gruppen, um Ruhe zu haben. Privatleben und Beruf vermischen sich auf demselben Handy." data-en="Communities live in large WhatsApp groups with hundreds of members and sub-groups. Notifications arrive at all hours, conversations get lost, and many people end up archiving the groups to get some peace. Private and professional life blur on the same phone."></p></div>
-          <div class="circ-box sol"><h3 class="i18n" data-fr="Notre solution" data-de="Unsere Lösung" data-en="Our solution"></h3><p class="i18n" data-fr="Un circle par thématique, dans un espace professionnel séparé. Vous réglez les notifications circle par circle (toutes, résumé quotidien ou silence), vous quittez en un clic, et personne n’a besoin de votre numéro de téléphone." data-de="Ein Circle pro Thema, in einem getrennten beruflichen Raum. Sie stellen Benachrichtigungen pro Circle ein (alle, Tageszusammenfassung oder stumm), verlassen ihn mit einem Klick, und niemand braucht Ihre Telefonnummer." data-en="One circle per topic, in a separate professional space. You set notifications circle by circle (all, daily digest or silent), leave in one click, and nobody needs your phone number."></p></div>
-        </div>
+        <p class="i18n" style="max-width:70ch;margin:0 0 16px;font-size:20px" data-fr="Votre circle sur des thématiques qui vous engagent. Rejoignez votre circle ou créez votre espace d’échange !" data-de="Ihr Circle zu Themen, die Sie bewegen. Treten Sie Ihrem Circle bei oder schaffen Sie Ihren eigenen Austauschraum!" data-en="Your circle around the topics that matter to you. Join your circle or create your own space to talk!"></p>
+        <p style="margin:0 0 24px"><button class="btn btn-ghost i18n" id="circCreateBtn" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></button></p>
+        <div class="circ-box circ-one"><h3 class="i18n" data-fr="Des échanges qui restent simples et organisés" data-de="Austausch, der einfach und geordnet bleibt" data-en="Conversations that stay simple and organised"></h3><p class="i18n" data-fr="Les groupes WhatsApp rassemblent parfois des centaines de membres. Entre les notifications incessantes, les conversations qui se perdent et les multiples sous-groupes, il devient difficile de suivre les échanges et de séparer vie privée et vie professionnelle." data-de="WhatsApp-Gruppen versammeln manchmal Hunderte von Mitgliedern. Zwischen ständigen Benachrichtigungen, untergehenden Gesprächen und zahlreichen Untergruppen wird es schwer, den Überblick zu behalten und Privat- und Berufsleben zu trennen." data-en="WhatsApp groups sometimes gather hundreds of members. Between constant notifications, conversations that get lost and multiple sub-groups, it becomes hard to follow the discussion and to separate private and professional life."></p><p class="i18n" style="margin-top:10px" data-fr="Avec les Cercles NANE, chaque communauté dispose de son propre espace, organisé par thématique. Vous choisissez les notifications que vous souhaitez recevoir, pouvez mettre un cercle en sourdine ou le quitter à tout moment." data-de="Mit den NANE Circles hat jede Community ihren eigenen, nach Themen geordneten Raum. Sie wählen, welche Benachrichtigungen Sie erhalten, können einen Circle stummschalten oder jederzeit verlassen." data-en="With NANE Circles, each community has its own space, organised by topic. You choose which notifications you receive, and can mute a circle or leave it at any time."></p><p class="i18n" style="margin-top:10px;font-weight:600;color:var(--ink)" data-fr="Le tout dans un environnement professionnel, sans avoir à partager votre numéro de téléphone." data-de="Das Ganze in einem beruflichen Umfeld, ohne Ihre Telefonnummer teilen zu müssen." data-en="All in a professional environment, without having to share your phone number."></p></div>
         <div id="circGrid" class="circ-grid"></div>
         <p class="circ-note" id="circNote"></p>
-        <div class="circ-propose">
-          <h3 class="i18n" data-fr="Proposer un nouveau circle" data-de="Neuen Circle vorschlagen" data-en="Propose a new circle"></h3>
+        <div class="circ-propose" id="circPropose">
+          <h3 class="i18n" data-fr="Créer votre espace d’échange" data-de="Schaffen Sie Ihren Austauschraum" data-en="Create your own space"></h3>
           <p class="i18n" data-fr="Envoyez une idée aux administratrices. Elles la valident avant qu’elle n’apparaisse." data-de="Senden Sie eine Idee an die Administratorinnen. Sie prüfen sie, bevor sie erscheint." data-en="Send an idea to the admins. They approve it before it appears."></p>
           <input type="text" id="circPName" maxlength="60" class="i18n-ph" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
           <textarea id="circPDesc" rows="2" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ?" data-de="Wofür ist dieser Circle?" data-en="What is this circle for?"></textarea>
@@ -1805,7 +1804,9 @@
       var bw = vid.clientWidth, bh = vid.clientHeight;
       var frameH = Math.max(bh, bw * 9 / 16);          // hauteur de l'image apres recadrage "cover"
       var visible = bh / frameH;                       // part de la hauteur de l'image visible
-      var z = 1;   // v65 : plus de zoom, la constellation (66 % de la hauteur de l'image) reste entiere avec marge
+      // v76 : constellation agrandie. Elle occupe ~67 % de la hauteur de l'image ; on la porte a ~92 % de la hauteur visible, plafonne a x1.4
+      var shown = Math.min(bh, bw * 9 / 16);           // hauteur reelle de l'image affichee (mode "contain")
+      var z = Math.max(1, Math.min(1.4, (0.92 * bh) / (0.67 * shown)));
       vid.style.setProperty("--vz", z.toFixed(3));
     }
     window.addEventListener("resize", fitZoom);
@@ -3202,6 +3203,11 @@
         msg.textContent = T("Merci ! Votre idée a été envoyée.", "Danke! Ihre Idee wurde gesendet.", "Thanks! Your idea was sent.");
         document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = "";
       }).catch(toastErr);
+    });
+    var cb = document.getElementById("circCreateBtn");
+    if (cb) cb.addEventListener("click", function () {
+      var box = document.getElementById("circPropose"); if (box) box.scrollIntoView({ behavior: "smooth", block: "center" });
+      var inp = document.getElementById("circPName"); if (inp) setTimeout(function () { inp.focus(); }, 400);
     });
     renderCircles();
   })();

@@ -927,6 +927,18 @@
   .tk-form-box .evf-row { margin: 0 !important; }
   .tk-form-box .ev-optout { display: flex; font-weight: 400; }
   .tk-inline input[type=text] { width: auto; margin-top: 0; }
+  .evs-sub { padding-left: 34px !important; font-weight: 500 !important; font-size: 14px !important; }
+  .evs-city { width: calc(100% - 8px); box-sizing: border-box; margin: 0 4px 6px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); font: inherit; font-size: 14px; }
+  .evs-sech { font-size: 15px; font-weight: 700; margin: 18px 4px 6px; color: var(--ink); }
+  .evs-row { display: flex; gap: 10px; align-items: center; width: 100%; padding: 8px 6px; border: 0; border-radius: 12px; background: transparent; text-align: left; cursor: pointer; font: inherit; color: var(--ink); }
+  .evs-row:hover { background: var(--ivory); }
+  .evs-th { width: 56px; height: 56px; border-radius: 10px; flex: 0 0 auto; overflow: hidden; background: var(--ivory); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; line-height: 1.1; color: var(--ink); }
+  .evs-th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .evs-th b { font-size: 18px; }
+  .evs-rt { min-width: 0; font-size: 13px; }
+  .evs-rd { color: #B5482F; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+  .evs-rn { font-weight: 700; font-size: 14px; line-height: 1.25; display: block; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .evs-ro { color: #6b6785; font-size: 12px; }
 </style>
 </head>
 <body class="public">
@@ -1388,8 +1400,11 @@
           </nav>
           <button class="btn btn-primary evs-create" id="evCreateBtn">+ <span class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></span></button>
           <label class="ev-optout"><input type="checkbox" id="evNoInv"> <span class="i18n" data-fr="Ne plus recevoir d’invitations d’événements" data-de="Keine Veranstaltungs-Einladungen mehr erhalten" data-en="Stop receiving event invitations"></span></label>
+          <div id="evSideMine"></div><div id="evSideRec"></div>
           <h3 class="evs-cath"><span class="i18n" data-fr="Catégories" data-de="Kategorien" data-en="Categories"></span></h3>
           <nav class="evs-nav" id="evCats"></nav>
+          <h3 class="evs-cath"><span class="i18n" data-fr="Lieux" data-de="Orte" data-en="Places"></span></h3>
+          <nav class="evs-nav" id="evPlaces"></nav><datalist id="evCityList"></datalist>
         </aside>
         <div class="evs-main">
           <h2 class="evs-head" id="evHead"></h2>
@@ -1410,6 +1425,10 @@
               <div class="evf-row" id="evEndRow" hidden>
                 <div><label for="evEndDate"><span class="i18n" data-fr="Date de fin" data-de="Enddatum" data-en="End date"></span></label><input type="date" id="evEndDate"></div>
                 <div><label for="evEndTime"><span class="i18n" data-fr="Heure de fin" data-de="Endzeit" data-en="End time"></span></label><input type="time" id="evEndTime"></div>
+              </div>
+              <div class="evf-row">
+                <div><label for="evCountry"><span class="i18n" data-fr="Pays" data-de="Land" data-en="Country"></span> <span aria-hidden="true">*</span></label><select id="evCountry"><option value="France">France</option><option value="Allemagne" class="i18n" data-fr="Allemagne" data-de="Deutschland" data-en="Germany"></option><option value="Suisse" class="i18n" data-fr="Suisse" data-de="Schweiz" data-en="Switzerland"></option><option value="Belgique" class="i18n" data-fr="Belgique" data-de="Belgien" data-en="Belgium"></option><option value="Luxembourg" class="i18n" data-fr="Luxembourg" data-de="Luxemburg" data-en="Luxembourg"></option><option value="Autre" class="i18n" data-fr="Autre pays" data-de="Anderes Land" data-en="Other country"></option><option value="online" class="i18n" data-fr="En ligne" data-de="Online" data-en="Online"></option></select></div>
+                <div><label for="evCity"><span class="i18n" data-fr="Ville" data-de="Stadt" data-en="City"></span> <span aria-hidden="true">*</span></label><input type="text" id="evCity" list="evCityList" maxlength="60" placeholder="Lyon, Berlin, Genève…"></div>
               </div>
               <label for="evPlace"><span class="i18n" data-fr="Lieu ou lien en ligne" data-de="Ort oder Online-Link" data-en="Place or online link"></span> <span aria-hidden="true">*</span></label>
               <input id="evPlace" class="i18n-ph" type="text" maxlength="140" required data-fr="Ville, adresse ou lien de visioconférence" data-de="Stadt, Adresse oder Videolink" data-en="City, address or video link">
@@ -2298,6 +2317,7 @@
     if (!document.querySelector('section[data-view="' + v + '"]')) v = START_VIEW;
     showView(v, true);
   });
+  window.NANE_DEEP_EV = ((location.hash || "").match(/^#event=([^&]+)/) || [])[1] || "";
   var START_VIEW = (function () { var a = document.querySelector("section[data-view].active"); return a ? a.getAttribute("data-view") : "about"; })();
   curView = START_VIEW;
   try { history.replaceState({ nane: START_VIEW }, "", location.pathname + location.search + (START_VIEW === "about" ? "" : "#" + START_VIEW)); } catch (e) { }
@@ -3826,13 +3846,14 @@
   function evMyPart(id) { return evParts.filter(function (x) { return x.eventId === id && x.userId === evMe(); })[0]; }
   var EV_CATS = [["networking", "Networking & afterwork", "Networking & Afterwork", "Networking & afterwork"], ["atelier", "Atelier & formation", "Workshop & Weiterbildung", "Workshop & training"], ["conference", "Conférence & table ronde", "Konferenz & Podiumsdiskussion", "Conference & panel"], ["mentorat", "Mentorat & coaching", "Mentoring & Coaching", "Mentoring & coaching"], ["emploi", "Emploi & recrutement", "Jobs & Recruiting", "Jobs & recruiting"], ["entrepreneuriat", "Entrepreneuriat & business", "Gründung & Business", "Entrepreneurship & business"], ["culture", "Culture, art & musique", "Kultur, Kunst & Musik", "Culture, art & music"], ["gastro", "Gastronomie & food", "Gastronomie & Food", "Food & dining"], ["sport", "Sport & bien-être", "Sport & Wellness", "Sport & wellness"], ["webinaire", "Webinaire en ligne", "Online-Webinar", "Online webinar"], ["autre", "Autre", "Andere", "Other"]];
   function evCatLabel(k) { for (var i = 0; i < EV_CATS.length; i++) if (EV_CATS[i][0] === k) return T(EV_CATS[i][1], EV_CATS[i][2], EV_CATS[i][3]); return ""; }
-  var evCatF = "", evQ = "";
+  var evCatF = "", evQ = "", evGeoF = { c: "", city: "" }, evGeoOpen = "";
   function evFillCats() { var sel = document.getElementById("evCat"); if (!sel) return; var cur = sel.value || "networking"; sel.innerHTML = EV_CATS.map(function (c) { return '<option value="' + c[0] + '">' + escapeHtml(T(c[1], c[2], c[3])) + '</option>'; }).join(""); sel.value = cur; }
   function evPostDoc(x) { return { authorId: selfId, authorName: myName(), content: "", createdAt: Date.now(), event: { id: x.id, title: x.title, date: x.date, time: x.time || "", place: x.place || "", image: x.image || "", cat: x.cat || "" } }; }
 
   // ---------- Billetterie (simulation) ----------
   var evTickets = []; try { evTickets = JSON.parse(localStorage.getItem("nane_tk_demo") || "[]") || []; } catch (e) { evTickets = []; }
   var tkStep = {}, tkMsg = {};
+  function evLink(id) { return location.href.split("#")[0] + "#event=" + encodeURIComponent(id); }
   function tkSave() { try { localStorage.setItem("nane_tk_demo", JSON.stringify(evTickets)); } catch (e) { } }
   function eur(n) { try { return Number(n).toLocaleString(currentLang, { style: "currency", currency: "EUR" }); } catch (e) { return Number(n).toFixed(2) + " €"; } }
   function tkPaid(x) { return !!x && Number(x.price) > 0; }
@@ -3872,13 +3893,15 @@
     h += '<div class="tk-row"><span>' + escapeHtml(T("Prix du billet", "Ticketpreis", "Ticket price")) + '</span><b>' + escapeHtml(eur(x.price)) + '</b></div>' +
       '<div class="tk-row"><span>' + escapeHtml(T("Places restantes", "Verbleibende Plätze", "Places left")) + '</span><b>' + left + ' / ' + qty + '</b></div>' +
       '<div class="circ-note" style="margin:0">' + escapeHtml(tkPolicy(x)) + '</div>';
+    h += '<div class="tk-inline"><button class="btn btn-ghost btn-small" data-tk="copylink" data-id="' + id + '">🔗 ' + escapeHtml(T("Copier le lien de la billetterie", "Ticketlink kopieren", "Copy the ticket link")) + '</button><span class="circ-note" style="margin:0">' + escapeHtml(T("À coller dans vos posts : la personne arrive directement sur cet événement et peut acheter sans compte.", "In Ihre Posts einfügen: Die Person landet direkt bei dieser Veranstaltung und kann ohne Konto kaufen.", "Paste it in your posts: people land directly on this event and can buy without an account.")) + '</span></div>';
     if (tkMsg[x.id]) h += '<div class="tk-msg">' + escapeHtml(tkMsg[x.id]) + '</div>';
     mine.forEach(function (t) { h += tkTicketHtml(x, t); });
     var hasLive = mine.some(tkLive);
+    if (hasLive && !selfId) h += '<div class="tk-msg">' + escapeHtml(T("Pas encore membre ? Rejoignez gratuitement le réseau des talents afrodescendants.", "Noch kein Mitglied? Treten Sie kostenlos dem Netzwerk afrodeszendenter Talente bei.", "Not a member yet? Join the network of afrodescendant talents for free.")) + ' <button class="btn btn-primary btn-small" data-tk="joinnet" data-id="' + id + '">' + escapeHtml(T("Rejoindre NANE", "NANE beitreten", "Join NANE")) + '</button></div>';
     if (!x.cancelled && !hasLive) {
       if (left <= 0) h += '<div class="tk-msg">' + escapeHtml(T("Complet.", "Ausverkauft.", "Sold out.")) + '</div>';
       else if (tkStep[x.id] === "buy") {
-        h += '<div class="tk-form-box"><label for="tkName">' + escapeHtml(T("Nom sur le billet (nominatif)", "Name auf dem Ticket (namentlich)", "Name on the ticket (named)")) + '</label><input type="text" id="tkName" maxlength="60" value="' + escapeHtml((typeof myName === "function" && myName()) || "") + '">' +
+        h += '<div class="tk-form-box"><label for="tkName">' + escapeHtml(T("Nom sur le billet (nominatif)", "Name auf dem Ticket (namentlich)", "Name on the ticket (named)")) + '</label><input type="text" id="tkName" maxlength="60" value="' + escapeHtml((typeof myName === "function" && myName()) || "") + '"><label for="tkMail">' + escapeHtml(T("E-mail (pour recevoir le billet)", "E-Mail (zum Erhalt des Tickets)", "Email (to receive the ticket)")) + '</label><input type="text" id="tkMail" maxlength="120" inputmode="email" placeholder="nom@exemple.com"><div class="circ-note" style="margin:6px 0 0">' + escapeHtml(T("Pas besoin de compte NANE pour acheter.", "Für den Kauf ist kein NANE-Konto nötig.", "No NANE account needed to buy.")) + '</div>' +
           '<div class="tk-row" style="margin-top:10px"><span>' + escapeHtml(T("Total à payer", "Gesamtbetrag", "Total to pay")) + '</span><b>' + escapeHtml(eur(x.price)) + '</b></div></div>' +
           '<div class="tk-inline"><button class="btn btn-primary" data-tk="pay" data-id="' + id + '">' + escapeHtml(T("Payer ", "Bezahlen ", "Pay ") + eur(x.price) + T(" (simulation)", " (Simulation)", " (simulation)")) + '</button><button class="btn btn-ghost" data-tk="noop" data-id="' + id + '">' + escapeHtml(T("Retour", "Zurück", "Back")) + '</button></div>';
       } else h += '<div class="tk-inline"><button class="btn btn-primary" data-tk="buy" data-id="' + id + '">' + escapeHtml(T("Acheter un billet · ", "Ticket kaufen · ", "Buy a ticket · ") + eur(x.price)) + '</button></div>';
@@ -3902,14 +3925,17 @@
     var x = evList.filter(function (q) { return q.id === id; })[0]; if (!x) return;
     var me = evMe(), panel = ev.target.closest(".tk-panel");
     function val(sel) { var el = panel && panel.querySelector(sel); return el ? el.value.trim() : ""; }
+    if (act === "joinnet") { showView("signup"); return; }
+    if (act === "copylink") { var lk = evLink(id); try { navigator.clipboard.writeText(lk).catch(function () { }); } catch (e) { } tkMsg[id] = T("Lien copié : ", "Link kopiert: ", "Link copied: ") + lk; }
     if (act === "buy") { tkStep[id] = "buy"; tkMsg[id] = ""; }
     if (act === "noop") { tkStep[id] = ""; }
     if (act === "pay") {
       var nm = val("#tkName"); if (!nm) { tkMsg[id] = T("Indiquez le nom du billet.", "Bitte Namen für das Ticket angeben.", "Please enter the name for the ticket."); renderEvents(); return; }
       if (tkSold(id) >= Number(x.qty || 0)) { tkMsg[id] = T("Complet.", "Ausverkauft.", "Sold out."); tkStep[id] = ""; renderEvents(); return; }
-      evTickets.push({ id: "t" + Date.now(), eventId: id, name: nm, price: Number(x.price), fee: tkFee(x), code: tkCode(), status: "valid", buyer: me, at: Date.now() });
+      var ml = val("#tkMail"); if (!/^\S+@\S+\.\S+$/.test(ml)) { tkMsg[id] = T("Indiquez une adresse e-mail valide.", "Bitte gültige E-Mail-Adresse angeben.", "Please enter a valid email address."); renderEvents(); return; }
+      evTickets.push({ id: "t" + Date.now(), eventId: id, name: nm, email: ml, price: Number(x.price), fee: tkFee(x), code: tkCode(), status: "valid", buyer: me, at: Date.now() });
       tkSave(); tkStep[id] = "";
-      tkMsg[id] = T("Paiement simulé réussi. Votre billet nominatif est ci-dessous : présentez son QR code à l’entrée.", "Simulierte Zahlung erfolgreich. Ihr namentliches Ticket sehen Sie unten: Zeigen Sie den QR-Code am Eingang vor.", "Simulated payment successful. Your named ticket is below: show its QR code at the entrance.");
+      tkMsg[id] = T("Paiement simulé réussi. Le billet serait envoyé à " + ml + ". Il est aussi ci-dessous : présentez son QR code à l’entrée.", "Simulierte Zahlung erfolgreich. Das Ticket würde an " + ml + " gesendet. Es steht auch unten: Zeigen Sie den QR-Code am Eingang vor.", "Simulated payment successful. The ticket would be emailed to " + ml + ". It is also below: show its QR code at the entrance.");
       var m0 = evMyPart(id); if (!(m0 && m0.status !== "interested")) { evSetPart(id, true, evShowPref, "going"); return; }
     }
     if (act === "refund") {
@@ -4001,8 +4027,77 @@
       '<button class="evm-b evm-sh" data-act="share" data-id="' + escapeHtml(x.id) + '" title="' + escapeHtml(T("Copier le lien", "Link kopieren", "Copy link")) + '">↗</button></div>' +
       (going ? '<div class="evm-prof"><button class="evm-b" data-act="profshare" data-id="' + escapeHtml(x.id) + '"' + (evSharedMine[x.id] ? " disabled" : "") + '>' + escapeHtml(evSharedMine[x.id] ? T("Publié sur votre profil ✓", "In Ihrem Profil veröffentlicht ✓", "Shared on your profile ✓") : T("Partager sur mon profil", "In meinem Profil teilen", "Share on my profile")) + '</button></div>' : '') + '</article>';
   }
+
+  // Colonne de gauche : événements à venir, recommandés, lieux
+  var EV_CC = { DE: ["Berlin", "Munich", "Cologne", "Francfort", "Hambourg", "Düsseldorf", "Stuttgart", "Leipzig", "Dresde", "Hanovre", "Nuremberg", "Brême", "Mayence", "Aix-la-Chapelle", "Bonn"], CH: ["Zurich", "Genève", "Lausanne", "Bâle", "Berne", "Lucerne", "Saint-Gall", "Neuchâtel", "Fribourg", "Sion", "Winterthour", "Lugano"], BE: ["Bruxelles", "Anvers", "Gand", "Liège", "Namur"], LU: ["Luxembourg"], FR: ["Paris", "Lyon", "Marseille", "Strasbourg", "Lille", "Nice", "Bordeaux", "Toulouse", "Nantes", "Montpellier", "Rennes", "Grenoble", "Dijon", "Annecy"] };
+  var EV_CKEY = { FR: "France", DE: "Allemagne", CH: "Suisse", BE: "Belgique", LU: "Luxembourg" };
+  var EV_CORDER = ["France", "Allemagne", "Suisse", "Belgique", "Luxembourg", "Autre", "online"];
+  function evCityCountry(canon) { var k = cityKey(canon); for (var c in EV_CC) { if (EV_CC[c].some(function (n) { return cityKey(n) === k; })) return EV_CKEY[c]; } return ""; }
+  function evCountryLabel(k) { return k === "online" ? T("En ligne", "Online", "Online") : countryLabel(k); }
+  function evGeo(x) {
+    var p = (x.place || "").trim();
+    if (x.country === "online" || (!x.country && /^https?:|zoom|teams\.|meet\.|webinar|en ligne|online/i.test(p))) return { c: "online", city: "" };
+    var raw = (x.city || p.split(",")[0] || "").trim(), nm = cityNames(raw), canon = nm ? nm[0] : raw;
+    return { c: x.country || evCityCountry(canon) || "Autre", city: canon };
+  }
+  function evGeoMatch(x) {
+    if (!evGeoF.c && !evGeoF.city) return true;
+    var g = evGeo(x);
+    if (evGeoF.c && g.c !== evGeoF.c) return false;
+    return !evGeoF.city || cityKey(g.city) === cityKey(evGeoF.city);
+  }
+  function evGeoSet(c, city) { evGeoF = { c: c || "", city: city || "" }; if (c) evGeoOpen = c; evTab = "up"; evOpenId = ""; evCatF = ""; renderEvents(); }
+  function evRowHtml(x) {
+    var d = new Date(x.date + "T00:00:00"), ok = !isNaN(d);
+    var th = (typeof safeImg === "function" && safeImg(x.image)) ? '<img src="' + safeImg(x.image) + '" alt="">' : '<b>' + (ok ? d.getDate() : "") + '</b>' + (ok ? d.toLocaleDateString(currentLang, { month: "short" }) : "");
+    var ds = ok ? d.toLocaleDateString(currentLang, { weekday: "short", day: "numeric", month: "short" }) : "";
+    return '<button class="evs-row" data-open="' + escapeHtml(x.id) + '"><span class="evs-th">' + th + '</span><span class="evs-rt"><span class="evs-rd">' + escapeHtml(ds + (x.time ? " · " + x.time : "")) + '</span><span class="evs-rn">' + escapeHtml(x.title) + '</span><span class="evs-ro">' + escapeHtml(x.authorName || "") + '</span></span></button>';
+  }
+  function evSidebar(today, me) {
+    var up = evList.filter(function (x) { return x.date >= today && !x.cancelled; });
+    var mine = up.filter(function (x) { return x.authorId === me || !!evMyPart(x.id); }).sort(function (a, b) { return a.date < b.date ? -1 : 1; }).slice(0, 3);
+    var rec = up.filter(function (x) { return mine.indexOf(x) < 0; }).sort(function (a, b) { return evScore(b) - evScore(a); }).slice(0, 4);
+    var m = document.getElementById("evSideMine"), r = document.getElementById("evSideRec");
+    if (m) m.innerHTML = mine.length ? '<h3 class="evs-sech">' + escapeHtml(T("Vos événements à venir", "Ihre kommenden Veranstaltungen", "Your upcoming events")) + '</h3>' + mine.map(evRowHtml).join("") : "";
+    if (r) r.innerHTML = rec.length ? '<h3 class="evs-sech">' + escapeHtml(T("Événements recommandés", "Empfohlene Veranstaltungen", "Recommended events")) + '</h3>' + rec.map(evRowHtml).join("") : "";
+    var tree = {};
+    up.forEach(function (x) { var g = evGeo(x); var t = tree[g.c] || (tree[g.c] = { n: 0, cities: {} }); t.n++; if (g.city) { var ct = t.cities[g.city] || (t.cities[g.city] = 0); t.cities[g.city] = ct + 1; } });
+    var pb = document.getElementById("evPlaces"), html = "";
+    EV_CORDER.forEach(function (c) {
+      var t = tree[c]; if (!t) return;
+      var open = evGeoOpen === c || evGeoF.c === c;
+      html += '<button class="evs-item' + (evGeoF.c === c && !evGeoF.city ? " on" : "") + '" data-gc="' + escapeHtml(c) + '"><span class="evs-ic">' + (c === "online" ? "💻" : "🌍") + '</span>' + escapeHtml(evCountryLabel(c)) + ' <small style="margin-left:auto;opacity:.6">' + t.n + '</small></button>';
+      if (open && c !== "online") Object.keys(t.cities).sort(function (a, b) { return t.cities[b] - t.cities[a]; }).forEach(function (ct) {
+        html += '<button class="evs-item evs-sub' + (cityKey(evGeoF.city) === cityKey(ct) && evGeoF.c === c ? " on" : "") + '" data-gc="' + escapeHtml(c) + '" data-gcity="' + escapeHtml(ct) + '">📍 ' + escapeHtml(cityLabel(ct)) + ' <small style="margin-left:auto;opacity:.6">' + t.cities[ct] + '</small></button>';
+      });
+    });
+    if (pb) {
+      pb.innerHTML = '<input type="search" id="evCitySearch" class="evs-city" list="evCityList" placeholder="' + escapeHtml(T("Chercher une ville, ex. Lyon", "Stadt suchen, z. B. Lyon", "Search a city, e.g. Lyon")) + '" value="' + escapeHtml(evGeoF.city && !evGeoF.c ? evGeoF.city : "") + '">' + (html || '<div class="circ-note" style="margin:0 8px">' + escapeHtml(T("Aucun lieu pour le moment.", "Noch keine Orte.", "No places yet.")) + '</div>') +
+        ((evGeoF.c || evGeoF.city) ? '<button class="evs-item" data-gclear="1"><span class="evs-ic">✕</span>' + escapeHtml(T("Tous les lieux", "Alle Orte", "All places")) + '</button>' : "");
+      if (!pb.getAttribute("data-bound")) {
+        pb.setAttribute("data-bound", "1");
+        pb.addEventListener("click", function (e) {
+          if (e.target.closest("[data-gclear]")) { evGeoSet("", ""); return; }
+          var c = e.target.closest("[data-gc]"); if (!c) return;
+          var k = c.getAttribute("data-gc"), ct = c.getAttribute("data-gcity") || "";
+          if (!ct && evGeoF.c === k && !evGeoF.city) { evGeoSet("", ""); return; }
+          evGeoSet(k, ct);
+        });
+        pb.addEventListener("change", function (e) {
+          if (e.target.id !== "evCitySearch") return;
+          var v = e.target.value.trim(); if (!v) { evGeoSet("", ""); return; }
+          var nm = cityNames(v), canon = nm ? nm[0] : v; evGeoSet("", canon);
+        });
+      }
+    }
+    ["evSideMine", "evSideRec"].forEach(function (id) {
+      var el = document.getElementById(id); if (!el || el.getAttribute("data-bound")) return; el.setAttribute("data-bound", "1");
+      el.addEventListener("click", function (e) { var c = e.target.closest("[data-open]"); if (c) { evOpenId = c.getAttribute("data-open"); renderEvents(); window.scrollTo(0, 0); } });
+    });
+  }
   function renderEvents() {
     var box = document.getElementById("evList"); if (!box) return;
+    if (window.NANE_DEEP_EV && evList.some(function (q) { return q.id === window.NANE_DEEP_EV; })) { evOpenId = window.NANE_DEEP_EV; window.NANE_DEEP_EV = ""; evTab = "up"; evCatF = ""; if (curView !== "events") { showView("events"); return; } }
     evRefreshCircles();
     var today = evToday(), me = evMe();
     var shown = evList.filter(function (x) {
@@ -4010,10 +4105,12 @@
       if (evTab === "past") return x.date < today;
       if (evTab === "inv") return x.date >= today && evInvites.some(function (q) { return q.eventId === x.id && q.toId === me; });
       return x.authorId === me || !!evMyPart(x.id);
-    }).filter(function (x) { return !evCatF || x.cat === evCatF; }).filter(function (x) { var q = evQ.toLowerCase().trim(); return !q || [x.title, x.place, x.description, x.authorName].join(" ").toLowerCase().indexOf(q) >= 0; }).sort(function (a, b) { if (evTab === "up") return evScore(b) - evScore(a); return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
+    }).filter(function (x) { return !evCatF || x.cat === evCatF; }).filter(evGeoMatch).filter(function (x) { var q = evQ.toLowerCase().trim(); return !q || [x.title, x.place, x.description, x.authorName].join(" ").toLowerCase().indexOf(q) >= 0; }).sort(function (a, b) { if (evTab === "up") return evScore(b) - evScore(a); return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
     var cb = document.getElementById("evCats"), EVI = {"networking": "🤝", "atelier": "🛠", "conference": "🎤", "mentorat": "🎓", "emploi": "💼", "entrepreneuriat": "🚀", "culture": "🎶", "gastro": "🍽", "sport": "🏃", "webinaire": "💻", "autre": "✨"};
     if (cb && !cb.getAttribute("data-bound")) { cb.setAttribute("data-bound", "1"); cb.addEventListener("click", function (e) { var c = e.target.closest("[data-c]"); if (c) { evCatF = (evCatF === c.getAttribute("data-c") ? "" : c.getAttribute("data-c")); evTab = "up"; evOpenId = ""; renderEvents(); } }); }
     if (cb) cb.innerHTML = EV_CATS.map(function (c) { return '<button class="evs-item' + (evCatF === c[0] ? " on" : "") + '" data-c="' + c[0] + '"><span class="evs-ic">' + EVI[c[0]] + '</span>' + escapeHtml(T(c[1], c[2], c[3])) + '</button>'; }).join("");
+    evSidebar(today, me);
+    var dl = document.getElementById("evCityList"); if (dl && !dl.children.length) dl.innerHTML = CITY_NAMES.map(function (c) { return '<option value="' + escapeHtml(c[currentLang === "de" ? 1 : currentLang === "en" ? 2 : 0]) + '">'; }).join("");
     var hd = document.getElementById("evHead");
     if (hd) hd.textContent = evCatF ? evCatLabel(evCatF) : ({ up: T("Découvrir des événements", "Veranstaltungen entdecken", "Discover events"), mine: T("Mes événements", "Meine Veranstaltungen", "My events"), inv: T("Invitations", "Einladungen", "Invitations"), past: T("Événements passés", "Vergangene Veranstaltungen", "Past events") })[evTab];
     var ni = evInvites.filter(function (q) { return q.toId === me; }).length, tb = document.getElementById("evTabInv");
@@ -4021,7 +4118,7 @@
     var ck = document.getElementById("evNoInv"); if (ck) ck.checked = !!(evPrefs[me] && evPrefs[me].noInvites);
     Array.prototype.forEach.call(document.querySelectorAll("#evTabs .evs-item"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === evTab && !evCatF); });
     if (!shown.length) {
-      box.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(T("Aucun événement pour le moment", "Noch keine Veranstaltungen", "No events yet")) + '</h3><p>' +
+      box.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(evGeoF.city ? T("Aucun événement à " + cityLabel(evGeoF.city) + " pour le moment", "Noch keine Veranstaltungen in " + cityLabel(evGeoF.city), "No events in " + cityLabel(evGeoF.city) + " yet") : T("Aucun événement pour le moment", "Noch keine Veranstaltungen", "No events yet")) + '</h3><p>' +
         escapeHtml(T("Soyez la première personne à en créer un.", "Erstellen Sie die erste Veranstaltung.", "Be the first to create one.")) + '</p></div>';
       return;
     }
@@ -4169,8 +4266,8 @@
         evSetPart(id, !(m1 && m1.status === "interested"), false, "interested");
       }
       if (act === "share") {
-        var link = location.href.split("#")[0] + "#events";
-        try { navigator.clipboard.writeText(link); b.textContent = T("Lien copié ✓", "Link kopiert ✓", "Link copied ✓"); } catch (e) { b.textContent = link; }
+        var link = evLink(id);
+        try { navigator.clipboard.writeText(link).catch(function () { }); b.textContent = T("Lien copié ✓", "Link kopiert ✓", "Link copied ✓"); } catch (e) { b.textContent = link; }
       }
       if (act === "profshare") { evShareProfile(x); evSharedMine[id] = true; renderEvents(); return; }
       if (act === "invite") { evInvOpen = (evInvOpen === id ? "" : id); evInvQ = ""; renderEvents(); }
@@ -4198,7 +4295,7 @@
     });
     document.getElementById("evTabs").addEventListener("click", function (ev) {
       var b = ev.target.closest("button[data-tab]"); if (!b) return;
-      evTab = b.getAttribute("data-tab"); evCatF = ""; evOpenId = ""; renderEvents();
+      evTab = b.getAttribute("data-tab"); evCatF = ""; evGeoF = { c: "", city: "" }; evOpenId = ""; renderEvents();
     });
     document.getElementById("evSearch").addEventListener("input", function (e) { evQ = e.target.value; evOpenId = ""; renderEvents(); });
     document.getElementById("evCreateBtn").addEventListener("click", function () { evOpenForm(); });
@@ -4224,10 +4321,12 @@
       var title = document.getElementById("evTitle").value.trim(), date = document.getElementById("evDate").value,
         place = document.getElementById("evPlace").value.trim(), msg = document.getElementById("evMsg");
       if (!title || !date || !place) { msg.textContent = T("Titre, date et lieu sont obligatoires.", "Titel, Datum und Ort sind Pflicht.", "Title, date and place are required."); return; }
+      var ctry = document.getElementById("evCountry").value, cty = document.getElementById("evCity").value.trim();
+      if (ctry !== "online" && !cty) { msg.textContent = T("Indiquez la ville.", "Bitte Stadt angeben.", "Please enter the city."); return; }
       if (document.getElementById("evTkType").value === "paid" && !(Number(document.getElementById("evPrice").value) > 0 && Number(document.getElementById("evQty").value) >= 1)) { msg.textContent = T("Indiquez un prix et un nombre de places.", "Bitte Preis und Anzahl Plätze angeben.", "Please enter a price and a number of places."); return; }
       var doc = {
         title: title, date: date, time: document.getElementById("evTime").value, endDate: document.getElementById("evEndDate").value, endTime: document.getElementById("evEndTime").value, place: place,
-        cat: document.getElementById("evCat").value,
+        cat: document.getElementById("evCat").value, country: ctry, city: ctry === "online" ? "" : ((cityNames(cty) || [cty])[0]),
         price: document.getElementById("evTkType").value === "paid" ? Number(document.getElementById("evPrice").value) || 0 : 0,
         qty: Number(document.getElementById("evQty").value) || 0, refundDays: Number(document.getElementById("evRefund").value) || 0, plus: document.getElementById("evPlus").checked,
         description: document.getElementById("evDesc").value.trim(),
@@ -4238,7 +4337,7 @@
       function done() {
         evImgData = ""; evPdfData = ""; evPdfName = ""; attInfo();
         document.getElementById("evTkType").value = "free"; if (window.tkPrev) window.tkPrev();
-        ["evTitle", "evDate", "evTime", "evEndDate", "evEndTime", "evPlace", "evDesc", "evVideo"].forEach(function (k) { document.getElementById(k).value = ""; });
+        ["evTitle", "evDate", "evTime", "evEndDate", "evEndTime", "evPlace", "evDesc", "evVideo", "evCity"].forEach(function (k) { document.getElementById(k).value = ""; });
         msg.textContent = T("Événement publié.", "Veranstaltung veröffentlicht.", "Event published.");
         evTab = "up"; renderEvents(); setTimeout(function () { evCloseForm(); document.getElementById("evMsg").textContent = ""; }, 700);
       }
@@ -4275,8 +4374,8 @@
       document.getElementById("demoBar").hidden = false;
       try {
         var iso0 = function (n) { var d = new Date(); d.setDate(d.getDate() + n); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); };
-        evList.push({ id: "demo-tk1", title: "Afterwork NANE Berlin (demo)", date: iso0(25), time: "19:00", place: "Berlin", cat: "networking", price: 12, qty: 40, refundDays: 7, plus: false, authorId: "demo-org", authorName: "NANE (demo)", badges: [], createdAt: Date.now() },
-          { id: "demo-tk2", title: "Atelier CV et entretien (demo)", date: iso0(4), time: "18:30", place: "Lausanne", cat: "atelier", price: 20, qty: 25, refundDays: 7, plus: true, authorId: "demo-org", authorName: "NANE (demo)", badges: [], createdAt: Date.now() });
+        evList.push({ id: "demo-tk1", title: "Afterwork NANE Berlin (demo)", date: iso0(25), time: "19:00", place: "Berlin", country: "Allemagne", city: "Berlin", cat: "networking", price: 12, qty: 40, refundDays: 7, plus: false, authorId: "demo-org", authorName: "NANE (demo)", badges: [], createdAt: Date.now() },
+          { id: "demo-tk2", title: "Atelier CV et entretien (demo)", date: iso0(4), time: "18:30", place: "Lausanne", country: "Suisse", city: "Lausanne", cat: "atelier", price: 20, qty: 25, refundDays: 7, plus: true, authorId: "demo-org", authorName: "NANE (demo)", badges: [], createdAt: Date.now() });
         renderEvents();
       } catch (e) { }
       try { renderFeed(); } catch (e) { }

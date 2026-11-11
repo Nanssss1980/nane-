@@ -669,6 +669,52 @@
   .ev-tabs { display: inline-flex; gap: 4px; background: #E9E4D6; border-radius: 999px; padding: 4px; margin: 0 0 20px; flex-wrap: wrap; }
   .ev-tab { border: 0; background: transparent; color: var(--text-on-paper-dim); font: inherit; font-weight: 500; font-size: 14px; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
   .ev-tab.on { background: #fff; color: var(--ink); font-weight: 600; }
+  .evm-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; max-width: none !important; }
+  .evm-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow .15s, transform .15s; }
+  .evm-card:hover { box-shadow: 0 8px 24px rgba(33,24,75,.14); transform: translateY(-2px); }
+  .evm-cover { aspect-ratio: 2 / 1; background: linear-gradient(135deg, #21184B, #3a2c7a); overflow: hidden; }
+  .evm-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .evm-ph { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #C6A15B; }
+  .evm-ph b { font-size: 44px; line-height: 1; } .evm-ph span { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; }
+  .evm-body { padding: 14px 16px 8px; flex: 1; }
+  .evm-date { font-size: 12px; font-weight: 700; color: #8a6a22; letter-spacing: .04em; }
+  .evm-title { font-size: 17px; margin: 4px 0; line-height: 1.25; color: var(--ink); }
+  .evm-place, .evm-stats { font-size: 13.5px; color: var(--text-on-paper-dim); }
+  .evm-btns { display: flex; gap: 8px; padding: 10px 16px 16px; }
+  .evm-b { flex: 1; border: 1px solid var(--line); background: var(--ivory); color: var(--ink); font: inherit; font-size: 13.5px; font-weight: 600; padding: 9px 8px; border-radius: 9px; cursor: pointer; }
+  .evm-b.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .evm-sh { flex: none; width: 42px; }
+  .evm-cat { display: inline-block; font-size: 12px; background: var(--ivory); color: var(--ink); border-radius: 999px; padding: 2px 10px; margin: 2px 0 4px; }
+  .evm-prof { padding: 0 16px 16px; } .evm-prof .evm-b { width: 100%; }
+  .evm-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+  .evm-chip { border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; font-size: 13px; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .evm-chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  #evDate::-webkit-calendar-picker-indicator, #evEndDate::-webkit-calendar-picker-indicator { display: none; }
+  #evDate, #evEndDate { cursor: pointer; caret-color: transparent; }
+  .cal-pop { position: fixed; z-index: 99999; background: #fff; border: 1px solid #CFC9E8; border-radius: 14px; box-shadow: 0 16px 40px rgba(33,24,75,.25); padding: 12px; width: 290px; }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-weight: 700; color: var(--ink); text-transform: capitalize; }
+  .cal-head button { border: 0; background: var(--ivory); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 16px; color: var(--ink); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+  .cal-grid span { font-size: 11px; color: #7a7396; padding: 4px 0; text-transform: uppercase; }
+  .cal-grid button { border: 0; background: transparent; height: 34px; border-radius: 8px; cursor: pointer; font: inherit; font-size: 14px; color: var(--ink); }
+  .cal-grid button:hover { background: var(--ivory); } .cal-grid button.sel { background: var(--ink); color: #fff; } .cal-grid button.tod { outline: 1px solid #C6A15B; } .cal-grid button:disabled { color: #bbb; cursor: default; }
+  .evs-shell { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: start; }
+  .evs-side { position: sticky; top: 84px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 14px; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .evs-title { font-size: 22px; overflow-wrap: anywhere; hyphens: auto; margin: 0 4px 12px; color: var(--ink); }
+  .evs-search { width: 100%; box-sizing: border-box; border-radius: 999px !important; padding: 11px 16px !important; margin-bottom: 12px; }
+  .evs-nav { display: flex; flex-direction: column; gap: 2px; }
+  .evs-item { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 15px; font-weight: 600; padding: 8px 10px; border-radius: 10px; cursor: pointer; position: relative; }
+  .evs-item:hover { background: var(--ivory); }
+  .evs-item.on { background: var(--ivory); } .evs-item.on .evs-ic { background: var(--ink); color: #fff; }
+  .evs-ic { width: 38px; height: 38px; flex: none; border-radius: 50%; background: #ECE7F7; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .evs-item[data-n]:not([data-n=""])::after { content: attr(data-n); margin-left: auto; background: #C6A15B; color: #fff; border-radius: 999px; font-size: 12px; padding: 1px 8px; }
+  .evs-create { width: 100%; margin: 14px 0 10px; justify-content: center; }
+  .evs-side .ev-optout { margin: 0 4px 12px; font-size: 12.5px; }
+  .evs-cath { font-size: 17px; margin: 14px 4px 6px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink); }
+  .evs-head { margin: 0 0 16px; font-size: 26px; color: var(--ink); }
+  .evs-main { min-width: 0; }
+  @media (max-width: 860px) { .evs-shell { grid-template-columns: 1fr; } .evs-side { position: static; max-height: none; } }
+  .evm-back { align-self: flex-start; border: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; padding: 4px 0 8px; }
   .ev-card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
   .ev-top { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .ev-date { width: 68px; flex: none; border-radius: 12px; background: var(--ivory); text-align: center; padding: 8px 0; }
@@ -843,6 +889,14 @@
   .rc-h { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.015em; margin: 4px 0 6px; color: var(--ink); }
   .rc-free { border-left: 4px solid var(--brass); }
   .rc-card .rc-btn.btn-primary { margin-top: 12px; }
+
+  /* Annuaire en liste : photo, nom, titre */
+  .dir-list { display: flex !important; flex-direction: column; gap: 10px; grid-template-columns: none !important; max-width: 760px; }
+  .dir-list .profile-card { padding: 14px 18px; min-height: 0; cursor: pointer; }
+  .dir-list .pc-top { display: flex; align-items: center; gap: 16px; margin: 0; }
+  .dir-list .pc-avatar { width: 64px; height: 64px; flex: none; font-size: 20px; }
+  .dir-list .pc-name { font-size: 17px; }
+  .dir-list .pc-title { font-size: 14px; margin-top: 2px; }
 </style>
 </head>
 <body class="public">
@@ -1291,16 +1345,23 @@
     <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></h1><p class="i18n" data-fr="Retrouvez les rencontres de la communauté ou créez la vôtre : afterwork, atelier, conférence, session de mentorat." data-de="Finden Sie Treffen der Community oder erstellen Sie Ihr eigenes: Afterwork, Workshop, Konferenz, Mentoring-Session." data-en="Find community meetups or create your own: afterwork, workshop, talk, mentoring session."></p></div></div>
     <section class="signup">
       <div class="wrap">
-        <h2 class="i18n" style="margin-top:0" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></h2>
-        <p class="i18n" style="max-width:70ch;margin:0 0 16px" data-fr="Retrouvez les rencontres de la communauté ou créez la vôtre : afterwork, atelier, conférence, session de mentorat." data-de="Finden Sie Treffen der Community oder erstellen Sie Ihr eigenes: Afterwork, Workshop, Konferenz, Mentoring-Session." data-en="Find community meetups or create your own: afterwork, workshop, talk, mentoring session."></p>
-        <p style="margin:0 0 20px"><button class="btn btn-primary" id="evCreateBtn"><span class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></span></button></p>
-        <div class="ev-tabs" role="tablist" id="evTabs">
-          <button class="ev-tab on" role="tab" data-tab="up"><span class="i18n" data-fr="À venir" data-de="Anstehend" data-en="Upcoming"></span></button>
-          <button class="ev-tab" role="tab" data-tab="mine"><span class="i18n" data-fr="Mes événements" data-de="Meine Veranstaltungen" data-en="My events"></span></button>
-          <button class="ev-tab" role="tab" data-tab="inv" id="evTabInv"><span class="i18n" data-fr="Invitations" data-de="Einladungen" data-en="Invitations"></span></button>
-          <button class="ev-tab" role="tab" data-tab="past"><span class="i18n" data-fr="Passés" data-de="Vergangen" data-en="Past"></span></button>
-        </div>
-        <label class="ev-optout"><input type="checkbox" id="evNoInv"> <span class="i18n" data-fr="Ne plus recevoir d’invitations d’événements" data-de="Keine Veranstaltungs-Einladungen mehr erhalten" data-en="Stop receiving event invitations"></span></label>
+        <div class="evs-shell">
+        <aside class="evs-side">
+          <h2 class="evs-title"><span class="i18n" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></span></h2>
+          <input type="text" id="evSearch" class="evs-search i18n-ph" data-fr="Rechercher des événements" data-de="Veranstaltungen suchen" data-en="Search events">
+          <nav class="evs-nav" id="evTabs" role="tablist">
+            <button class="evs-item on" role="tab" data-tab="up"><span class="evs-ic">🗓</span><span class="i18n" data-fr="Découvrir" data-de="Entdecken" data-en="Discover"></span></button>
+            <button class="evs-item" role="tab" data-tab="mine"><span class="evs-ic">👤</span><span class="i18n" data-fr="Mes événements" data-de="Meine Veranstaltungen" data-en="My events"></span></button>
+            <button class="evs-item" role="tab" data-tab="inv" id="evTabInv"><span class="evs-ic">✉️</span><span class="i18n" data-fr="Invitations" data-de="Einladungen" data-en="Invitations"></span></button>
+            <button class="evs-item" role="tab" data-tab="past"><span class="evs-ic">🕘</span><span class="i18n" data-fr="Passés" data-de="Vergangen" data-en="Past"></span></button>
+          </nav>
+          <button class="btn btn-primary evs-create" id="evCreateBtn">+ <span class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></span></button>
+          <label class="ev-optout"><input type="checkbox" id="evNoInv"> <span class="i18n" data-fr="Ne plus recevoir d’invitations d’événements" data-de="Keine Veranstaltungs-Einladungen mehr erhalten" data-en="Stop receiving event invitations"></span></label>
+          <h3 class="evs-cath"><span class="i18n" data-fr="Catégories" data-de="Kategorien" data-en="Categories"></span></h3>
+          <nav class="evs-nav" id="evCats"></nav>
+        </aside>
+        <div class="evs-main">
+          <h2 class="evs-head" id="evHead"></h2>
         <div class="ev-layout">
           <div class="ev-list" id="evList"></div>
           <div class="ev-backdrop" id="evBackdrop" hidden></div>
@@ -1321,8 +1382,9 @@
               </div>
               <label for="evPlace"><span class="i18n" data-fr="Lieu ou lien en ligne" data-de="Ort oder Online-Link" data-en="Place or online link"></span> <span aria-hidden="true">*</span></label>
               <input id="evPlace" class="i18n-ph" type="text" maxlength="140" required data-fr="Ville, adresse ou lien de visioconférence" data-de="Stadt, Adresse oder Videolink" data-en="City, address or video link">
-              <label for="evCircle"><span class="i18n" data-fr="Circle concerné" data-de="Betroffener Circle" data-en="Related circle"></span></label>
-              <select id="evCircle"></select>
+              <label for="evCat"><span class="i18n" data-fr="Catégorie" data-de="Kategorie" data-en="Category"></span> <span aria-hidden="true">*</span></label>
+              <select id="evCat"></select>
+              <label class="ev-optout" style="margin:10px 0 0"><input type="checkbox" id="evPostFeed" checked> <span class="i18n" data-fr="Publier aussi dans mon fil d’actualité" data-de="Auch in meinem Feed veröffentlichen" data-en="Also post to my news feed"></span></label>
               <label for="evDesc">Description</label>
               <textarea id="evDesc" class="i18n-ph" rows="3" maxlength="600" data-fr="De quoi s'agit-il, pour qui, que faut-il prévoir ?" data-de="Worum geht es, für wen, was ist mitzubringen?" data-en="What is it, who is it for, what to bring?"></textarea>
               <div class="ev-attach">
@@ -1336,6 +1398,7 @@
             <div class="evf-foot"><span id="evMsg" class="sub"></span><button class="btn btn-primary" id="evSubmit"><span class="i18n" data-fr="Publier l’événement" data-de="Veranstaltung veröffentlichen" data-en="Publish the event"></span></button></div>
           </div>
         </div>
+        </div></div>
       </div>
     </section>
   </section>
@@ -1364,6 +1427,13 @@
             data-fr="Créer mon profil" data-de="Profil erstellen" data-en="Create my profile"></button>
         </div>
 
+        <div class="dir-tabs" id="dirTabs" role="tablist">
+          <button class="ev-tab on" role="tab" data-kind="members"><span class="i18n" data-fr="Membres" data-de="Mitglieder" data-en="Members"></span></button>
+          <button class="ev-tab" role="tab" data-kind="freelance"><span class="i18n" data-fr="Freelances" data-de="Freelancer" data-en="Freelancers"></span></button>
+          <button class="ev-tab" role="tab" data-kind="mentor"><span class="i18n" data-fr="Mentors" data-de="Mentor:innen" data-en="Mentors"></span></button>
+          <button class="ev-tab" role="tab" data-kind="org"><span class="i18n" data-fr="Associations et organisations" data-de="Vereine und Organisationen" data-en="Associations and organisations"></span></button>
+        </div>
+        <div id="dirMembers">
         <div class="filters">
           <input type="text" id="fSearch" class="i18n-ph"
             data-fr="Rechercher un nom, un métier, une compétence…"
@@ -1384,6 +1454,18 @@
         </div>
 
         <div id="dirBody"></div>
+        </div>
+        <div id="dirSpecial" hidden>
+          <p class="circ-note" id="spIntro" style="max-width:70ch"></p>
+          <div class="filters">
+            <input type="text" id="spSearch" class="i18n-ph" data-fr="Rechercher un nom, un métier, une compétence…" data-de="Name, Beruf oder Fähigkeit suchen…" data-en="Search a name, a job, a skill…">
+            <select id="spCat"></select>
+            <select id="spSector"></select>
+            <select id="spCountry"></select>
+            <button class="btn btn-primary" id="spAdd" hidden><span class="i18n" data-fr="Ajouter mon association ou organisation" data-de="Meinen Verein oder meine Organisation hinzufügen" data-en="Add my association or organisation"></span></button>
+          </div>
+          <div id="spBody"></div>
+        </div>
       </div>
     </section>
   </section>
@@ -1570,6 +1652,23 @@
     "Conseil": { de: "Beratung", en: "Consulting" },
     "Ingénierie": { de: "Ingenieurwesen", en: "Engineering" },
     "Éducation": { de: "Bildung", en: "Education" },
+    "Data & IA": { de: "Daten & KI", en: "Data & AI" },
+    "Mode & Beauté": { de: "Mode & Beauty", en: "Fashion & Beauty" },
+    "Restauration & Alimentation": { de: "Gastronomie & Ernährung", en: "Food & Hospitality" },
+    "Culture, Arts & Musique": { de: "Kultur, Kunst & Musik", en: "Culture, Arts & Music" },
+    "Médias & Journalisme": { de: "Medien & Journalismus", en: "Media & Journalism" },
+    "Événementiel": { de: "Veranstaltungen", en: "Events" },
+    "Immobilier & Construction": { de: "Immobilien & Bau", en: "Real Estate & Construction" },
+    "Commerce & E-commerce": { de: "Handel & E-Commerce", en: "Retail & E-commerce" },
+    "Transport & Logistique": { de: "Transport & Logistik", en: "Transport & Logistics" },
+    "Énergie & Environnement": { de: "Energie & Umwelt", en: "Energy & Environment" },
+    "Social & Humanitaire": { de: "Soziales & Humanitäres", en: "Social & Humanitarian" },
+    "Sport & Bien-être": { de: "Sport & Wellness", en: "Sport & Wellness" },
+    "Tourisme & Hôtellerie": { de: "Tourismus & Hotellerie", en: "Tourism & Hospitality" },
+    "Banque & Assurance": { de: "Bank & Versicherung", en: "Banking & Insurance" },
+    "Industrie": { de: "Industrie", en: "Industry" },
+    "Administration & Secteur public": { de: "Verwaltung & Öffentlicher Dienst", en: "Public Sector" },
+    "Recherche & Sciences": { de: "Forschung & Wissenschaft", en: "Research & Science" },
     "Autre": { de: "Andere", en: "Other" }
   };
   var COUNTRY_LABELS = {
@@ -1628,6 +1727,8 @@
     renderProfilePage();
     renderSideProfile();
     renderRightCol();
+    try { if (typeof renderEvents === "function") renderEvents(); } catch (e) { }
+    try { if (typeof dirKind !== "undefined" && dirKind !== "members") setDirKind(dirKind); } catch (e) { }
     refreshAdmin();
     var gs = document.querySelector("#whoBox span"); if (gs && meName !== undefined) gs.textContent = t("greeting") + (meName || t("greetingFallback"));
     renderLogin();
@@ -2167,7 +2268,7 @@
     "Marketing & Communication", "Tech & Développement", "Finance & Comptabilité",
     "Droit", "Ressources humaines", "Santé", "Entrepreneuriat",
     "Création & Design", "Photographie & Audiovisuel", "Conseil",
-    "Ingénierie", "Éducation", "Autre"
+    "Ingénierie", "Éducation", "Data & IA", "Mode & Beauté", "Restauration & Alimentation", "Culture, Arts & Musique", "Médias & Journalisme", "Événementiel", "Immobilier & Construction", "Commerce & E-commerce", "Transport & Logistique", "Énergie & Environnement", "Social & Humanitaire", "Sport & Bien-être", "Tourisme & Hôtellerie", "Banque & Assurance", "Industrie", "Administration & Secteur public", "Recherche & Sciences", "Autre"
   ];
   var COUNTRIES = ["France", "Allemagne", "Suisse", "Belgique", "Luxembourg", "Autre"];
 
@@ -2256,6 +2357,7 @@
 
   function renderDirectory() {
     var body = document.getElementById("dirBody");
+    if (dirKind !== "members") renderSpecial();
     var q = (document.getElementById("fSearch").value || "").toLowerCase().trim();
     var sector = document.getElementById("fSector").value;
     var country = document.getElementById("fCountry").value;
@@ -2284,7 +2386,7 @@
       return;
     }
 
-    body.innerHTML = '<div class="card-grid"></div>';
+    body.innerHTML = '<div class="card-grid dir-list"></div>';
     var grid = body.querySelector(".card-grid");
     filtered.forEach(function (p) {
       var card = document.createElement("div");
@@ -2294,20 +2396,143 @@
           avatarHtml("pc-avatar", p.name, p.photo) +
           '<div><div class="pc-name">' + escapeHtml(p.name) + '</div>' +
           '<div class="pc-title">' + escapeHtml(p.title || "") + '</div></div>' +
-        '</div>' +
-        '<div class="pc-loc">' + escapeHtml(locLabel(p)) + '</div>' +
-        (p.skills && p.skills.length
-          ? '<div class="pc-tags">' + p.skills.slice(0, 4).map(function (s) {
-              return '<span class="tag">' + escapeHtml(s) + '</span>';
-            }).join("") + '</div>'
-          : "") +
-        (p.lookingFor
-          ? '<div class="pc-snippet"><b>' + escapeHtml(t("searching")) + '</b>' + escapeHtml(p.lookingFor) + '</div>'
-          : "");
+        '</div>';
       card.addEventListener("click", function () { openModal(p); });
       grid.appendChild(card);
     });
   }
+
+
+  // ---------- Annuaire spécialisé : freelances, mentors, associations et organisations ----------
+  var FREE_CATS = [["conseil", "Conseil & stratégie", "Beratung & Strategie", "Consulting & strategy"], ["tech", "Développement & tech", "Entwicklung & Technik", "Development & tech"], ["design", "Design & création", "Design & Kreation", "Design & creative"], ["marketing", "Marketing & community management", "Marketing & Community-Management", "Marketing & community management"], ["redac", "Rédaction & traduction", "Texten & Übersetzen", "Writing & translation"], ["media", "Photo, vidéo & audio", "Foto, Video & Audio", "Photo, video & audio"], ["formation", "Formation & coaching", "Training & Coaching", "Training & coaching"], ["finjur", "Finance, comptabilité & juridique", "Finanzen, Buchhaltung & Recht", "Finance, accounting & legal"], ["event", "Événementiel & restauration", "Events & Gastronomie", "Events & catering"], ["rh", "Ressources humaines & recrutement", "Personal & Recruiting", "HR & recruiting"], ["autre", "Autre", "Andere", "Other"]];
+  var MENTOR_CATS = [["carriere", "Carrière & recherche d'emploi", "Karriere & Jobsuche", "Career & job search"], ["premier", "Premier emploi & jeunes diplômé·e·s", "Berufseinstieg & Absolvent:innen", "First job & graduates"], ["reconv", "Reconversion", "Neuorientierung", "Career change"], ["entrepreneuriat", "Entrepreneuriat & création d'entreprise", "Gründung & Unternehmertum", "Entrepreneurship & start-ups"], ["leadership", "Leadership & management", "Führung & Management", "Leadership & management"], ["expertise", "Expertise métier", "Fachliche Expertise", "Domain expertise"], ["etudes", "Études & orientation", "Studium & Orientierung", "Studies & orientation"], ["mobilite", "Mobilité internationale (Suisse, Allemagne)", "Internationale Mobilität (Schweiz, Deutschland)", "International mobility (Switzerland, Germany)"], ["parole", "Prise de parole & personal branding", "Auftreten & Personal Branding", "Public speaking & personal branding"], ["autre", "Autre", "Andere", "Other"]];
+  var ORG_CATS = [["association", "Association", "Verein", "Association"], ["ong", "ONG & organisation à but non lucratif", "NGO & gemeinnützige Organisation", "NGO & non-profit"], ["reseau", "Réseau professionnel", "Berufsnetzwerk", "Professional network"], ["entreprise", "Entreprise engagée", "Engagiertes Unternehmen", "Committed company"], ["media", "Média", "Medium", "Media"], ["fondation", "Fondation & institution", "Stiftung & Institution", "Foundation & institution"], ["ecole", "École & université", "Schule & Universität", "School & university"], ["collectif", "Collectif culturel & artistique", "Kultur- & Künstlerkollektiv", "Cultural & artistic collective"], ["autre", "Autre", "Andere", "Other"]];
+  function catLabel(list, k) { for (var i = 0; i < list.length; i++) if (list[i][0] === k) return T(list[i][1], list[i][2], list[i][3]); return k || ""; }
+  function catOptions(list, sel) { return list.map(function (c) { return '<option value="' + c[0] + '"' + (sel === c[0] ? " selected" : "") + '>' + escapeHtml(T(c[1], c[2], c[3])) + '</option>'; }).join(""); }
+  var dirKind = "members", orgList = [], orgsDbReady = false;
+  var spF = { q: "", cat: "", sector: "", country: "" };
+  function demoProfiles(kind) {
+    if (!OFFLINE) return [];
+    var ex = T("Exemple", "Beispiel", "Example");
+    if (kind === "freelance") return [
+      { __id: "demo-f1", demo: 1, name: ex + " · " + T("Designer UX", "UX-Designer:in", "UX designer"), title: T("Designer UX indépendante", "Freie UX-Designer:in", "Freelance UX designer"), city: "Berlin", country: "Allemagne", sector: "Création & Design", freeCat: "design", roles: ["freelance"], skills: ["UX", "Figma", "Recherche utilisateur"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") },
+      { __id: "demo-f2", demo: 1, name: ex + " · " + T("Consultant data", "Data-Berater:in", "Data consultant"), title: T("Consultant data indépendant", "Freier Data-Berater", "Freelance data consultant"), city: "Zurich", country: "Suisse", sector: "Data & IA", freeCat: "conseil", roles: ["freelance"], skills: ["SQL", "Power BI"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") },
+      { __id: "demo-f3", demo: 1, name: ex + " · " + T("Traductrice", "Übersetzerin", "Translator"), title: T("Traductrice FR / DE / EN", "Übersetzerin FR / DE / EN", "FR / DE / EN translator"), city: "Genève", country: "Suisse", sector: "Médias & Journalisme", freeCat: "redac", roles: ["freelance"], skills: ["Traduction", "Relecture"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") }];
+    if (kind === "mentor") return [
+      { __id: "demo-m1", demo: 1, name: ex + " · " + T("Mentor finance", "Finanz-Mentor:in", "Finance mentor"), title: T("Directeur financier", "Finanzchef:in", "Finance director"), city: "Lausanne", country: "Suisse", sector: "Finance & Comptabilité", mentorCat: "premier", roles: ["mentor"], skills: ["Finance d'entreprise"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") },
+      { __id: "demo-m2", demo: 1, name: ex + " · " + T("Mentore carrière", "Karriere-Mentorin", "Career mentor"), title: T("Responsable RH", "HR-Leitung", "HR lead"), city: "Berlin", country: "Allemagne", sector: "Ressources humaines", mentorCat: "carriere", roles: ["mentor"], skills: ["Recrutement", "CV"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") },
+      { __id: "demo-m3", demo: 1, name: ex + " · " + T("Mentor tech", "Tech-Mentor:in", "Tech mentor"), title: T("Ingénieur logiciel senior", "Senior Software Engineer", "Senior software engineer"), city: "Zurich", country: "Suisse", sector: "Tech & Développement", mentorCat: "reconv", roles: ["mentor"], skills: ["Développement web"], bio: T("Profil d'exemple pour illustrer l'annuaire.", "Beispielprofil zur Veranschaulichung.", "Example profile to illustrate the directory.") }];
+    return [
+      { id: "demo-o1", demo: 1, name: ex + " · " + T("Association d'entrepreneur·e·s", "Gründer:innen-Verein", "Entrepreneurs association"), type: "association", sector: "Entrepreneuriat", city: "Lausanne", country: "Suisse", description: T("Organisation d'exemple pour illustrer l'annuaire. Les vraies associations pourront s'ajouter elles-mêmes.", "Beispielorganisation zur Veranschaulichung. Echte Vereine können sich selbst hinzufügen.", "Example organisation to illustrate the directory. Real associations will be able to add themselves.") },
+      { id: "demo-o2", demo: 1, name: ex + " · " + T("Réseau tech", "Tech-Netzwerk", "Tech network"), type: "reseau", sector: "Tech & Développement", city: "Berlin", country: "Allemagne", description: T("Organisation d'exemple pour illustrer l'annuaire.", "Beispielorganisation zur Veranschaulichung.", "Example organisation to illustrate the directory.") },
+      { id: "demo-o3", demo: 1, name: ex + " · " + T("Collectif culturel", "Kulturkollektiv", "Cultural collective"), type: "collectif", sector: "Culture, Arts & Musique", city: "Bruxelles", country: "Belgique", description: T("Organisation d'exemple pour illustrer l'annuaire.", "Beispielorganisation zur Veranschaulichung.", "Example organisation to illustrate the directory.") }];
+  }
+  function setDirKind(k) {
+    dirKind = k; spF = { q: "", cat: "", sector: "", country: "" };
+    Array.prototype.forEach.call(document.querySelectorAll("#dirTabs .ev-tab"), function (b) { b.classList.toggle("on", b.getAttribute("data-kind") === k); });
+    document.getElementById("dirMembers").hidden = k !== "members";
+    document.getElementById("dirSpecial").hidden = k === "members";
+    document.getElementById("spAdd").hidden = k !== "org";
+    if (k === "members") { renderDirectory(); return; }
+    var cats = k === "freelance" ? FREE_CATS : k === "mentor" ? MENTOR_CATS : ORG_CATS;
+    var all = T("Toutes les catégories", "Alle Kategorien", "All categories");
+    document.getElementById("spCat").innerHTML = '<option value="">' + escapeHtml(all) + '</option>' + catOptions(cats, "");
+    document.getElementById("spSector").innerHTML = '<option value="">' + escapeHtml(T("Tous les secteurs", "Alle Branchen", "All sectors")) + '</option>' + SECTORS.map(function (x) { return '<option value="' + escapeHtml(x) + '">' + escapeHtml(sectorLabel(x)) + '</option>'; }).join("");
+    document.getElementById("spCountry").innerHTML = '<option value="">' + escapeHtml(T("Tous les pays", "Alle Länder", "All countries")) + '</option>' + COUNTRIES.map(function (x) { return '<option value="' + escapeHtml(x) + '">' + escapeHtml(countryLabel(x)) + '</option>'; }).join("");
+    document.getElementById("spSearch").value = "";
+    document.getElementById("spIntro").textContent = k === "freelance" ? T("Les membres qui proposent leurs services en indépendant. Pour apparaître ici, cochez « Freelance » dans votre profil.", "Mitglieder, die ihre Leistungen freiberuflich anbieten. Um hier zu erscheinen, aktivieren Sie „Freelancer“ in Ihrem Profil.", "Members offering their services as freelancers. To appear here, tick “Freelancer” in your profile.") :
+      k === "mentor" ? T("Les membres qui proposent du mentorat. Pour apparaître ici, cochez « Mentor·e » dans votre profil.", "Mitglieder, die Mentoring anbieten. Um hier zu erscheinen, aktivieren Sie „Mentor:in“ in Ihrem Profil.", "Members offering mentoring. To appear here, tick “Mentor” in your profile.") :
+      T("Associations, collectifs, réseaux et organisations de la communauté. Chaque membre peut ajouter la sienne.", "Vereine, Kollektive, Netzwerke und Organisationen der Community. Jedes Mitglied kann seine eigene hinzufügen.", "Associations, collectives, networks and organisations of the community. Any member can add theirs.");
+    renderSpecial();
+  }
+  function renderSpecial() {
+    var body = document.getElementById("spBody"); if (!body || dirKind === "members") return;
+    var q = spF.q.toLowerCase(), k = dirKind;
+    var src = k === "org" ? orgList.concat(demoProfiles("org")) : allProfiles.filter(function (p) { return (p.roles || []).indexOf(k) !== -1; }).concat(demoProfiles(k));
+    var catKey = k === "freelance" ? "freeCat" : k === "mentor" ? "mentorCat" : "type";
+    var cats = k === "freelance" ? FREE_CATS : k === "mentor" ? MENTOR_CATS : ORG_CATS;
+    var list = src.filter(function (x) {
+      if (spF.cat && x[catKey] !== spF.cat) return false;
+      if (spF.sector && x.sector !== spF.sector) return false;
+      if (spF.country && x.country !== spF.country) return false;
+      if (q) { var hay = [x.name, x.title, x.description, x.bio, x.sector, sectorLabel(x.sector), catLabel(cats, x[catKey]), cityAll(x.city), (x.skills || []).join(" ")].join(" ").toLowerCase(); if (hay.indexOf(q) === -1) return false; }
+      return true;
+    });
+    if (!list.length) { body.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(T("Aucun résultat pour le moment", "Noch keine Ergebnisse", "No results yet")) + '</h3><p>' + escapeHtml(k === "org" ? T("Ajoutez la première association ou organisation.", "Fügen Sie den ersten Verein oder die erste Organisation hinzu.", "Add the first association or organisation.") : T("Cochez cette option dans votre profil pour apparaître ici.", "Aktivieren Sie diese Option in Ihrem Profil, um hier zu erscheinen.", "Tick this option in your profile to appear here.")) + '</p></div>'; return; }
+    body.innerHTML = '<div class="card-grid dir-list"></div>';
+    var grid = body.querySelector(".card-grid");
+    list.forEach(function (x) {
+      var card = document.createElement("div"); card.className = "profile-card";
+      var cat = catLabel(cats, x[catKey]);
+      card.innerHTML = '<div class="pc-top">' + avatarHtml("pc-avatar", x.name, x.photo || x.logo) + '<div><div class="pc-name">' + escapeHtml(x.name) + '</div><div class="pc-title">' + escapeHtml(k === "org" ? [cat, sectorLabel(x.sector)].filter(Boolean).join(" · ") : (x.title || "")) + '</div></div></div>';
+      card.addEventListener("click", function () { k === "org" ? openOrgModal(x) : openModal(x); });
+      grid.appendChild(card);
+    });
+  }
+  function openOrgModal(o) {
+    var root = document.getElementById("modalRoot");
+    var web = /^https?:\/\//i.test(o.website || "") ? o.website : "";
+    var mail = o.contact && o.contact.indexOf("@") > 0 && o.contact.indexOf(" ") === -1;
+    var mine = !o.demo && selfId && o.authorId === selfId;
+    root.innerHTML = '<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><button class="modal-close" id="modalClose">&times;</button>' +
+      '<div class="modal-top">' + avatarHtml("modal-avatar", o.name, o.logo) + '<div><h3>' + escapeHtml(o.name) + '</h3><div class="modal-sub">' + escapeHtml(catLabel(ORG_CATS, o.type)) + ' · ' + escapeHtml(sectorLabel(o.sector)) + ' · ' + escapeHtml(locLabel(o)) + '</div></div></div>' +
+      (o.description ? '<div class="modal-block"><h4>' + escapeHtml(T("À propos", "Über uns", "About")) + '</h4><p style="white-space:pre-line">' + escapeHtml(o.description) + '</p></div>' : '') +
+      '<div class="modal-block" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">' +
+      (web ? '<a class="btn btn-wine btn-small" href="' + escapeHtml(web) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(T("Visiter le site", "Website besuchen", "Visit website")) + '</a>' : '') +
+      (mail ? '<a class="btn btn-ghost btn-small" href="mailto:' + encodeURIComponent(o.contact) + '">' + escapeHtml(T("Écrire", "Schreiben", "Email")) + '</a>' : (o.contact ? '<span>' + escapeHtml(o.contact) + '</span>' : '')) +
+      (!o.demo && !mine ? '<button class="report-link" id="orgReport">' + escapeHtml(T("Signaler", "Melden", "Report")) + '</button>' : '') +
+      (mine ? '<button class="report-link" id="orgDel">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') +
+      '</div></div></div>';
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalBackdrop").addEventListener("click", function (e) { if (e.target.id === "modalBackdrop") closeModal(); });
+    var rp = document.getElementById("orgReport"); if (rp) rp.addEventListener("click", function () { openReport("organisation", o.id, o.name, o.description || ""); });
+    var dl = document.getElementById("orgDel"); if (dl) dl.addEventListener("click", function () {
+      orgList = orgList.filter(function (z) { return z.id !== o.id; });
+      if (dbNs && String(o.id).indexOf("local-") !== 0) dbNs.collection("orgs").doc(o.id).delete().catch(toastErr);
+      closeModal(); renderSpecial();
+    });
+  }
+  function openOrgForm() {
+    var root = document.getElementById("modalRoot");
+    root.innerHTML = '<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><button class="modal-close" id="modalClose">&times;</button>' +
+      '<h3>' + escapeHtml(T("Ajouter mon association ou organisation", "Meinen Verein oder meine Organisation hinzufügen", "Add my association or organisation")) + '</h3>' +
+      '<div class="field"><label>' + escapeHtml(T("Logo ou photo", "Logo oder Foto", "Logo or photo")) + '</label><div style="display:flex;align-items:center;gap:12px"><div id="oLogoPrev" class="pc-avatar">+</div><button type="button" class="btn btn-ghost btn-small" id="oLogoBtn">' + escapeHtml(T("Choisir une image", "Bild wählen", "Choose an image")) + '</button><input type="file" id="oLogoFile" accept="image/*" hidden></div></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Nom", "Name", "Name")) + ' *</label><input type="text" id="oName" maxlength="90"></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Catégorie", "Kategorie", "Category")) + ' *</label><select id="oType">' + catOptions(ORG_CATS, "association") + '</select></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Secteur", "Branche", "Sector")) + ' *</label><select id="oSector">' + SECTORS.map(function (x) { return '<option value="' + escapeHtml(x) + '">' + escapeHtml(sectorLabel(x)) + '</option>'; }).join("") + '</select></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Ville", "Stadt", "City")) + '</label><input type="text" id="oCity" maxlength="60"></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Pays", "Land", "Country")) + '</label><select id="oCountry">' + COUNTRIES.map(function (x) { return '<option value="' + escapeHtml(x) + '">' + escapeHtml(countryLabel(x)) + '</option>'; }).join("") + '</select></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Site web", "Website", "Website")) + '</label><input type="text" id="oWeb" maxlength="160" placeholder="https://"></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Contact (e-mail public)", "Kontakt (öffentliche E-Mail)", "Contact (public email)")) + '</label><input type="text" id="oContact" maxlength="120"></div>' +
+      '<div class="field"><label>' + escapeHtml(T("Présentation", "Beschreibung", "Description")) + ' *</label><textarea id="oDesc" maxlength="500" rows="4"></textarea></div>' +
+      '<div class="modal-block"><button class="btn btn-primary" id="oSave">' + escapeHtml(T("Publier la fiche", "Eintrag veröffentlichen", "Publish the listing")) + '</button> <span class="save-msg" id="oMsg"></span></div></div></div>';
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalBackdrop").addEventListener("click", function (e) { if (e.target.id === "modalBackdrop") closeModal(); });
+    var oLogo = "";
+    document.getElementById("oLogoBtn").addEventListener("click", function () { document.getElementById("oLogoFile").click(); });
+    document.getElementById("oLogoFile").addEventListener("change", function (e) {
+      var f = e.target.files && e.target.files[0]; if (!f) return;
+      resizePhoto(f).then(function (u) { oLogo = u; var pv = document.getElementById("oLogoPrev"); pv.textContent = ""; pv.classList.add("has-photo"); pv.style.backgroundImage = "url('" + u + "')"; }).catch(function () {});
+    });
+    document.getElementById("oSave").addEventListener("click", function () {
+      var o = { logo: oLogo, name: document.getElementById("oName").value.trim(), type: document.getElementById("oType").value, sector: document.getElementById("oSector").value, city: document.getElementById("oCity").value.trim(), country: document.getElementById("oCountry").value, website: normalizeUrl(document.getElementById("oWeb").value), contact: document.getElementById("oContact").value.trim(), description: document.getElementById("oDesc").value.trim(), authorId: selfId || "local", createdAt: Date.now() };
+      if (!o.name || !o.description) { document.getElementById("oMsg").textContent = T("Nom et présentation sont obligatoires.", "Name und Beschreibung sind Pflicht.", "Name and description are required."); return; }
+      if (!dbNs || !selfId) { o.id = "local-" + Date.now(); orgList.push(o); closeModal(); renderSpecial(); return; }
+      dbNs.collection("orgs").add(o).then(function () { closeModal(); }).catch(toastErr);
+    });
+  }
+  function orgLoadDb() {
+    function apply(snap) { orgList = snap.docs.map(function (d) { var x = d.data(); if (!x) return null; x = Object.assign({}, x); x.id = d.id; return x; }).filter(function (x) { return x && x.name; }); renderSpecial(); }
+    var q = dbNs.collection("orgs").limit(500); q.onSnapshot(apply, function () {});
+    try { q.get().then(apply).catch(function () {}); } catch (e) { }
+  }
+  window.openDirKind = function (k) { showView("directory"); setTimeout(function () { setDirKind(k); }, 50); };
+  (function () {
+    document.getElementById("dirTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-kind]"); if (b) setDirKind(b.getAttribute("data-kind")); });
+    document.getElementById("spSearch").addEventListener("input", function (e) { spF.q = e.target.value; renderSpecial(); });
+    ["Cat", "Sector", "Country"].forEach(function (n) { document.getElementById("sp" + n).addEventListener("change", function (e) { spF[n.toLowerCase()] = e.target.value; renderSpecial(); }); });
+    document.getElementById("spAdd").addEventListener("click", openOrgForm);
+  })();
 
   function openModal(p) {
     var root = document.getElementById("modalRoot");
@@ -2930,7 +3155,8 @@
     var mentor = '<div class="rc-card rc-mentor"><span class="rc-eyebrow">' + escapeHtml(T("Mentorat", "Mentoring", "Mentoring")) + '</span>' +
       '<h3>' + escapeHtml(T("Devenir mentor", "Mentor:in werden", "Become a mentor")) + '</h3>' +
       '<p>' + escapeHtml(T("Partagez votre expertise et aidez d'autres talents à progresser.", "Teilen Sie Ihre Expertise und helfen Sie anderen Talenten weiterzukommen.", "Share your expertise and help other talents grow.")) + '</p>' +
-      '<button class="btn btn-small" id="rcMentor">' + escapeHtml(T("Proposer du mentorat", "Mentoring anbieten", "Offer mentoring")) + ' →</button></div>';
+      '<button class="btn btn-small" id="rcMentor">' + escapeHtml(T("Proposer du mentorat", "Mentoring anbieten", "Offer mentoring")) + ' →</button> ' +
+      '<button class="btn btn-small rc-light" id="rcMentorFind">' + escapeHtml(T("Trouver un mentor", "Mentor:in finden", "Find a mentor")) + '</button></div>';
     var evc = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Événements", "Veranstaltungen", "Events")) + '</span>' +
       '<p class="rc-empty">' + escapeHtml(T("Organisez une rencontre, un atelier ou un afterwork pour votre communauté.", "Organisieren Sie ein Treffen, einen Workshop oder einen Afterwork für Ihre Community.", "Organise a meetup, workshop or afterwork for your community.")) + '</p>' +
       '<button class="btn btn-primary btn-small rc-btn" id="rcEvents">' + escapeHtml(T("Créer un événement", "Veranstaltung erstellen", "Create an event")) + ' →</button></div>';
@@ -2941,14 +3167,23 @@
     var fr = '<div class="rc-card rc-free"><span class="rc-eyebrow">' + escapeHtml(T("Freelances", "Freelancer", "Freelancers")) + '</span>' +
       '<h3 class="rc-h">' + escapeHtml(T("Proposer vos services", "Ihre Leistungen anbieten", "Offer your services")) + '</h3>' +
       '<p class="rc-empty">' + escapeHtml(T("Consultant·e, créatif·ve, développeur·se… Présentez votre expertise et trouvez vos prochaines missions.", "Berater:in, Kreative:r, Entwickler:in … Stellen Sie Ihre Expertise vor und finden Sie Ihre nächsten Aufträge.", "Consultant, creative, developer… Showcase your expertise and find your next assignments.")) + '</p>' +
-      '<button class="btn btn-primary btn-small rc-btn" id="rcFree">' + escapeHtml(T("Je suis freelance", "Ich bin Freelancer", "I'm a freelancer")) + ' →</button></div>';
-    el.innerHTML = disc + evc + emp + mentor + fr;
+      '<button class="btn btn-primary btn-small rc-btn" id="rcFree">' + escapeHtml(T("Trouver un·e freelance", "Freelancer finden", "Find a freelancer")) + ' →</button> ' +
+      '<button class="btn btn-ghost btn-small rc-btn" id="rcFreeMe">' + escapeHtml(T("Je suis freelance", "Ich bin Freelancer", "I'm a freelancer")) + '</button></div>';
+    var orgc = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Associations", "Vereine", "Associations")) + '</span>' +
+      '<h3 class="rc-h">' + escapeHtml(T("Associations et organisations", "Vereine und Organisationen", "Associations and organisations")) + '</h3>' +
+      '<p class="rc-empty">' + escapeHtml(T("Découvrez les associations, réseaux et organisations de la communauté, ou ajoutez la vôtre.", "Entdecken Sie Vereine, Netzwerke und Organisationen der Community oder fügen Sie Ihre hinzu.", "Discover the community's associations, networks and organisations, or add yours.")) + '</p>' +
+      '<button class="btn btn-primary btn-small rc-btn" id="rcOrg">' + escapeHtml(T("Découvrir", "Entdecken", "Discover")) + ' →</button></div>';
+    el.innerHTML = disc + evc + emp + mentor + fr + orgc;
     function rcCompose(txt) {
       showView("feed");
       setTimeout(function () { var pi = document.getElementById("postInput"); if (!pi) return; pi.value = txt; pi.style.minHeight = "170px"; pi.focus(); var i1 = txt.indexOf("\n"), i2 = txt.indexOf("\n", i1 + 1); try { pi.setSelectionRange(i2, i2); pi.scrollTop = 0; } catch (e) { } window.scrollTo({ top: 0, behavior: "smooth" }); }, 250);
     }
     document.getElementById("rcEmployer").addEventListener("click", function () { rcCompose(T("[Offre d'emploi]\nPoste : \nEntreprise : \nLieu : \nProfil recherché : \nPour postuler : ", "[Stellenangebot]\nPosition: \nUnternehmen: \nOrt: \nGesuchtes Profil: \nBewerbung: ", "[Job opening]\nRole: \nCompany: \nLocation: \nProfile sought: \nHow to apply: ")); });
-    document.getElementById("rcFree").addEventListener("click", function () { rcCompose(T("[Freelance]\nJe propose : \nSecteur : \nDisponibilité : \nLieu ou à distance : \nPour me contacter : ", "[Freelance]\nIch biete: \nBranche: \nVerfügbarkeit: \nOrt oder remote: \nKontakt: ", "[Freelance]\nI offer: \nIndustry: \nAvailability: \nLocation or remote: \nContact: ")); });
+    document.getElementById("rcFree").addEventListener("click", function () { openDirKind("freelance"); });
+    document.getElementById("rcOrg").addEventListener("click", function () { openDirKind("org"); });
+    document.getElementById("rcMentorFind").addEventListener("click", function () { openDirKind("mentor"); });
+    document.getElementById("rcFreeMe").addEventListener("click", function () { showView("form"); });
+    var _unusedFree = (function () { return function () { rcCompose(T("[Freelance]\nJe propose : \nSecteur : \nDisponibilité : \nLieu ou à distance : \nPour me contacter : ", "[Freelance]\nIch biete: \nBranche: \nVerfügbarkeit: \nOrt oder remote: \nKontakt: ", "[Freelance]\nI offer: \nIndustry: \nAvailability: \nLocation or remote: \nContact: ")); }; })();
     document.getElementById("rcEvents").addEventListener("click", function () { showView("events"); setTimeout(evOpenForm, 200); });
     document.getElementById("rcAll").addEventListener("click", function () { showView("directory"); });
     document.getElementById("rcMentor").addEventListener("click", function () { showView("form"); });
@@ -3003,6 +3238,9 @@
       (p.authorId && p.authorId === selfId ? '<button class="report-link del-post" data-i="' + i + '">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') + '</div>';
     if (p.content) h += '<div class="post-text">' + escapeHtml(p.content) + '</div>';
     if (safeImg(p.image)) h += '<img class="post-img" src="' + safeImg(p.image) + '" alt="">';
+    if (p.event) h += '<div class="repost-box" style="cursor:pointer" data-evgoto="' + escapeHtml(p.event.id || "") + '">' + (safeImg(p.event.image) ? '<img class="post-img" src="' + safeImg(p.event.image) + '" alt="">' : '') +
+      '<div class="evm-date">' + escapeHtml(((p.event.date || "") + (p.event.time ? " · " + p.event.time : "")).toUpperCase()) + '</div><div class="post-meta-name">' + escapeHtml(p.event.title || "") + '</div><div class="post-meta-time">' + escapeHtml(p.event.place || "") + '</div>' +
+      '<button class="btn btn-primary btn-small" style="margin-top:8px" data-evgoto="' + escapeHtml(p.event.id || "") + '">' + escapeHtml(T("Voir l’événement", "Veranstaltung ansehen", "View event")) + '</button></div>';
     if (p.repost) h += '<div class="repost-box"><div class="post-meta-name">' + escapeHtml(p.repost.authorName || "") + '</div>' +
       (p.repost.content ? '<div class="post-text">' + escapeHtml(p.repost.content) + '</div>' : '') +
       (safeImg(p.repost.image) ? '<img class="post-img" src="' + safeImg(p.repost.image) + '" alt="">' : '') + '</div>';
@@ -3291,6 +3529,12 @@
           '<select id="pCountry"><option value="">—</option>' + countryOptions + '</select></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldSector")) + '</label>' +
           '<select id="pSector"><option value="">—</option>' + sectorOptions + '</select></div>' +
+        '<div class="field full"><label>' + escapeHtml(T("Apparaître dans les pages spécialisées de l'annuaire", "In den Spezialverzeichnissen erscheinen", "Appear in the specialised directory pages")) + '</label>' +
+          chipsHtml("pRoles", ["freelance", "mentor"], (src && src.roles) || [], function (k) { return k === "freelance" ? T("Freelance", "Freelancer", "Freelancer") : T("Mentor·e", "Mentor:in", "Mentor"); }) + '</div>' +
+        '<div class="field"><label>' + escapeHtml(T("Catégorie freelance", "Freelance-Kategorie", "Freelance category")) + '</label>' +
+          '<select id="pFreeCat"><option value="">—</option>' + catOptions(FREE_CATS, src && src.freeCat) + '</select></div>' +
+        '<div class="field"><label>' + escapeHtml(T("Domaine de mentorat", "Mentoring-Bereich", "Mentoring area")) + '</label>' +
+          '<select id="pMentorCat"><option value="">—</option>' + catOptions(MENTOR_CATS, src && src.mentorCat) + '</select></div>' +
         '<div class="field"><label>' + escapeHtml(t("fieldLangs")) + '</label>' +
           '<div class="checks">' +
             '<label><input type="checkbox" value="fr" ' + checked("fr") + '> Français</label>' +
@@ -3360,6 +3604,7 @@
       name: document.getElementById("pName").value, title: document.getElementById("pTitle").value,
       city: document.getElementById("pCity").value, country: document.getElementById("pCountry").value,
       sector: document.getElementById("pSector").value, languages: langs, interests: chipsValue(document.getElementById("pInterests")),
+      roles: chipsValue(document.getElementById("pRoles")), freeCat: document.getElementById("pFreeCat").value, mentorCat: document.getElementById("pMentorCat").value,
       experiences: repValue("pExps"), education: repValue("pEdus"),
       skills: (document.getElementById("pSkills").value || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean),
       lookingFor: document.getElementById("pLooking").value, offering: document.getElementById("pOffering").value,
@@ -3381,6 +3626,7 @@
       sector: document.getElementById("pSector").value,
       languages: langs,
       interests: chipsValue(document.getElementById("pInterests")),
+      roles: chipsValue(document.getElementById("pRoles")), freeCat: document.getElementById("pFreeCat").value, mentorCat: document.getElementById("pMentorCat").value,
       experiences: repValue("pExps"),
       education: repValue("pEdus"),
       skills: skills,
@@ -3526,19 +3772,59 @@
   // ---------- Événements ----------
   var evList = [];        // événements
   var evParts = [];       // participations : { id, eventId, userId, name, visible }
-  var evTab = "up";
+  var evTab = "up", evOpenId = "";
   var evImgData = "", evPdfData = "", evPdfName = "";
   var evInvites = [], evPrefs = {}, evInvOpen = "", evInvQ = "";
   var evShowPref = false; // case « Afficher ma participation » : décochée par défaut
   function evToday() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function evMe() { return selfId || "local"; }
   function evMyPart(id) { return evParts.filter(function (x) { return x.eventId === id && x.userId === evMe(); })[0]; }
-  function evRefreshCircles() {
-    var sel = document.getElementById("evCircle"); if (!sel) return;
-    var cur = sel.value;
-    sel.innerHTML = '<option value="">' + escapeHtml(T("Tous les membres", "Alle Mitglieder", "All members")) + '</option>' +
-      allCircles().map(function (c) { return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(typeof c.n === "string" ? c.n : (c.n[currentLang] || c.n.fr)) + '</option>'; }).join("");
-    sel.value = cur;
+  var EV_CATS = [["networking", "Networking & afterwork", "Networking & Afterwork", "Networking & afterwork"], ["atelier", "Atelier & formation", "Workshop & Weiterbildung", "Workshop & training"], ["conference", "Conférence & table ronde", "Konferenz & Podiumsdiskussion", "Conference & panel"], ["mentorat", "Mentorat & coaching", "Mentoring & Coaching", "Mentoring & coaching"], ["emploi", "Emploi & recrutement", "Jobs & Recruiting", "Jobs & recruiting"], ["entrepreneuriat", "Entrepreneuriat & business", "Gründung & Business", "Entrepreneurship & business"], ["culture", "Culture, art & musique", "Kultur, Kunst & Musik", "Culture, art & music"], ["gastro", "Gastronomie & food", "Gastronomie & Food", "Food & dining"], ["sport", "Sport & bien-être", "Sport & Wellness", "Sport & wellness"], ["webinaire", "Webinaire en ligne", "Online-Webinar", "Online webinar"], ["autre", "Autre", "Andere", "Other"]];
+  function evCatLabel(k) { for (var i = 0; i < EV_CATS.length; i++) if (EV_CATS[i][0] === k) return T(EV_CATS[i][1], EV_CATS[i][2], EV_CATS[i][3]); return ""; }
+  var evCatF = "", evQ = "";
+  function evFillCats() { var sel = document.getElementById("evCat"); if (!sel) return; var cur = sel.value || "networking"; sel.innerHTML = EV_CATS.map(function (c) { return '<option value="' + c[0] + '">' + escapeHtml(T(c[1], c[2], c[3])) + '</option>'; }).join(""); sel.value = cur; }
+  function evPostDoc(x) { return { authorId: selfId, authorName: myName(), content: "", createdAt: Date.now(), event: { id: x.id, title: x.title, date: x.date, time: x.time || "", place: x.place || "", image: x.image || "", cat: x.cat || "" } }; }
+  function evShareProfile(x) {
+    if (!dbNs || !selfId) { alert(T("Disponible une fois connecté·e.", "Nach der Anmeldung verfügbar.", "Available once signed in.")); return; }
+    dbNs.collection("posts").add(evPostDoc(x)).catch(toastErr);
+  }
+  var evSharedMine = {};
+  document.addEventListener("click", function (e) {
+    var g = e.target.closest("[data-evgoto]"); if (!g) return;
+    evOpenId = g.getAttribute("data-evgoto"); evTab = "up"; showView("events"); renderEvents(); window.scrollTo(0, 0);
+  });
+  function evRefreshCircles() { evFillCats();
+  }
+  // Score "Découvrir" : popularité, proximité dans le temps, invitation, cercle et ville
+  function evScore(x) {
+    var me = evMe(), s = 0, all = evParts.filter(function (q) { return q.eventId === x.id; });
+    var go = all.filter(function (q) { return q.status !== "interested"; }).length;
+    s += go * 3 + (all.length - go);
+    var days = Math.max(0, (new Date(x.date + "T00:00:00") - new Date(evToday() + "T00:00:00")) / 86400000);
+    s += Math.max(0, 30 - (isNaN(days) ? 30 : days));
+    if (evInvites.some(function (q) { return q.eventId === x.id && q.toId === me; })) s += 25;
+    var mp = null; for (var i = 0; i < allProfiles.length; i++) if (allProfiles[i].__id === selfId) mp = allProfiles[i];
+    if (mp && x.city && mp.city && String(x.city).toLowerCase() === String(mp.city).toLowerCase()) s += 8;
+    if (x.image) s += 2;
+    return s;
+  }
+  function evMini(x) {
+    var me = evMe(), allP = evParts.filter(function (q) { return q.eventId === x.id; });
+    var nGo = allP.filter(function (q) { return q.status !== "interested"; }).length, nInt = allP.length - nGo;
+    var mine = evMyPart(x.id), going = !!(mine && mine.status !== "interested"), interested = !!(mine && mine.status === "interested");
+    var d = new Date(x.date + "T00:00:00");
+    var ds = isNaN(d) ? "" : d.toLocaleDateString(currentLang, { weekday: "short", day: "numeric", month: "short" });
+    var cover = (typeof safeImg === "function" && safeImg(x.image)) ? '<img src="' + safeImg(x.image) + '" alt="">' : '<div class="evm-ph"><b>' + escapeHtml(isNaN(d) ? "" : String(d.getDate())) + '</b><span>' + escapeHtml(isNaN(d) ? "" : d.toLocaleDateString(currentLang, { month: "short" })) + '</span></div>';
+    return '<article class="evm-card" data-open="' + escapeHtml(x.id) + '"><div class="evm-cover">' + cover + '</div><div class="evm-body">' +
+      '<div class="evm-date">' + escapeHtml((ds + (x.time ? " · " + x.time : "")).toUpperCase()) + '</div>' +
+      (x.cat ? '<div class="evm-cat">' + escapeHtml(evCatLabel(x.cat)) + '</div>' : '') +
+      '<h3 class="evm-title">' + escapeHtml(x.title) + '</h3>' +
+      '<div class="evm-place">' + escapeHtml(x.place || "") + '</div>' +
+      '<div class="evm-stats">' + nInt + ' ' + escapeHtml(T("intéressé·e·s", "Interessierte", "interested")) + ' · ' + nGo + ' ' + escapeHtml(T("participent", "nehmen teil", "going")) + '</div></div>' +
+      '<div class="evm-btns"><button class="evm-b' + (interested ? " on" : "") + '" data-act="interested" data-id="' + escapeHtml(x.id) + '">' + (interested ? "" : "☆ ") + escapeHtml(interested ? T("Intéressé·e ✓", "Interessiert ✓", "Interested ✓") : T("Intéressé·e", "Interessiert", "Interested")) + '</button>' +
+      '<button class="evm-b' + (going ? " on" : "") + '" data-act="join" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(going ? T("Je participe ✓", "Ich nehme teil ✓", "Going ✓") : T("Je participe", "Ich nehme teil", "Going")) + '</button>' +
+      '<button class="evm-b evm-sh" data-act="share" data-id="' + escapeHtml(x.id) + '" title="' + escapeHtml(T("Copier le lien", "Link kopieren", "Copy link")) + '">↗</button></div>' +
+      (going ? '<div class="evm-prof"><button class="evm-b" data-act="profshare" data-id="' + escapeHtml(x.id) + '"' + (evSharedMine[x.id] ? " disabled" : "") + '>' + escapeHtml(evSharedMine[x.id] ? T("Publié sur votre profil ✓", "In Ihrem Profil veröffentlicht ✓", "Shared on your profile ✓") : T("Partager sur mon profil", "In meinem Profil teilen", "Share on my profile")) + '</button></div>' : '') + '</article>';
   }
   function renderEvents() {
     var box = document.getElementById("evList"); if (!box) return;
@@ -3549,17 +3835,22 @@
       if (evTab === "past") return x.date < today;
       if (evTab === "inv") return x.date >= today && evInvites.some(function (q) { return q.eventId === x.id && q.toId === me; });
       return x.authorId === me || !!evMyPart(x.id);
-    }).sort(function (a, b) { return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
+    }).filter(function (x) { return !evCatF || x.cat === evCatF; }).filter(function (x) { var q = evQ.toLowerCase().trim(); return !q || [x.title, x.place, x.description, x.authorName].join(" ").toLowerCase().indexOf(q) >= 0; }).sort(function (a, b) { if (evTab === "up") return evScore(b) - evScore(a); return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
+    var cb = document.getElementById("evCats"), EVI = {"networking": "🤝", "atelier": "🛠", "conference": "🎤", "mentorat": "🎓", "emploi": "💼", "entrepreneuriat": "🚀", "culture": "🎶", "gastro": "🍽", "sport": "🏃", "webinaire": "💻", "autre": "✨"};
+    if (cb && !cb.getAttribute("data-bound")) { cb.setAttribute("data-bound", "1"); cb.addEventListener("click", function (e) { var c = e.target.closest("[data-c]"); if (c) { evCatF = (evCatF === c.getAttribute("data-c") ? "" : c.getAttribute("data-c")); evTab = "up"; evOpenId = ""; renderEvents(); } }); }
+    if (cb) cb.innerHTML = EV_CATS.map(function (c) { return '<button class="evs-item' + (evCatF === c[0] ? " on" : "") + '" data-c="' + c[0] + '"><span class="evs-ic">' + EVI[c[0]] + '</span>' + escapeHtml(T(c[1], c[2], c[3])) + '</button>'; }).join("");
+    var hd = document.getElementById("evHead");
+    if (hd) hd.textContent = evCatF ? evCatLabel(evCatF) : ({ up: T("Découvrir des événements", "Veranstaltungen entdecken", "Discover events"), mine: T("Mes événements", "Meine Veranstaltungen", "My events"), inv: T("Invitations", "Einladungen", "Invitations"), past: T("Événements passés", "Vergangene Veranstaltungen", "Past events") })[evTab];
     var ni = evInvites.filter(function (q) { return q.toId === me; }).length, tb = document.getElementById("evTabInv");
     if (tb) tb.setAttribute("data-n", ni ? String(ni) : "");
     var ck = document.getElementById("evNoInv"); if (ck) ck.checked = !!(evPrefs[me] && evPrefs[me].noInvites);
-    Array.prototype.forEach.call(document.querySelectorAll("#evTabs .ev-tab"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === evTab); });
+    Array.prototype.forEach.call(document.querySelectorAll("#evTabs .evs-item"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === evTab && !evCatF); });
     if (!shown.length) {
       box.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(T("Aucun événement pour le moment", "Noch keine Veranstaltungen", "No events yet")) + '</h3><p>' +
         escapeHtml(T("Soyez la première personne à en créer un.", "Erstellen Sie die erste Veranstaltung.", "Be the first to create one.")) + '</p></div>';
       return;
     }
-    box.innerHTML = shown.map(function (x) {
+    function evFull(x) {
       var d = new Date(x.date + "T00:00:00");
       var mon = isNaN(d) ? "" : d.toLocaleDateString(currentLang, { month: "short" });
       var day = isNaN(d) ? "" : d.getDate();
@@ -3581,10 +3872,11 @@
       return '<article class="ev-card" data-id="' + escapeHtml(x.id) + '">' + cover +
         '<div class="ev-top"><div class="ev-date"><span>' + escapeHtml(mon) + '</span><b>' + escapeHtml(String(day)) + '</b></div>' +
         '<div class="ev-main"><h3>' + escapeHtml(x.title) + '</h3><p>' + escapeHtml([(x.time || "") + (x.endTime ? " – " + x.endTime : "") + (x.endDate && x.endDate !== x.date ? " (" + T("jusqu'au ", "bis ", "until ") + x.endDate + ")" : ""), x.place].map(function (z) { return (z || "").trim(); }).filter(Boolean).join(" · ")) + '</p>' +
-        (x.circleName ? '<span class="circ-meta" style="background:var(--ivory);color:var(--ink);margin-top:6px">' + escapeHtml(x.circleName) + '</span>' : '') +
+        ((x.cat || x.circleName) ? '<span class="circ-meta" style="background:var(--ivory);color:var(--ink);margin-top:6px">' + escapeHtml(x.cat ? evCatLabel(x.cat) : x.circleName) + '</span>' : '') +
         (x.description ? '<p style="margin-top:8px;color:inherit">' + escapeHtml(x.description) + '</p>' : '') + '</div>' +
         '<div class="ev-btns"><button class="btn ' + (going ? "btn-ghost" : "btn-primary") + ' btn-small" data-act="join" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(going ? T("Je ne participe plus", "Nicht mehr dabei", "Cancel my attendance") : T("Je participe", "Ich nehme teil", "I'm attending")) + '</button>' +
         '<button class="btn btn-ghost btn-small' + (interested ? " on" : "") + '" data-act="interested" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(interested ? T("Intéressé·e ✓", "Interessiert ✓", "Interested ✓") : T("Intéressé·e", "Interessiert", "Interested")) + '</button></div></div>' + invBy +
+        (going ? '<div><button class="btn btn-ghost btn-small" data-act="profshare" data-id="' + escapeHtml(x.id) + '"' + (evSharedMine[x.id] ? " disabled" : "") + '>' + escapeHtml(evSharedMine[x.id] ? T("Publié sur votre profil ✓", "In Ihrem Profil veröffentlicht ✓", "Shared on your profile ✓") : T("Partager sur mon profil", "In meinem Profil teilen", "Share on my profile")) + '</button></div>' : '') +
         '<div class="ev-org"><span>' + escapeHtml(T("Organisé par", "Veranstaltet von", "Organised by")) + '</span> <b>' + escapeHtml(x.authorName || "") + '</b> ' + badges + '</div>' +
         '<div class="ev-parts"><div class="ev-av">' + avatars + '</div><span>' + n + ' ' + escapeHtml(T("participant" + (n > 1 ? "s" : ""), n === 1 ? "Teilnehmer:in" : "Teilnehmende", n === 1 ? "participant" : "participants")) + (nInt ? ' · ' + nInt + ' ' + escapeHtml(T("intéressé·e" + (nInt > 1 ? "s" : ""), "interessiert", "interested")) : '') + '</span>' +
         '<label style="margin-left:auto;display:flex;gap:6px;align-items:center;font-size:13px"><input type="checkbox" data-act="show" data-id="' + escapeHtml(x.id) + '"' + ((mine ? mine.visible : evShowPref) ? " checked" : "") + '> ' + escapeHtml(T("Afficher ma participation", "Meine Teilnahme anzeigen", "Show my attendance")) + '</label></div>' +
@@ -3593,8 +3885,43 @@
         '<div class="ev-foot"><span><button class="ev-link" data-act="share" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Partager", "Teilen", "Share")) + '</button>' +
         (going || isOrg ? ' &nbsp;·&nbsp; <button class="ev-link" data-act="invite" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(evInvOpen === x.id ? T("Fermer", "Schließen", "Close") : T("Inviter", "Einladen", "Invite")) + '</button>' : '') + '</span><button class="ev-link" data-act="report" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Signaler cet événement", "Diese Veranstaltung melden", "Report this event")) + '</button>' +
         (isOrg ? '<button class="ev-link" data-act="del" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') + '</div></article>';
-    }).join("");
+    }
+    var opened = evOpenId && evList.filter(function (q) { return q.id === evOpenId; })[0];
+    if (opened) { box.className = "ev-list"; box.innerHTML = '<button class="evm-back" data-act="back">← ' + escapeHtml(T("Tous les événements", "Alle Veranstaltungen", "All events")) + '</button>' + evFull(opened); return; }
+    box.className = "ev-list evm-grid";
+    box.innerHTML = shown.map(evMini).join("");
   }
+  // Calendrier personnalisé pour les champs date
+  (function () {
+    var pop = null, curInput = null, view = null;
+    function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+    function close() { if (pop) { pop.remove(); pop = null; } }
+    function draw() {
+      var first = new Date(view.getFullYear(), view.getMonth(), 1), start = (first.getDay() + 6) % 7, n = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+      var minIso = curInput.id === "evEndDate" ? (document.getElementById("evDate").value || iso(new Date())) : iso(new Date());
+      var h = '<div class="cal-head"><button data-m="-1" type="button">‹</button><span>' + escapeHtml(view.toLocaleDateString(currentLang, { month: "long", year: "numeric" })) + '</span><button data-m="1" type="button">›</button></div><div class="cal-grid">';
+      for (var w = 0; w < 7; w++) h += "<span>" + escapeHtml(new Date(2024, 0, 1 + w).toLocaleDateString(currentLang, { weekday: "narrow" })) + "</span>";
+      for (var b = 0; b < start; b++) h += "<i></i>";
+      for (var d = 1; d <= n; d++) { var dt = new Date(view.getFullYear(), view.getMonth(), d), k = iso(dt); h += '<button type="button" data-d="' + k + '"' + (k < minIso ? " disabled" : "") + (k === curInput.value ? ' class="sel"' : (k === iso(new Date()) ? ' class="tod"' : "")) + ">" + d + "</button>"; }
+      pop.innerHTML = h + "</div>";
+    }
+    function open(inp) {
+      close(); curInput = inp; view = inp.value ? new Date(inp.value + "T00:00:00") : new Date(); view.setDate(1);
+      pop = document.createElement("div"); pop.className = "cal-pop"; document.body.appendChild(pop); draw();
+      var r = inp.getBoundingClientRect(); pop.style.left = Math.min(r.left, window.innerWidth - 306) + "px"; pop.style.top = Math.min(r.bottom + 6, window.innerHeight - 340) + "px";
+      pop.addEventListener("click", function (e) {
+        var m = e.target.closest("[data-m]"), d = e.target.closest("[data-d]");
+        if (m) { view.setMonth(view.getMonth() + Number(m.getAttribute("data-m"))); draw(); }
+        if (d && !d.disabled) { curInput.value = d.getAttribute("data-d"); curInput.dispatchEvent(new Event("input", { bubbles: true })); curInput.dispatchEvent(new Event("change", { bubbles: true })); close(); }
+      });
+    }
+    ["evDate", "evEndDate"].forEach(function (id) {
+      var el = document.getElementById(id); if (!el) return;
+      el.addEventListener("click", function (e) { e.preventDefault(); open(el); });
+      el.addEventListener("keydown", function (e) { if (e.key !== "Tab") { e.preventDefault(); if (e.key === "Enter" || e.key === " ") open(el); } });
+    });
+    document.addEventListener("mousedown", function (e) { if (pop && !pop.contains(e.target) && e.target.id !== "evDate" && e.target.id !== "evEndDate") close(); });
+  })();
   function evOpenForm() {
     var nm = (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member");
     document.getElementById("evHostName").textContent = nm;
@@ -3651,7 +3978,9 @@
   (function () {
     var list = document.getElementById("evList"); if (!list) return;
     list.addEventListener("click", function (ev) {
-      var b = ev.target.closest("button[data-act]"); if (!b) return;
+      var b = ev.target.closest("button[data-act]");
+      if (!b) { var oc = ev.target.closest("[data-open]"); if (oc) { evOpenId = oc.getAttribute("data-open"); renderEvents(); window.scrollTo(0, 0); } return; }
+      if (b.getAttribute("data-act") === "back") { evOpenId = ""; renderEvents(); return; }
       var id = b.getAttribute("data-id"), act = b.getAttribute("data-act");
       var x = evList.filter(function (q) { return q.id === id; })[0]; if (!x) return;
       if (act === "join") {
@@ -3667,6 +3996,7 @@
         var link = location.href.split("#")[0] + "#events";
         try { navigator.clipboard.writeText(link); b.textContent = T("Lien copié ✓", "Link kopiert ✓", "Link copied ✓"); } catch (e) { b.textContent = link; }
       }
+      if (act === "profshare") { evShareProfile(x); evSharedMine[id] = true; renderEvents(); return; }
       if (act === "invite") { evInvOpen = (evInvOpen === id ? "" : id); evInvQ = ""; renderEvents(); }
       if (act === "invto") evInviteMember(id, b.getAttribute("data-to"));
       if (act === "report") { if (typeof openReport === "function" && dbNs) openReport("event", id, x.title, x.description || ""); else alert(T("Disponible dans la version complète.", "In der Vollversion verfügbar.", "Available in the full version.")); }
@@ -3692,8 +4022,9 @@
     });
     document.getElementById("evTabs").addEventListener("click", function (ev) {
       var b = ev.target.closest("button[data-tab]"); if (!b) return;
-      evTab = b.getAttribute("data-tab"); renderEvents();
+      evTab = b.getAttribute("data-tab"); evCatF = ""; evOpenId = ""; renderEvents();
     });
+    document.getElementById("evSearch").addEventListener("input", function (e) { evQ = e.target.value; evOpenId = ""; renderEvents(); });
     document.getElementById("evCreateBtn").addEventListener("click", function () { evOpenForm(); });
     document.getElementById("evClose").addEventListener("click", evCloseForm);
     document.getElementById("evBackdrop").addEventListener("click", evCloseForm);
@@ -3717,11 +4048,9 @@
       var title = document.getElementById("evTitle").value.trim(), date = document.getElementById("evDate").value,
         place = document.getElementById("evPlace").value.trim(), msg = document.getElementById("evMsg");
       if (!title || !date || !place) { msg.textContent = T("Titre, date et lieu sont obligatoires.", "Titel, Datum und Ort sind Pflicht.", "Title, date and place are required."); return; }
-      var cs = document.getElementById("evCircle"), cid = cs.value;
-      var cObj = allCircles().filter(function (c) { return c.id === cid; })[0];
       var doc = {
         title: title, date: date, time: document.getElementById("evTime").value, endDate: document.getElementById("evEndDate").value, endTime: document.getElementById("evEndTime").value, place: place,
-        circleId: cid, circleName: cObj ? (typeof cObj.n === "string" ? cObj.n : (cObj.n[currentLang] || cObj.n.fr)) : "",
+        cat: document.getElementById("evCat").value,
         description: document.getElementById("evDesc").value.trim(),
         image: evImgData, pdf: evPdfData, pdfName: evPdfName, video: document.getElementById("evVideo").value.trim(),
         authorId: evMe(), authorName: (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member"),
@@ -3734,7 +4063,8 @@
         evTab = "up"; renderEvents(); setTimeout(function () { evCloseForm(); document.getElementById("evMsg").textContent = ""; }, 700);
       }
       if (!dbNs || !selfId) { doc.id = "local-" + Date.now(); evList.push(doc); done(); return; }
-      dbNs.collection("events").add(doc).then(function () { done(); }).catch(toastErr);
+      var toFeed = document.getElementById("evPostFeed").checked;
+      dbNs.collection("events").add(doc).then(function (ref) { if (toFeed) { doc.id = ref.id; evShareProfile(doc); } done(); }).catch(toastErr);
     });
   })();
   function evLoadDb() {
@@ -3854,6 +4184,7 @@
     }, function () {});
     if (selfId) circLoadDb();
     if (selfId) evLoadDb();
+    if (selfId) orgLoadDb();
     dbNs.collection("comments").orderBy("createdAt", "asc").limit(1000).onSnapshot(function (snap) {
       allComments = snap.docs.map(function (d) { return d.data(); }).filter(Boolean); renderFeed(); refreshAdmin();
     }, function () {});

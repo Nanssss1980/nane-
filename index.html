@@ -1010,7 +1010,7 @@
     <div class="nav-right">
       <div class="public-actions">
         <button class="btn btn-ghost btn-small i18n" data-view-target="login" data-fr="Se connecter" data-de="Anmelden" data-en="Log in"></button>
-        <button class="btn btn-primary btn-small i18n" data-view-target="signup" data-fr="S'inscrire gratuitement" data-de="Kostenlos registrieren" data-en="Join for free"></button>
+        <button class="btn btn-primary btn-small i18n" data-view-target="signup" data-fr="S'inscrire" data-de="Registrieren" data-en="Sign up"></button>
       </div>
       <div class="lang-menu" id="langMenu">
         <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / Sprache / Language">
@@ -1260,7 +1260,7 @@
         <p class="i18n" data-fr="NANE a pour mission de renforcer la visibilité des professionnels afrodescendants, de favoriser les rencontres et de créer des passerelles entre les talents, les secteurs et les frontières." data-de="NANE hat die Mission, die Sichtbarkeit von Fachkräften afrikanischer Abstammung zu stärken, Begegnungen zu fördern und Brücken zwischen Talenten, Branchen und Grenzen zu bauen." data-en="NANE’s mission is to strengthen the visibility of professionals of African descent, foster encounters and build bridges between talents, sectors and borders."></p>
         <p class="i18n" data-fr="Notre réseau est ouvert à toutes celles et ceux qui partagent cette ambition : construire un environnement professionnel plus inclusif, où les compétences sont valorisées, les idées circulent et les connexions ouvrent de nouvelles perspectives." data-de="Unser Netzwerk steht allen offen, die dieses Ziel teilen: ein inklusiveres Arbeitsumfeld zu schaffen, in dem Kompetenzen wertgeschätzt werden, Ideen zirkulieren und Verbindungen neue Perspektiven eröffnen." data-en="Our network is open to everyone who shares this ambition: building a more inclusive professional environment, where skills are valued, ideas circulate and connections open up new perspectives."></p>
         <div class="hero-ctas" style="margin-top:24px">
-          <button class="btn btn-primary i18n" data-view-target="signup" data-fr="S'inscrire gratuitement" data-de="Kostenlos registrieren" data-en="Join for free"></button>
+          <button class="btn btn-primary i18n" data-view-target="signup" data-fr="S'inscrire" data-de="Registrieren" data-en="Sign up"></button>
           <button class="btn btn-ghost i18n" data-view-target="about" data-fr="Retour à l'accueil" data-de="Zur Startseite" data-en="Back to home"></button>
         </div>
       </div>
@@ -2185,7 +2185,7 @@
       '<button class="btn btn-primary" id="loginGo" style="width:100%;gap:12px">' + (img ? '<img src="' + img.src + '" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">' : '') +
       escapeHtml(T("Continuer en tant que ", "Weiter als ", "Continue as ") + (nm || T("membre", "Mitglied", "member"))) + '</button>' +
       '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("En continuant, tu acceptes la charte de la communauté et la politique de confidentialité.", "Mit dem Fortfahren akzeptierst du die Community-Charta und die Datenschutzerklärung.", "By continuing, you accept the community charter and privacy policy.")) + '</p>' +
-      '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire gratuitement", "Kostenlos registrieren", "Join for free")) + '</a></p>' +
+      '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire", "Registrieren", "Sign up")) + '</a></p>' +
       '<p style="text-align:center;margin:10px 0 0;font-size:14px">' + escapeHtml(T("Vous recrutez ? ", "Sie suchen Personal? ", "Hiring? ")) + '<a href="#" id="loginEmp" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Espace employeur", "Arbeitgeberbereich", "Employer space")) + '</a></p>';
     document.getElementById("loginGo").addEventListener("click", function () { enterApp("feed"); });
     document.getElementById("loginJoin").addEventListener("click", function (e) { e.preventDefault(); showView("signup"); });

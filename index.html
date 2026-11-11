@@ -963,6 +963,26 @@
   .pg-video[hidden] { display: none; }
   .pg-video .video-ctrls { position: absolute; left: 16px; bottom: 14px; display: flex; gap: 10px; }
   @media (max-width: 767px) { .pg-video { height: 300px; } .pg-video video { transform: none; object-fit: cover; } }
+
+  /* ===== Offres d'emploi + espace employeur ===== */
+  .jb-card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  .jb-card h3 { margin: 0; font-size: 18px; color: var(--ink); }
+  .jb-co { font-size: 14px; font-weight: 600; color: var(--ink); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .jb-badge { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 2px 10px; border-radius: 999px; background: #F3EBD6; color: #6B5320; border: 1px solid #C6A15B; }
+  .jb-meta { font-size: 13px; color: var(--text-on-paper-dim); }
+  .jb-desc { margin: 0; font-size: 14px; color: var(--text-on-paper); line-height: 1.5; }
+  .jb-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+  .jb-actions a.btn { text-decoration: none; }
+  .jb-save { border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
+  .jb-save.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .jb-note { font-size: 13px; color: var(--text-on-paper-dim); margin: 0 0 16px; }
+  .jb-emp-note { background: #F6F4FA; border: 1px solid var(--line); border-left: 4px solid var(--brass); border-radius: 10px; padding: 14px 18px; font-size: 14px; margin: 0 0 22px; }
+  .jb-form label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin: 14px 0 4px; }
+  .jb-form input, .jb-form select, .jb-form textarea { width: 100%; box-sizing: border-box; }
+  .jb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .jb-row { grid-template-columns: 1fr; } }
+  .rc-job { display: block; width: 100%; text-align: left; border: 0; background: transparent; padding: 8px 0; border-top: 1px solid var(--line); cursor: pointer; font: inherit; color: var(--ink); }
+  .rc-job b { display: block; font-size: 14px; } .rc-job span { font-size: 12.5px; color: var(--text-on-paper-dim); }
 </style>
 </head>
 <body class="public">
@@ -1416,6 +1436,48 @@
           </div>
           <div class="evf-foot"><span id="circPMsg" class="sub"></span><button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button></div>
         </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- JOBS (membres) -->
+  <section data-view="jobs">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Offres d’emploi" data-de="Stellenangebote" data-en="Job openings"></h1><p class="i18n" data-fr="Des employeurs engagés pour l’inclusion recrutent. Réservé aux membres." data-de="Arbeitgeber mit Inklusionscharta suchen Verstärkung. Nur für Mitglieder." data-en="Employers committed to inclusion are hiring. Members only."></p></div></div>
+    <section class="signup">
+      <div class="wrap">
+        <div class="evs-shell">
+          <aside class="evs-side">
+            <h2 class="evs-title"><span class="i18n" data-fr="Emploi" data-de="Jobs" data-en="Jobs"></span></h2>
+            <input type="text" id="jbSearch" class="evs-search i18n-ph" data-fr="Rechercher une offre" data-de="Stelle suchen" data-en="Search openings">
+            <nav class="evs-nav" id="jbTabs">
+              <button class="evs-item on" data-tab="all"><span class="evs-ic">💼</span><span class="i18n" data-fr="Toutes les offres" data-de="Alle Stellen" data-en="All openings"></span></button>
+              <button class="evs-item" data-tab="saved"><span class="evs-ic">🔖</span><span class="i18n" data-fr="Mes offres enregistrées" data-de="Gespeicherte Stellen" data-en="Saved openings"></span></button>
+            </nav>
+            <h3 class="evs-cath"><span class="i18n" data-fr="Secteurs" data-de="Branchen" data-en="Sectors"></span></h3>
+            <nav class="evs-nav" id="jbCats"></nav>
+            <h3 class="evs-cath"><span class="i18n" data-fr="Pays" data-de="Land" data-en="Country"></span></h3>
+            <nav class="evs-nav" id="jbCountries"></nav>
+          </aside>
+          <div class="evs-main">
+            <h2 class="evs-head" id="jbHead"></h2>
+            <p class="jb-note i18n" data-fr="Pour postuler, vous êtes redirigé·e vers le site de l’employeur. NANE ne lui transmet ni votre profil, ni vos coordonnées." data-de="Zum Bewerben werden Sie auf die Website des Arbeitgebers weitergeleitet. NANE übermittelt weder Ihr Profil noch Ihre Kontaktdaten." data-en="To apply, you are redirected to the employer’s website. NANE shares neither your profile nor your contact details with them."></p>
+            <div id="jbList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ESPACE EMPLOYEUR (maquette, sans accès à la communauté) -->
+  <section data-view="employer">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Espace employeur" data-de="Arbeitgeberbereich" data-en="Employer space"></h1><p class="i18n" data-fr="Publiez et gérez vos offres d’emploi." data-de="Veröffentlichen und verwalten Sie Ihre Stellenangebote." data-en="Publish and manage your job openings."></p></div></div>
+    <section class="signup">
+      <div class="wrap wrap-narrow">
+        <div class="jb-emp-note"><b class="i18n" data-fr="Cet espace est séparé de la communauté." data-de="Dieser Bereich ist von der Community getrennt." data-en="This space is separate from the community."></b> <span class="i18n" data-fr="Vous gérez vos offres et vous voyez leur statut. Vous n’avez accès ni aux profils des membres, ni aux circles, ni aux événements, ni aux publications. Les membres vous contactent en postulant via le lien que vous indiquez." data-de="Sie verwalten Ihre Stellen und sehen deren Status. Sie haben keinen Zugriff auf Mitgliederprofile, Circles, Veranstaltungen oder Beiträge. Mitglieder bewerben sich über den von Ihnen angegebenen Link." data-en="You manage your openings and see their status. You have no access to member profiles, circles, events or posts. Members reach you by applying through the link you provide."></span></div>
+        <div class="signup-card jb-form" id="empJobForm"></div>
+        <h2 class="net-title" style="margin-top:34px"><span class="i18n" data-fr="Mes offres" data-de="Meine Stellen" data-en="My openings"></span></h2>
+        <div id="empJobList"></div>
+        <p style="margin-top:22px"><button class="btn btn-ghost btn-small" id="empLeave"><span class="i18n" data-fr="Quitter l’espace employeur" data-de="Arbeitgeberbereich verlassen" data-en="Leave employer space"></span></button></p>
       </div>
     </section>
   </section>
@@ -1967,7 +2029,7 @@
       steps.map(function (s, i) { return '<li><span class="su-n">' + (i + 1) + '</span><div><b>' + escapeHtml(s[0]) + '</b><p>' + escapeHtml(s[1]) + '</p></div></li>'; }).join("") + '</ol></aside>';
   }
   function suEmployerForm() {
-    if (empDone) return '<h2>' + escapeHtml(T("Demande reçue", "Anfrage erhalten", "Request received")) + '</h2><p class="sub">' + escapeHtml(T("Merci. NANE compare votre charte avec sa liste, puis les deux fondatrices valident. Vous recevrez une réponse par e-mail. (Maquette : rien n’est envoyé.)", "Danke. NANE gleicht Ihre Charta mit seiner Liste ab, dann bestätigen beide Gründerinnen. Sie erhalten eine Antwort per E-Mail. (Mockup: nichts wird gesendet.)", "Thank you. NANE compares your charter with its list, then both founders confirm. You will get an answer by email. (Mockup: nothing is sent.)")) + '</p><button class="btn btn-ghost" id="empAgain">' + escapeHtml(T("Envoyer une autre demande", "Weitere Anfrage senden", "Send another request")) + '</button>';
+    if (empDone) return '<h2>' + escapeHtml(T("Demande reçue", "Anfrage erhalten", "Request received")) + '</h2><p class="sub">' + escapeHtml(T("Merci. NANE compare votre charte avec sa liste, puis les deux fondatrices valident. Vous recevrez une réponse par e-mail. (Maquette : rien n’est envoyé.)", "Danke. NANE gleicht Ihre Charta mit seiner Liste ab, dann bestätigen beide Gründerinnen. Sie erhalten eine Antwort per E-Mail. (Mockup: nichts wird gesendet.)", "Thank you. NANE compares your charter with its list, then both founders confirm. You will get an answer by email. (Mockup: nothing is sent.)")) + '</p><button class="btn btn-primary" id="empSpace">' + escapeHtml(T("Voir l’espace employeur (maquette)", "Arbeitgeberbereich ansehen (Mockup)", "See the employer space (mockup)")) + '</button> <button class="btn btn-ghost" id="empAgain">' + escapeHtml(T("Envoyer une autre demande", "Weitere Anfrage senden", "Send another request")) + '</button>';
     function f(id, fr, de, en, req, inner) { return '<div class="su-field"><label for="' + id + '">' + escapeHtml(T(fr, de, en)) + (req ? ' <span class="hint">*</span>' : "") + '</label>' + inner + '</div>'; }
     var ctry = COUNTRIES.map(function (c) { return '<option value="' + escapeHtml(c) + '">' + escapeHtml(countryLabel(c)) + '</option>'; }).join("");
     return '<h2>' + escapeHtml(T("Votre entreprise", "Ihr Unternehmen", "Your company")) + '</h2><p class="sub">' + escapeHtml(T("Les champs marqués * sont obligatoires. Seules les entreprises engagées pour l’inclusion sont acceptées.", "Mit * markierte Felder sind Pflicht. Nur Unternehmen, die sich für Inklusion engagieren, werden aufgenommen.", "Fields marked * are required. Only companies committed to inclusion are accepted.")) + '</p>' +
@@ -2043,6 +2105,7 @@
       var tabs = '<div class="su-tabs"><button type="button" data-sk="member" class="' + (signupKind === "member" ? "on" : "") + '">' + escapeHtml(T("Talents", "Talente", "Talents")) + '</button><button type="button" data-sk="employer" class="' + (signupKind === "employer" ? "on" : "") + '">' + escapeHtml(T("Employeurs", "Arbeitgeber", "Employers")) + '</button></div>';
       el.innerHTML = '<div class="su-split">' + suAside(signupKind) + '<div class="su-main">' + tabs + (signupKind === "employer" ? suEmployerForm() : h) + '</div></div>';
       el.querySelectorAll("[data-sk]").forEach(function (b) { b.addEventListener("click", function () { signupKind = b.getAttribute("data-sk"); empDone = false; renderSignup(); }); });
+      var es_ = document.getElementById("empSpace"); if (es_) es_.addEventListener("click", function () { showView("employer"); });
       var ea = document.getElementById("empAgain"); if (ea) ea.addEventListener("click", function () { empDone = false; renderSignup(); });
       var es = document.getElementById("empSend");
       if (es) es.addEventListener("click", function () {
@@ -2103,9 +2166,11 @@
       '<button class="btn btn-primary" id="loginGo" style="width:100%;gap:12px">' + (img ? '<img src="' + img.src + '" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">' : '') +
       escapeHtml(T("Continuer en tant que ", "Weiter als ", "Continue as ") + (nm || T("membre", "Mitglied", "member"))) + '</button>' +
       '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("En continuant, tu acceptes la charte de la communauté et la politique de confidentialité.", "Mit dem Fortfahren akzeptierst du die Community-Charta und die Datenschutzerklärung.", "By continuing, you accept the community charter and privacy policy.")) + '</p>' +
-      '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire gratuitement", "Kostenlos registrieren", "Join for free")) + '</a></p>';
+      '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire gratuitement", "Kostenlos registrieren", "Join for free")) + '</a></p>' +
+      '<p style="text-align:center;margin:10px 0 0;font-size:14px">' + escapeHtml(T("Vous recrutez ? ", "Sie suchen Personal? ", "Hiring? ")) + '<a href="#" id="loginEmp" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Espace employeur", "Arbeitgeberbereich", "Employer space")) + '</a></p>';
     document.getElementById("loginGo").addEventListener("click", function () { enterApp("feed"); });
     document.getElementById("loginJoin").addEventListener("click", function (e) { e.preventDefault(); showView("signup"); });
+    var lje = document.getElementById("loginEmp"); if (lje) lje.addEventListener("click", function (e) { e.preventDefault(); showView("employer"); });
   }
   document.getElementById("menuLogout").addEventListener("click", goPublic);
 
@@ -2372,11 +2437,14 @@
   }
   var curView = "";
   function renderView(name) {
+    if (name === "jobs" && document.body.classList.contains("public")) name = "login";
     if (name === "admin") { if (isAdmin()) { loadAdminExtra(); renderAdmin(); } else name = "feed"; }
     if (name === "login") renderLogin();
     if (name === "network") renderNetwork();
     if (name === "circles") renderCircles();
     if (name === "events") renderEvents();
+    if (name === "jobs") renderJobs();
+    if (name === "employer") renderEmployer();
     if (name === "notifications") renderNotifs();
     if (name === "signup") renderSignup();
     if (name === "settings") renderSettings();
@@ -3321,6 +3389,105 @@
     h += '<p class="ad-foot">' + escapeHtml(T("Données de test du prototype. Les comptes sans profil créé ne sont pas comptés. Les chiffres sont exacts jusqu'à 300 profils et 100 publications ; au-delà, le site officiel utilisera une vraie base avec statistiques.", "Testdaten des Prototyps. Konten ohne erstelltes Profil werden nicht gezählt. Die Zahlen sind bis 300 Profile und 100 Beiträge exakt; danach übernimmt die echte Plattform mit Statistiken.", "Prototype test data. Accounts without a created profile are not counted. Figures are exact up to 300 profiles and 100 posts; beyond that the live site will use a real database with analytics.")) + '</p>';
     el.innerHTML = h;
   }
+
+  // ---------- Offres d'emploi (maquette : en memoire, rien n'est envoye) ----------
+  var JB_DAY = 86400000;
+  var JOBS = [
+    { id: "j1", title: "Chargé·e de communication (démo)", company: "Entreprise partenaire A (démo)", sector: "Marketing & Communication", country: "Allemagne", city: "Berlin", type: "cdi", url: "https://example.com/offre-1", d: "Pilotage de la communication interne et externe d’une scale-up. Équipe internationale, anglais courant.", at: Date.now() - 2 * JB_DAY, eng: true },
+    { id: "j2", title: "Développeur·se web (démo)", company: "Entreprise partenaire B (démo)", sector: "Tech & Développement", country: "Suisse", city: "Lausanne", type: "cdi", url: "https://example.com/offre-2", d: "Développement front et back sur une plateforme en croissance. Télétravail partiel.", at: Date.now() - 4 * JB_DAY, eng: true },
+    { id: "j3", title: "Responsable RH junior (démo)", company: "Entreprise partenaire C (démo)", sector: "Ressources humaines", country: "France", city: "Lyon", type: "cdd", url: "https://example.com/offre-3", d: "Appui au recrutement et à l’intégration, mise en œuvre de la politique diversité.", at: Date.now() - 6 * JB_DAY, eng: true },
+    { id: "j4", title: "Data analyst, stage (démo)", company: "Entreprise partenaire D (démo)", sector: "Data & IA", country: "Allemagne", city: "Munich", type: "stage", url: "https://example.com/offre-4", d: "Stage de 6 mois au sein de l’équipe data. Python et SQL souhaités.", at: Date.now() - 9 * JB_DAY, eng: true },
+    { id: "j5", title: "Comptable (démo)", company: "Entreprise partenaire E (démo)", sector: "Finance & Comptabilité", country: "Belgique", city: "Bruxelles", type: "cdi", url: "https://example.com/offre-5", d: "Tenue de la comptabilité générale et clôtures mensuelles.", at: Date.now() - 12 * JB_DAY, eng: true }
+  ];
+  var JB_TYPES = { cdi: ["CDI", "Unbefristet", "Permanent"], cdd: ["CDD", "Befristet", "Fixed-term"], stage: ["Stage", "Praktikum", "Internship"], alt: ["Alternance", "Duales Studium", "Apprenticeship"], free: ["Freelance", "Freelance", "Freelance"] };
+  function jbType(k) { var x = JB_TYPES[k] || JB_TYPES.cdi; return T(x[0], x[1], x[2]); }
+  var jbTab = "all", jbCat = "", jbCountry = "", jbQ = "";
+  var jbSaved = (function () { try { var v = JSON.parse(localStorage.getItem("nane_jobs_saved") || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } })();
+  function jbPersist() { try { localStorage.setItem("nane_jobs_saved", JSON.stringify(jbSaved)); } catch (e) { } }
+  function jbSafeUrl(u) { u = normalizeUrl(u); return /^https?:\/\/[^\s"'<>]+\.[^\s"'<>]+$/i.test(u) ? u : ""; }
+  function jbDate(t) { return new Date(t).toLocaleDateString({ fr: "fr-FR", de: "de-DE", en: "en-GB" }[currentLang] || "fr-FR", { day: "2-digit", month: "short", year: "numeric" }); }
+  function jbMatch(j) {
+    if (jbTab === "saved" && jbSaved.indexOf(j.id) < 0) return false;
+    if (jbCat && j.sector !== jbCat) return false;
+    if (jbCountry && j.country !== jbCountry) return false;
+    if (jbQ) { var h = (j.title + " " + j.company + " " + j.city + " " + j.d).toLowerCase(); if (h.indexOf(jbQ) < 0) return false; }
+    return true;
+  }
+  function renderJobs() {
+    var list = document.getElementById("jbList"); if (!list) return;
+    var sec = document.querySelector('section[data-view="jobs"]');
+    if (!sec.getAttribute("data-bound")) {
+      sec.setAttribute("data-bound", "1");
+      document.getElementById("jbSearch").addEventListener("input", function () { jbQ = this.value.trim().toLowerCase(); renderJobs(); });
+      sec.addEventListener("click", function (ev) {
+        var t = ev.target.closest("[data-tab],[data-jc],[data-jk],[data-jsave]"); if (!t) return;
+        if (t.hasAttribute("data-tab")) { jbTab = t.getAttribute("data-tab"); jbCat = ""; jbCountry = ""; }
+        else if (t.hasAttribute("data-jc")) { var c = t.getAttribute("data-jc"); jbCat = jbCat === c ? "" : c; }
+        else if (t.hasAttribute("data-jk")) { var k = t.getAttribute("data-jk"); jbCountry = jbCountry === k ? "" : k; }
+        else { var id = t.getAttribute("data-jsave"), ix = jbSaved.indexOf(id); if (ix < 0) jbSaved.push(id); else jbSaved.splice(ix, 1); jbPersist(); }
+        renderJobs();
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#jbTabs .evs-item"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === jbTab && !jbCat && !jbCountry); });
+    var cats = SECTORS.filter(function (x) { return JOBS.some(function (j) { return j.sector === x; }); });
+    document.getElementById("jbCats").innerHTML = cats.map(function (x) { var n = JOBS.filter(function (j) { return j.sector === x; }).length; return '<button class="evs-item' + (jbCat === x ? " on" : "") + '" data-jc="' + escapeHtml(x) + '"><span class="evs-ic">💼</span>' + escapeHtml(sectorLabel(x)) + ' <small style="margin-left:auto;opacity:.7">' + n + '</small></button>'; }).join("");
+    var ctrs = COUNTRIES.filter(function (x) { return JOBS.some(function (j) { return j.country === x; }); });
+    document.getElementById("jbCountries").innerHTML = ctrs.map(function (x) { var n = JOBS.filter(function (j) { return j.country === x; }).length; return '<button class="evs-item' + (jbCountry === x ? " on" : "") + '" data-jk="' + escapeHtml(x) + '"><span class="evs-ic">🌍</span>' + escapeHtml(countryLabel(x)) + ' <small style="margin-left:auto;opacity:.7">' + n + '</small></button>'; }).join("");
+    document.getElementById("jbHead").textContent = (jbCat ? sectorLabel(jbCat) : (jbTab === "saved" ? T("Mes offres enregistrées", "Gespeicherte Stellen", "Saved openings") : T("Toutes les offres", "Alle Stellen", "All openings"))) + (jbCountry ? " · " + countryLabel(jbCountry) : "");
+    var shown = JOBS.filter(jbMatch).sort(function (a, b) { return b.at - a.at; });
+    if (!shown.length) { list.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(jbTab === "saved" ? T("Aucune offre enregistrée", "Keine gespeicherten Stellen", "No saved openings") : T("Aucune offre pour le moment", "Noch keine Stellen", "No openings yet")) + '</h3><p>' + escapeHtml(jbTab === "saved" ? T("Utilisez « Enregistrer » pour garder une offre et postuler plus tard.", "Mit „Speichern“ merken Sie sich eine Stelle für später.", "Use “Save” to keep an opening and apply later.") : T("Modifiez les filtres ou revenez bientôt.", "Ändern Sie die Filter oder schauen Sie bald wieder vorbei.", "Change the filters or check back soon.")) + '</p></div>'; return; }
+    list.innerHTML = shown.map(function (j) {
+      var on = jbSaved.indexOf(j.id) >= 0, u = jbSafeUrl(j.url);
+      return '<article class="jb-card"><h3>' + escapeHtml(j.title) + '</h3>' +
+        '<div class="jb-co">' + escapeHtml(j.company) + (j.eng ? ' <span class="jb-badge">' + escapeHtml(T("Employeur engagé", "Engagierter Arbeitgeber", "Committed employer")) + '</span>' : '') + '</div>' +
+        '<div class="jb-meta">' + escapeHtml([j.city, countryLabel(j.country), jbType(j.type), sectorLabel(j.sector), jbDate(j.at)].filter(Boolean).join(" · ")) + '</div>' +
+        '<p class="jb-desc">' + escapeHtml(j.d || "") + '</p>' +
+        '<div class="jb-actions">' + (u ? '<a class="btn btn-primary btn-small" href="' + escapeHtml(u) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(T("Postuler sur le site de l’employeur", "Auf der Website bewerben", "Apply on the employer’s site")) + ' ↗</a>' : '') +
+        '<button type="button" class="jb-save' + (on ? " on" : "") + '" data-jsave="' + escapeHtml(j.id) + '" aria-pressed="' + on + '">' + escapeHtml(on ? T("Enregistrée ✓", "Gespeichert ✓", "Saved ✓") : T("Enregistrer", "Speichern", "Save")) + '</button></div></article>';
+    }).join("");
+  }
+
+  // ---------- Espace employeur (maquette, sans acces a la communaute) ----------
+  function renderEmployer() {
+    var f = document.getElementById("empJobForm"); if (!f) return;
+    var mine = JOBS.filter(function (j) { return j.mine; });
+    if (!f.getAttribute("data-bound")) {
+      f.setAttribute("data-bound", "1");
+      f.innerHTML =
+        '<h2>' + escapeHtml(T("Publier une offre", "Stelle veröffentlichen", "Post an opening")) + '</h2>' +
+        '<p class="sub">' + escapeHtml(T("Maquette : le paiement n’est pas actif. Tarif indicatif : 390 € par offre (hypothèse du business plan).", "Mockup: Zahlung nicht aktiv. Richtpreis: 390 € pro Stelle (Annahme des Businessplans).", "Mockup: payment is not active. Indicative price: €390 per opening (business plan assumption).")) + '</p>' +
+        '<label for="jfTitle">' + escapeHtml(T("Intitulé du poste", "Stellenbezeichnung", "Job title")) + ' *</label><input id="jfTitle" type="text" maxlength="90">' +
+        '<label for="jfCo">' + escapeHtml(T("Entreprise", "Unternehmen", "Company")) + ' *</label><input id="jfCo" type="text" maxlength="80" value="' + escapeHtml(T("Mon entreprise (démo)", "Mein Unternehmen (Demo)", "My company (demo)")) + '">' +
+        '<div class="jb-row"><div><label for="jfCountry">' + escapeHtml(T("Pays", "Land", "Country")) + ' *</label><select id="jfCountry">' + COUNTRIES.map(function (c) { return '<option value="' + escapeHtml(c) + '">' + escapeHtml(countryLabel(c)) + '</option>'; }).join("") + '</select></div>' +
+        '<div><label for="jfCity">' + escapeHtml(T("Ville", "Stadt", "City")) + ' *</label><input id="jfCity" type="text" maxlength="60"></div></div>' +
+        '<div class="jb-row"><div><label for="jfType">' + escapeHtml(T("Contrat", "Vertrag", "Contract")) + '</label><select id="jfType">' + Object.keys(JB_TYPES).map(function (k) { return '<option value="' + k + '">' + escapeHtml(jbType(k)) + '</option>'; }).join("") + '</select></div>' +
+        '<div><label for="jfSector">' + escapeHtml(T("Secteur", "Branche", "Sector")) + '</label><select id="jfSector">' + SECTORS.map(function (x) { return '<option value="' + escapeHtml(x) + '">' + escapeHtml(sectorLabel(x)) + '</option>'; }).join("") + '</select></div></div>' +
+        '<label for="jfUrl">' + escapeHtml(T("Lien pour postuler (votre site ou votre outil de recrutement)", "Bewerbungslink (Ihre Website oder Ihr Bewerbungstool)", "Application link (your site or recruiting tool)")) + ' *</label><input id="jfUrl" type="text" placeholder="https://">' +
+        '<label for="jfDesc">' + escapeHtml(T("Description courte", "Kurzbeschreibung", "Short description")) + '</label><textarea id="jfDesc" rows="4" maxlength="500"></textarea>' +
+        '<p id="jfMsg" class="sub" role="status"></p>' +
+        '<button class="btn btn-primary" id="jfGo" style="margin-top:8px">' + escapeHtml(T("Publier l’offre", "Stelle veröffentlichen", "Publish opening")) + '</button>';
+      document.getElementById("jfGo").addEventListener("click", function () {
+        var g = function (id) { return (document.getElementById(id).value || "").trim(); }, msg = document.getElementById("jfMsg");
+        var u = jbSafeUrl(g("jfUrl"));
+        if (!g("jfTitle") || !g("jfCo") || !g("jfCity")) { msg.textContent = T("Merci de remplir l’intitulé, l’entreprise et la ville.", "Bitte Bezeichnung, Unternehmen und Stadt ausfüllen.", "Please fill in the title, company and city."); return; }
+        if (!u) { msg.textContent = T("Merci d’indiquer un lien valide pour postuler (https://…).", "Bitte einen gültigen Bewerbungslink angeben (https://…).", "Please enter a valid application link (https://…)."); return; }
+        JOBS.push({ id: "m" + Date.now(), mine: true, eng: true, title: g("jfTitle"), company: g("jfCo"), country: g("jfCountry"), city: g("jfCity"), type: g("jfType"), sector: g("jfSector"), url: u, d: g("jfDesc"), at: Date.now() });
+        ["jfTitle", "jfCity", "jfUrl", "jfDesc"].forEach(function (id) { document.getElementById(id).value = ""; });
+        msg.textContent = T("Offre publiée (maquette). Les membres la voient dans « Offres d’emploi ».", "Stelle veröffentlicht (Mockup). Mitglieder sehen sie unter „Stellenangebote“.", "Opening published (mockup). Members see it under “Job openings”.");
+        renderEmployer();
+      });
+      document.getElementById("empLeave").addEventListener("click", goPublic);
+      document.getElementById("empJobList").addEventListener("click", function (ev) {
+        var b = ev.target.closest("[data-jdel]"); if (!b) return;
+        var id = b.getAttribute("data-jdel"); JOBS = JOBS.filter(function (j) { return j.id !== id; }); renderEmployer();
+      });
+    }
+    var box = document.getElementById("empJobList");
+    box.innerHTML = mine.length ? mine.map(function (j) {
+      return '<article class="jb-card"><h3>' + escapeHtml(j.title) + '</h3><div class="jb-meta">' + escapeHtml([j.company, j.city, countryLabel(j.country), jbType(j.type), jbDate(j.at)].join(" · ")) + '</div>' +
+        '<div class="jb-actions"><span class="jb-badge">' + escapeHtml(T("Publiée", "Veröffentlicht", "Published")) + '</span><button type="button" class="jb-save" data-jdel="' + escapeHtml(j.id) + '">' + escapeHtml(T("Retirer l’offre", "Stelle entfernen", "Remove opening")) + '</button></div></article>';
+    }).join("") : '<p class="sub">' + escapeHtml(T("Aucune offre publiée pour le moment.", "Noch keine Stellen veröffentlicht.", "No openings published yet.")) + '</p>';
+  }
   function renderRightCol() {
     var el = document.getElementById("rightCol"); if (!el) return;
     var list = selfId ? suggestions().slice(0, 4) : [];
@@ -3342,10 +3509,11 @@
     var evc = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Événements", "Veranstaltungen", "Events")) + '</span>' +
       '<p class="rc-empty">' + escapeHtml(T("Organisez une rencontre, un atelier ou un afterwork pour votre communauté.", "Organisieren Sie ein Treffen, einen Workshop oder einen Afterwork für Ihre Community.", "Organise a meetup, workshop or afterwork for your community.")) + '</p>' +
       '<button class="btn btn-primary btn-small rc-btn" id="rcEvents">' + escapeHtml(T("Créer un événement", "Veranstaltung erstellen", "Create an event")) + ' →</button></div>';
-    var emp = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Employeurs", "Arbeitgeber", "Employers")) + '</span>' +
-      '<h3 class="rc-h">' + escapeHtml(T("Recruter des talents", "Talente finden", "Hire talent")) + '</h3>' +
-      '<p class="rc-empty">' + escapeHtml(T("Vous recrutez ? Déposez vos offres et touchez des profils afrodescendants en Europe.", "Sie suchen Verstärkung? Veröffentlichen Sie Ihre Stellen und erreichen Sie Fachkräfte afrikanischer Abstammung in Europa.", "Hiring? Post your openings and reach professionals of African descent across Europe.")) + '</p>' +
-      '<button class="btn btn-primary btn-small rc-btn" id="rcEmployer">' + escapeHtml(T("Déposer une offre", "Stelle veröffentlichen", "Post an opening")) + ' →</button></div>';
+    var jl = JOBS.slice().sort(function (a, b) { return b.at - a.at; }).slice(0, 3);
+    var emp = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Emploi", "Jobs", "Jobs")) + '</span>' +
+      '<h3 class="rc-h">' + escapeHtml(T("Offres d'emploi", "Stellenangebote", "Job openings")) + '</h3>' +
+      jl.map(function (j) { return '<button type="button" class="rc-job" data-rcjob="1"><b>' + escapeHtml(j.title) + '</b><span>' + escapeHtml([j.company, j.city].join(" · ")) + '</span></button>'; }).join("") +
+      '<button class="btn btn-primary btn-small rc-btn" id="rcJobs" style="margin-top:12px">' + escapeHtml(T("Accéder aux offres d'emploi", "Zu den Stellenangeboten", "Browse job openings")) + ' →</button></div>';
     var fr = '<div class="rc-card rc-free"><span class="rc-eyebrow">' + escapeHtml(T("Freelances", "Freelancer", "Freelancers")) + '</span>' +
       '<h3 class="rc-h">' + escapeHtml(T("Proposer vos services", "Ihre Leistungen anbieten", "Offer your services")) + '</h3>' +
       '<p class="rc-empty">' + escapeHtml(T("Consultant·e, créatif·ve, développeur·se… Présentez votre expertise et trouvez vos prochaines missions.", "Berater:in, Kreative:r, Entwickler:in … Stellen Sie Ihre Expertise vor und finden Sie Ihre nächsten Aufträge.", "Consultant, creative, developer… Showcase your expertise and find your next assignments.")) + '</p>' +
@@ -3360,7 +3528,8 @@
       showView("feed");
       setTimeout(function () { var pi = document.getElementById("postInput"); if (!pi) return; pi.value = txt; pi.style.minHeight = "170px"; pi.focus(); var i1 = txt.indexOf("\n"), i2 = txt.indexOf("\n", i1 + 1); try { pi.setSelectionRange(i2, i2); pi.scrollTop = 0; } catch (e) { } window.scrollTo({ top: 0, behavior: "smooth" }); }, 250);
     }
-    document.getElementById("rcEmployer").addEventListener("click", function () { rcCompose(T("[Offre d'emploi]\nPoste : \nEntreprise : \nLieu : \nProfil recherché : \nPour postuler : ", "[Stellenangebot]\nPosition: \nUnternehmen: \nOrt: \nGesuchtes Profil: \nBewerbung: ", "[Job opening]\nRole: \nCompany: \nLocation: \nProfile sought: \nHow to apply: ")); });
+    document.getElementById("rcJobs").addEventListener("click", function () { showView("jobs"); });
+    el.querySelectorAll("[data-rcjob]").forEach(function (b) { b.addEventListener("click", function () { showView("jobs"); }); });
     document.getElementById("rcFree").addEventListener("click", function () { openDirKind("freelance"); });
     document.getElementById("rcOrg").addEventListener("click", function () { openDirKind("org"); });
     document.getElementById("rcMentorFind").addEventListener("click", function () { openDirKind("mentor"); });

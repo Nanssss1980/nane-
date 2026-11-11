@@ -1381,20 +1381,43 @@
     <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></h1><p class="i18n" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Rejoignez les conversations qui vous inspirent ou créez votre propre espace d’échange." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Treten Sie Gesprächen bei, die Sie inspirieren, oder gründen Sie Ihren eigenen Raum." data-en="Circles around your interests and commitments. Join the conversations that inspire you or create your own space."></p></div></div>
     <section class="signup">
       <div class="wrap">
-        <h2 class="i18n" style="margin-top:0" data-fr="Circles" data-de="Circles" data-en="Circles"></h2>
-        <p class="i18n" style="max-width:70ch;margin:0 0 16px;font-size:20px" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Rejoignez les conversations qui vous inspirent ou créez votre propre espace d’échange." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Treten Sie den Gesprächen bei, die Sie inspirieren, oder schaffen Sie Ihren eigenen Austauschraum." data-en="Circles around your interests and commitments. Join the conversations that inspire you, or create your own space to talk."></p>
-        <p style="margin:0 0 24px"><button class="btn btn-ghost i18n" id="circCreateBtn" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></button></p>
+        <div class="evs-shell">
+        <aside class="evs-side">
+          <h2 class="evs-title"><span class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></span></h2>
+          <input type="text" id="cgSearch" class="evs-search i18n-ph" data-fr="Rechercher des circles" data-de="Circles suchen" data-en="Search circles">
+          <nav class="evs-nav" id="cgTabs">
+            <button class="evs-item on" data-tab="all"><span class="evs-ic">⭕</span><span class="i18n" data-fr="Découvrir" data-de="Entdecken" data-en="Discover"></span></button>
+            <button class="evs-item" data-tab="mine"><span class="evs-ic">👤</span><span class="i18n" data-fr="Mes circles" data-de="Meine Circles" data-en="My circles"></span></button>
+          </nav>
+          <button class="btn btn-primary evs-create" id="circCreateBtn">+ <span class="i18n" data-fr="Créer un circle" data-de="Circle erstellen" data-en="Create a circle"></span></button>
+          <h3 class="evs-cath"><span class="i18n" data-fr="Catégories" data-de="Kategorien" data-en="Categories"></span></h3>
+          <nav class="evs-nav" id="cgCats"></nav>
+          <h3 class="evs-cath"><span class="i18n" data-fr="Pays" data-de="Land" data-en="Country"></span></h3>
+          <nav class="evs-nav" id="cgCountries"></nav>
+        </aside>
+        <div class="evs-main">
+          <h2 class="evs-head" id="cgHead"></h2>
         <div class="circ-box circ-one"><h3 class="i18n" data-fr="Des échanges qui restent simples et organisés" data-de="Austausch, der einfach und geordnet bleibt" data-en="Conversations that stay simple and organised"></h3><p class="i18n" data-fr="Les groupes WhatsApp rassemblent parfois des centaines de membres. Entre les notifications incessantes, les conversations qui se perdent et les multiples sous-groupes, il devient difficile de suivre les échanges et de séparer vie privée et vie professionnelle." data-de="WhatsApp-Gruppen versammeln manchmal Hunderte von Mitgliedern. Zwischen ständigen Benachrichtigungen, untergehenden Gesprächen und zahlreichen Untergruppen wird es schwer, den Überblick zu behalten und Privat- und Berufsleben zu trennen." data-en="WhatsApp groups sometimes gather hundreds of members. Between constant notifications, conversations that get lost and multiple sub-groups, it becomes hard to follow the discussion and to separate private and professional life."></p><p class="i18n" style="margin-top:10px" data-fr="Avec les Cercles NANE, chaque communauté dispose de son propre espace, organisé par thématique. Vous choisissez les notifications que vous souhaitez recevoir, pouvez mettre un cercle en sourdine ou le quitter à tout moment." data-de="Mit den NANE Circles hat jede Community ihren eigenen, nach Themen geordneten Raum. Sie wählen, welche Benachrichtigungen Sie erhalten, können einen Circle stummschalten oder jederzeit verlassen." data-en="With NANE Circles, each community has its own space, organised by topic. You choose which notifications you receive, and can mute a circle or leave it at any time."></p><p class="i18n" style="margin-top:10px;font-weight:600;color:var(--ink)" data-fr="Le tout dans un environnement professionnel, sans avoir à partager votre numéro de téléphone." data-de="Das Ganze in einem beruflichen Umfeld, ohne Ihre Telefonnummer teilen zu müssen." data-en="All in a professional environment, without having to share your phone number."></p></div>
-        <div id="circGrid" class="circ-grid"></div>
-        <p class="circ-note" id="circNote"></p>
-        <div class="circ-propose" id="circPropose">
-          <h3 class="i18n" data-fr="Créer votre espace d’échange" data-de="Schaffen Sie Ihren Austauschraum" data-en="Create your own space"></h3>
-          <p class="i18n" data-fr="Donnez-lui un nom et une description. Votre circle apparaît tout de suite et vous en êtes l’animateur·rice." data-de="Geben Sie ihm einen Namen und eine Beschreibung. Ihr Circle erscheint sofort, und Sie leiten ihn." data-en="Give it a name and a description. Your circle appears right away and you run it."></p>
-          <input type="text" id="circPName" maxlength="60" class="i18n-ph" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
-          <textarea id="circPDesc" rows="2" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ?" data-de="Wofür ist dieser Circle?" data-en="What is this circle for?"></textarea>
-          <select id="circPOpen" aria-label="Accès" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"><option value="open" class="i18n" data-fr="🔓 Ouvert à tous les membres" data-de="🔓 Offen für alle Mitglieder" data-en="🔓 Open to all members"></option><option value="approval" class="i18n" data-fr="🔒 Sur validation" data-de="🔒 Nach Freigabe" data-en="🔒 By approval"></option></select>
-          <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button>
-          <span id="circPMsg" class="sub" style="margin-left:10px"></span>
+          <div id="circGrid" class="circ-grid"></div>
+          <p class="circ-note" id="circNote"></p>
+        </div>
+        </div>
+        <div class="ev-backdrop" id="cgBackdrop" hidden></div>
+        <div class="ev-form" id="cgForm" role="dialog" aria-modal="true" aria-labelledby="cgFormTitle" hidden>
+          <div class="evf-head"><h3 id="cgFormTitle"><span class="i18n" data-fr="Créer un circle" data-de="Circle erstellen" data-en="Create a circle"></span></h3><button type="button" class="evf-close" id="cgClose" aria-label="Fermer">&times;</button></div>
+          <div class="evf-body">
+            <input id="circPName" class="i18n-ph" type="text" maxlength="60" style="margin-top:16px;font-size:17px;font-weight:600" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
+            <label for="circPDesc"><span class="i18n" data-fr="Description" data-de="Beschreibung" data-en="Description"></span></label>
+            <textarea id="circPDesc" rows="3" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ? Pour qui ?" data-de="Wofür ist dieser Circle? Für wen?" data-en="What is this circle for? Who is it for?"></textarea>
+            <div class="evf-row">
+              <div><label for="circPCat"><span class="i18n" data-fr="Catégorie" data-de="Kategorie" data-en="Category"></span> <span aria-hidden="true">*</span></label><select id="circPCat"></select></div>
+              <div><label for="circPCountry"><span class="i18n" data-fr="Pays" data-de="Land" data-en="Country"></span> <span aria-hidden="true">*</span></label><select id="circPCountry"></select></div>
+            </div>
+            <label for="circPOpen"><span class="i18n" data-fr="Accès" data-de="Zugang" data-en="Access"></span></label>
+            <select id="circPOpen"><option value="open" class="i18n" data-fr="🔓 Ouvert à tous les membres" data-de="🔓 Offen für alle Mitglieder" data-en="🔓 Open to all members"></option><option value="approval" class="i18n" data-fr="🔒 Sur validation (vous acceptez les demandes)" data-de="🔒 Mit Freigabe (Sie bestätigen Anfragen)" data-en="🔒 By approval (you accept requests)"></option></select>
+            <p class="circ-note" style="margin:10px 20px 6px"><span class="i18n" data-fr="Votre circle apparaît tout de suite et vous en êtes l’animateur·rice." data-de="Ihr Circle erscheint sofort, und Sie leiten ihn." data-en="Your circle appears right away and you are its host."></span></p>
+          </div>
+          <div class="evf-foot"><span id="circPMsg" class="sub"></span><button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button></div>
         </div>
       </div>
     </section>
@@ -3794,7 +3817,7 @@
   }
 
   // ---------- Circles ----------
-  var CIRCLES = [{"id": "example-mentoring", "ex": true, "e": "🎓", "c": "#2B6B5E", "o": false, "n": {"fr": "Mentorat & cours", "de": "Mentoring & Kurse", "en": "Mentoring & classes"}, "d": {"fr": "Exemple : un·e enseignant·e ou mentor·e réunit ses élèves ici, au lieu d’un groupe WhatsApp.", "de": "Beispiel: Eine Lehrkraft oder ein:e Mentor:in versammelt hier die Lernenden, statt einer WhatsApp-Gruppe.", "en": "Example: a teacher or mentor brings their students together here, instead of a WhatsApp group."}}];  // un seul circle d’exemple : les membres créent les leurs
+  var CIRCLES = [{"id": "example-mentoring", "ex": true, "cat": "mentorat", "country": "intl", "e": "🎓", "c": "#2B6B5E", "o": false, "n": {"fr": "Mentorat & cours", "de": "Mentoring & Kurse", "en": "Mentoring & classes"}, "d": {"fr": "Exemple : un·e enseignant·e ou mentor·e réunit ses élèves ici, au lieu d’un groupe WhatsApp.", "de": "Beispiel: Eine Lehrkraft oder ein:e Mentor:in versammelt hier die Lernenden, statt einer WhatsApp-Gruppe.", "en": "Example: a teacher or mentor brings their students together here, instead of a WhatsApp group."}}];  // un seul circle d’exemple : les membres créent les leurs
   var userCircles = [];  // circles créés par les membres
   var CIRC_COLORS = ["#2E6F8E","#3B4A7A","#A8522A","#8E3B8A","#2F5D56","#B8607A","#4A3A8C","#21184B"];
   function allCircles() { return CIRCLES.concat(userCircles); }
@@ -3808,11 +3831,40 @@
       digest: T("Résumé quotidien", "Tageszusammenfassung", "Daily digest"),
       mute: T("Silencieux", "Stumm", "Silent") })[k];
   }
+  var CG_CATS = [["reseau", "Networking & entraide", "Networking & Austausch", "Networking & mutual support"], ["carriere", "Carrière & emploi", "Karriere & Jobs", "Career & jobs"], ["entrepreneuriat", "Entrepreneuriat & business", "Gründung & Business", "Entrepreneurship & business"], ["mentorat", "Mentorat & cours", "Mentoring & Kurse", "Mentoring & classes"], ["tech", "Tech & numérique", "Tech & Digitales", "Tech & digital"], ["culture", "Culture, art & musique", "Kultur, Kunst & Musik", "Culture, art & music"], ["gastro", "Gastronomie & food", "Gastronomie & Food", "Food & dining"], ["bienetre", "Santé & bien-être", "Gesundheit & Wohlbefinden", "Health & wellbeing"], ["famille", "Famille & vie pratique", "Familie & Alltag", "Family & daily life"], ["engagement", "Engagement & associations", "Engagement & Vereine", "Engagement & associations"], ["autre", "Autre", "Andere", "Other"]];
+  var CG_ICONS = { reseau: "🤝", carriere: "💼", entrepreneuriat: "🚀", mentorat: "🎓", tech: "💻", culture: "🎶", gastro: "🍽", bienetre: "🌿", famille: "🏡", engagement: "✊", autre: "✨" };
+  var CG_COUNTRIES = ["France", "Allemagne", "Suisse", "Belgique", "Luxembourg", "intl"];
+  function cgCatLabel(k) { for (var i = 0; i < CG_CATS.length; i++) if (CG_CATS[i][0] === k) return T(CG_CATS[i][1], CG_CATS[i][2], CG_CATS[i][3]); return ""; }
+  function cgCountryLabel(k) { return k === "intl" ? T("International", "International", "International") : countryLabel(k); }
+  var cgTab = "all", cgCat = "", cgCountry = "", cgQ = "";
+  function cgFill() {
+    var c = document.getElementById("circPCat"), k = document.getElementById("circPCountry");
+    if (c) { var v = c.value || "reseau"; c.innerHTML = CG_CATS.map(function (x) { return '<option value="' + x[0] + '">' + escapeHtml(T(x[1], x[2], x[3])) + '</option>'; }).join(""); c.value = v; }
+    if (k) { var w = k.value || "France"; k.innerHTML = CG_COUNTRIES.map(function (x) { return '<option value="' + x + '">' + escapeHtml(cgCountryLabel(x)) + '</option>'; }).join(""); k.value = w; }
+  }
+  function cgMatch(c) {
+    if (cgCat && (c.cat || "autre") !== cgCat) return false;
+    if (cgCountry && (c.country || "intl") !== cgCountry) return false;
+    if (cgTab === "mine" && !(circMem[c.id] || (selfId && c.authorId === selfId) || (c.by && c.authorId === "" && c.id.indexOf("local-") === 0))) return false;
+    var q = cgQ.toLowerCase().trim(); if (q && [typeof c.n === "string" ? c.n : (c.n[currentLang] || c.n.fr), cDesc(c)].join(" ").toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  }
+  function cgSidebar() {
+    var all = allCircles(), cb = document.getElementById("cgCats"), kb = document.getElementById("cgCountries");
+    Array.prototype.forEach.call(document.querySelectorAll("#cgTabs .evs-item"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === cgTab && !cgCat && !cgCountry); });
+    if (cb) cb.innerHTML = CG_CATS.map(function (x) { var n = all.filter(function (c) { return (c.cat || "autre") === x[0]; }).length; return '<button class="evs-item' + (cgCat === x[0] ? " on" : "") + '" data-c="' + x[0] + '"><span class="evs-ic">' + CG_ICONS[x[0]] + '</span>' + escapeHtml(T(x[1], x[2], x[3])) + (n ? ' <small style="margin-left:auto;opacity:.6">' + n + '</small>' : "") + '</button>'; }).join("");
+    if (kb) kb.innerHTML = CG_COUNTRIES.map(function (x) { var n = all.filter(function (c) { return (c.country || "intl") === x; }).length; return '<button class="evs-item' + (cgCountry === x ? " on" : "") + '" data-k="' + x + '"><span class="evs-ic">' + (x === "intl" ? "🌐" : "🌍") + '</span>' + escapeHtml(cgCountryLabel(x)) + (n ? ' <small style="margin-left:auto;opacity:.6">' + n + '</small>' : "") + '</button>'; }).join("");
+    var hd = document.getElementById("cgHead");
+    if (hd) hd.textContent = (cgCat ? cgCatLabel(cgCat) : (cgTab === "mine" ? T("Mes circles", "Meine Circles", "My circles") : T("Découvrir des circles", "Circles entdecken", "Discover circles"))) + (cgCountry ? " · " + cgCountryLabel(cgCountry) : "");
+  }
   function renderCircles() {
     var grid = document.getElementById("circGrid"); if (!grid) return;
-    grid.innerHTML = allCircles().map(function (c) {
+    cgFill(); cgSidebar();
+    var shown = allCircles().filter(cgMatch);
+    if (!shown.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>' + escapeHtml(T("Aucun circle pour le moment", "Noch keine Circles", "No circles yet")) + '</h3><p>' + escapeHtml(T("Créez le premier circle de cette catégorie ou de ce pays.", "Erstellen Sie den ersten Circle dieser Kategorie oder dieses Landes.", "Create the first circle in this category or country.")) + '</p></div>'; return; }
+    grid.innerHTML = shown.map(function (c) {
       var m = circMem[c.id], n = circCounts[c.id] || 0;
-      var meta = (c.ex ? T("Exemple", "Beispiel", "Example") + " · " : "") + (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
+      var meta = (c.ex ? T("Exemple", "Beispiel", "Example") + " · " : "") + ((c.cat || c.country) ? cgCatLabel(c.cat || "autre") + " · " + cgCountryLabel(c.country || "intl") + " · " : "") + (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
         ((circDbReady || !OFFLINE) ? " · " + n + " " + T("membre" + (n > 1 ? "s" : ""), n > 1 ? "Mitglieder" : "Mitglied", n > 1 ? "members" : "member") : "");
       var act;
       if (m && m.status === "member") {
@@ -3853,28 +3905,34 @@
       var id = s.getAttribute("data-id"), cur = circMem[id]; if (!cur) return;
       circSave(id, { status: cur.status, notif: s.value });
     });
+    function cgOpen() { cgFill(); document.getElementById("cgBackdrop").hidden = false; document.getElementById("cgForm").hidden = false; document.body.style.overflow = "hidden"; setTimeout(function () { var t0 = document.getElementById("circPName"); if (t0) t0.focus(); }, 50); }
+    function cgClose() { document.getElementById("cgBackdrop").hidden = true; document.getElementById("cgForm").hidden = true; document.body.style.overflow = ""; document.getElementById("circPMsg").textContent = ""; }
+    document.getElementById("cgClose").addEventListener("click", cgClose);
+    document.getElementById("cgBackdrop").addEventListener("click", cgClose);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !document.getElementById("cgForm").hidden) cgClose(); });
+    var cs = document.getElementById("cgSearch"); if (cs) cs.addEventListener("input", function () { cgQ = cs.value; renderCircles(); });
+    var ct = document.getElementById("cgTabs"); if (ct) ct.addEventListener("click", function (e) { var b = e.target.closest("[data-tab]"); if (b) { cgTab = b.getAttribute("data-tab"); cgCat = ""; cgCountry = ""; renderCircles(); } });
+    var cc = document.getElementById("cgCats"); if (cc) cc.addEventListener("click", function (e) { var b = e.target.closest("[data-c]"); if (b) { var k = b.getAttribute("data-c"); cgCat = (cgCat === k ? "" : k); cgTab = "all"; renderCircles(); } });
+    var ck = document.getElementById("cgCountries"); if (ck) ck.addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) { var k = b.getAttribute("data-k"); cgCountry = (cgCountry === k ? "" : k); cgTab = "all"; renderCircles(); } });
     document.getElementById("circPBtn").addEventListener("click", function () {
       var n = document.getElementById("circPName").value.trim(), d = document.getElementById("circPDesc").value.trim();
-      var open = document.getElementById("circPOpen").value === "open";
+      var open = document.getElementById("circPOpen").value === "open", cat = document.getElementById("circPCat").value, country = document.getElementById("circPCountry").value;
       var msg = document.getElementById("circPMsg"); if (!n) { msg.textContent = T("Donnez un nom à votre circle.", "Geben Sie Ihrem Circle einen Namen.", "Give your circle a name."); return; }
       var color = CIRC_COLORS[userCircles.length % CIRC_COLORS.length];
-      function done() { document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = ""; msg.textContent = T("Votre circle est créé.", "Ihr Circle wurde erstellt.", "Your circle is created."); }
+      function done() { document.getElementById("circPName").value = ""; document.getElementById("circPDesc").value = ""; cgTab = "all"; cgCat = ""; cgCountry = ""; cgQ = ""; if (cs) cs.value = ""; cgClose(); renderCircles(); }
       if (!dbNs || !selfId) {
         // Hors ligne (site public) : le circle n'existe que dans cette page
         var id = "local-" + Date.now();
-        userCircles.push({ id: id, c: color, o: open, n: n, d: d, by: T("vous", "Ihnen", "you"), authorId: "" });
+        userCircles.push({ id: id, c: color, o: open, n: n, d: d, cat: cat, country: country, by: T("vous", "Ihnen", "you"), authorId: "" });
         circMem[id] = { status: "member", notif: "all" }; circCounts[id] = 1; circDbReady = true;
-        renderCircles(); done(); return;
+        done(); return;
       }
-      dbNs.collection("circles").add({ name: n, description: d, open: open, color: color, authorId: selfId, authorName: myName(), createdAt: Date.now() }).then(function (ref) {
+      dbNs.collection("circles").add({ name: n, description: d, open: open, color: color, cat: cat, country: country, authorId: selfId, authorName: myName(), createdAt: Date.now() }).then(function (ref) {
         circSave(ref.id, { status: "member", notif: "all" }); done();
       }).catch(toastErr);
     });
     var cb = document.getElementById("circCreateBtn");
-    if (cb) cb.addEventListener("click", function () {
-      var box = document.getElementById("circPropose"); if (box) box.scrollIntoView({ behavior: "smooth", block: "center" });
-      var inp = document.getElementById("circPName"); if (inp) setTimeout(function () { inp.focus(); }, 400);
-    });
+    if (cb) cb.addEventListener("click", cgOpen);
     renderCircles();
   })();
   function circLoadDb() {
@@ -3890,7 +3948,7 @@
     function applyCircles(snap) {
       userCircles = snap.docs.map(function (d) {
         var x = d.data(); if (!x) return null; x = Object.assign({}, x);
-        return { id: d.id, c: x.color || "#21184B", o: !!x.open, n: x.name || "", d: x.description || "", by: x.authorName || "", authorId: x.authorId || "", createdAt: x.createdAt || 0 };
+        return { id: d.id, c: x.color || "#21184B", o: !!x.open, n: x.name || "", d: x.description || "", by: x.authorName || "", authorId: x.authorId || "", cat: x.cat || "", country: x.country || "", createdAt: x.createdAt || 0 };
       }).filter(function (x) { return x && x.n; }).sort(function (a, b) { return a.createdAt - b.createdAt; });
       renderCircles();
     }

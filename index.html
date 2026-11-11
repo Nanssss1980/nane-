@@ -6,7 +6,7 @@
 <title>NANE — Le réseau professionnel des talents afrodescendants francophones et germanophones</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #21184B;
@@ -23,7 +23,7 @@
     --text-on-paper-dim: #6A6380;
     --radius-s: 4px;
     --radius-m: 10px;
-    --serif: 'Fraunces', serif;
+    --serif: 'Sora', 'Montserrat', -apple-system, sans-serif;
     --sans: 'IBM Plex Sans', -apple-system, sans-serif;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
@@ -681,6 +681,168 @@
   .ev-av { display: flex; } .ev-av .pc-avatar { width: 30px; height: 30px; margin-left: -8px; border: 2px solid #fff; font-size: 11px; } .ev-av .pc-avatar:first-child { margin-left: 0; }
   .ev-foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 13px; }
   .ev-link { background: none; border: 0; padding: 0; font: inherit; color: var(--text-on-paper-dim); text-decoration: underline; cursor: pointer; }
+  /* ===== Black excellence : contraste, typographie forte, accents dorés ===== */
+  :root { --ink-deep: #150F36; }
+  header.site { border-bottom: 2px solid var(--brass); }
+  nav.links button.navlink.active { border-bottom-color: var(--brass); }
+  .btn { border-radius: 999px; letter-spacing: .01em; }
+  /* Accueil */
+  [data-view=about] > section.hero { background: radial-gradient(900px 500px at 85% 20%, rgba(198,161,91,.22), transparent 60%), linear-gradient(160deg, var(--ink-deep), var(--ink) 60%, var(--ink-soft)); padding: 112px 0 96px; }
+  [data-view=about] .hero h1 { color: #fff; font-size: 80px; line-height: 1.02; letter-spacing: -0.02em; max-width: 12ch; }
+  [data-view=about] .hero p.lead { color: var(--brass); font-family: var(--sans); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; margin: 0 0 22px; }
+  [data-view=about] .hero p.sub { color: rgba(255,255,255,.78); font-size: 20px; max-width: 46ch; margin-bottom: 18px !important; }
+  [data-view=about] .hero .tagline { color: #fff; font-size: 28px; border-left: 3px solid var(--brass); padding-left: 16px; }
+  [data-view=about] .hero .btn-primary { background: var(--brass); color: var(--ink-deep); font-weight: 700; padding: 15px 28px; }
+  [data-view=about] .hero .btn-primary:hover { background: #D4B16C; }
+  [data-view=about] .hero .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); padding: 15px 28px; }
+  [data-view=about] .hero .btn-ghost:hover { border-color: #fff; }
+  .network-art g[stroke] { stroke: var(--brass); opacity: .55; }
+  .network-art circle { fill: var(--brass); filter: drop-shadow(0 0 8px rgba(198,161,91,.55)); }
+  .network-art circle:nth-child(2n) { fill: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,.4)); }
+  [data-view=about] > section.examples { background: var(--ink); padding-bottom: 72px; }
+  .examples .ex-label { color: var(--brass); }
+  .examples .ex-card { background: rgba(255,255,255,.06); border: 1px solid rgba(198,161,91,.35); color: #fff; }
+  .examples .pc-name { color: #fff; font-family: var(--serif); font-size: 18px; }
+  .examples .pc-title { color: rgba(255,255,255,.7); }
+  .examples .tag { background: rgba(198,161,91,.16); color: #E8D3A0; border: 1px solid rgba(198,161,91,.4); }
+  .examples .ex-tag { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.7); }
+  .pc-avatar { box-shadow: 0 0 0 2px var(--brass); }
+  .ex-card .pc-avatar { background: var(--brass); color: var(--ink-deep); font-weight: 700; box-shadow: none; }
+  [data-view=about] .mission { padding: 104px 0; background: var(--paper-dim); border-top: 0; }
+  [data-view=about] .mission h2 { font-size: 52px; line-height: 1.08; letter-spacing: -0.015em; position: relative; padding-top: 22px; margin-bottom: 24px; }
+  [data-view=about] .mission h2::before { content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 4px; background: var(--brass); }
+  [data-view=about] .mission p { font-size: 18px; line-height: 1.7; }
+  [data-view=about] .mission p.mission-lead { font-size: 24px; line-height: 1.45; }
+  [data-view=about] > section.values { padding: 104px 0; background: linear-gradient(170deg, var(--ink-deep), var(--ink)); color: #fff; }
+  [data-view=about] .values h2 { color: #fff; font-size: 52px; line-height: 1.08; letter-spacing: -0.015em; }
+  [data-view=about] .values > .wrap > p, [data-view=about] .values p.sub { color: rgba(255,255,255,.8); }
+  [data-view=about] .values .value-card { border-top: 3px solid var(--brass); padding-top: 22px; }
+  [data-view=about] .values .value-card h3 { color: #fff; font-family: var(--serif); font-weight: 500; font-size: 26px; }
+  [data-view=about] .values .value-card p { color: rgba(255,255,255,.75); font-size: 16px; }
+  [data-view=about] .values .btn-primary { background: var(--brass); color: var(--ink-deep); font-weight: 700; padding: 14px 26px; }
+  [data-view=about] .values .btn-primary:hover { background: #D4B16C; }
+  [data-view=about] .values .circ-targets, [data-view=about] .values .value-grid { margin-top: 36px; }
+  /* Fil */
+  .feed-section { background: linear-gradient(180deg, var(--ink-deep) 0, var(--ink) 270px, var(--paper-dim) 270px); padding: 0 0 96px; }
+  .feed-banner { padding-top: 44px; padding-bottom: 56px; color: #fff; }
+  .feed-banner h1 { font-family: var(--serif); font-weight: 500; font-size: 54px; line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 10px; }
+  .feed-banner h1 em { font-style: italic; color: var(--brass); }
+  .feed-banner p { margin: 0; color: rgba(255,255,255,.75); font-size: 18px; }
+  .feed-grid > * { margin-top: 0; }
+  .composer, .post-card, .rc-card, .side-card { border-radius: 16px; box-shadow: 0 6px 24px rgba(21,15,54,.08); border: 1px solid var(--line); }
+  .composer { border-top: 4px solid var(--brass); }
+  .post-card { padding: 24px; border-left: 4px solid var(--brass); }
+  .post-card .pc-avatar { width: 48px; height: 48px; }
+  .post-meta-name { font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--ink); }
+  .post-text { font-size: 16px; line-height: 1.65; }
+  .sp-cover { height: 84px; background: linear-gradient(120deg, var(--ink-deep), var(--ink-soft)); border-bottom: 3px solid var(--brass); }
+  .rc-eyebrow { color: #8A6B27; font-weight: 600; }
+  .rc-mentor { background: linear-gradient(160deg, var(--ink-deep), var(--ink)); }
+  /* Pages internes : titres plus affirmés */
+  .signup h2, .directory h2, .dir-head h2 { font-size: 40px; letter-spacing: -0.01em; }
+  @media (max-width: 767px) {
+    [data-view=about] .hero h1 { font-size: 48px; }
+    [data-view=about] .mission h2, [data-view=about] .values h2 { font-size: 36px; }
+    [data-view=about] > section.hero { padding: 72px 0 56px; }
+    [data-view=about] .mission, [data-view=about] > section.values { padding: 72px 0; }
+    .feed-banner h1 { font-size: 36px; }
+    .feed-banner { padding-top: 28px; padding-bottom: 40px; }
+  }
+  /* ===== NANE : identité typographique propre (sans serif géométrique gras) ===== */
+  h1, h2, h3, .pf-name, .sp-name, .post-meta-name, .net-title, .st-name, .tagline, .pc-name { font-family: var(--serif); }
+  [data-view=about] .hero h1 { font-weight: 800; font-size: 84px; line-height: 0.98; letter-spacing: -0.045em; max-width: 11ch; }
+  [data-view=about] .hero .tagline { font-weight: 600; font-size: 22px; letter-spacing: -0.01em; border-left: 0; padding-left: 0; color: var(--brass); }
+  [data-view=about] .hero p.sub { font-style: normal !important; }
+  [data-view=about] .mission h2, [data-view=about] .values h2 { font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.04em; }
+  [data-view=about] .mission h2::before { display: none; }
+  [data-view=about] .mission h2 { padding-top: 0; }
+  [data-view=about] .mission .wrap-narrow { max-width: 1180px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  [data-view=about] .mission .wrap-narrow > h2 { margin: 0; }
+  [data-view=about] .mission .wrap-narrow > p, [data-view=about] .mission .wrap-narrow > div, [data-view=about] .mission .wrap-narrow > button { grid-column: 2; }
+  [data-view=about] .mission .wrap-narrow > h2 { grid-column: 1; grid-row: 1 / span 6; position: sticky; top: 110px; }
+  [data-view=about] .mission p.mission-lead { font-family: var(--sans); font-size: 20px; }
+  [data-view=about] .values .value-grid { gap: 18px; counter-reset: v; }
+  [data-view=about] .values .value-card { counter-increment: v; border: 1px solid rgba(255,255,255,.14); border-top: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); border-radius: 20px; padding: 28px; position: relative; }
+  [data-view=about] .values .value-card::before { content: "0" counter(v); display: block; font-family: var(--serif); font-weight: 800; font-size: 44px; letter-spacing: -0.04em; color: var(--brass); margin-bottom: 18px; }
+  [data-view=about] .values .value-card h3 { font-family: var(--serif); font-weight: 700; font-size: 21px; letter-spacing: -0.02em; }
+  [data-view=about] .ex-label, .feed-banner p { letter-spacing: .12em; }
+  .feed-banner h1 { font-weight: 800; font-size: 56px; letter-spacing: -0.04em; }
+  .feed-banner h1 em { font-style: normal; color: var(--brass); }
+  .post-meta-name, .sp-name, .rc-mentor h3, .examples .pc-name { font-weight: 700; letter-spacing: -0.015em; }
+  .signup h2, .directory h2, .dir-head h2, .net-title { font-weight: 800; letter-spacing: -0.035em; }
+  @media (max-width: 860px) {
+    [data-view=about] .mission .wrap-narrow { display: block; }
+    [data-view=about] .mission .wrap-narrow > h2 { position: static; margin-bottom: 20px; }
+  }
+  @media (max-width: 767px) {
+    [data-view=about] .hero h1 { font-size: 46px; }
+    [data-view=about] .mission h2, [data-view=about] .values h2 { font-size: 34px; }
+    .feed-banner h1 { font-size: 34px; }
+  }
+  [data-view=about] .mission .wrap-narrow > button, [data-view=about] .mission .wrap-narrow > .btn { justify-self: start; }
+  [data-view=about] .mission, [data-view=about] > section.values { padding-top: 88px; padding-bottom: 88px; }
+  /* Bandeaux de page */
+  .page-banner { background: linear-gradient(160deg, var(--ink-deep), var(--ink) 65%, var(--ink-soft)); color: #fff; border-bottom: 3px solid var(--brass); padding: 44px 0 40px; }
+  .page-banner h1 { font-family: var(--serif); font-weight: 800; font-size: 48px; letter-spacing: -0.04em; line-height: 1.05; margin: 0 0 10px; }
+  .page-banner p { margin: 0; max-width: 70ch; font-size: 18px; color: rgba(255,255,255,.8); }
+  [data-view=network] .net-title, [data-view=directory] .dir-head h2, [data-view=messages] .dir-head h2, [data-view=circles] .signup .wrap > h2:first-child, [data-view=circles] .signup .wrap > p:nth-child(2), [data-view=events] .signup .wrap > h2:first-child, [data-view=events] .signup .wrap > p:nth-child(2) { display: none; }
+  [data-view=directory] .dir-head, [data-view=messages] .dir-head { justify-content: flex-end; }
+  @media (max-width: 767px) { .page-banner { padding: 30px 0 26px; } .page-banner h1 { font-size: 34px; } .page-banner p { font-size: 16px; } }
+  /* Champs : clairs, jamais noirs */
+  input[type=text], input[type=email], input[type=password], input[type=search], input[type=date], input[type=time], input[type=number], input[type=url], select, textarea { background: #FBFAFF; color: var(--ink); border: 1px solid #CFC9E8; accent-color: var(--ink); }
+  input::placeholder, textarea::placeholder { color: #8A84A6; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--brass) !important; outline-offset: 0; border-color: var(--brass); background: #fff; }
+  .composer textarea { background: #FBFAFF; }
+  /* Événements : pièces jointes */
+  .ev-attach { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+  .ev-file { display: inline-flex; gap: 6px; align-items: center; padding: 9px 14px; border: 1px dashed var(--brass); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--ink); background: #fff; cursor: pointer; }
+  .ev-file:hover { background: var(--paper-dim); }
+  .ev-cover { width: 100%; max-height: 240px; object-fit: cover; border-radius: 12px; display: block; }
+  .ev-files { gap: 10px; }
+  .ev-file-link { display: inline-block; padding: 7px 14px; border-radius: 999px; background: var(--paper-dim); color: var(--ink); font-weight: 600; font-size: 13px; text-decoration: none; border: 1px solid var(--line); }
+  .ev-file-link:hover { border-color: var(--brass); }
+  .ev-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn.on { background: var(--paper-dim); border-color: var(--brass); }
+  .ev-optout { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--text-on-paper-dim); margin: -8px 0 16px; cursor: pointer; }
+  .ev-tab[data-n]:not([data-n=""])::after { content: attr(data-n); margin-left: 6px; background: var(--brass); color: var(--ink-deep); border-radius: 999px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+  .ev-invby { font-size: 13px; font-weight: 600; color: #8A6B27; }
+  .ev-invpanel:empty { display: none; }
+  .ev-invpanel { border-top: 1px solid var(--line); padding-top: 12px; }
+  .ev-invq { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 8px; font: inherit; margin-bottom: 8px; }
+  .ev-invlist { max-height: 260px; overflow: auto; }
+  .ev-invrow { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+  .ev-invrow .pc-avatar { width: 36px; height: 36px; font-size: 13px; }
+  .ev-invname { flex: 1; min-width: 0; font-weight: 600; font-size: 14px; }
+  .ev-invname small { display: block; font-weight: 400; color: var(--text-on-paper-dim); font-size: 12px; }
+  /* Fenêtre de création d'événement (façon Facebook, couleurs NANE) */
+  .ev-layout { display: block; }
+  .ev-list { max-width: 820px; }
+  .ev-backdrop { position: fixed; inset: 0; background: rgba(15,10,40,.6); z-index: 150; }
+  .ev-form { position: fixed; z-index: 151; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(640px, calc(100vw - 24px)); max-height: calc(100vh - 32px); display: flex; flex-direction: column; background: #fff; border-radius: 18px; box-shadow: 0 24px 80px rgba(15,10,40,.45); overflow: hidden; max-width: none; flex: none; }
+  .ev-form[hidden], .ev-backdrop[hidden] { display: none; }
+  .evf-head { display: flex; align-items: center; justify-content: center; position: relative; padding: 16px 56px; border-bottom: 1px solid var(--line); }
+  .evf-head h3 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--ink); }
+  .evf-close { position: absolute; right: 12px; top: 10px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--paper-dim); font-size: 22px; line-height: 1; color: var(--ink); }
+  .evf-body { overflow: auto; padding: 0 0 8px; }
+  .evf-body > label, .evf-body > input, .evf-body > select, .evf-body > textarea, .evf-body > .evf-row, .evf-body > .ev-attach, .evf-body > p, .evf-body > .evf-plus, .evf-body > .evf-host { margin-left: 20px; margin-right: 20px; }
+  .evf-body label { display: block; font-weight: 600; font-size: 13px; margin-top: 12px; color: var(--ink); }
+  .evf-body input[type=text], .evf-body input[type=date], .evf-body input[type=time], .evf-body select, .evf-body textarea { width: calc(100% - 40px); box-sizing: border-box; margin-top: 6px; padding: 12px 14px; border-radius: 10px; font: inherit; }
+  .evf-row { display: flex; gap: 10px; } .evf-row[hidden] { display: none; }
+  .evf-row > div { flex: 1; } .evf-row input { width: 100% !important; }
+  .evf-body .evf-row { margin-left: 20px; margin-right: 20px; }
+  .evf-cover { height: 210px; background: linear-gradient(150deg, var(--ink-deep), var(--ink-soft)); background-size: cover; background-position: center; position: relative; }
+  .evf-add { position: absolute !important; right: 14px; bottom: 14px; margin: 0 !important; display: inline-flex !important; align-items: center; gap: 6px; background: #fff; color: var(--ink) !important; padding: 9px 14px; border-radius: 10px; font-weight: 700 !important; font-size: 14px !important; cursor: pointer; }
+  .evf-host { display: flex; align-items: center; gap: 12px; padding: 16px 0 4px; }
+  .evf-host .pc-avatar { width: 44px; height: 44px; }
+  .evf-host b { display: block; font-size: 15px; } .evf-host small { color: var(--text-on-paper-dim); font-size: 13px; }
+  .evf-body > #evTitle { margin-top: 8px; font-size: 17px; font-weight: 600; }
+  .evf-plus { display: block; background: none; border: 0; padding: 8px 0 0; font: inherit; font-weight: 600; font-size: 14px; color: #8A6B27; cursor: pointer; text-align: left; }
+  .evf-foot { display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--line); }
+  .evf-foot .btn { width: 100%; max-width: 260px; justify-content: center; }
+  @media (max-width: 560px) { .evf-cover { height: 150px; } .evf-row { flex-direction: column; } .evf-foot .btn { max-width: none; } }
+  .rc-h { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.015em; margin: 4px 0 6px; color: var(--ink); }
+  .rc-free { border-left: 4px solid var(--brass); }
+  .rc-card .rc-btn.btn-primary { margin-top: 12px; }
 </style>
 </head>
 <body class="public">
@@ -1064,6 +1226,7 @@
   <!-- FEED -->
   <section data-view="feed">
     <section class="feed-section">
+      <div class="wrap feed-banner"><h1><span class="i18n" data-fr="Votre réseau," data-de="Ihr Netzwerk," data-en="Your network,"></span> <em class="i18n" data-fr="aujourd’hui." data-de="heute." data-en="today."></em></h1><p class="i18n" data-fr="Ce qui se passe dans la communauté NANE." data-de="Was in der NANE-Community passiert." data-en="What is happening in the NANE community."></p></div>
       <div class="wrap feed-grid">
         <aside class="side-card" id="sideProfile"></aside>
         <div class="feed-main">
@@ -1090,6 +1253,7 @@
 
   <!-- NETWORK -->
   <section data-view="network">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Mon réseau" data-de="Mein Netzwerk" data-en="My network"></h1><p class="i18n" data-fr="Vos connexions, vos demandes et les membres à découvrir." data-de="Ihre Kontakte, Anfragen und Mitglieder zum Entdecken." data-en="Your connections, requests and members to discover."></p></div></div>
     <section class="signup">
       <div class="wrap wrap-narrow">
         <h2 class="net-title i18n" data-fr="Mon réseau" data-de="Mein Netzwerk" data-en="My network"></h2>
@@ -1100,6 +1264,7 @@
 
   <!-- CIRCLES -->
   <section data-view="circles">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></h1><p class="i18n" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Rejoignez les conversations qui vous inspirent ou créez votre propre espace d’échange." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Treten Sie Gesprächen bei, die Sie inspirieren, oder gründen Sie Ihren eigenen Raum." data-en="Circles around your interests and commitments. Join the conversations that inspire you or create your own space."></p></div></div>
     <section class="signup">
       <div class="wrap">
         <h2 class="i18n" style="margin-top:0" data-fr="Circles" data-de="Circles" data-en="Circles"></h2>
@@ -1113,7 +1278,7 @@
           <p class="i18n" data-fr="Donnez-lui un nom et une description. Votre circle apparaît tout de suite et vous en êtes l’animateur·rice." data-de="Geben Sie ihm einen Namen und eine Beschreibung. Ihr Circle erscheint sofort, und Sie leiten ihn." data-en="Give it a name and a description. Your circle appears right away and you run it."></p>
           <input type="text" id="circPName" maxlength="60" class="i18n-ph" data-fr="Nom du circle" data-de="Name des Circles" data-en="Circle name">
           <textarea id="circPDesc" rows="2" maxlength="200" class="i18n-ph" data-fr="À quoi sert ce circle ?" data-de="Wofür ist dieser Circle?" data-en="What is this circle for?"></textarea>
-          <select id="circPOpen" aria-label="Accès" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"><option value="open">🔓 Ouvert à tous les membres / Open</option><option value="approval">🔒 Sur validation / By approval</option></select>
+          <select id="circPOpen" aria-label="Accès" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"><option value="open" class="i18n" data-fr="🔓 Ouvert à tous les membres" data-de="🔓 Offen für alle Mitglieder" data-en="🔓 Open to all members"></option><option value="approval" class="i18n" data-fr="🔒 Sur validation" data-de="🔒 Nach Freigabe" data-en="🔒 By approval"></option></select>
           <button class="btn btn-primary" id="circPBtn"><span class="i18n" data-fr="Créer mon circle" data-de="Meinen Circle erstellen" data-en="Create my circle"></span></button>
           <span id="circPMsg" class="sub" style="margin-left:10px"></span>
         </div>
@@ -1123,6 +1288,7 @@
 
   <!-- EVENTS -->
   <section data-view="events">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></h1><p class="i18n" data-fr="Retrouvez les rencontres de la communauté ou créez la vôtre : afterwork, atelier, conférence, session de mentorat." data-de="Finden Sie Treffen der Community oder erstellen Sie Ihr eigenes: Afterwork, Workshop, Konferenz, Mentoring-Session." data-en="Find community meetups or create your own: afterwork, workshop, talk, mentoring session."></p></div></div>
     <section class="signup">
       <div class="wrap">
         <h2 class="i18n" style="margin-top:0" data-fr="Événements" data-de="Veranstaltungen" data-en="Events"></h2>
@@ -1131,27 +1297,43 @@
         <div class="ev-tabs" role="tablist" id="evTabs">
           <button class="ev-tab on" role="tab" data-tab="up"><span class="i18n" data-fr="À venir" data-de="Anstehend" data-en="Upcoming"></span></button>
           <button class="ev-tab" role="tab" data-tab="mine"><span class="i18n" data-fr="Mes événements" data-de="Meine Veranstaltungen" data-en="My events"></span></button>
+          <button class="ev-tab" role="tab" data-tab="inv" id="evTabInv"><span class="i18n" data-fr="Invitations" data-de="Einladungen" data-en="Invitations"></span></button>
           <button class="ev-tab" role="tab" data-tab="past"><span class="i18n" data-fr="Passés" data-de="Vergangen" data-en="Past"></span></button>
         </div>
+        <label class="ev-optout"><input type="checkbox" id="evNoInv"> <span class="i18n" data-fr="Ne plus recevoir d’invitations d’événements" data-de="Keine Veranstaltungs-Einladungen mehr erhalten" data-en="Stop receiving event invitations"></span></label>
         <div class="ev-layout">
           <div class="ev-list" id="evList"></div>
-          <div class="circ-propose ev-form" id="evForm">
-            <h3 class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></h3>
-            <label for="evTitle" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Titre" data-de="Titel" data-en="Title"></span> <span aria-hidden="true">*</span></label>
-            <input id="evTitle" class="i18n-ph" type="text" maxlength="90" required data-fr="ex. Afterwork du réseau à Berlin" data-de="z. B. Afterwork des Netzwerks in Berlin" data-en="e.g. Network afterwork in Berlin"></input>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <div style="flex:1 1 150px"><label for="evDate" style="font-weight:600;font-size:14px">Date <span aria-hidden="true">*</span></label><input type="date" id="evDate" required></div>
-              <div style="flex:1 1 120px"><label for="evTime" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Heure" data-de="Uhrzeit" data-en="Time"></span></label><input type="time" id="evTime"></div>
+          <div class="ev-backdrop" id="evBackdrop" hidden></div>
+          <div class="ev-form" id="evForm" role="dialog" aria-modal="true" aria-labelledby="evFormTitle" hidden>
+            <div class="evf-head"><h3 id="evFormTitle"><span class="i18n" data-fr="Créer un événement" data-de="Veranstaltung erstellen" data-en="Create an event"></span></h3><button type="button" class="evf-close" id="evClose" aria-label="Fermer">&times;</button></div>
+            <div class="evf-body">
+              <div class="evf-cover" id="evCover"><label class="evf-add">📷 <span class="i18n" data-fr="Ajouter une photo" data-de="Foto hinzufügen" data-en="Add a photo"></span><input type="file" id="evImg" accept="image/*" hidden></label></div>
+              <div class="evf-host"><span id="evHostAv"></span><div><b id="evHostName"></b><small><span class="i18n" data-fr="Organisateur · votre profil" data-de="Veranstalter · Ihr Profil" data-en="Host · your profile"></span></small></div></div>
+              <input id="evTitle" class="i18n-ph" type="text" maxlength="90" required data-fr="ex. Afterwork du réseau à Berlin" data-de="z. B. Afterwork des Netzwerks in Berlin" data-en="e.g. Network afterwork in Berlin">
+              <div class="evf-row">
+                <div><label for="evDate">Date <span aria-hidden="true">*</span></label><input type="date" id="evDate" required></div>
+                <div><label for="evTime"><span class="i18n" data-fr="Heure" data-de="Uhrzeit" data-en="Time"></span></label><input type="time" id="evTime"></div>
+              </div>
+              <button type="button" class="evf-plus" id="evEndToggle">+ <span class="i18n" data-fr="Ajouter une date et une heure de fin" data-de="Ende hinzufügen" data-en="Add an end date and time"></span></button>
+              <div class="evf-row" id="evEndRow" hidden>
+                <div><label for="evEndDate"><span class="i18n" data-fr="Date de fin" data-de="Enddatum" data-en="End date"></span></label><input type="date" id="evEndDate"></div>
+                <div><label for="evEndTime"><span class="i18n" data-fr="Heure de fin" data-de="Endzeit" data-en="End time"></span></label><input type="time" id="evEndTime"></div>
+              </div>
+              <label for="evPlace"><span class="i18n" data-fr="Lieu ou lien en ligne" data-de="Ort oder Online-Link" data-en="Place or online link"></span> <span aria-hidden="true">*</span></label>
+              <input id="evPlace" class="i18n-ph" type="text" maxlength="140" required data-fr="Ville, adresse ou lien de visioconférence" data-de="Stadt, Adresse oder Videolink" data-en="City, address or video link">
+              <label for="evCircle"><span class="i18n" data-fr="Circle concerné" data-de="Betroffener Circle" data-en="Related circle"></span></label>
+              <select id="evCircle"></select>
+              <label for="evDesc">Description</label>
+              <textarea id="evDesc" class="i18n-ph" rows="3" maxlength="600" data-fr="De quoi s'agit-il, pour qui, que faut-il prévoir ?" data-de="Worum geht es, für wen, was ist mitzubringen?" data-en="What is it, who is it for, what to bring?"></textarea>
+              <div class="ev-attach">
+                <label class="ev-file">📄 <span class="i18n" data-fr="Ajouter un PDF" data-de="PDF hinzufügen" data-en="Add a PDF"></span><input type="file" id="evPdf" accept="application/pdf" hidden></label>
+                <span id="evAttInfo" class="circ-note"></span>
+              </div>
+              <label for="evVideo"><span class="i18n" data-fr="Lien vidéo (YouTube, Vimeo…)" data-de="Videolink (YouTube, Vimeo…)" data-en="Video link (YouTube, Vimeo…)"></span></label>
+              <input type="text" id="evVideo" maxlength="200" placeholder="https://youtube.com/…">
+              <p class="circ-note" style="margin:6px 0 0"><span class="i18n" data-fr="Les champs avec une étoile sont obligatoires. Votre nom et vos badges seront affichés comme organisateur. Événements gratuits uniquement pendant la bêta." data-de="Felder mit Stern sind Pflicht. Ihr Name und Ihre Badges werden als Veranstalter angezeigt. In der Beta nur kostenlose Veranstaltungen." data-en="Fields with a star are required. Your name and badges are shown as host. Free events only during the beta."></span></p>
             </div>
-            <label for="evPlace" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Lieu ou lien en ligne" data-de="Ort oder Online-Link" data-en="Place or online link"></span> <span aria-hidden="true">*</span></label>
-            <input id="evPlace" class="i18n-ph" type="text" maxlength="140" required data-fr="Ville, adresse ou lien de visioconférence" data-de="Stadt, Adresse oder Videolink" data-en="City, address or video link"></input>
-            <label for="evCircle" style="font-weight:600;font-size:14px"><span class="i18n" data-fr="Circle concerné" data-de="Betroffener Circle" data-en="Related circle"></span></label>
-            <select id="evCircle" style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff"></select>
-            <label for="evDesc" style="font-weight:600;font-size:14px">Description</label>
-            <textarea id="evDesc" class="i18n-ph" rows="3" maxlength="600" data-fr="De quoi s'agit-il, pour qui, que faut-il prévoir ?" data-de="Worum geht es, für wen, was ist mitzubringen?" data-en="What is it, who is it for, what to bring?"></textarea>
-            <p class="circ-note" style="margin:6px 0 12px"><span class="i18n" data-fr="Les champs avec une étoile sont obligatoires. Votre nom et vos badges seront affichés comme organisateur. Événements gratuits uniquement pendant la bêta." data-de="Felder mit Stern sind Pflicht. Ihr Name und Ihre Badges werden als Veranstalter angezeigt. In der Beta nur kostenlose Veranstaltungen." data-en="Fields with a star are required. Your name and badges are shown as organiser. Free events only during the beta."></span></p>
-            <button class="btn btn-primary" id="evSubmit"><span class="i18n" data-fr="Publier l’événement" data-de="Veranstaltung veröffentlichen" data-en="Publish the event"></span></button>
-            <span id="evMsg" class="sub" style="margin-left:10px"></span>
+            <div class="evf-foot"><span id="evMsg" class="sub"></span><button class="btn btn-primary" id="evSubmit"><span class="i18n" data-fr="Publier l’événement" data-de="Veranstaltung veröffentlichen" data-en="Publish the event"></span></button></div>
           </div>
         </div>
       </div>
@@ -1170,6 +1352,7 @@
 
   <!-- DIRECTORY -->
   <section data-view="directory">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Annuaire" data-de="Verzeichnis" data-en="Directory"></h1><p class="i18n" data-fr="Découvrez les membres du réseau." data-de="Entdecken Sie die Mitglieder des Netzwerks." data-en="Discover the members of the network."></p></div></div>
     <section class="directory">
       <div class="wrap">
         <div class="dir-head">
@@ -1224,6 +1407,7 @@
 
   <!-- MESSAGES -->
   <section data-view="messages">
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></h1><p class="i18n" data-fr="Échangez directement avec les membres." data-de="Tauschen Sie sich direkt mit Mitgliedern aus." data-en="Chat directly with members."></p></div></div>
     <section class="messages-section">
       <div class="wrap">
         <div class="dir-head">
@@ -1399,7 +1583,20 @@
   function sectorLabel(v) { return (SECTOR_LABELS[v] && SECTOR_LABELS[v][currentLang]) || v; }
   function countryLabel(v) { return (COUNTRY_LABELS[v] && COUNTRY_LABELS[v][currentLang]) || v; }
 
+  // ---------- Villes : nom adapté à la langue (FR / DE / EN) ----------
+  var CITY_NAMES = [["Berlin", "Berlin", "Berlin"], ["Munich", "München", "Munich"], ["Cologne", "Köln", "Cologne"], ["Francfort", "Frankfurt am Main", "Frankfurt"], ["Hambourg", "Hamburg", "Hamburg"], ["Düsseldorf", "Düsseldorf", "Düsseldorf"], ["Stuttgart", "Stuttgart", "Stuttgart"], ["Leipzig", "Leipzig", "Leipzig"], ["Dresde", "Dresden", "Dresden"], ["Hanovre", "Hannover", "Hanover"], ["Nuremberg", "Nürnberg", "Nuremberg"], ["Brême", "Bremen", "Bremen"], ["Mayence", "Mainz", "Mainz"], ["Aix-la-Chapelle", "Aachen", "Aachen"], ["Bonn", "Bonn", "Bonn"], ["Zurich", "Zürich", "Zurich"], ["Genève", "Genf", "Geneva"], ["Lausanne", "Lausanne", "Lausanne"], ["Bâle", "Basel", "Basel"], ["Berne", "Bern", "Bern"], ["Lucerne", "Luzern", "Lucerne"], ["Saint-Gall", "St. Gallen", "St. Gallen"], ["Neuchâtel", "Neuenburg", "Neuchâtel"], ["Fribourg", "Freiburg", "Fribourg"], ["Sion", "Sitten", "Sion"], ["Winterthour", "Winterthur", "Winterthur"], ["Lugano", "Lugano", "Lugano"], ["Bruxelles", "Brüssel", "Brussels"], ["Anvers", "Antwerpen", "Antwerp"], ["Gand", "Gent", "Ghent"], ["Liège", "Lüttich", "Liège"], ["Namur", "Namur", "Namur"], ["Luxembourg", "Luxemburg", "Luxembourg"], ["Paris", "Paris", "Paris"], ["Lyon", "Lyon", "Lyon"], ["Marseille", "Marseille", "Marseille"], ["Strasbourg", "Straßburg", "Strasbourg"], ["Lille", "Lille", "Lille"], ["Nice", "Nizza", "Nice"], ["Bordeaux", "Bordeaux", "Bordeaux"], ["Toulouse", "Toulouse", "Toulouse"], ["Nantes", "Nantes", "Nantes"], ["Vienne", "Wien", "Vienna"]];
+  var CITY_INDEX = null;
+  function cityKey(x) { return String(x || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ß/g, "ss").replace(/[^a-z0-9]+/g, " ").trim(); }
+  function cityNames(city) {
+    if (!CITY_INDEX) { CITY_INDEX = {}; CITY_NAMES.forEach(function (c) { c.forEach(function (n) { CITY_INDEX[cityKey(n)] = c; }); CITY_INDEX[cityKey(c[1].replace(" am Main", ""))] = c; }); }
+    return CITY_INDEX[cityKey(city)] || null;
+  }
+  function cityLabel(city) { var c = cityNames(city); return c ? c[currentLang === "de" ? 1 : currentLang === "en" ? 2 : 0] : (city || ""); }
+  function cityAll(city) { var c = cityNames(city); return c ? c.join(" ") : (city || ""); }
+  function locLabel(p) { return [cityLabel(p && p.city), p && p.country ? countryLabel(p.country) : ""].filter(Boolean).join(", "); }
+
   function applyLang() {
+    document.querySelectorAll(".messages-empty[data-pick]").forEach(function (el) { el.textContent = t("pickConversation"); });
     document.querySelectorAll(".i18n").forEach(function (el) {
       var t = el.getAttribute("data-" + currentLang);
       if (t !== null) el.textContent = t;
@@ -1473,11 +1670,11 @@
       var q = norm(inp.value.trim());
       if (!q) { box.hidden = true; return; }
       var hits = allProfiles.filter(function (p) {
-        return norm([p.name, p.title, p.city, p.country, p.sector, (p.skills || []).join(" ")].join(" ")).indexOf(q) !== -1;
+        return norm([p.name, p.title, cityAll(p.city), p.country, p.sector, (p.skills || []).join(" ")].join(" ")).indexOf(q) !== -1;
       });
       var html = hits.slice(0, 6).map(function (p, i) {
         return '<button class="sr-item" data-i="' + i + '">' + avatarHtml("pc-avatar", p.name, p.photo) +
-          '<div><div class="sr-name">' + escapeHtml(p.name) + '</div><div class="sr-sub">' + escapeHtml([p.title, p.city].filter(Boolean).join(" · ")) + '</div></div></button>';
+          '<div><div class="sr-name">' + escapeHtml(p.name) + '</div><div class="sr-sub">' + escapeHtml([p.title, cityLabel(p.city)].filter(Boolean).join(" · ")) + '</div></div></button>';
       }).join("");
       if (!hits.length) html = '<div class="sr-empty">' + escapeHtml({ fr: "Aucun résultat", de: "Keine Treffer", en: "No results" }[currentLang]) + '</div>';
       else html += '<button class="sr-item sr-all" id="srAll">' + escapeHtml({ fr: "Voir tous les résultats dans l'annuaire", de: "Alle Treffer im Verzeichnis", en: "See all results in the directory" }[currentLang]) + '</button>';
@@ -1708,7 +1905,7 @@
     return '<div class="net-row">' + avatarHtml("pc-avatar", p.name, p.photo) +
       '<div class="net-info"><button class="net-name" data-act="view" data-id="' + p.__id + '">' + escapeHtml(p.name) + '</button>' +
       '<div class="pc-title">' + escapeHtml(p.title || "") + '</div>' +
-      '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div></div>' +
+      '<div class="pc-loc">' + escapeHtml(locLabel(p)) + '</div></div>' +
       '<div class="net-actions">' + actions + '</div></div>';
   }
   function btn(act, id, label, cls) { return '<button class="btn ' + (cls || "btn-ghost") + ' btn-small" data-act="' + act + '" data-id="' + id + '">' + escapeHtml(label) + '</button>'; }
@@ -1763,6 +1960,7 @@
       like: who + T(" a aimé ta publication", " gefällt dein Beitrag", " liked your post") + sn,
       comment: who + T(" a commenté ta publication", " hat deinen Beitrag kommentiert", " commented on your post") + sn,
       repost: who + T(" a republié ta publication", " hat deinen Beitrag geteilt", " reposted your post") + sn,
+      event_invite: who + T(" vous invite à un événement", " lädt Sie zu einer Veranstaltung ein", " invited you to an event") + sn,
       invite: who + T(" t'a envoyé une invitation", " hat dir eine Einladung gesendet", " sent you an invitation"),
       accepted: who + T(" a accepté ton invitation", " hat deine Einladung angenommen", " accepted your invitation"),
       message: who + T(" t'a envoyé un message", " hat dir eine Nachricht gesendet", " sent you a message") + sn
@@ -1802,7 +2000,8 @@
       b.addEventListener("click", function () {
         var n = myNotifs.filter(function (x) { return x.__id === b.getAttribute("data-id"); })[0]; if (!n) return;
         if (!n.read) markRead([n.__id]);
-        if (n.type === "invite" || n.type === "accepted") showView("network");
+        if (n.type === "event_invite") { evTab = "inv"; showView("events"); }
+        else if (n.type === "invite" || n.type === "accepted") showView("network");
         else if (n.type === "message") { showView("messages"); openThreadWith(n.fromId, n.fromName); }
         else showView("feed");
       });
@@ -2067,7 +2266,7 @@
       if (country && p.country !== country) return false;
       if (lang && (p.languages || []).indexOf(lang) === -1) return false;
       if (q) {
-        var hay = [p.name, p.title, p.sector, p.city, (p.skills || []).join(" "), (p.interests || []).map(interestLabel).join(" "), p.lookingFor, p.offering, p.projects]
+        var hay = [p.name, p.title, p.sector, cityAll(p.city), (p.skills || []).join(" "), (p.interests || []).map(interestLabel).join(" "), p.lookingFor, p.offering, p.projects]
           .join(" ").toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
@@ -2096,7 +2295,7 @@
           '<div><div class="pc-name">' + escapeHtml(p.name) + '</div>' +
           '<div class="pc-title">' + escapeHtml(p.title || "") + '</div></div>' +
         '</div>' +
-        '<div class="pc-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' +
+        '<div class="pc-loc">' + escapeHtml(locLabel(p)) + '</div>' +
         (p.skills && p.skills.length
           ? '<div class="pc-tags">' + p.skills.slice(0, 4).map(function (s) {
               return '<span class="tag">' + escapeHtml(s) + '</span>';
@@ -2133,7 +2332,7 @@
           '<div class="modal-top">' +
             avatarHtml("modal-avatar", p.name, p.photo) +
             '<div><h3>' + escapeHtml(p.name) + '</h3>' +
-            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' + badgesHtml(p) + '</div>' +
+            '<div class="modal-sub">' + escapeHtml(p.title || "") + ' · ' + escapeHtml(locLabel(p)) + '</div>' + badgesHtml(p) + '</div>' +
           '</div>' +
           (p.bio ? '<div class="modal-block"><h4>' + escapeHtml(t("about")) + '</h4><p>' + escapeHtml(p.bio) + '</p>' + langNote(p.bio) + '</div>' : "") +
           ((p.experiences || []).length ? '<div class="modal-block"><h4>' + escapeHtml(T("Expériences", "Berufserfahrung", "Experience")) + '</h4>' + timelineHtml(p.experiences) + '</div>' : "") +
@@ -2319,7 +2518,7 @@
     }
     var tx = function (v) { return v && v.trim() ? '<p>' + escapeHtml(v) + '</p>' : ""; };
     var items = profileChecklist(), pct = Math.round(items.filter(function (x) { return x.ok; }).length * 100 / items.length);
-    var loc = [p.city, p.country ? countryLabel(p.country) : ""].filter(Boolean).join(", ");
+    var loc = locLabel(p);
     var langs = (p.languages || []).map(function (l) { return '<span class="tag">' + escapeHtml(String(l).toUpperCase()) + '</span>'; }).join(" ");
     var skills = (p.skills || []).length ? '<div class="pc-tags">' + p.skills.map(function (k) { return '<span class="tag">' + escapeHtml(k) + '</span>'; }).join("") + '</div>' : "";
     var port = /^https?:\/\//i.test(p.portfolio || "") ? '<p><a href="' + escapeHtml(p.portfolio) + '" target="_blank" rel="noopener noreferrer" style="color:var(--ink)">' + escapeHtml(p.portfolio) + ' ↗</a></p>' : "";
@@ -2709,7 +2908,7 @@
     h += '<div class="st-card"><h2>' + escapeHtml(T("Dernières inscriptions", "Neueste Registrierungen", "Latest sign-ups")) + '</h2>' +
       (last.length ? last.map(function (p) {
         return '<div class="ad-row">' + avatarHtml("pc-avatar", p.name, p.photo) + '<div class="rc-info"><div class="rc-name" style="cursor:default">' + escapeHtml(p.name || "") + '</div><div class="rc-sub">' +
-          escapeHtml([p.title, p.city].filter(Boolean).join(" · ")) + '</div></div><span class="ad-when">' + escapeHtml(p.createdAt ? new Date(p.createdAt).toLocaleDateString(loc, { day: "2-digit", month: "short", year: "numeric" }) : "") + '</span></div>';
+          escapeHtml([p.title, cityLabel(p.city)].filter(Boolean).join(" · ")) + '</div></div><span class="ad-when">' + escapeHtml(p.createdAt ? new Date(p.createdAt).toLocaleDateString(loc, { day: "2-digit", month: "short", year: "numeric" }) : "") + '</span></div>';
       }).join("") : '<p class="sub">' + escapeHtml(T("Aucune inscription.", "Keine Registrierungen.", "No sign-ups.")) + '</p>') + '</div>';
 
     h += '<p class="ad-foot">' + escapeHtml(T("Données de test du prototype. Les comptes sans profil créé ne sont pas comptés. Les chiffres sont exacts jusqu'à 300 profils et 100 publications ; au-delà, le site officiel utilisera une vraie base avec statistiques.", "Testdaten des Prototyps. Konten ohne erstelltes Profil werden nicht gezählt. Die Zahlen sind bis 300 Profile und 100 Beiträge exakt; danach übernimmt die echte Plattform mit Statistiken.", "Prototype test data. Accounts without a created profile are not counted. Figures are exact up to 300 profiles and 100 posts; beyond that the live site will use a real database with analytics.")) + '</p>';
@@ -2724,7 +2923,7 @@
     list.forEach(function (m) {
       disc += '<div class="rc-row">' + avatarHtml("pc-avatar", m.name, m.photo) +
         '<div class="rc-info"><button class="rc-name" data-act="view" data-id="' + m.__id + '">' + escapeHtml(m.name) + '</button>' +
-        '<div class="rc-sub">' + escapeHtml([m.title, m.city].filter(Boolean).join(" · ")) + '</div>' +
+        '<div class="rc-sub">' + escapeHtml([m.title, cityLabel(m.city)].filter(Boolean).join(" · ")) + '</div>' +
         '<button class="btn btn-ghost btn-small rc-btn" data-act="invite" data-id="' + m.__id + '">' + escapeHtml(T("Se connecter", "Vernetzen", "Connect")) + '</button></div></div>';
     });
     disc += '</div>';
@@ -2734,9 +2933,23 @@
       '<button class="btn btn-small" id="rcMentor">' + escapeHtml(T("Proposer du mentorat", "Mentoring anbieten", "Offer mentoring")) + ' →</button></div>';
     var evc = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Événements", "Veranstaltungen", "Events")) + '</span>' +
       '<p class="rc-empty">' + escapeHtml(T("Organisez une rencontre, un atelier ou un afterwork pour votre communauté.", "Organisieren Sie ein Treffen, einen Workshop oder einen Afterwork für Ihre Community.", "Organise a meetup, workshop or afterwork for your community.")) + '</p>' +
-      '<button class="btn btn-small" id="rcEvents">' + escapeHtml(T("Créer un événement", "Veranstaltung erstellen", "Create an event")) + ' →</button></div>';
-    el.innerHTML = disc + evc + mentor;
-    document.getElementById("rcEvents").addEventListener("click", function () { showView("events"); setTimeout(function () { var f = document.getElementById("evTitle"); if (f) f.focus(); }, 300); });
+      '<button class="btn btn-primary btn-small rc-btn" id="rcEvents">' + escapeHtml(T("Créer un événement", "Veranstaltung erstellen", "Create an event")) + ' →</button></div>';
+    var emp = '<div class="rc-card"><span class="rc-eyebrow">' + escapeHtml(T("Employeurs", "Arbeitgeber", "Employers")) + '</span>' +
+      '<h3 class="rc-h">' + escapeHtml(T("Recruter des talents", "Talente finden", "Hire talent")) + '</h3>' +
+      '<p class="rc-empty">' + escapeHtml(T("Vous recrutez ? Déposez vos offres et touchez des profils afrodescendants en Europe.", "Sie suchen Verstärkung? Veröffentlichen Sie Ihre Stellen und erreichen Sie Fachkräfte afrikanischer Abstammung in Europa.", "Hiring? Post your openings and reach professionals of African descent across Europe.")) + '</p>' +
+      '<button class="btn btn-primary btn-small rc-btn" id="rcEmployer">' + escapeHtml(T("Déposer une offre", "Stelle veröffentlichen", "Post an opening")) + ' →</button></div>';
+    var fr = '<div class="rc-card rc-free"><span class="rc-eyebrow">' + escapeHtml(T("Freelances", "Freelancer", "Freelancers")) + '</span>' +
+      '<h3 class="rc-h">' + escapeHtml(T("Proposer vos services", "Ihre Leistungen anbieten", "Offer your services")) + '</h3>' +
+      '<p class="rc-empty">' + escapeHtml(T("Consultant·e, créatif·ve, développeur·se… Présentez votre expertise et trouvez vos prochaines missions.", "Berater:in, Kreative:r, Entwickler:in … Stellen Sie Ihre Expertise vor und finden Sie Ihre nächsten Aufträge.", "Consultant, creative, developer… Showcase your expertise and find your next assignments.")) + '</p>' +
+      '<button class="btn btn-primary btn-small rc-btn" id="rcFree">' + escapeHtml(T("Je suis freelance", "Ich bin Freelancer", "I'm a freelancer")) + ' →</button></div>';
+    el.innerHTML = disc + evc + emp + mentor + fr;
+    function rcCompose(txt) {
+      showView("feed");
+      setTimeout(function () { var pi = document.getElementById("postInput"); if (!pi) return; pi.value = txt; pi.style.minHeight = "170px"; pi.focus(); var i1 = txt.indexOf("\n"), i2 = txt.indexOf("\n", i1 + 1); try { pi.setSelectionRange(i2, i2); pi.scrollTop = 0; } catch (e) { } window.scrollTo({ top: 0, behavior: "smooth" }); }, 250);
+    }
+    document.getElementById("rcEmployer").addEventListener("click", function () { rcCompose(T("[Offre d'emploi]\nPoste : \nEntreprise : \nLieu : \nProfil recherché : \nPour postuler : ", "[Stellenangebot]\nPosition: \nUnternehmen: \nOrt: \nGesuchtes Profil: \nBewerbung: ", "[Job opening]\nRole: \nCompany: \nLocation: \nProfile sought: \nHow to apply: ")); });
+    document.getElementById("rcFree").addEventListener("click", function () { rcCompose(T("[Freelance]\nJe propose : \nSecteur : \nDisponibilité : \nLieu ou à distance : \nPour me contacter : ", "[Freelance]\nIch biete: \nBranche: \nVerfügbarkeit: \nOrt oder remote: \nKontakt: ", "[Freelance]\nI offer: \nIndustry: \nAvailability: \nLocation or remote: \nContact: ")); });
+    document.getElementById("rcEvents").addEventListener("click", function () { showView("events"); setTimeout(evOpenForm, 200); });
     document.getElementById("rcAll").addEventListener("click", function () { showView("directory"); });
     document.getElementById("rcMentor").addEventListener("click", function () { showView("form"); });
     el.querySelectorAll("[data-act=view]").forEach(function (b) {
@@ -2769,7 +2982,7 @@
       avatarHtml("sp-avatar", name, p && p.photo) +
       '<div class="sp-body"><div class="sp-name">' + escapeHtml(name) + '</div>' +
       (p && p.title ? '<div class="sp-title">' + escapeHtml(p.title) + '</div>' : '') +
-      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml([p.city, p.country].filter(Boolean).join(", ")) + '</div>' : '') +
+      (p && (p.city || p.country) ? '<div class="sp-loc">' + escapeHtml(locLabel(p)) + '</div>' : '') +
       '<button class="btn btn-ghost btn-small" id="spBtn">' + escapeHtml(p ? T("Voir mon profil", "Mein Profil", "View my profile") : T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button></div>' +
       '<div class="sp-stats"><div><b>' + myConns.filter(function (c) { return c.status === "accepted"; }).length + '</b>' + escapeHtml(T("Connexions", "Kontakte", "Connections")) + '</div>' +
       '<div><b>' + allPosts.filter(function (x) { return x.authorId === selfId; }).length + '</b>' + escapeHtml(T("Publications", "Beiträge", "Posts")) + '</div></div>';
@@ -3032,7 +3245,7 @@
   }
 
   var threadViewInit = document.getElementById("threadView");
-  if (threadViewInit) threadViewInit.innerHTML = '<div class="messages-empty">' + escapeHtml(t("pickConversation")) + '</div>';
+  if (threadViewInit) threadViewInit.innerHTML = '<div class="messages-empty" data-pick="1">' + escapeHtml(t("pickConversation")) + '</div>';
 
   var newConvoBtn = document.getElementById("newConvoBtn");
   if (newConvoBtn) {
@@ -3314,6 +3527,8 @@
   var evList = [];        // événements
   var evParts = [];       // participations : { id, eventId, userId, name, visible }
   var evTab = "up";
+  var evImgData = "", evPdfData = "", evPdfName = "";
+  var evInvites = [], evPrefs = {}, evInvOpen = "", evInvQ = "";
   var evShowPref = false; // case « Afficher ma participation » : décochée par défaut
   function evToday() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function evMe() { return selfId || "local"; }
@@ -3332,8 +3547,12 @@
     var shown = evList.filter(function (x) {
       if (evTab === "up") return x.date >= today;
       if (evTab === "past") return x.date < today;
+      if (evTab === "inv") return x.date >= today && evInvites.some(function (q) { return q.eventId === x.id && q.toId === me; });
       return x.authorId === me || !!evMyPart(x.id);
     }).sort(function (a, b) { return evTab === "past" ? (b.date + b.time).localeCompare(a.date + a.time) : (a.date + a.time).localeCompare(b.date + b.time); });
+    var ni = evInvites.filter(function (q) { return q.toId === me; }).length, tb = document.getElementById("evTabInv");
+    if (tb) tb.setAttribute("data-n", ni ? String(ni) : "");
+    var ck = document.getElementById("evNoInv"); if (ck) ck.checked = !!(evPrefs[me] && evPrefs[me].noInvites);
     Array.prototype.forEach.call(document.querySelectorAll("#evTabs .ev-tab"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === evTab); });
     if (!shown.length) {
       box.innerHTML = '<div class="empty-state"><h3>' + escapeHtml(T("Aucun événement pour le moment", "Noch keine Veranstaltungen", "No events yet")) + '</h3><p>' +
@@ -3344,35 +3563,88 @@
       var d = new Date(x.date + "T00:00:00");
       var mon = isNaN(d) ? "" : d.toLocaleDateString(currentLang, { month: "short" });
       var day = isNaN(d) ? "" : d.getDate();
-      var parts = evParts.filter(function (q) { return q.eventId === x.id; });
+      var allP = evParts.filter(function (q) { return q.eventId === x.id; });
+      var parts = allP.filter(function (q) { return q.status !== "interested"; }), nInt = allP.length - parts.length;
       var vis = parts.filter(function (q) { return q.visible; });
       var mine = evMyPart(x.id), isOrg = x.authorId === me;
+      var going = !!(mine && mine.status !== "interested"), interested = !!(mine && mine.status === "interested");
+      var iv = evInvites.filter(function (q) { return q.eventId === x.id && q.toId === me; })[0];
+      var invBy = iv ? '<div class="ev-invby">✉ ' + escapeHtml((iv.fromName || T("Un membre", "Ein Mitglied", "A member")) + T(" vous a invité·e", " hat Sie eingeladen", " invited you")) + '</div>' : "";
       var badges = (x.badges || []).map(badgeHtml).join(" ");
       var n = parts.length;
       var avatars = vis.slice(0, 5).map(function (q) { return avatarHtml("pc-avatar", q.name || "?", null); }).join("");
       var orgList = isOrg && parts.length ? '<div class="ev-foot"><span>' + escapeHtml(T("Participants (visible pour vous seulement) : ", "Teilnehmende (nur für Sie sichtbar): ", "Participants (visible to you only): ") + parts.map(function (q) { return q.name || "?"; }).join(", ")) + '</span></div>' : "";
-      return '<article class="ev-card" data-id="' + escapeHtml(x.id) + '">' +
+      var vurl = /^https?:\/\//i.test(x.video || "") ? x.video : "";
+      var cover = (typeof safeImg === "function" && safeImg(x.image)) ? '<img class="ev-cover" src="' + safeImg(x.image) + '" alt="">' : "";
+      var files = ((typeof x.pdf === "string" && x.pdf.indexOf("data:application/pdf;base64,") === 0) ? '<a class="ev-file-link" download="' + escapeHtml(x.pdfName || "document.pdf") + '" href="' + x.pdf + '">📄 ' + escapeHtml(x.pdfName || "PDF") + '</a>' : "") +
+        (vurl ? '<a class="ev-file-link" target="_blank" rel="noopener noreferrer" href="' + escapeHtml(vurl) + '">▶ ' + escapeHtml(T("Voir la vidéo", "Video ansehen", "Watch the video")) + '</a>' : "");
+      return '<article class="ev-card" data-id="' + escapeHtml(x.id) + '">' + cover +
         '<div class="ev-top"><div class="ev-date"><span>' + escapeHtml(mon) + '</span><b>' + escapeHtml(String(day)) + '</b></div>' +
-        '<div class="ev-main"><h3>' + escapeHtml(x.title) + '</h3><p>' + escapeHtml([x.time, x.place].filter(Boolean).join(" · ")) + '</p>' +
+        '<div class="ev-main"><h3>' + escapeHtml(x.title) + '</h3><p>' + escapeHtml([(x.time || "") + (x.endTime ? " – " + x.endTime : "") + (x.endDate && x.endDate !== x.date ? " (" + T("jusqu'au ", "bis ", "until ") + x.endDate + ")" : ""), x.place].map(function (z) { return (z || "").trim(); }).filter(Boolean).join(" · ")) + '</p>' +
         (x.circleName ? '<span class="circ-meta" style="background:var(--ivory);color:var(--ink);margin-top:6px">' + escapeHtml(x.circleName) + '</span>' : '') +
         (x.description ? '<p style="margin-top:8px;color:inherit">' + escapeHtml(x.description) + '</p>' : '') + '</div>' +
-        '<button class="btn ' + (mine ? "btn-ghost" : "btn-primary") + ' btn-small" data-act="join" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(mine ? T("Je ne participe plus", "Nicht mehr dabei", "Cancel my attendance") : T("Je participe", "Ich nehme teil", "I'm attending")) + '</button></div>' +
+        '<div class="ev-btns"><button class="btn ' + (going ? "btn-ghost" : "btn-primary") + ' btn-small" data-act="join" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(going ? T("Je ne participe plus", "Nicht mehr dabei", "Cancel my attendance") : T("Je participe", "Ich nehme teil", "I'm attending")) + '</button>' +
+        '<button class="btn btn-ghost btn-small' + (interested ? " on" : "") + '" data-act="interested" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(interested ? T("Intéressé·e ✓", "Interessiert ✓", "Interested ✓") : T("Intéressé·e", "Interessiert", "Interested")) + '</button></div></div>' + invBy +
         '<div class="ev-org"><span>' + escapeHtml(T("Organisé par", "Veranstaltet von", "Organised by")) + '</span> <b>' + escapeHtml(x.authorName || "") + '</b> ' + badges + '</div>' +
-        '<div class="ev-parts"><div class="ev-av">' + avatars + '</div><span>' + n + ' ' + escapeHtml(T("participant" + (n > 1 ? "s" : ""), n === 1 ? "Teilnehmer:in" : "Teilnehmende", n === 1 ? "participant" : "participants")) + '</span>' +
+        '<div class="ev-parts"><div class="ev-av">' + avatars + '</div><span>' + n + ' ' + escapeHtml(T("participant" + (n > 1 ? "s" : ""), n === 1 ? "Teilnehmer:in" : "Teilnehmende", n === 1 ? "participant" : "participants")) + (nInt ? ' · ' + nInt + ' ' + escapeHtml(T("intéressé·e" + (nInt > 1 ? "s" : ""), "interessiert", "interested")) : '') + '</span>' +
         '<label style="margin-left:auto;display:flex;gap:6px;align-items:center;font-size:13px"><input type="checkbox" data-act="show" data-id="' + escapeHtml(x.id) + '"' + ((mine ? mine.visible : evShowPref) ? " checked" : "") + '> ' + escapeHtml(T("Afficher ma participation", "Meine Teilnahme anzeigen", "Show my attendance")) + '</label></div>' +
-        orgList +
-        '<div class="ev-foot"><button class="ev-link" data-act="report" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Signaler cet événement", "Diese Veranstaltung melden", "Report this event")) + '</button>' +
+        (files ? '<div class="ev-foot ev-files">' + files + '</div>' : '') + orgList +
+        (going || isOrg ? '<div class="ev-invpanel">' + (evInvOpen === x.id ? evInvPanel(x) : "") + '</div>' : '') +
+        '<div class="ev-foot"><span><button class="ev-link" data-act="share" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Partager", "Teilen", "Share")) + '</button>' +
+        (going || isOrg ? ' &nbsp;·&nbsp; <button class="ev-link" data-act="invite" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(evInvOpen === x.id ? T("Fermer", "Schließen", "Close") : T("Inviter", "Einladen", "Invite")) + '</button>' : '') + '</span><button class="ev-link" data-act="report" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Signaler cet événement", "Diese Veranstaltung melden", "Report this event")) + '</button>' +
         (isOrg ? '<button class="ev-link" data-act="del" data-id="' + escapeHtml(x.id) + '">' + escapeHtml(T("Supprimer", "Löschen", "Delete")) + '</button>' : '') + '</div></article>';
     }).join("");
   }
-  function evSetPart(evId, on, visible) {
+  function evOpenForm() {
+    var nm = (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member");
+    document.getElementById("evHostName").textContent = nm;
+    document.getElementById("evHostAv").innerHTML = avatarHtml("pc-avatar", nm, typeof photoOf === "function" ? photoOf(selfId) : null);
+    evRefreshCircles();
+    document.getElementById("evBackdrop").hidden = false; document.getElementById("evForm").hidden = false;
+    document.body.style.overflow = "hidden";
+    setTimeout(function () { var t0 = document.getElementById("evTitle"); if (t0) t0.focus(); }, 50);
+  }
+  function evCloseForm() {
+    var f = document.getElementById("evForm"); if (!f || f.hidden) return;
+    f.hidden = true; document.getElementById("evBackdrop").hidden = true; document.body.style.overflow = "";
+  }
+  function evInvPanel(x) {
+    if (!dbNs || !selfId) return '<p class="circ-note">' + escapeHtml(T("Les invitations sont disponibles une fois connecté·e.", "Einladungen sind nach der Anmeldung verfügbar.", "Invitations are available once you are signed in.")) + '</p>';
+    var q = evInvQ.toLowerCase();
+    var rows = allProfiles.filter(function (p) { return p.__id !== selfId && (!q || (p.name || "").toLowerCase().indexOf(q) >= 0); }).slice(0, 30).map(function (p) {
+      var sent = evInvites.some(function (v) { return v.eventId === x.id && v.toId === p.__id; });
+      var blocked = !!(evPrefs[p.__id] && evPrefs[p.__id].noInvites);
+      return '<div class="ev-invrow">' + avatarHtml("pc-avatar", p.name, photoOf(p.__id)) + '<span class="ev-invname">' + escapeHtml(p.name || "") + '<small>' + escapeHtml(p.title || "") + '</small></span>' +
+        (blocked ? '<span class="circ-note">' + escapeHtml(T("Invitations désactivées", "Einladungen deaktiviert", "Invitations off")) + '</span>' :
+        '<button class="btn btn-small ' + (sent ? "btn-ghost" : "btn-primary") + '"' + (sent ? " disabled" : "") + ' data-act="invto" data-id="' + escapeHtml(x.id) + '" data-to="' + escapeHtml(p.__id) + '">' + escapeHtml(sent ? T("Invité·e ✓", "Eingeladen ✓", "Invited ✓") : T("Inviter", "Einladen", "Invite")) + '</button>') + '</div>';
+    }).join("");
+    return '<input type="text" class="ev-invq" data-act="invq" placeholder="' + escapeHtml(T("Rechercher un membre…", "Mitglied suchen…", "Search a member…")) + '" value="' + escapeHtml(evInvQ) + '">' +
+      '<div class="ev-invlist">' + (rows || '<p class="circ-note">' + escapeHtml(T("Aucun membre trouvé.", "Kein Mitglied gefunden.", "No member found.")) + '</p>') + '</div>';
+  }
+  function evInviteMember(evId, toId) {
+    var x = evList.filter(function (q) { return q.id === evId; })[0]; if (!x || !toId || !dbNs || !selfId) return;
+    var me = evMe();
+    if (!(x.authorId === me || (evMyPart(evId) && evMyPart(evId).status !== "interested"))) return;
+    if (evPrefs[toId] && evPrefs[toId].noInvites) return;
+    if (evInvites.some(function (v) { return v.eventId === evId && v.toId === toId; })) return;
+    var d0 = new Date(); d0.setHours(0, 0, 0, 0);
+    var today = evInvites.filter(function (v) { return v.toId === toId && v.createdAt >= d0.getTime(); }).length;
+    if (today >= 20) { alert(T("Ce membre a déjà reçu 20 invitations aujourd’hui.", "Dieses Mitglied hat heute bereits 20 Einladungen erhalten.", "This member already received 20 invitations today.")); return; }
+    var rec = { eventId: evId, fromId: me, fromName: myName(), toId: toId, createdAt: Date.now() };
+    evInvites.push(rec);
+    dbNs.collection("event_invites").add(rec).catch(toastErr);
+    notify(toId, "event_invite", { eventId: evId, snippet: x.title });
+    var keep = (document.querySelector(".ev-invq") || {}).value; renderEvents();
+    var qi = document.querySelector(".ev-invq"); if (qi && keep) { qi.value = keep; }
+  }
+  function evSetPart(evId, on, visible, status) {
     var me = evMe(), nm = (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member");
     var key = evId + "_" + me;
     evParts = evParts.filter(function (q) { return q.id !== key; });
-    if (on) evParts.push({ id: key, eventId: evId, userId: me, name: nm, visible: !!visible });
+    if (on) evParts.push({ id: key, eventId: evId, userId: me, name: nm, visible: !!visible, status: status || "going" });
     if (dbNs && selfId) {
       var ref = dbNs.collection("event_participants").doc(key);
-      (on ? ref.set({ eventId: evId, userId: me, name: nm, visible: !!visible, createdAt: Date.now() }) : ref.delete()).catch(toastErr);
+      (on ? ref.set({ eventId: evId, userId: me, name: nm, visible: !!visible, status: status || "going", createdAt: Date.now() }) : ref.delete()).catch(toastErr);
     }
     renderEvents();
   }
@@ -3384,8 +3656,19 @@
       var x = evList.filter(function (q) { return q.id === id; })[0]; if (!x) return;
       if (act === "join") {
         var cb = list.querySelector('input[data-act=show][data-id="' + id + '"]');
-        evSetPart(id, !evMyPart(id), cb ? cb.checked : evShowPref);
+        var m0 = evMyPart(id);
+        evSetPart(id, !(m0 && m0.status !== "interested"), cb ? cb.checked : evShowPref, "going");
       }
+      if (act === "interested") {
+        var m1 = evMyPart(id);
+        evSetPart(id, !(m1 && m1.status === "interested"), false, "interested");
+      }
+      if (act === "share") {
+        var link = location.href.split("#")[0] + "#events";
+        try { navigator.clipboard.writeText(link); b.textContent = T("Lien copié ✓", "Link kopiert ✓", "Link copied ✓"); } catch (e) { b.textContent = link; }
+      }
+      if (act === "invite") { evInvOpen = (evInvOpen === id ? "" : id); evInvQ = ""; renderEvents(); }
+      if (act === "invto") evInviteMember(id, b.getAttribute("data-to"));
       if (act === "report") { if (typeof openReport === "function" && dbNs) openReport("event", id, x.title, x.description || ""); else alert(T("Disponible dans la version complète.", "In der Vollversion verfügbar.", "Available in the full version.")); }
       if (act === "del") {
         evList = evList.filter(function (q) { return q.id !== id; });
@@ -3396,15 +3679,39 @@
     list.addEventListener("change", function (ev) {
       var c = ev.target.closest("input[data-act=show]"); if (!c) return;
       var id = c.getAttribute("data-id"); evShowPref = c.checked;
-      if (evMyPart(id)) evSetPart(id, true, c.checked);
+      if (evMyPart(id)) evSetPart(id, true, c.checked, evMyPart(id).status || "going");
+    });
+    list.addEventListener("input", function (ev) {
+      var q = ev.target.closest("input[data-act=invq]"); if (!q) return;
+      evInvQ = q.value; var pos = q.selectionStart; renderEvents();
+      var n2 = document.querySelector(".ev-invq"); if (n2) { n2.focus(); try { n2.setSelectionRange(pos, pos); } catch (e) { } }
+    });
+    document.getElementById("evNoInv").addEventListener("change", function (ev) {
+      var on = ev.target.checked; evPrefs[evMe()] = { noInvites: on };
+      if (dbNs && selfId) dbNs.collection("event_prefs").doc(selfId).set({ noInvites: on }).catch(toastErr);
     });
     document.getElementById("evTabs").addEventListener("click", function (ev) {
       var b = ev.target.closest("button[data-tab]"); if (!b) return;
       evTab = b.getAttribute("data-tab"); renderEvents();
     });
-    document.getElementById("evCreateBtn").addEventListener("click", function () {
-      var f = document.getElementById("evForm"); if (f) f.scrollIntoView({ behavior: "smooth", block: "center" });
-      setTimeout(function () { var t0 = document.getElementById("evTitle"); if (t0) t0.focus(); }, 400);
+    document.getElementById("evCreateBtn").addEventListener("click", function () { evOpenForm(); });
+    document.getElementById("evClose").addEventListener("click", evCloseForm);
+    document.getElementById("evBackdrop").addEventListener("click", evCloseForm);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") evCloseForm(); });
+    document.getElementById("evEndToggle").addEventListener("click", function () { var r = document.getElementById("evEndRow"); r.hidden = !r.hidden; });
+    var attInfo = function () { var cv = document.getElementById("evCover"); cv.style.backgroundImage = evImgData ? "url(" + evImgData + ")" : ""; cv.classList.toggle("has", !!evImgData); var a = document.getElementById("evAttInfo"); a.textContent = [evPdfData ? "📄 " + evPdfName + " ✓" : ""].filter(Boolean).join("  "); };
+    document.getElementById("evImg").addEventListener("change", function (ev) {
+      var f = ev.target.files && ev.target.files[0]; if (!f) return;
+      resizeImage(f, 1000, 0.75).then(function (d) { evImgData = d; attInfo(); })
+        .catch(function () { document.getElementById("evAttInfo").textContent = T("Image trop lourde ou illisible.", "Bild zu groß oder nicht lesbar.", "Image too large or unreadable."); });
+      ev.target.value = "";
+    });
+    document.getElementById("evPdf").addEventListener("change", function (ev) {
+      var f = ev.target.files && ev.target.files[0]; if (!f) return;
+      if (f.size > 700 * 1024) { document.getElementById("evAttInfo").textContent = T("PDF trop lourd (700 Ko maximum).", "PDF zu groß (max. 700 KB).", "PDF too large (700 KB max)."); ev.target.value = ""; return; }
+      var r = new FileReader();
+      r.onload = function () { evPdfData = String(r.result); evPdfName = f.name.slice(0, 60); attInfo(); };
+      r.readAsDataURL(f); ev.target.value = "";
     });
     document.getElementById("evSubmit").addEventListener("click", function () {
       var title = document.getElementById("evTitle").value.trim(), date = document.getElementById("evDate").value,
@@ -3413,16 +3720,18 @@
       var cs = document.getElementById("evCircle"), cid = cs.value;
       var cObj = allCircles().filter(function (c) { return c.id === cid; })[0];
       var doc = {
-        title: title, date: date, time: document.getElementById("evTime").value, place: place,
+        title: title, date: date, time: document.getElementById("evTime").value, endDate: document.getElementById("evEndDate").value, endTime: document.getElementById("evEndTime").value, place: place,
         circleId: cid, circleName: cObj ? (typeof cObj.n === "string" ? cObj.n : (cObj.n[currentLang] || cObj.n.fr)) : "",
         description: document.getElementById("evDesc").value.trim(),
+        image: evImgData, pdf: evPdfData, pdfName: evPdfName, video: document.getElementById("evVideo").value.trim(),
         authorId: evMe(), authorName: (typeof myName === "function" && myName()) || T("Membre", "Mitglied", "Member"),
         badges: ((typeof lastProfileData !== "undefined" && lastProfileData && lastProfileData.badges) || []).slice(0, 4), createdAt: Date.now()
       };
       function done() {
-        ["evTitle", "evDate", "evTime", "evPlace", "evDesc"].forEach(function (k) { document.getElementById(k).value = ""; });
+        evImgData = ""; evPdfData = ""; evPdfName = ""; attInfo();
+        ["evTitle", "evDate", "evTime", "evEndDate", "evEndTime", "evPlace", "evDesc", "evVideo"].forEach(function (k) { document.getElementById(k).value = ""; });
         msg.textContent = T("Événement publié.", "Veranstaltung veröffentlicht.", "Event published.");
-        evTab = "up"; renderEvents();
+        evTab = "up"; renderEvents(); setTimeout(function () { evCloseForm(); document.getElementById("evMsg").textContent = ""; }, 700);
       }
       if (!dbNs || !selfId) { doc.id = "local-" + Date.now(); evList.push(doc); done(); return; }
       dbNs.collection("events").add(doc).then(function () { done(); }).catch(toastErr);
@@ -3437,6 +3746,11 @@
       evParts = snap.docs.map(function (d) { var x = d.data(); if (!x) return null; x = Object.assign({}, x); x.id = d.id; return x; }).filter(Boolean);
       renderEvents();
     }
+    function applyInv(snap) { evInvites = snap.docs.map(function (d) { var x = d.data(); return x ? Object.assign({}, x) : null; }).filter(Boolean); renderEvents(); }
+    function applyPrefs(snap) { evPrefs = {}; snap.docs.forEach(function (d) { var x = d.data(); if (x) evPrefs[d.id] = { noInvites: !!x.noInvites }; }); renderEvents(); }
+    var qi = dbNs.collection("event_invites").limit(3000), qpr = dbNs.collection("event_prefs").limit(3000);
+    qi.onSnapshot(applyInv, function () {}); qpr.onSnapshot(applyPrefs, function () {});
+    try { qi.get().then(applyInv).catch(function () {}); qpr.get().then(applyPrefs).catch(function () {}); } catch (e) { }
     var qe = dbNs.collection("events").limit(300), qp = dbNs.collection("event_participants").limit(3000);
     qe.onSnapshot(applyEv, function () {}); qp.onSnapshot(applyPt, function () {});
     try { qe.get().then(applyEv).catch(function () {}); qp.get().then(applyPt).catch(function () {}); } catch (e) { }

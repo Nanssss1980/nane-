@@ -2929,7 +2929,8 @@
       delWhere("event_participants", "userId", "==", selfId),
       delWhere("event_invites", "fromId", "==", selfId),
       delWhere("event_invites", "toId", "==", selfId),
-      dbNs.collection("event_prefs").doc(selfId).delete().catch(function () { })
+      // la preference n'existe pas toujours : on la supprime seulement si elle existe, et une vraie erreur remonte
+      dbNs.collection("event_prefs").doc(selfId).get().then(function (d) { return d && d.exists ? dbNs.collection("event_prefs").doc(selfId).delete() : null; })
     ]);
     // my messages; a conversation with no message left is removed
     var convos = dbNs.collection("messages").where("participantIds", "array-contains", selfId).get().then(function (snap) {

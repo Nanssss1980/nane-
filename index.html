@@ -1074,7 +1074,7 @@
         <div>
           <h1 class="i18n"
               data-fr="Votre talent mérite d'être vu."
-              data-de="Dein Talent verdient es, gesehen zu werden."
+              data-de="Ihr Talent verdient es, gesehen zu werden."
               data-en="Your talent deserves to be seen.">
           </h1>
           <p class="lead i18n"
@@ -1124,7 +1124,7 @@
 
     <section class="examples">
       <div class="wrap">
-        <div class="ex-label i18n" data-fr="Exemple : 3 membres qui pourraient t'aider" data-de="Beispiel: 3 Mitglieder, die dir helfen könnten" data-en="Example: 3 members who could help you"></div>
+        <div class="ex-label i18n" data-fr="Exemple : 3 membres qui pourraient vous aider" data-de="Beispiel: 3 Mitglieder, die Ihnen helfen könnten" data-en="Example: 3 members who could help you"></div>
         <div class="ex-grid">
           <div class="ex-card"><div class="pc-avatar">SK</div><div><div class="pc-name">Sarah K.</div>
             <div class="pc-title i18n" data-fr="Responsable marketing · Lausanne" data-de="Marketing-Leiterin · Lausanne" data-en="Marketing manager · Lausanne"></div>
@@ -1432,8 +1432,8 @@
         <div class="evs-main">
           <h2 class="evs-head" id="cgHead"></h2>
         <div class="circ-box circ-one"><h3 class="i18n" data-fr="Des échanges simples, à votre rythme" data-de="Einfacher Austausch in Ihrem Tempo" data-en="Simple conversations, at your own pace"></h3><p class="i18n" data-fr="Entre les groupes WhatsApp qui se multiplient, les notifications incessantes et les conversations difficiles à retrouver, les échanges professionnels peuvent vite devenir difficiles à suivre." data-de="Zwischen immer mehr WhatsApp-Gruppen, ständigen Benachrichtigungen und schwer auffindbaren Gesprächen wird beruflicher Austausch schnell unübersichtlich." data-en="With WhatsApp groups multiplying, constant notifications and conversations that are hard to find, professional exchanges can quickly become hard to follow."></p><p class="i18n" style="margin-top:10px" data-fr="Avec les Circles NANE, rejoignez des espaces de discussion organisés par thématique, selon vos centres d’intérêt et vos ambitions professionnelles." data-de="Mit den NANE Circles treten Sie nach Themen geordneten Diskussionsräumen bei, passend zu Ihren Interessen und beruflichen Ambitionen." data-en="With NANE Circles, join discussion spaces organised by topic, based on your interests and professional ambitions."></p><p class="i18n" style="margin-top:10px" data-fr="Participez librement aux conversations, gérez vos notifications et retrouvez les échanges qui comptent pour vous." data-de="Beteiligen Sie sich frei an den Gesprächen, verwalten Sie Ihre Benachrichtigungen und finden Sie die Beiträge wieder, die für Sie zählen." data-en="Take part in conversations freely, manage your notifications and find the exchanges that matter to you."></p><p class="i18n" style="margin-top:10px;font-weight:600;color:var(--ink)" data-fr="Un espace professionnel pour échanger et créer des connexions, sans partager votre numéro de téléphone." data-de="Ein beruflicher Raum, um sich auszutauschen und Kontakte zu knüpfen, ohne Ihre Telefonnummer zu teilen." data-en="A professional space to exchange and build connections, without sharing your phone number."></p></div>
+          <div class="notice-box" id="circNote" style="margin:0 0 18px"></div>
           <div id="circGrid" class="circ-grid"></div>
-          <p class="circ-note" id="circNote"></p>
         </div>
         </div>
         <div class="ev-backdrop" id="cgBackdrop" hidden></div>
@@ -1677,7 +1677,7 @@
         <div class="dir-head">
           <h2 class="i18n" data-fr="Messagerie" data-de="Nachrichten" data-en="Messaging"></h2>
         </div>
-        <div class="notice-box i18n" data-fr="Version de test : les messages ne sont pas privés. N'y partagez aucune information confidentielle." data-de="Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen." data-en="Test version: messages are not private. Do not share confidential information here."></div>
+        <div class="notice-box i18n" style="font-weight:600;border-left:4px solid var(--brass)" data-fr="Version de test : les messages ne sont pas privés. N'y partagez aucune information confidentielle." data-de="Testversion: Nachrichten sind nicht privat. Teilen Sie hier keine vertraulichen Informationen." data-en="Test version: messages are not private. Do not share confidential information here."></div>
         <div class="new-convo">
           <select id="newConvoSelect"></select>
           <button id="newConvoBtn" class="btn btn-primary btn-small i18n"
@@ -1757,12 +1757,12 @@
       photoLabel: "Photo de profil", photoChoose: "Choisir une photo", photoChange: "Changer la photo", photoRemove: "Retirer", photoHint: "JPG ou PNG. Elle sera recadrée en carré.", fieldAbout: "À propos", fieldContact: "Contact (e-mail ou lien)",
       saveBtn: "Enregistrer mon profil", saved: "Profil enregistré.", errorPrefix: "Erreur : ",
       offlineTitle: "Aperçu hors ligne", offlineBody: "Ouvre cette page publiée sur claude.ai pour créer et consulter des profils.",
-      connectToCreate: "Connecte-toi sur claude.ai pour créer ton profil.",
+      connectToCreate: "Connectez-vous sur claude.ai pour créer votre profil.",
       dirUnavailableTitle: "Annuaire indisponible", dirUnavailableBody: "La connexion aux profils n'a pas pu être établie dans cette vue.",
       profileUnavailable: "La création de profil n'est pas disponible dans cette vue.",
       greeting: "Bonjour ", greetingFallback: "vous",
       feedEmptyTitle: "Aucune publication pour l'instant", feedEmptyBody: "Sois la première personne à partager quelque chose.",
-      sendMessage: "Envoyer un message", reportLink: "Signaler", reportTitle: "Signaler ce contenu", reportReason: "Motif", reportComment: "Précisions (facultatif)", reportSend: "Envoyer le signalement", reportThanks: "Merci. Le signalement a été transmis à l'équipe.", reportReasons: ["Harcèlement", "Usurpation d'identité", "Contenu inapproprié ou discriminatoire", "Spam ou arnaque", "Autre"], deleteTitle: "Supprimer mon profil", deleteBody: "Cette action efface définitivement ton profil et tes publications.", deleteConfirm: "Supprimer définitivement ton profil et tes publications ?", deleted: "Profil supprimé.", 
+      sendMessage: "Envoyer un message", reportLink: "Signaler", reportTitle: "Signaler ce contenu", reportReason: "Motif", reportComment: "Précisions (facultatif)", reportSend: "Envoyer le signalement", reportThanks: "Merci. Le signalement a été transmis à l'équipe.", reportReasons: ["Harcèlement", "Usurpation d'identité", "Contenu inapproprié ou discriminatoire", "Spam ou arnaque", "Autre"], deleteTitle: "Supprimer mon profil", deleteBody: "Cette action efface définitivement votre profil et vos publications.", deleteConfirm: "Supprimer définitivement votre profil et vos publications ?", deleted: "Profil supprimé.", 
       newConvoPlaceholder: "Choisir une personne…",
       noConversations: "Aucune conversation pour l'instant.",
       pickConversation: "Sélectionne une conversation ou démarre une nouvelle discussion.",
@@ -1782,15 +1782,15 @@
       photoLabel: "Profilbild", photoChoose: "Foto auswählen", photoChange: "Foto ändern", photoRemove: "Entfernen", photoHint: "JPG oder PNG. Wird quadratisch zugeschnitten.", fieldAbout: "Über mich", fieldContact: "Kontakt (E-Mail oder Link)",
       saveBtn: "Profil speichern", saved: "Profil gespeichert.", errorPrefix: "Fehler: ",
       offlineTitle: "Offline-Vorschau", offlineBody: "Öffne diese veröffentlichte Seite auf claude.ai, um Profile zu erstellen und einzusehen.",
-      connectToCreate: "Melde dich auf claude.ai an, um dein Profil zu erstellen.",
+      connectToCreate: "Melden Sie sich auf claude.ai an, um Ihr Profil zu erstellen.",
       dirUnavailableTitle: "Verzeichnis nicht verfügbar", dirUnavailableBody: "Die Verbindung zu den Profilen konnte in dieser Ansicht nicht hergestellt werden.",
       profileUnavailable: "Die Profilerstellung ist in dieser Ansicht nicht verfügbar.",
       greeting: "Hallo ", greetingFallback: "",
       feedEmptyTitle: "Noch keine Beiträge", feedEmptyBody: "Sei die erste Person, die etwas teilt.",
-      sendMessage: "Nachricht senden", reportLink: "Melden", reportTitle: "Inhalt melden", reportReason: "Grund", reportComment: "Details (optional)", reportSend: "Meldung senden", reportThanks: "Danke. Die Meldung wurde an das Team weitergeleitet.", reportReasons: ["Belästigung", "Identitätsmissbrauch", "Unangemessener oder diskriminierender Inhalt", "Spam oder Betrug", "Sonstiges"], deleteTitle: "Mein Profil löschen", deleteBody: "Dadurch werden dein Profil und deine Beiträge endgültig gelöscht.", deleteConfirm: "Profil und Beiträge endgültig löschen?", deleted: "Profil gelöscht.", 
+      sendMessage: "Nachricht senden", reportLink: "Melden", reportTitle: "Inhalt melden", reportReason: "Grund", reportComment: "Details (optional)", reportSend: "Meldung senden", reportThanks: "Danke. Die Meldung wurde an das Team weitergeleitet.", reportReasons: ["Belästigung", "Identitätsmissbrauch", "Unangemessener oder diskriminierender Inhalt", "Spam oder Betrug", "Sonstiges"], deleteTitle: "Mein Profil löschen", deleteBody: "Dadurch werden Ihr Profil und Ihre Beiträge endgültig gelöscht.", deleteConfirm: "Profil und Beiträge endgültig löschen?", deleted: "Profil gelöscht.", 
       newConvoPlaceholder: "Person auswählen…",
       noConversations: "Noch keine Unterhaltungen.",
-      pickConversation: "Wähle eine Unterhaltung oder starte eine neue.",
+      pickConversation: "Wählen Sie eine Unterhaltung oder starten Sie eine neue.",
       messagePlaceholder: "Nachricht schreiben…", sendBtn: "Senden"
     },
     en: {
@@ -2070,26 +2070,26 @@
       '<div class="su-steps">' + steps.map(function (x, i) { return '<span class="' + (signupStep === i + 1 ? "on" : "") + '">' + (i + 1) + '. ' + escapeHtml(x) + '</span>'; }).join("") + '</div>';
     if (signupStep === 1) {
       h += '<h2>' + escapeHtml(T("Inscription", "Registrierung", "Sign up")) + '</h2>' +
-        '<p class="sub">' + escapeHtml(T("Crée ton compte en moins de cinq minutes.", "Erstelle dein Konto in weniger als fünf Minuten.", "Create your account in under five minutes.")) + '</p>' +
+        '<p class="sub">' + escapeHtml(T("Créez votre compte en moins de cinq minutes.", "Erstellen Sie Ihr Konto in weniger als fünf Minuten.", "Create your account in under five minutes.")) + '</p>' +
         '<div class="su-row"><div class="su-field"><label>' + escapeHtml(T("Prénom", "Vorname", "First name")) + '</label><input type="text" id="suFirst" autocomplete="given-name" value="' + escapeHtml(signupData.first) + '"></div>' +
         '<div class="su-field"><label>' + escapeHtml(T("Nom", "Nachname", "Last name")) + '</label><input type="text" id="suLast" autocomplete="family-name" value="' + escapeHtml(signupData.last) + '"></div></div>' +
-        '<div class="su-field"><label>' + escapeHtml(T("E-mail", "E-Mail", "Email")) + '</label><input type="email" id="suEmail" autocomplete="email" placeholder="' + escapeHtml(T("vous@exemple.com", "du@beispiel.com", "you@example.com")) + '" value="' + escapeHtml(signupData.email) + '"></div>' +
+        '<div class="su-field"><label>' + escapeHtml(T("E-mail", "E-Mail", "Email")) + '</label><input type="email" id="suEmail" autocomplete="email" placeholder="' + escapeHtml(T("vous@exemple.com", "name@beispiel.com", "you@example.com")) + '" value="' + escapeHtml(signupData.email) + '"></div>' +
         '<div class="su-field"><label>' + escapeHtml(T("Mot de passe", "Passwort", "Password")) + ' <span class="hint">' + escapeHtml(T("8 caractères minimum", "mindestens 8 Zeichen", "8 characters minimum")) + '</span></label>' +
-        '<div class="su-pw"><input type="password" id="suPw" autocomplete="new-password" placeholder="' + escapeHtml(T("Choisis un mot de passe robuste", "Wähle ein sicheres Passwort", "Choose a strong password")) + '">' +
+        '<div class="su-pw"><input type="password" id="suPw" autocomplete="new-password" placeholder="' + escapeHtml(T("Choisissez un mot de passe robuste", "Wählen Sie ein sicheres Passwort", "Choose a strong password")) + '">' +
         '<button type="button" class="su-eye" id="suEye" aria-label="' + escapeHtml(T("Afficher le mot de passe", "Passwort anzeigen", "Show password")) + '"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.500-7 10-7 10 7 10 7-3.500 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>' +
-        '<div class="su-verify"><b style="font-size:14px">' + escapeHtml(T("Pour valider ton profil", "Zur Prüfung deines Profils", "To validate your profile")) + '</b>' +
+        '<div class="su-verify"><b style="font-size:14px">' + escapeHtml(T("Pour valider votre profil", "Zur Prüfung Ihres Profils", "To validate your profile")) + '</b>' +
         '<p class="sub" style="margin:4px 0 10px">' + escapeHtml(T("NANE est un espace sûr pour les talents afrodescendants. Ces réponses aident l'équipe à valider chaque demande. Les champs avec * sont obligatoires.", "NANE ist ein sicherer Raum für afrodeszendente Talente. Diese Angaben helfen dem Team, jede Anfrage zu prüfen. Felder mit * sind Pflicht.", "NANE is a safe space for Afrodescendant talents. These answers help the team validate each request. Fields marked * are required.")) + '</p>' +
-        '<div class="su-field"><label>' + escapeHtml(T("Tu es", "Du bist", "You are")) + ' <span class="hint">*</span> <span class="hint">' + escapeHtml(T("(plusieurs choix possibles)", "(Mehrfachauswahl möglich)", "(you can pick several)")) + '</span></label>' +
+        '<div class="su-field"><label>' + escapeHtml(T("Vous êtes", "Sie sind", "You are")) + ' <span class="hint">*</span> <span class="hint">' + escapeHtml(T("(plusieurs choix possibles)", "(Mehrfachauswahl möglich)", "(you can pick several)")) + '</span></label>' +
         suChecks("suRoles", signupData.roles, [["consulting", "Consulting", "Beratung", "Consulting"], ["entrepreneur", "Entrepreneur·e", "Unternehmer·in", "Entrepreneur"], ["mentor", "Mentor·e", "Mentor·in", "Mentor"], ["speaker", "Conférencier·ère", "Referent·in", "Speaker"], ["employee", "Employé·e", "Angestellte·r", "Employee"], ["freelance", "Freelance", "Freiberufler·in", "Freelancer"], ["volunteer", "Bénévole", "Ehrenamtliche·r", "Volunteer"]]) + '</div>' +
         '<div class="su-field"><label>' + escapeHtml(T("Langues professionnelles", "Berufssprachen", "Professional languages")) + ' <span class="hint">*</span></label>' +
         suChecks("suLangs", signupData.langs, [["fr", "Français", "Französisch", "French"], ["de", "Allemand", "Deutsch", "German"], ["en", "Anglais", "Englisch", "English"], ["other", "Autre", "Andere", "Other"]]) + '</div>' +
-        suField("suOffer", "Ce que tu proposes", "Was du anbietest", "What you offer", '<textarea id="suOffer" rows="2" placeholder="' + escapeHtml(T("ex. conseil en marketing, mentorat, interventions en conférence", "z. B. Marketingberatung, Mentoring, Vorträge", "e.g. marketing advice, mentoring, speaking")) + '">' + escapeHtml(signupData.offer) + '</textarea>', 0) +
-        suField("suSeek", "Ce que tu recherches", "Was du suchst", "What you are looking for", '<textarea id="suSeek" rows="2" placeholder="' + escapeHtml(T("ex. clients, partenaires, mentor, emploi", "z. B. Kunden, Partner, Mentor, Stelle", "e.g. clients, partners, a mentor, a job")) + '">' + escapeHtml(signupData.seek) + '</textarea>', 0) +
-        suField("suRole", "Ton poste ou ton statut", "Deine Position oder dein Status", "Your role or status", '<input type="text" id="suRole" placeholder="' + escapeHtml(T("ex. Cheffe de projet, étudiant·e, ingénieur·e", "z. B. Projektleiterin, Student·in, Ingenieur·in", "e.g. Project manager, student, engineer")) + '" value="' + escapeHtml(signupData.role) + '">', 1) +
+        suField("suOffer", "Ce que vous proposez", "Was Sie anbieten", "What you offer", '<textarea id="suOffer" rows="2" placeholder="' + escapeHtml(T("ex. conseil en marketing, mentorat, interventions en conférence", "z. B. Marketingberatung, Mentoring, Vorträge", "e.g. marketing advice, mentoring, speaking")) + '">' + escapeHtml(signupData.offer) + '</textarea>', 0) +
+        suField("suSeek", "Ce que vous recherchez", "Was Sie suchen", "What you are looking for", '<textarea id="suSeek" rows="2" placeholder="' + escapeHtml(T("ex. clients, partenaires, mentor, emploi", "z. B. Kunden, Partner, Mentor, Stelle", "e.g. clients, partners, a mentor, a job")) + '">' + escapeHtml(signupData.seek) + '</textarea>', 0) +
+        suField("suRole", "Votre poste ou votre statut", "Ihre Position oder Ihr Status", "Your role or status", '<input type="text" id="suRole" placeholder="' + escapeHtml(T("ex. Cheffe de projet, étudiant·e, ingénieur·e", "z. B. Projektleiterin, Student·in, Ingenieur·in", "e.g. Project manager, student, engineer")) + '" value="' + escapeHtml(signupData.role) + '">', 1) +
         suField("suLoc", "Ville et pays", "Stadt und Land", "City and country", '<input type="text" id="suLoc" autocomplete="address-level2" placeholder="' + escapeHtml(T("ex. Berlin, Allemagne", "z. B. Berlin, Deutschland", "e.g. Berlin, Germany")) + '" value="' + escapeHtml(signupData.loc) + '">', 1) +
-        suField("suHow", "Comment as-tu connu NANE ?", "Wie hast du von NANE erfahren?", "How did you hear about us?", suSelect("suHow", signupData.how, [["member", "Par un membre", "Über ein Mitglied", "Through a member"], ["linkedin", "LinkedIn", "LinkedIn", "LinkedIn"], ["social", "Autres réseaux sociaux", "Andere soziale Netzwerke", "Other social media"], ["event", "Événement ou association", "Veranstaltung oder Verein", "Event or association"], ["press", "Presse ou article", "Presse oder Artikel", "Press or article"], ["other", "Autre", "Sonstiges", "Other"]]), 1) +
+        suField("suHow", "Comment as-tu connu NANE ?", "Wie haben Sie von NANE erfahren?", "How did you hear about us?", suSelect("suHow", signupData.how, [["member", "Par un membre", "Über ein Mitglied", "Through a member"], ["linkedin", "LinkedIn", "LinkedIn", "LinkedIn"], ["social", "Autres réseaux sociaux", "Andere soziale Netzwerke", "Other social media"], ["event", "Événement ou association", "Veranstaltung oder Verein", "Event or association"], ["press", "Presse ou article", "Presse oder Artikel", "Press or article"], ["other", "Autre", "Sonstiges", "Other"]]), 1) +
         '<div class="su-row">' + suField("suYears", "Années d'expérience", "Jahre Berufserfahrung", "Years of experience", '<input type="number" id="suYears" min="0" max="60" inputmode="numeric" value="' + escapeHtml(signupData.years) + '">', 0) +
-        suField("suJob", "Cherches-tu un emploi ?", "Suchst du eine Stelle?", "Are you looking for a job?", suSelect("suJob", signupData.job, [["active", "Oui, activement", "Ja, aktiv", "Yes, actively"], ["open", "Ouvert·e aux opportunités", "Offen für Angebote", "Open to opportunities"], ["no", "Non", "Nein", "No"]]), 0) + '</div>' +
+        suField("suJob", "Cherches-tu un emploi ?", "Suchen Sie eine Stelle?", "Are you looking for a job?", suSelect("suJob", signupData.job, [["active", "Oui, activement", "Ja, aktiv", "Yes, actively"], ["open", "Ouvert·e aux opportunités", "Offen für Angebote", "Open to opportunities"], ["no", "Non", "Nein", "No"]]), 0) + '</div>' +
         '</div>' +
         '<details class="su-opt"><summary>' + escapeHtml(T("Options (facultatif) : badge vérifié, invitation", "Optionen (freiwillig): Verifizierungs-Badge, Einladung", "Options (optional): verified badge, invitation")) + '</summary>' +
         '<div class="su-field" style="margin-top:10px"><label>' + escapeHtml(T("Lien LinkedIn ou site professionnel", "LinkedIn- oder Berufswebsite-Link", "LinkedIn or professional website link")) + ' <span class="hint">' + escapeHtml(T("(pour le badge vérifié)", "(für das Verifizierungs-Badge)", "(for the verified badge)")) + '</span></label><input type="text" id="suLink" placeholder="https://" value="' + escapeHtml(signupData.link) + '"></div>' +
@@ -2101,21 +2101,21 @@
         '<button type="button" class="btn btn-social" data-social="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.100 9.800H4.500V19h2.600V9.800zM5.800 5.500a1.500 1.500 0 1 0 0 3 1.500 1.500 0 0 0 0-3zM19.500 13.800c0-2.500-1.300-4.200-3.500-4.200-1.100 0-2 .6-2.400 1.300V9.800H11V19h2.600v-5c0-1.200.6-2 1.600-2s1.700.7 1.700 2v5h2.600v-5.200z"/></svg>' + escapeHtml(T("Continuer avec LinkedIn", "Weiter mit LinkedIn", "Continue with LinkedIn")) + '</button>' +
         '<p style="text-align:center;margin:18px 0 0;font-size:14px">' + escapeHtml(T("Déjà inscrit ? ", "Schon registriert? ", "Already a member? ")) + '<a href="#" id="suLogin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Se connecter", "Anmelden", "Log in")) + '</a></p>' +
         '<div class="su-legend"><b style="font-size:13px">' + escapeHtml(T("Les badges de confiance", "Vertrauens-Badges", "Trust badges")) + '</b>' +
-        '<div>' + badgeHtml("mail") + escapeHtml(T("Tu as confirmé ton adresse e-mail.", "Du hast deine E-Mail-Adresse bestätigt.", "You confirmed your email address.")) + '</div>' +
-        '<div>' + badgeHtml("pro") + escapeHtml(T("Ton lien LinkedIn ou site pro a été vérifié.", "Dein LinkedIn- oder Berufslink wurde geprüft.", "Your LinkedIn or professional link was checked.")) + '</div>' +
-        '<div>' + badgeHtml("ref") + escapeHtml(T("Un membre du réseau se porte garant de toi.", "Ein Mitglied bürgt für dich.", "A network member vouches for you.")) + '</div></div>';
+        '<div>' + badgeHtml("mail") + escapeHtml(T("Vous avez confirmé votre adresse e-mail.", "Sie haben Ihre E-Mail-Adresse bestätigt.", "You confirmed your email address.")) + '</div>' +
+        '<div>' + badgeHtml("pro") + escapeHtml(T("Votre lien LinkedIn ou site pro a été vérifié.", "Ihr LinkedIn- oder Berufslink wurde geprüft.", "Your LinkedIn or professional link was checked.")) + '</div>' +
+        '<div>' + badgeHtml("ref") + escapeHtml(T("Un membre du réseau se porte garant de vous.", "Ein Mitglied bürgt für Sie.", "A network member vouches for you.")) + '</div></div>';
     } else if (signupStep === 2) {
-      h += '<h2>' + escapeHtml(T("Vérifie ta boîte mail", "Prüfe dein Postfach", "Check your inbox")) + '</h2>' +
+      h += '<h2>' + escapeHtml(T("Vérifiez votre boîte mail", "Prüfen Sie Ihr Postfach", "Check your inbox")) + '</h2>' +
         '<p class="sub">' + escapeHtml(T("Un lien de confirmation a été envoyé à ", "Ein Bestätigungslink wurde gesendet an ", "A confirmation link was sent to ")) + '<b>' + escapeHtml(signupData.email || "…") + '</b>. ' +
-        escapeHtml(T("Clique dessus pour activer ton compte.", "Klicke darauf, um dein Konto zu aktivieren.", "Click it to activate your account.")) + '</p>' +
+        escapeHtml(T("Cliquez dessus pour activer votre compte.", "Klicken Sie darauf, um Ihr Konto zu aktivieren.", "Click it to activate your account.")) + '</p>' +
         '<button class="btn btn-primary" id="suNext">' + escapeHtml(T("J'ai cliqué sur le lien (maquette)", "Ich habe den Link angeklickt (Mockup)", "I clicked the link (mockup)")) + '</button>';
     } else {
       var b = ["mail"]; if (signupData.link.trim()) b.push("pro"); if (signupData.code.trim()) b.push("ref");
       h += '<h2>' + escapeHtml(T("Bienvenue", "Willkommen", "Welcome")) + (signupData.first ? ", " + escapeHtml(signupData.first) : "") + ' !</h2>' +
-        '<p class="sub">' + escapeHtml(T("Voici les badges que ta fiche afficherait :", "Diese Badges würde dein Profil anzeigen:", "Here are the badges your profile would show:")) + '</p>' +
+        '<p class="sub">' + escapeHtml(T("Voici les badges que votre fiche afficherait :", "Diese Badges würde Ihr Profil anzeigen:", "Here are the badges your profile would show:")) + '</p>' +
         '<div class="su-sample">' + avatarHtml("pc-avatar", signupData.first + " " + signupData.last, "") +
         '<div><div class="pc-name">' + escapeHtml((signupData.first + " " + signupData.last).trim() || "…") + '</div><div style="margin-top:6px" class="badges">' + b.map(badgeHtml).join("") + '</div></div></div>' +
-        '<p class="sub">' + escapeHtml(T("Ta demande serait validée par l'équipe à partir de tes réponses. Le badge « professionnel vérifié » serait accordé après contrôle de ton lien.", "Dein Antrag würde vom Team anhand deiner Angaben geprüft. Das Badge „Berufsprofil verifiziert“ würde nach Prüfung deines Links vergeben.", "Your request would be validated by the team based on your answers. The “professional profile verified” badge would be granted after your link is checked.")) + '</p>' +
+        '<p class="sub">' + escapeHtml(T("Votre demande serait validée par l'équipe à partir de vos réponses. Le badge « professionnel vérifié » serait accordé après contrôle de votre lien.", "Ihr Antrag würde vom Team anhand Ihrer Angaben geprüft. Das Badge „Berufsprofil verifiziert“ würde nach Prüfung Ihres Links vergeben.", "Your request would be validated by the team based on your answers. The “professional profile verified” badge would be granted after your link is checked.")) + '</p>' +
         '<button class="btn btn-ghost" id="suRestart">' + escapeHtml(T("Recommencer la démo", "Demo neu starten", "Restart demo")) + '</button> ' +
         '<button class="btn btn-primary" id="suGo">' + escapeHtml(T("Compléter mon profil", "Profil vervollständigen", "Complete my profile")) + '</button>';
     }
@@ -2147,7 +2147,7 @@
           years: document.getElementById("suYears").value.trim(), job: document.getElementById("suJob").value };
         var pw = document.getElementById("suPw").value; // lu pour contrôle uniquement : jamais stocké
         if (!signupData.first || signupData.email.indexOf("@") < 1 || pw.length < 8 || !signupData.roles || !signupData.langs || !signupData.role || !signupData.loc || !signupData.how || !document.getElementById("suOk").checked) {
-          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide, mot de passe (8 caractères min.), profil (Tu es), langues, poste, ville, source et acceptation des CGU requis.", "Vorname, gültige E-Mail, Passwort (mind. 8 Zeichen), Profil (Du bist), Sprachen, Position, Stadt, Quelle und Zustimmung zu den Nutzungsbedingungen erforderlich.", "First name, valid email, password (8 characters min.), profile (You are), languages, role, city, source and acceptance of the terms required.");
+          document.getElementById("suMsg").textContent = T("Prénom, e-mail valide, mot de passe (8 caractères min.), profil (Vous êtes), langues, poste, ville, source et acceptation des CGU requis.", "Vorname, gültige E-Mail, Passwort (mind. 8 Zeichen), Profil (Sie sind), Sprachen, Position, Stadt, Quelle und Zustimmung zu den Nutzungsbedingungen erforderlich.", "First name, valid email, password (8 characters min.), profile (You are), languages, role, city, source and acceptance of the terms required.");
           return;
         }
       }
@@ -2180,12 +2180,12 @@
     var el = document.getElementById("loginArea"); if (!el) return;
     var img = document.querySelector("#whoBox img"), nm = meName || "";
     el.innerHTML =
-      '<div class="mock-banner">' + escapeHtml(T("Maquette : ici, la connexion utilise ton compte Claude. Dans la vraie version : e-mail, ou Google.", "Mockup: hier läuft die Anmeldung über dein Claude-Konto. In der echten Version: E-Mail oder Google.", "Mockup: here sign-in uses your Claude account. In the real version: email, or Google.")) + '</div>' +
-      '<h2>' + escapeHtml(T("Bienvenue dans ta communauté professionnelle", "Willkommen in deiner beruflichen Community", "Welcome to your professional community")) + '</h2>' +
+      '<div class="mock-banner">' + escapeHtml(T("Maquette : ici, la connexion utilise votre compte Claude. Dans la vraie version : e-mail, ou Google.", "Mockup: hier läuft die Anmeldung über Ihr Claude-Konto. In der echten Version: E-Mail oder Google.", "Mockup: here sign-in uses your Claude account. In the real version: email, or Google.")) + '</div>' +
+      '<h2>' + escapeHtml(T("Bienvenue dans votre communauté professionnelle", "Willkommen in Ihrer beruflichen Community", "Welcome to your professional community")) + '</h2>' +
       '<p class="sub"></p>' +
       '<button class="btn btn-primary" id="loginGo" style="width:100%;gap:12px">' + (img ? '<img src="' + img.src + '" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">' : '') +
       escapeHtml(T("Continuer en tant que ", "Weiter als ", "Continue as ") + (nm || T("membre", "Mitglied", "member"))) + '</button>' +
-      '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("En continuant, tu acceptes la charte de la communauté et la politique de confidentialité.", "Mit dem Fortfahren akzeptierst du die Community-Charta und die Datenschutzerklärung.", "By continuing, you accept the community charter and privacy policy.")) + '</p>' +
+      '<p class="sub" style="margin-top:16px;font-size:12px">' + escapeHtml(T("En continuant, vous acceptez la charte de la communauté et la politique de confidentialité.", "Mit dem Fortfahren akzeptieren Sie die Community-Charta und die Datenschutzerklärung.", "By continuing, you accept the community charter and privacy policy.")) + '</p>' +
       '<p style="text-align:center;margin:22px 0 0;font-size:14px">' + escapeHtml(T("Nouveau ici ? ", "Neu hier? ", "New here? ")) + '<a href="#" id="loginJoin" style="color:var(--ink);font-weight:600">' + escapeHtml(T("S'inscrire", "Registrieren", "Sign up")) + '</a></p>' +
       '<p style="text-align:center;margin:10px 0 0;font-size:14px">' + escapeHtml(T("Vous recrutez ? ", "Sie suchen Personal? ", "Hiring? ")) + '<a href="#" id="loginEmp" style="color:var(--ink);font-weight:600">' + escapeHtml(T("Espace employeur", "Arbeitgeberbereich", "Employer space")) + '</a></p>';
     document.getElementById("loginGo").addEventListener("click", function () { enterApp("feed"); });
@@ -2221,7 +2221,7 @@
   }
   function connLabel(st) {
     return { none: T("Se connecter", "Vernetzen", "Connect"), sent: T("Invitation envoyée", "Einladung gesendet", "Invitation sent"),
-      received: T("Accepter l'invitation", "Einladung annehmen", "Accept invitation"), connected: T("Dans ton réseau ✓", "In deinem Netzwerk ✓", "In your network ✓") }[st];
+      received: T("Accepter l'invitation", "Einladung annehmen", "Accept invitation"), connected: T("Dans votre réseau ✓", "In Ihrem Netzwerk ✓", "In your network ✓") }[st];
   }
   function updateNetDot() {
     var n = myConns.filter(function (c) { return c.status === "pending" && c.requesterId !== selfId; }).length;
@@ -2264,11 +2264,11 @@
       recv.map(function (p) { return netRow(p, btn("accept", p.__id, T("Accepter", "Annehmen", "Accept"), "btn-primary") + btn("remove", p.__id, T("Ignorer", "Ablehnen", "Ignore"))); }).join("");
     h += '<h3 class="net-h">' + escapeHtml(T("Mes relations", "Meine Kontakte", "My connections")) + '</h3>' +
       (conn.length ? conn.map(function (p) { return netRow(p, btn("msg", p.__id, T("Message", "Nachricht", "Message"), "btn-primary") + btn("remove", p.__id, T("Retirer", "Entfernen", "Remove"))); }).join("")
-        : '<p class="net-empty">' + escapeHtml(T("Pas encore de relation. Invite des personnes ci-dessous ou depuis l'annuaire.", "Noch keine Kontakte. Lade unten oder im Verzeichnis Personen ein.", "No connections yet. Invite people below or from the directory.")) + '</p>');
+        : '<p class="net-empty">' + escapeHtml(T("Pas encore de relation. Invitez des personnes ci-dessous ou depuis l'annuaire.", "Noch keine Kontakte. Lade unten oder im Verzeichnis Personen ein.", "No connections yet. Invite people below or from the directory.")) + '</p>');
     if (sent.length) h += '<h3 class="net-h">' + escapeHtml(T("Invitations envoyées", "Gesendete Einladungen", "Invitations sent")) + '</h3>' +
       sent.map(function (p) { return netRow(p, btn("remove", p.__id, T("Annuler", "Zurückziehen", "Withdraw"))); }).join("");
     var sg = suggestions();
-    h += '<h3 class="net-h">' + escapeHtml(T("Personnes que tu pourrais connaître", "Personen, die du kennen könntest", "People you may know")) + '</h3>' +
+    h += '<h3 class="net-h">' + escapeHtml(T("Personnes que vous pourriez connaître", "Personen, die Sie kennen könnten", "People you may know")) + '</h3>' +
       (sg.length ? sg.map(function (p) { return netRow(p, btn("invite", p.__id, T("Se connecter", "Vernetzen", "Connect"), "btn-primary")); }).join("")
         : '<p class="net-empty">' + escapeHtml(T("Aucune suggestion pour l'instant. Elles apparaissent quand d'autres membres rejoignent le réseau.", "Noch keine Vorschläge. Sie erscheinen, sobald weitere Mitglieder beitreten.", "No suggestions yet. They appear as more members join.")) + '</p>');
     h += '<p class="net-note">' + escapeHtml(T("Suggestions basées sur le secteur, la ville, les langues et les compétences en commun.", "Vorschläge basieren auf gemeinsamer Branche, Stadt, Sprachen und Fähigkeiten.", "Suggestions are based on shared sector, city, languages and skills.")) + '</p>';
@@ -2295,13 +2295,13 @@
     var who = n.fromName || T("Quelqu'un", "Jemand", "Someone");
     var sn = n.snippet ? ' : « ' + n.snippet.slice(0, 80) + (n.snippet.length > 80 ? "…" : "") + ' »' : "";
     return {
-      like: who + T(" a aimé ta publication", " gefällt dein Beitrag", " liked your post") + sn,
-      comment: who + T(" a commenté ta publication", " hat deinen Beitrag kommentiert", " commented on your post") + sn,
-      repost: who + T(" a republié ta publication", " hat deinen Beitrag geteilt", " reposted your post") + sn,
+      like: who + T(" a aimé votre publication", " gefällt Ihr Beitrag", " liked your post") + sn,
+      comment: who + T(" a commenté votre publication", " hat Ihren Beitrag kommentiert", " commented on your post") + sn,
+      repost: who + T(" a republié votre publication", " hat Ihren Beitrag geteilt", " reposted your post") + sn,
       event_invite: who + T(" vous invite à un événement", " lädt Sie zu einer Veranstaltung ein", " invited you to an event") + sn,
-      invite: who + T(" t'a envoyé une invitation", " hat dir eine Einladung gesendet", " sent you an invitation"),
-      accepted: who + T(" a accepté ton invitation", " hat deine Einladung angenommen", " accepted your invitation"),
-      message: who + T(" t'a envoyé un message", " hat dir eine Nachricht gesendet", " sent you a message") + sn
+      invite: who + T(" vous a envoyé une invitation", " hat Ihnen eine Einladung gesendet", " sent you an invitation"),
+      accepted: who + T(" a accepté votre invitation", " hat Ihre Einladung angenommen", " accepted your invitation"),
+      message: who + T(" vous a envoyé un message", " hat Ihnen eine Nachricht gesendet", " sent you a message") + sn
     }[n.type] || who;
   }
   function timeAgo(ts) {
@@ -2330,7 +2330,7 @@
       return '<button class="notif-row' + (n.read ? '' : ' unread') + '" data-id="' + n.__id + '">' + avatarHtml("pc-avatar", n.fromName, photoOf(n.fromId)) +
         '<div class="notif-text">' + escapeHtml(notifText(n)) + '<div class="pc-loc">' + escapeHtml(timeAgo(n.createdAt)) + '</div></div></button>';
     }).join("") : '<div class="empty-state"><h3>' + escapeHtml(T("Aucune notification", "Keine Benachrichtigungen", "No notifications")) + '</h3><p>' +
-      escapeHtml(T("Tu seras prévenue ici des likes, commentaires, invitations et messages.", "Hier erscheinen Likes, Kommentare, Einladungen und Nachrichten.", "Likes, comments, invitations and messages will show up here.")) + '</p></div>';
+      escapeHtml(T("Vous serez prévenu·e ici des likes, commentaires, invitations et messages.", "Hier erscheinen Likes, Kommentare, Einladungen und Nachrichten.", "Likes, comments, invitations and messages will show up here.")) + '</p></div>';
     el.innerHTML = h;
     var all = document.getElementById("notifAll");
     if (all) all.addEventListener("click", function () { markRead(unread.map(function (n) { return n.__id; })); });
@@ -2923,7 +2923,13 @@
       delWhere("comments", "authorId", "==", selfId),
       delWhere("connections", "participantIds", "array-contains", selfId),
       delWhere("notifications", "fromId", "==", selfId),
-      delWhere("notifications", "toId", "==", selfId)
+      delWhere("notifications", "toId", "==", selfId),
+      // adhesions aux Circles, participations et invitations aux evenements, preferences d'invitation
+      delWhere("circle_members", "userId", "==", selfId),
+      delWhere("event_participants", "userId", "==", selfId),
+      delWhere("event_invites", "fromId", "==", selfId),
+      delWhere("event_invites", "toId", "==", selfId),
+      dbNs.collection("event_prefs").doc(selfId).delete().catch(function () { })
     ]);
     // my messages; a conversation with no message left is removed
     var convos = dbNs.collection("messages").where("participantIds", "array-contains", selfId).get().then(function (snap) {
@@ -3002,7 +3008,7 @@
     var p = lastProfileData, name = (p && p.name) || meName || "";
     var crumb = '<div class="pf-bar"><div class="wrap"><button type="button" id="pfHome">' + escapeHtml(T("Accueil", "Start", "Home")) + '</button> &nbsp;/&nbsp; <b>' + escapeHtml(T("Mon profil", "Mein Profil", "My profile")) + '</b></div></div>';
     if (!p) {
-      el.innerHTML = crumb + '<div class="wrap wrap-narrow" style="padding-top:48px;padding-bottom:80px"><div class="gate-msg">' + escapeHtml(T("Ton profil n'est pas encore créé. Complète-le pour apparaître dans l'annuaire.", "Dein Profil ist noch nicht erstellt. Vervollständige es, um im Verzeichnis zu erscheinen.", "Your profile isn't created yet. Complete it to appear in the directory.")) + '</div><p><button class="btn btn-primary" id="pfEdit">' + escapeHtml(T("Créer mon profil", "Profil erstellen", "Create my profile")) + '</button></p></div>';
+      el.innerHTML = crumb + '<div class="wrap wrap-narrow" style="padding-top:48px;padding-bottom:80px"><div class="gate-msg">' + escapeHtml(T("Votre profil n'est pas encore créé. Complétez-le pour apparaître dans l'annuaire.", "Ihr Profil ist noch nicht erstellt. Vervollständigen Sie es, um im Verzeichnis zu erscheinen.", "Your profile isn't created yet. Complete it to appear in the directory.")) + '</div><p><button class="btn btn-primary" id="pfEdit">' + escapeHtml(T("Créer mon profil", "Profil erstellen", "Create my profile")) + '</button></p></div>';
       document.getElementById("pfHome").addEventListener("click", function () { showView("feed"); });
       document.getElementById("pfEdit").addEventListener("click", function () { startProfile(); });
       return;
@@ -3035,8 +3041,8 @@
       sec(T("Projets", "Projekte", "Projects"), proj, true) +
       sec(T("Portfolio", "Portfolio", "Portfolio"), port, true) +
       sec(T("Contact", "Kontakt", "Contact"), contact, false) +
-      '</div><aside class="pf-aside"><div class="pf-lab">' + escapeHtml(T("Votre profil public", "Dein öffentliches Profil", "Your public profile")) + '</div>' +
-      '<p>' + escapeHtml(T("Tu regardes ton propre profil. Modifie les sections, ajoute tes projets, tes compétences, ton portfolio.", "Du siehst dein eigenes Profil. Bearbeite die Abschnitte, ergänze Projekte, Fähigkeiten und Portfolio.", "You are viewing your own profile. Edit the sections, add your projects, skills and portfolio.")) + '</p>' +
+      '</div><aside class="pf-aside"><div class="pf-lab">' + escapeHtml(T("Votre profil public", "Ihr öffentliches Profil", "Your public profile")) + '</div>' +
+      '<p>' + escapeHtml(T("Vous regardez votre propre profil. Modifiez les sections, ajoutez vos projets, vos compétences, votre portfolio.", "Sie sehen Ihr eigenes Profil. Bearbeiten Sie die Abschnitte, ergänzen Sie Projekte, Fähigkeiten und Portfolio.", "You are viewing your own profile. Edit the sections, add your projects, skills and portfolio.")) + '</p>' +
       '<p style="font-size:13px">' + escapeHtml(T("Profil complété à ", "Profil zu ", "Profile ")) + '<b>' + pct + ' %</b>' + escapeHtml(T("", " vollständig", " complete")) + '</p>' +
       '<button class="btn btn-primary" id="pfEdit">' + escapeHtml(T("Modifier mon profil", "Profil bearbeiten", "Edit my profile")) + '</button>' +
       '<button class="btn btn-ghost" id="pfSettings">' + escapeHtml(T("Paramètres du compte", "Kontoeinstellungen", "Account settings")) + '</button></aside></div></div>';
@@ -3053,7 +3059,7 @@
       '<button class="btn btn-primary btn-small" id="stEdit">' + escapeHtml(p ? T("Modifier mon profil", "Profil bearbeiten", "Edit my profile") : T("Créer mon profil", "Profil erstellen", "Create my profile")) + '</button>' +
       (p ? '<button class="btn btn-ghost btn-small" id="stView">' + escapeHtml(T("Voir mon profil public", "Öffentliches Profil ansehen", "View my public profile")) + '</button>' : '') + '</div></div>' +
       '<div class="st-card"><h2>' + escapeHtml(T("Complétude du profil", "Profilvollständigkeit", "Profile completeness")) + '<span class="st-pct">' + pct + ' %</span></h2>' +
-      '<p class="sub">' + escapeHtml(T("Un profil complet est plus facile à trouver dans l'annuaire. Clique sur un point à compléter.", "Ein vollständiges Profil wird im Verzeichnis leichter gefunden. Klicke auf einen offenen Punkt.", "A complete profile is easier to find in the directory. Click an open item.")) + '</p>' +
+      '<p class="sub">' + escapeHtml(T("Un profil complet est plus facile à trouver dans l'annuaire. Cliquez sur un point à compléter.", "Ein vollständiges Profil wird im Verzeichnis leichter gefunden. Klicke auf einen offenen Punkt.", "A complete profile is easier to find in the directory. Click an open item.")) + '</p>' +
       '<div class="st-bar"><span style="width:' + pct + '%"></span></div><ul class="st-list">' +
       items.map(function (x) { return '<li class="' + (x.ok ? "done" : "todo") + '"><span class="ck">' + (x.ok ? "✓" : "") + '</span>' + escapeHtml(x.label) + '</li>'; }).join("") + '</ul></div>' +
       '<div class="st-card"><h2>' + escapeHtml(T("Préférences", "Einstellungen", "Preferences")) + '</h2><p class="sub">' + escapeHtml(T("Langue de l'interface", "Sprache der Oberfläche", "Interface language")) + '</p><div class="st-langs">' +
@@ -3062,7 +3068,7 @@
         return '<button type="button" data-l="' + l + '" class="' + (currentLang === l ? "active" : "") + '"><svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><use href="#flag-' + l + '"/></svg>' + nm + '</button>';
       }).join("") + '</div></div>' +
       '<div class="st-card"><h2>' + escapeHtml(T("Données et confidentialité", "Daten und Datenschutz", "Data and privacy")) + '</h2>' +
-      '<p class="sub">' + escapeHtml(T("Tu peux lire notre charte et notre politique de confidentialité, ou supprimer ton profil et tes contenus.", "Du kannst unsere Charta und Datenschutzerklärung lesen oder dein Profil und deine Inhalte löschen.", "You can read our charter and privacy policy, or delete your profile and content.")) + '</p>' +
+      '<p class="sub">' + escapeHtml(T("Vous pouvez lire notre charte et notre politique de confidentialité, ou supprimer votre profil et vos contenus.", "Sie können unsere Charta und Datenschutzerklärung lesen oder Ihr Profil und Ihre Inhalte löschen.", "You can read our charter and privacy policy, or delete your profile and content.")) + '</p>' +
       '<button class="btn btn-ghost btn-small" id="stPrivacy">' + escapeHtml(T("Charte et confidentialité", "Charta und Datenschutz", "Charter and privacy")) + '</button> ' +
       (p ? '<button class="btn btn-danger btn-small" id="stDelete">' + escapeHtml(T("Supprimer mon profil…", "Mein Profil löschen…", "Delete my profile…")) + '</button>' : '') + '</div>' +
       '<div class="st-card"><h2>' + escapeHtml(T("Bientôt", "Demnächst", "Coming soon")) + '</h2>' +
@@ -3224,8 +3230,8 @@
     if (ob.step === 1) {
       var so = SECTORS.map(function (s) { return '<option value="' + s + '"' + (d.sector === s ? " selected" : "") + '>' + escapeHtml(sectorLabel(s)) + '</option>'; }).join("");
       var co = COUNTRIES.map(function (c) { return '<option value="' + c + '"' + (d.country === c ? " selected" : "") + '>' + escapeHtml(countryLabel(c)) + '</option>'; }).join("");
-      h += '<h2>' + escapeHtml(T("Qui êtes-vous ?", "Wer bist du?", "Who are you?")) + '</h2>' +
-        '<p class="sub">' + escapeHtml(T("Quelques informations pour que les autres membres vous trouvent et vous reconnaissent.", "Ein paar Angaben, damit andere Mitglieder dich finden und erkennen.", "A few details so other members can find and recognise you.")) + '</p>' +
+      h += '<h2>' + escapeHtml(T("Qui êtes-vous ?", "Wer sind Sie?", "Who are you?")) + '</h2>' +
+        '<p class="sub">' + escapeHtml(T("Quelques informations pour que les autres membres vous trouvent et vous reconnaissent.", "Ein paar Angaben, damit andere Mitglieder Sie finden und erkennen.", "A few details so other members can find and recognise you.")) + '</p>' +
         '<div class="ob-photo">' + avatarHtml("pc-avatar", d.name, d.photo) +
         '<div><button type="button" class="btn btn-ghost btn-small" id="obPhotoBtn">' + escapeHtml(d.photo ? T("Changer la photo", "Foto ändern", "Change photo") : T("Ajouter une photo", "Foto hinzufügen", "Add a photo")) + '</button>' +
         (d.photo ? ' <button type="button" class="ob-skip" id="obPhotoRm">' + escapeHtml(T("Retirer", "Entfernen", "Remove")) + '</button>' : '') +
@@ -3240,16 +3246,16 @@
         '<div class="save-msg" id="obMsg" style="color:var(--wine)">' + escapeHtml(ob.msg) + '</div>' +
         '<div class="ob-actions"><span class="spacer"></span><button class="btn btn-primary" id="obNext">' + escapeHtml(T("Continuer", "Weiter", "Continue")) + '</button></div>';
     } else if (ob.step === 2) {
-      h += '<h2>' + escapeHtml(T("Qu'est-ce qui vous intéresse ?", "Was interessiert dich?", "What are you interested in?")) + '</h2>' +
-        '<p class="sub">' + escapeHtml(T("Choisissez ce qui compte pour vous en ce moment. Cela aide à vous proposer les bons contacts.", "Wähle, was dir gerade wichtig ist. So können wir dir passende Kontakte vorschlagen.", "Pick what matters to you right now. It helps us suggest the right contacts.")) + '</p>' +
+      h += '<h2>' + escapeHtml(T("Qu'est-ce qui vous intéresse ?", "Was interessiert Sie?", "What are you interested in?")) + '</h2>' +
+        '<p class="sub">' + escapeHtml(T("Choisissez ce qui compte pour vous en ce moment. Cela aide à vous proposer les bons contacts.", "Wählen Sie, was Ihnen gerade wichtig ist. So können wir Ihnen passende Kontakte vorschlagen.", "Pick what matters to you right now. It helps us suggest the right contacts.")) + '</p>' +
         chipsHtml("obInterests", INTERESTS.map(function (x) { return x[0]; }), d.interests, interestLabel) +
         '<div class="ob-actions"><button class="btn btn-ghost" id="obBack">' + escapeHtml(T("Retour", "Zurück", "Back")) + '</button><span class="spacer"></span>' +
         '<button class="ob-skip" id="obSkip">' + escapeHtml(T("Passer", "Überspringen", "Skip")) + '</button>' +
         '<button class="btn btn-primary" id="obNext">' + escapeHtml(T("Continuer", "Weiter", "Continue")) + '</button></div>';
     } else if (ob.step === 3) {
-      h += '<h2>' + escapeHtml(T("Présentez-vous", "Stell dich vor", "Introduce yourself")) + '</h2>' +
-        '<p class="sub">' + escapeHtml(T("3 à 5 phrases : votre parcours, ce que vous faites aujourd'hui, ce que vous cherchez.", "3 bis 5 Sätze: dein Werdegang, was du heute machst, was du suchst.", "3 to 5 sentences: your background, what you do today, what you are looking for.")) + '</p>' +
-        '<div class="su-field"><label>' + escapeHtml(T("À propos de vous", "Über dich", "About you")) + '</label><textarea id="obBio">' + escapeHtml(d.bio) + '</textarea><div class="ob-count" id="obCount"></div></div>' +
+      h += '<h2>' + escapeHtml(T("Présentez-vous", "Stellen Sie sich vor", "Introduce yourself")) + '</h2>' +
+        '<p class="sub">' + escapeHtml(T("3 à 5 phrases : votre parcours, ce que vous faites aujourd'hui, ce que vous cherchez.", "3 bis 5 Sätze: Ihr Werdegang, was Sie heute machen, was Sie suchen.", "3 to 5 sentences: your background, what you do today, what you are looking for.")) + '</p>' +
+        '<div class="su-field"><label>' + escapeHtml(T("À propos de vous", "Über Sie", "About you")) + '</label><textarea id="obBio">' + escapeHtml(d.bio) + '</textarea><div class="ob-count" id="obCount"></div></div>' +
         '<div class="su-field"><label>' + escapeHtml(T("Compétences", "Fähigkeiten", "Skills")) + ' <span class="hint">' + escapeHtml(T("(séparées par des virgules, 3 minimum conseillées)", "(durch Kommas getrennt, mindestens 3 empfohlen)", "(comma separated, 3 or more recommended)")) + '</span></label><input type="text" id="obSkills" value="' + escapeHtml(d.skills) + '"></div>' +
         '<div class="save-msg" id="obMsg" style="color:var(--wine)">' + escapeHtml(ob.msg) + '</div>' +
         '<div class="ob-actions"><button class="btn btn-ghost" id="obBack">' + escapeHtml(T("Retour", "Zurück", "Back")) + '</button><span class="spacer"></span>' +
@@ -3258,7 +3264,7 @@
       var items = profileChecklist(), todo = items.filter(function (x) { return !x.ok; }), pct = Math.round((items.length - todo.length) * 100 / items.length);
       var nm = (lastProfileData && lastProfileData.name) || d.name;
       h += '<h2>' + escapeHtml(T("Bienvenue sur NANE", "Willkommen bei NANE", "Welcome to NANE")) + (nm ? ", " + escapeHtml(nm.split(" ")[0]) : "") + ' !</h2>' +
-        '<p class="sub">' + escapeHtml(T("Votre profil est enregistré et visible dans l'annuaire. Complétude : ", "Dein Profil ist gespeichert und im Verzeichnis sichtbar. Vollständigkeit: ", "Your profile is saved and visible in the directory. Completeness: ")) + '<b>' + pct + ' %</b></p>' +
+        '<p class="sub">' + escapeHtml(T("Votre profil est enregistré et visible dans l'annuaire. Complétude : ", "Ihr Profil ist gespeichert und im Verzeichnis sichtbar. Vollständigkeit: ", "Your profile is saved and visible in the directory. Completeness: ")) + '<b>' + pct + ' %</b></p>' +
         (todo.length ? '<p class="sub" style="margin-bottom:4px">' + escapeHtml(T("Pour aller plus loin :", "Als Nächstes:", "To go further:")) + '</p><ul class="ob-done-list">' + todo.slice(0, 3).map(function (x) { return '<li>' + escapeHtml(x.label) + '</li>'; }).join("") + '</ul>' : '') +
         '<div class="ob-actions"><button class="btn btn-ghost" id="obProfile">' + escapeHtml(T("Voir mon profil", "Mein Profil ansehen", "View my profile")) + '</button><span class="spacer"></span>' +
         '<button class="btn btn-primary" id="obFeed">' + escapeHtml(T("Aller à mon fil", "Zu meinem Feed", "Go to my feed")) + '</button></div>';
@@ -3292,7 +3298,7 @@
   function obFinish() {
     obCapture();
     var d = ob.data;
-    if (!dbNs || !selfId) { ob.msg = T("Connecte-toi avec ton compte pour enregistrer ton profil (aperçu uniquement ici).", "Melde dich mit deinem Konto an, um dein Profil zu speichern (hier nur Vorschau).", "Sign in with your account to save your profile (preview only here)."); renderOnboarding(); return; }
+    if (!dbNs || !selfId) { ob.msg = T("Connectez-vous avec votre compte pour enregistrer votre profil (aperçu uniquement ici).", "Melden Sie sich mit Ihrem Konto an, um Ihr Profil zu speichern (hier nur Vorschau).", "Sign in with your account to save your profile (preview only here)."); renderOnboarding(); return; }
     var existing = lastProfileData || {};
     var data = Object.assign({ lookingFor: "", offering: "", projects: "", portfolio: "", contact: "" }, existing, {
       name: d.name, title: d.title, city: d.city, country: d.country, sector: d.sector, languages: d.languages, interests: d.interests,
@@ -4747,7 +4753,7 @@
       try {
         if (typeof userNs.can === "function" && (await userNs.can("data.write")) === false) {
           var rb = document.getElementById("roleBanner");
-          rb.textContent = T("Ton accès est en lecture ou commentaire seulement : tu ne peux pas enregistrer de profil, publier ni écrire. Demande à Nancy de te passer en « Contributeur » dans le menu Partager.", "Dein Zugang ist nur Lesen oder Kommentieren: Du kannst kein Profil speichern, nichts posten und keine Nachrichten schreiben. Bitte Nancy, dich im Teilen-Menü auf „Mitwirkender“ zu setzen.", "Your access is read or comment only: you cannot save a profile, post or send messages. Ask Nancy to set you as “Contributor” in the Share menu.");
+          rb.textContent = T("Votre accès est en lecture ou commentaire seulement : vous ne pouvez pas enregistrer de profil, publier ni écrire. Demandez à Nancy de vous passer en « Contributeur » dans le menu Partager.", "Ihr Zugang ist nur Lesen oder Kommentieren: Sie können kein Profil speichern, nichts posten und keine Nachrichten schreiben. Bitten Sie Nancy, Sie im Teilen-Menü auf „Mitwirkender“ zu setzen.", "Your access is read or comment only: you cannot save a profile, post or send messages. Ask Nancy to set you as “Contributor” in the Share menu.");
           rb.hidden = false;
         }
       } catch (e) {}

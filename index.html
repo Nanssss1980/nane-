@@ -806,7 +806,9 @@
   [data-view=about] .mission h2, [data-view=about] .values h2 { font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.04em; }
   [data-view=about] .mission h2::before { display: none; }
   [data-view=about] .mission h2 { padding-top: 0; }
-  [data-view=about] .mission .wrap-narrow { max-width: 1180px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  [data-view=about] .mission .wrap-narrow { max-width: 1180px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 0 56px; align-items: start; }
+  [data-view=about] .mission .wrap-narrow > button, [data-view=about] .mission .wrap-narrow > .btn { margin-top: 20px; }
+  [data-view=about] .mission .wrap-narrow > .mission-note { font-size: 14px; color: var(--text-on-paper-dim); margin-top: 6px; }
   [data-view=about] .mission .wrap-narrow > h2 { margin: 0; }
   [data-view=about] .mission .wrap-narrow > p, [data-view=about] .mission .wrap-narrow > div, [data-view=about] .mission .wrap-narrow > button { grid-column: 2; }
   [data-view=about] .mission .wrap-narrow > h2 { grid-column: 1; grid-row: 1 / span 6; position: sticky; top: 110px; }
@@ -830,7 +832,7 @@
     .feed-banner h1 { font-size: 34px; }
   }
   [data-view=about] .mission .wrap-narrow > button, [data-view=about] .mission .wrap-narrow > .btn { justify-self: start; }
-  [data-view=about] .mission, [data-view=about] > section.values { padding-top: 88px; padding-bottom: 88px; }
+  [data-view=about] .mission, [data-view=about] > section.values { padding-top: 64px; padding-bottom: 64px; }
   /* Bandeaux de page */
   .page-banner { background: linear-gradient(160deg, var(--ink-deep), var(--ink) 65%, var(--ink-soft)); color: #fff; border-bottom: 3px solid var(--brass); padding: 44px 0 40px; }
   .page-banner h1 { font-family: var(--serif); font-weight: 800; font-size: 48px; letter-spacing: -0.04em; line-height: 1.05; margin: 0 0 10px; }
@@ -1150,7 +1152,6 @@
         <h2 class="i18n" data-fr="Le talent est partout. La visibilité, non." data-de="Talent gibt es überall. Sichtbarkeit nicht." data-en="Talent is everywhere. Visibility is not."></h2>
         <div class="txt-stack">
         <p class="i18n" data-fr="Les professionnels afrodescendants évoluent dans tous les secteurs, mais leurs compétences et leur expertise ne bénéficient pas toujours de la visibilité qu’elles méritent." data-de="Fachkräfte afrikanischer Abstammung sind in allen Branchen tätig, doch ihre Kompetenzen und ihre Expertise erhalten nicht immer die Sichtbarkeit, die sie verdienen." data-en="Professionals of African descent work in every sector, but their skills and expertise don’t always receive the visibility they deserve."></p>
-        <p class="i18n" data-fr="Les réseaux professionnels restent parfois fragmentés, limitant les possibilités de se faire connaître, de développer des connexions pertinentes et d’accéder à de nouvelles opportunités." data-de="Berufliche Netzwerke bleiben mitunter fragmentiert, was die Möglichkeiten einschränkt, sich bekannt zu machen, passende Kontakte aufzubauen und neue Chancen zu finden." data-en="Professional networks sometimes remain fragmented, limiting the chances to make yourself known, build relevant connections and access new opportunities."></p>
         <p class="i18n" data-fr="Lorsque les talents manquent de visibilité, ce sont autant les professionnels que les organisations qui passent à côté d’opportunités." data-de="Fehlt es Talenten an Sichtbarkeit, entgehen Chancen ebenso den Fachkräften wie den Organisationen." data-en="When talent lacks visibility, professionals and organisations alike miss out on opportunities."></p>
         </div>
       </div>
@@ -1182,11 +1183,32 @@
 
     <section class="mission">
       <div class="wrap wrap-narrow">
+        <h2 class="i18n" data-fr="Commencer en trois étapes." data-de="In drei Schritten starten." data-en="Start in three steps."></h2>
+        <div class="txt-stack">
+        <div style="display:flex;gap:16px;align-items:baseline;margin:0 0 14px"><span style="font-weight:700;color:var(--gold,#C6A15B);font-size:22px;min-width:30px">1</span><div><strong class="i18n" data-fr="Créez votre profil" data-de="Erstellen Sie Ihr Profil" data-en="Create your profile"></strong><br><span class="i18n" data-fr="Quelques minutes suffisent." data-de="Wenige Minuten genügen." data-en="A few minutes are enough."></span></div></div>
+        <div style="display:flex;gap:16px;align-items:baseline;margin:0 0 14px"><span style="font-weight:700;color:var(--gold,#C6A15B);font-size:22px;min-width:30px">2</span><div><strong class="i18n" data-fr="Je recherche / je propose" data-de="Ich suche / ich biete" data-en="I’m looking for / I offer"></strong><br><span class="i18n" data-fr="Indiquez ce que vous cherchez et ce que vous offrez." data-de="Geben Sie an, was Sie suchen und was Sie anbieten." data-en="Say what you are looking for and what you offer."></span></div></div>
+        <div style="display:flex;gap:16px;align-items:baseline;margin:0 0 14px"><span style="font-weight:700;color:var(--gold,#C6A15B);font-size:22px;min-width:30px">3</span><div><strong class="i18n" data-fr="Première connexion" data-de="Erste Verbindung" data-en="First connection"></strong><br><span class="i18n" data-fr="Contactez une personne ou rejoignez un Circle." data-de="Nehmen Sie Kontakt auf oder treten Sie einem Circle bei." data-en="Reach out to someone or join a Circle."></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="wrap wrap-narrow">
+        <h2 class="i18n" data-fr="Des rencontres qui n’auraient pas eu lieu autrement." data-de="Begegnungen, die sonst nicht stattgefunden hätten." data-en="Meetings that might never have happened."></h2>
+        <div class="txt-stack">
+        <p class="i18n" data-fr="Une responsable marketing à Lausanne, un développeur à Berlin, une juriste à Paris : trois métiers, trois villes, et rien pour les relier." data-de="Eine Marketingverantwortliche in Lausanne, ein Entwickler in Berlin, eine Juristin in Paris: drei Berufe, drei Städte und nichts, was sie verbindet." data-en="A marketing manager in Lausanne, a developer in Berlin, a lawyer in Paris: three careers, three cities, and nothing connecting them."></p>
+        <p class="i18n" data-fr="Sur NANE, chacun indique ce qu’il recherche et ce qu’il propose. Les bonnes personnes se trouvent, au-delà des langues et des frontières." data-de="Auf NANE gibt jede Person an, was sie sucht und was sie anbietet. So finden die richtigen Menschen zueinander, über Sprachen und Grenzen hinweg." data-en="On NANE, everyone shares what they are looking for and what they offer. The right people find each other, across languages and borders."></p>
+        </div>
+        <p class="i18n mission-note" data-fr="Exemple illustratif." data-de="Veranschaulichendes Beispiel." data-en="Illustrative example."></p>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="wrap wrap-narrow">
         <h2 class="i18n" data-fr="Trop de groupes, trop de bruit." data-de="Zu viele Gruppen, zu viel Lärm." data-en="Too many groups, too much noise."></h2>
         <div class="txt-stack">
         <p class="i18n" data-fr="Les communautés professionnelles afrodescendantes échangent notamment sur WhatsApp, parfois au sein de groupes réunissant plusieurs centaines de membres." data-de="Professionelle afrodeszendente Communities tauschen sich unter anderem auf WhatsApp aus, teils in Gruppen mit mehreren hundert Mitgliedern." data-en="Professional Afro-descendant communities exchange, among other places, on WhatsApp, sometimes in groups of several hundred members."></p>
         <p class="i18n" data-fr="Entre les notifications incessantes, les conversations qui se perdent et la multiplication des sous-groupes, il devient difficile de suivre les échanges et de retrouver les informations pertinentes." data-de="Zwischen unaufhörlichen Benachrichtigungen, untergehenden Gesprächen und immer mehr Untergruppen wird es schwer, den Austausch zu verfolgen und relevante Informationen wiederzufinden." data-en="Between constant notifications, conversations that get lost and a growing number of sub-groups, it becomes hard to follow the discussions and find the relevant information."></p>
-        <p class="i18n" data-fr="La frontière entre vie privée et vie professionnelle s'estompe, et les opportunités risquent de passer inaperçues." data-de="Die Grenze zwischen Privat- und Berufsleben verschwimmt, und Chancen können unbemerkt bleiben." data-en="The line between private and professional life blurs, and opportunities may go unnoticed."></p>
         </div>
       </div>
     </section>
@@ -1195,7 +1217,6 @@
       <div class="wrap">
         <h2 class="i18n" style="text-align:center;max-width:none;margin-left:0;margin-right:0" data-fr="Des Circles pour échanger à votre rythme." data-de="Circles, um in Ihrem Tempo auszutauschen." data-en="Circles to talk at your own pace."></h2>
         <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Rejoignez les Circles qui correspondent à vos centres d’intérêt, à vos projets et à vos ambitions professionnelles." data-de="Treten Sie den Circles bei, die zu Ihren Interessen, Projekten und beruflichen Ambitionen passen." data-en="Join the Circles that match your interests, your projects and your professional ambitions."></p>
-        <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Participez aux discussions quand vous le souhaitez, personnalisez vos notifications et retrouvez facilement les échanges qui comptent pour vous." data-de="Beteiligen Sie sich an Diskussionen, wann Sie möchten, passen Sie Ihre Benachrichtigungen an und finden Sie leicht die Gespräche wieder, die für Sie zählen." data-en="Take part in discussions whenever you like, customise your notifications and easily find the conversations that matter to you."></p>
         <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Un espace organisé, sans bruit inutile, où chaque conversation trouve sa place." data-de="Ein geordneter Raum ohne unnötigen Lärm, in dem jedes Gespräch seinen Platz findet." data-en="An organised space, free of unnecessary noise, where every conversation finds its place."></p>
         <p class="i18n" style="text-align:center;margin:0 auto 24px;max-width:60ch" data-fr="Pensé pour :" data-de="Gedacht für:" data-en="Designed for:"></p>
         <div class="circ-targets">
@@ -1205,6 +1226,21 @@
         </div>
         <div class="hero-ctas" style="margin-top:28px;justify-content:center">
           <button class="btn btn-primary i18n" data-view-target="circles" data-fr="Découvrir les circles" data-de="Circles entdecken" data-en="Discover the circles"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="values">
+      <div class="wrap">
+        <h2 class="i18n" style="text-align:center;max-width:none;margin-left:0;margin-right:0" data-fr="Des employeurs engagés pour l’inclusion." data-de="Arbeitgeber, die sich für Inklusion einsetzen." data-en="Employers committed to inclusion."></h2>
+        <p class="i18n" style="text-align:center;margin:0 auto 24px;max-width:60ch" data-fr="NANE accueille des employeurs et des partenaires qui agissent pour l’inclusion." data-de="NANE nimmt Arbeitgeber und Partner auf, die sich aktiv für Inklusion einsetzen." data-en="NANE welcomes employers and partners who act for inclusion."></p>
+        <div class="value-grid">
+          <div class="value-card"><h3 class="i18n" data-fr="Une charte d’inclusion" data-de="Eine Inklusionscharta" data-en="An inclusion charter"></h3><p class="i18n" data-fr="Chaque employeur présente une charte d’inclusion, signée publiquement ou propre à l’entreprise." data-de="Jeder Arbeitgeber legt eine Inklusionscharta vor, öffentlich unterzeichnet oder unternehmenseigen." data-en="Every employer presents an inclusion charter, publicly signed or the company’s own."></p></div>
+          <div class="value-card"><h3 class="i18n" data-fr="Vérifiée avant l’arrivée" data-de="Vor dem Beitritt geprüft" data-en="Checked before joining"></h3><p class="i18n" data-fr="Les deux fondatrices vérifient chaque entreprise avant qu’elle rejoigne le réseau." data-de="Die beiden Gründerinnen prüfen jedes Unternehmen, bevor es dem Netzwerk beitritt." data-en="Both founders check each company before it joins the network."></p></div>
+          <div class="value-card"><h3 class="i18n" data-fr="Des offres pour les membres" data-de="Stellen für Mitglieder" data-en="Openings for members"></h3><p class="i18n" data-fr="Les offres sont réservées aux membres, qui postulent directement sur le site de l’employeur." data-de="Stellenangebote sind Mitgliedern vorbehalten. Sie bewerben sich direkt auf der Website des Arbeitgebers." data-en="Job openings are reserved for members, who apply directly on the employer’s website."></p></div>
+        </div>
+        <div class="hero-ctas" style="margin-top:28px;justify-content:center">
+          <button class="btn btn-primary i18n" data-view-target="employer" data-fr="Vous recrutez ? Espace employeur" data-de="Sie stellen ein? Arbeitgeberbereich" data-en="Hiring? Employer space"></button>
         </div>
       </div>
     </section>

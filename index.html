@@ -1215,9 +1215,6 @@
           <div class="value-card"><h3 class="i18n" data-fr="Enseignant·e·s, mentors et coachs" data-de="Lehrkräfte, Mentor:innen und Coaches" data-en="Teachers, mentors and coaches"></h3><p class="i18n" data-fr="Un circle remplace le groupe WhatsApp de la classe : exercices, conseils et échanges, depuis NANE." data-de="Ein Circle ersetzt die WhatsApp-Gruppe der Klasse: Übungen, Tipps und Austausch, direkt über NANE." data-en="A circle replaces the class WhatsApp group: exercises, advice and discussion, from NANE."></p></div>
           <div class="value-card"><h3 class="i18n" data-fr="Chaque membre" data-de="Jedes Mitglied" data-en="Every member"></h3><p class="i18n" data-fr="Rejoindre, mettre en silence ou quitter en un clic, et garder une frontière claire avec la vie privée." data-de="Beitreten, stummschalten oder mit einem Klick verlassen und eine klare Grenze zum Privatleben wahren." data-en="Join, mute or leave in one click, and keep a clear line with private life."></p></div>
         </div>
-        <div class="hero-ctas" style="margin-top:28px;justify-content:center">
-          <button class="btn btn-primary i18n" data-view-target="circles" data-fr="Découvrir les circles" data-de="Circles entdecken" data-en="Discover the circles"></button>
-        </div>
       </div>
     </section>
 
@@ -1445,7 +1442,8 @@
     <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></h1><p class="i18n" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Découvrez les conversations qui vous inspirent." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Entdecken Sie Gespräche, die Sie inspirieren." data-en="Circles around your interests and commitments. Discover the conversations that inspire you."></p></div></div>
     <section class="signup">
       <div class="wrap">
-        <div class="evs-shell">
+        <div class="gate-msg" id="circGate" hidden style="text-align:center"><p class="i18n" data-fr="Les Circles sont réservés aux membres de NANE." data-de="Die Circles sind Mitgliedern von NANE vorbehalten." data-en="Circles are reserved for NANE members."></p><button class="btn btn-primary i18n" data-view-target="signup" data-fr="Rejoindre le réseau" data-de="Dem Netzwerk beitreten" data-en="Join the network" style="margin-top:12px"></button></div>
+        <div class="evs-shell" id="circShell">
         <aside class="evs-side">
           <h2 class="evs-title"><span class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></span></h2>
           <input type="text" id="cgSearch" class="evs-search i18n-ph" data-fr="Rechercher des circles" data-de="Circles suchen" data-en="Search circles">
@@ -4140,6 +4138,8 @@
   }
   function renderCircles() {
     var grid = document.getElementById("circGrid"); if (!grid) return;
+    var gate = document.getElementById("circGate"), shell = document.getElementById("circShell");
+    if (gate && shell) { var vis = OFFLINE && !selfId; gate.hidden = !vis; shell.style.display = vis ? "none" : ""; }
     cgFill(); cgSidebar();
     var ccb = document.getElementById("circCreateBtn"); if (ccb) ccb.style.display = (OFFLINE && !selfId) ? "none" : "";
     var shown = allCircles().filter(cgMatch);

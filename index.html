@@ -1207,7 +1207,7 @@
       <div class="wrap">
         <h2 class="i18n" style="text-align:center;max-width:none;margin-left:0;margin-right:0" data-fr="Des Circles pour échanger à votre rythme." data-de="Circles, um in Ihrem Tempo auszutauschen." data-en="Circles to talk at your own pace."></h2>
         <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Les communautés professionnelles afrodescendantes échangent notamment sur WhatsApp, parfois au sein de groupes réunissant plusieurs centaines de membres." data-de="Professionelle afrodeszendente Communities tauschen sich unter anderem auf WhatsApp aus, teils in Gruppen mit mehreren hundert Mitgliedern." data-en="Professional Afro-descendant communities exchange, among other places, on WhatsApp, sometimes in groups of several hundred members."></p>
-        <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Rejoignez les Circles qui correspondent à vos centres d’intérêt, à vos projets et à vos ambitions professionnelles." data-de="Treten Sie den Circles bei, die zu Ihren Interessen, Projekten und beruflichen Ambitionen passen." data-en="Join the Circles that match your interests, your projects and your professional ambitions."></p>
+        <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Trouvez les Circles qui correspondent à vos centres d’intérêt, à vos projets et à vos ambitions professionnelles." data-de="Finden Sie die Circles, die zu Ihren Interessen, Projekten und beruflichen Ambitionen passen." data-en="Find the Circles that match your interests, your projects and your professional ambitions."></p>
         <p class="i18n" style="text-align:center;margin:0 auto 10px;max-width:60ch" data-fr="Un espace organisé, sans bruit inutile, où chaque conversation trouve sa place." data-de="Ein geordneter Raum ohne unnötigen Lärm, in dem jedes Gespräch seinen Platz findet." data-en="An organised space, free of unnecessary noise, where every conversation finds its place."></p>
         <p class="i18n" style="text-align:center;margin:0 auto 24px;max-width:60ch" data-fr="Pensé pour :" data-de="Gedacht für:" data-en="Designed for:"></p>
         <div class="circ-targets">
@@ -1442,7 +1442,7 @@
 
   <!-- CIRCLES -->
   <section data-view="circles">
-    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></h1><p class="i18n" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Rejoignez les conversations qui vous inspirent ou créez votre propre espace d’échange." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Treten Sie Gesprächen bei, die Sie inspirieren, oder gründen Sie Ihren eigenen Raum." data-en="Circles around your interests and commitments. Join the conversations that inspire you or create your own space."></p></div></div>
+    <div class="page-banner"><div class="wrap"><h1 class="i18n" data-fr="Circles" data-de="Circles" data-en="Circles"></h1><p class="i18n" data-fr="Des circles autour de vos centres d’intérêt et de vos engagements. Découvrez les conversations qui vous inspirent." data-de="Circles rund um Ihre Interessen und Ihr Engagement. Entdecken Sie Gespräche, die Sie inspirieren." data-en="Circles around your interests and commitments. Discover the conversations that inspire you."></p></div></div>
     <section class="signup">
       <div class="wrap">
         <div class="evs-shell">
@@ -4141,14 +4141,17 @@
   function renderCircles() {
     var grid = document.getElementById("circGrid"); if (!grid) return;
     cgFill(); cgSidebar();
+    var ccb = document.getElementById("circCreateBtn"); if (ccb) ccb.style.display = (OFFLINE && !selfId) ? "none" : "";
     var shown = allCircles().filter(cgMatch);
     if (!shown.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>' + escapeHtml(T("Aucun circle pour le moment", "Noch keine Circles", "No circles yet")) + '</h3><p>' + escapeHtml(T("Créez le premier circle de cette catégorie ou de ce pays.", "Erstellen Sie den ersten Circle dieser Kategorie oder dieses Landes.", "Create the first circle in this category or country.")) + '</p></div>'; return; }
     grid.innerHTML = shown.map(function (c) {
       var m = circMem[c.id], n = circCounts[c.id] || 0;
       var meta = (c.ex ? T("Exemple", "Beispiel", "Example") + " · " : "") + ((c.cat || c.country) ? cgCatLabel(c.cat || "autre") + " · " + cgCountryLabel(c.country || "intl") + " · " : "") + (c.o ? T("Ouvert", "Offen", "Open") : T("Sur validation", "Mit Freigabe", "By approval")) +
         ((circDbReady || !OFFLINE) ? " · " + n + " " + T("membre" + (n > 1 ? "s" : ""), n > 1 ? "Mitglieder" : "Mitglied", n > 1 ? "members" : "member") : "");
-      var act;
-      if (m && m.status === "member") {
+      var act, visitor = OFFLINE && !selfId;
+      if (visitor) {
+        act = '<div class="circ-row"><button class="circ-btn" disabled style="opacity:.6;cursor:default">' + escapeHtml(T("Réservé aux membres", "Nur für Mitglieder", "Members only")) + '</button></div>';
+      } else if (m && m.status === "member") {
         act = '<div class="circ-row"><button class="circ-btn on" data-act="leave" data-id="' + c.id + '">' + escapeHtml(T("Membre ✓", "Mitglied ✓", "Joined ✓")) + '</button>' +
           '<select class="circ-sel" data-act="notif" data-id="' + c.id + '" aria-label="Notifications">' +
           ["all", "digest", "mute"].map(function (k) { return '<option value="' + k + '"' + (m.notif === k ? " selected" : "") + '>' + escapeHtml(circLabel(k)) + '</option>'; }).join("") + '</select></div>';
@@ -4178,6 +4181,7 @@
       var b = ev.target.closest("button[data-act]"); if (!b) return;
       var id = b.getAttribute("data-id"), act = b.getAttribute("data-act");
       var c = allCircles().filter(function (x) { return x.id === id; })[0]; if (!c) return;
+      if ((OFFLINE && !selfId)) return;
       if (act === "join") circSave(id, { status: (c.o || (typeof isAdmin === "function" && isAdmin()) || (selfId && c.authorId === selfId)) ? "member" : "pending", notif: "digest" });
       if (act === "leave") circSave(id, null);
     });
